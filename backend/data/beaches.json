@@ -1,0 +1,254 @@
+{
+  "beaches": [
+    {
+      "id": 1,
+      "name": "Potlatch State Park",
+      "county": "Mason",
+      "region": "Hood Canal",
+      "lat": 47.3586,
+      "lon": -123.1572,
+      "tide_station_id": "9446807",
+      "doh_object_id": 101
+    },
+    {
+      "id": 2,
+      "name": "Dosewallips State Park",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.6869,
+      "lon": -122.9031,
+      "tide_station_id": "9446807",
+      "doh_object_id": 102
+    },
+    {
+      "id": 3,
+      "name": "Twanoh State Park",
+      "county": "Mason",
+      "region": "Hood Canal",
+      "lat": 47.3783,
+      "lon": -123.0142,
+      "tide_station_id": "9446807",
+      "doh_object_id": 103
+    },
+    {
+      "id": 4,
+      "name": "Belfair State Park",
+      "county": "Mason",
+      "region": "Hood Canal",
+      "lat": 47.4272,
+      "lon": -122.8747,
+      "tide_station_id": "9446807",
+      "doh_object_id": 104
+    },
+    {
+      "id": 5,
+      "name": "Lilliwaup State Park",
+      "county": "Mason",
+      "region": "Hood Canal",
+      "lat": 47.4517,
+      "lon": -123.0861,
+      "tide_station_id": "9446807",
+      "doh_object_id": 105
+    },
+    {
+      "id": 6,
+      "name": "Eagle Creek",
+      "county": "Mason",
+      "region": "Hood Canal",
+      "lat": 47.4892,
+      "lon": -123.0394,
+      "tide_station_id": "9446807",
+      "doh_object_id": 106
+    },
+    {
+      "id": 7,
+      "name": "Scenic Beach State Park",
+      "county": "Kitsap",
+      "region": "Hood Canal",
+      "lat": 47.6403,
+      "lon": -122.8408,
+      "tide_station_id": "9446807",
+      "doh_object_id": 107
+    },
+    {
+      "id": 8,
+      "name": "Port Gamble",
+      "county": "Kitsap",
+      "region": "Admiralty",
+      "lat": 47.8525,
+      "lon": -122.5831,
+      "tide_station_id": "9444900",
+      "doh_object_id": 108
+    },
+    {
+      "id": 9,
+      "name": "DNR-68 (Point No Point)",
+      "county": "Kitsap",
+      "region": "Admiralty",
+      "lat": 47.9122,
+      "lon": -122.5264,
+      "tide_station_id": "9444900",
+      "doh_object_id": 109
+    },
+    {
+      "id": 10,
+      "name": "DNR-69",
+      "county": "Kitsap",
+      "region": "Admiralty",
+      "lat": 47.8856,
+      "lon": -122.5483,
+      "tide_station_id": "9444900",
+      "doh_object_id": 110
+    },
+    {
+      "id": 11,
+      "name": "Penrose Point State Park",
+      "county": "Pierce",
+      "region": "South Sound",
+      "lat": 47.2586,
+      "lon": -122.7444,
+      "tide_station_id": "9446484",
+      "doh_object_id": 111
+    },
+    {
+      "id": 12,
+      "name": "Kopachuck State Park",
+      "county": "Pierce",
+      "region": "South Sound",
+      "lat": 47.3094,
+      "lon": -122.6856,
+      "tide_station_id": "9446484",
+      "doh_object_id": 112
+    },
+    {
+      "id": 13,
+      "name": "Dash Point State Park",
+      "county": "Pierce",
+      "region": "South Sound",
+      "lat": 47.3189,
+      "lon": -122.4086,
+      "tide_station_id": "9446484",
+      "doh_object_id": 113
+    },
+    {
+      "id": 14,
+      "name": "Camano Island State Park",
+      "county": "Island",
+      "region": "North Sound",
+      "lat": 48.1219,
+      "lon": -122.4922,
+      "tide_station_id": "9447427",
+      "doh_object_id": 114
+    },
+    {
+      "id": 15,
+      "name": "Birch Bay State Park",
+      "county": "Whatcom",
+      "region": "North Sound",
+      "lat": 48.9053,
+      "lon": -122.7647,
+      "tide_station_id": "9449211",
+      "doh_object_id": 115
+    },
+    {
+      "id": 16,
+      "name": "Sequim Bay State Park",
+      "county": "Clallam",
+      "region": "Strait",
+      "lat": 48.0403,
+      "lon": -123.0317,
+      "tide_station_id": "9444090",
+      "doh_object_id": 116
+    },
+    {
+      "id": 17,
+      "name": "Dungeness Recreation Area",
+      "county": "Clallam",
+      "region": "Strait",
+      "lat": 48.1417,
+      "lon": -123.1228,
+      "tide_station_id": "9444090",
+      "doh_object_id": 117
+    },
+    {
+      "id": 18,
+      "name": "Mystery Bay State Park",
+      "county": "Jefferson",
+      "region": "Admiralty",
+      "lat": 48.0519,
+      "lon": -122.7028,
+      "tide_station_id": "9444900",
+      "doh_object_id": 118
+    },
+    {
+      "id": 19,
+      "name": "Fort Flagler State Park",
+      "county": "Jefferson",
+      "region": "Admiralty",
+      "lat": 48.0886,
+      "lon": -122.7028,
+      "tide_station_id": "9444900",
+      "doh_object_id": 119
+    },
+    {
+      "id": 20,
+      "name": "Fort Worden State Park",
+      "county": "Jefferson",
+      "region": "Admiralty",
+      "lat": 48.1369,
+      "lon": -122.7653,
+      "tide_station_id": "9444900",
+      "doh_object_id": 120
+    },
+    {
+      "id": 21,
+      "name": "Manchester State Park",
+      "county": "Kitsap",
+      "region": "Central Sound",
+      "lat": 47.5697,
+      "lon": -122.5447,
+      "tide_station_id": "9447130",
+      "doh_object_id": 121
+    },
+    {
+      "id": 22,
+      "name": "Blake Island State Park",
+      "county": "Kitsap",
+      "region": "Central Sound",
+      "lat": 47.5386,
+      "lon": -122.4894,
+      "tide_station_id": "9447130",
+      "doh_object_id": 122
+    },
+    {
+      "id": 23,
+      "name": "Saltwater State Park",
+      "county": "King",
+      "region": "Central Sound",
+      "lat": 47.3747,
+      "lon": -122.3228,
+      "tide_station_id": "9447130",
+      "doh_object_id": 123
+    },
+    {
+      "id": 24,
+      "name": "Tolmie State Park",
+      "county": "Thurston",
+      "region": "South Sound",
+      "lat": 47.1214,
+      "lon": -122.7769,
+      "tide_station_id": "9446969",
+      "doh_object_id": 124
+    },
+    {
+      "id": 25,
+      "name": "Joemma Beach State Park",
+      "county": "Pierce",
+      "region": "South Sound",
+      "lat": 47.2256,
+      "lon": -122.8108,
+      "tide_station_id": "9446484",
+      "doh_object_id": 125
+    }
+  ]
+}
