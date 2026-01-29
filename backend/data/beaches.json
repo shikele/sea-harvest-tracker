@@ -8,17 +8,34 @@
       "lat": 47.3586,
       "lon": -123.1572,
       "tide_station_id": "9446807",
-      "doh_object_id": 101
+      "doh_object_id": 101,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 1.0},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Varnish Clams", "abundance": "excellent", "tidal_zone": "upper", "min_tide_ft": 3.0},
+        {"name": "Eastern Softshell Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Excellent oyster beach. Best digging in middle intertidal zone in sand/gravel."
     },
     {
       "id": 2,
       "name": "Dosewallips State Park",
       "county": "Jefferson",
       "region": "Hood Canal",
-      "lat": 47.6869,
-      "lon": -122.9031,
+      "lat": 47.6887,
+      "lon": -122.9068,
       "tide_station_id": "9446807",
-      "doh_object_id": 102
+      "doh_object_id": 102,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "excellent", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Excellent for oysters year-round. Southern portion permanently closed - check map. Clams closed in 2025-2026 for recovery."
     },
     {
       "id": 3,
@@ -28,7 +45,14 @@
       "lat": 47.3783,
       "lon": -123.0142,
       "tide_station_id": "9446807",
-      "doh_object_id": 103
+      "doh_object_id": 103,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "lower", "min_tide_ft": 0.5}
+      ],
+      "notes": "Excellent oyster beach. Best oyster spot near boat ramp. Clams in narrow band below oyster beds. Open year-round for oysters."
     },
     {
       "id": 4,
@@ -38,7 +62,13 @@
       "lat": 47.4272,
       "lon": -122.8747,
       "tide_station_id": "9446807",
-      "doh_object_id": 104
+      "doh_object_id": 104,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Excellent for oysters and Manila clams. Parts of beach very muddy - look for firmer substrate. Enhanced oyster beds."
     },
     {
       "id": 5,
@@ -48,7 +78,14 @@
       "lat": 47.4517,
       "lon": -123.0861,
       "tide_station_id": "9446807",
-      "doh_object_id": 105
+      "doh_object_id": 105,
+      "species": [
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Excellent oyster beach. Beach is mostly rocky - digging is difficult."
     },
     {
       "id": 6,
@@ -58,7 +95,13 @@
       "lat": 47.4892,
       "lon": -123.0394,
       "tide_station_id": "9446807",
-      "doh_object_id": 106
+      "doh_object_id": 106,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Good for oysters. Near freshwater creek influence."
     },
     {
       "id": 7,
@@ -68,7 +111,12 @@
       "lat": 47.6403,
       "lon": -122.8408,
       "tide_station_id": "9446807",
-      "doh_object_id": 107
+      "doh_object_id": 107,
+      "species": [
+        {"name": "Pacific Oysters", "abundance": "recovering", "tidal_zone": "middle/lower", "min_tide_ft": 1.0},
+        {"name": "Olympia Oysters", "abundance": "recovering", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "CLOSED for conservation since 2010 due to oyster bed damage. Check for reopening status."
     },
     {
       "id": 8,
@@ -78,7 +126,13 @@
       "lat": 47.8525,
       "lon": -122.5831,
       "tide_station_id": "9444900",
-      "doh_object_id": 108
+      "doh_object_id": 108,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Historic mill town with good shellfish access. Check current closure status."
     },
     {
       "id": 9,
@@ -88,7 +142,14 @@
       "lat": 47.9122,
       "lon": -122.5264,
       "tide_station_id": "9444900",
-      "doh_object_id": 109
+      "doh_object_id": 109,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "DNR public beach. Good variety of clam species."
     },
     {
       "id": 10,
@@ -98,7 +159,13 @@
       "lat": 47.8856,
       "lon": -122.5483,
       "tide_station_id": "9444900",
-      "doh_object_id": 110
+      "doh_object_id": 110,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "DNR public beach near Point No Point."
     },
     {
       "id": 11,
@@ -108,7 +175,14 @@
       "lat": 47.2586,
       "lon": -122.7444,
       "tide_station_id": "9446484",
-      "doh_object_id": 111
+      "doh_object_id": 111,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Good variety of clams and oysters. Scenic location on Mayo Cove."
     },
     {
       "id": 12,
@@ -118,7 +192,13 @@
       "lat": 47.3094,
       "lon": -122.6856,
       "tide_station_id": "9446484",
-      "doh_object_id": 112
+      "doh_object_id": 112,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Good clam beach. Beach has mix of sand and gravel substrate."
     },
     {
       "id": 13,
@@ -128,7 +208,13 @@
       "lat": 47.3189,
       "lon": -122.4086,
       "tide_station_id": "9446484",
-      "doh_object_id": 113
+      "doh_object_id": 113,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "low", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "Urban beach with moderate clam populations. Good for beginners."
     },
     {
       "id": 14,
@@ -138,7 +224,15 @@
       "lat": 48.1219,
       "lon": -122.4922,
       "tide_station_id": "9447427",
-      "doh_object_id": 114
+      "doh_object_id": 114,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "Good variety on Saratoga Passage. Nice family beach."
     },
     {
       "id": 15,
@@ -148,7 +242,15 @@
       "lat": 48.9053,
       "lon": -122.7647,
       "tide_station_id": "9449211",
-      "doh_object_id": 115
+      "doh_object_id": 115,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Popular north sound beach. Large tide flats for easy clamming. Good horse clams in sandy areas."
     },
     {
       "id": 16,
@@ -158,7 +260,15 @@
       "lat": 48.0403,
       "lon": -123.0317,
       "tide_station_id": "9444090",
-      "doh_object_id": 116
+      "doh_object_id": 116,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Protected bay with good shellfish variety. Calm waters. Sandy substrate good for horse clams."
     },
     {
       "id": 17,
@@ -168,7 +278,13 @@
       "lat": 48.1417,
       "lon": -123.1228,
       "tide_station_id": "9444090",
-      "doh_object_id": 117
+      "doh_object_id": 117,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "Large tide flats. Wildlife refuge - some areas restricted."
     },
     {
       "id": 18,
@@ -178,7 +294,16 @@
       "lat": 48.0519,
       "lon": -122.7028,
       "tide_station_id": "9444900",
-      "doh_object_id": 118
+      "doh_object_id": 118,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Historic Chemakum tribe clamming site. Oysters seeded by WDFW near boat ramp. Fire rings available."
     },
     {
       "id": 19,
@@ -188,7 +313,16 @@
       "lat": 48.0886,
       "lon": -122.7028,
       "tide_station_id": "9444900",
-      "doh_object_id": 119
+      "doh_object_id": 119,
+      "species": [
+        {"name": "Butter Clams", "abundance": "excellent", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Horse Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Geoduck", "abundance": "moderate", "tidal_zone": "very low", "min_tide_ft": -2.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "GEODUCK beach! Best butter clams between mainland and Rat Island. Geoduck in sandy Kilisut Harbor side at -2ft tide."
     },
     {
       "id": 20,
@@ -198,7 +332,11 @@
       "lat": 48.1369,
       "lon": -122.7653,
       "tide_station_id": "9444900",
-      "doh_object_id": 120
+      "doh_object_id": 120,
+      "species": [
+        {"name": "Seaweed", "abundance": "good", "tidal_zone": "all", "min_tide_ft": 2.0}
+      ],
+      "notes": "WARNING: Western beach permanently closed - shellfish not safe. Seaweed harvest April 16-May 15 only."
     },
     {
       "id": 21,
@@ -208,7 +346,13 @@
       "lat": 47.5697,
       "lon": -122.5447,
       "tide_station_id": "9447130",
-      "doh_object_id": 121
+      "doh_object_id": 121,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Historic torpedo warehouse. Close to Manchester boat launch."
     },
     {
       "id": 22,
@@ -218,7 +362,16 @@
       "lat": 47.5386,
       "lon": -122.4894,
       "tide_station_id": "9447130",
-      "doh_object_id": 122
+      "doh_object_id": 122,
+      "species": [
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Geoduck", "abundance": "low", "tidal_zone": "very low", "min_tide_ft": -2.0}
+      ],
+      "notes": "BOAT ACCESS ONLY. Open year-round. Marina area CLOSED. Views of Seattle skyline. Make clam chowder on beach!",
+      "access_type": "boat"
     },
     {
       "id": 23,
@@ -228,7 +381,12 @@
       "lat": 47.3747,
       "lon": -122.3228,
       "tide_station_id": "9447130",
-      "doh_object_id": 123
+      "doh_object_id": 123,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Urban beach between Seattle and Tacoma. Good for beginners. Underwater park for divers."
     },
     {
       "id": 24,
@@ -238,7 +396,11 @@
       "lat": 47.1214,
       "lon": -122.7769,
       "tide_station_id": "9446969",
-      "doh_object_id": 124
+      "doh_object_id": 124,
+      "species": [
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Planted oyster bed - excellent for oysters. Not much clam resource. Day use only. 8 miles NE of Olympia."
     },
     {
       "id": 25,
@@ -248,7 +410,1026 @@
       "lat": 47.2256,
       "lon": -122.8108,
       "tide_station_id": "9446484",
-      "doh_object_id": 125
+      "doh_object_id": 125,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Key Peninsula - formerly Robert Kennedy Recreation Area. Boat moorage available. Good oyster habitat."
+    },
+    {
+      "id": 26,
+      "name": "Kayak Point County Park",
+      "county": "Snohomish",
+      "region": "North Sound",
+      "lat": 48.1372,
+      "lon": -122.3631,
+      "tide_station_id": "9447427",
+      "doh_object_id": 126,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "Popular beach park. Pier for fishing. Campground and day use areas."
+    },
+    {
+      "id": 27,
+      "name": "Meadowdale County Park",
+      "county": "Snohomish",
+      "region": "Central Sound",
+      "lat": 47.8544,
+      "lon": -122.3319,
+      "tide_station_id": "9447130",
+      "doh_object_id": 127,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "1.25-mile trail to beach. Lunds Gulch Creek estuary. Day use only."
+    },
+    {
+      "id": 28,
+      "name": "Mukilteo State Park",
+      "county": "Snohomish",
+      "region": "Central Sound",
+      "lat": 47.9486,
+      "lon": -122.3047,
+      "tide_station_id": "9447130",
+      "doh_object_id": 128,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Historic lighthouse. Near Whidbey Island ferry terminal. Scuba diving popular."
+    },
+    {
+      "id": 29,
+      "name": "Larrabee State Park",
+      "county": "Whatcom",
+      "region": "North Sound",
+      "lat": 48.6553,
+      "lon": -122.4919,
+      "tide_station_id": "9449211",
+      "doh_object_id": 129,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Mussels", "abundance": "good", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "Washington's first state park. Rocky tide pools with mussels. Samish Bay views."
+    },
+    {
+      "id": 30,
+      "name": "Shine Tidelands State Park",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.9254,
+      "lon": -122.6835,
+      "tide_station_id": "9446807",
+      "doh_object_id": 130,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "excellent", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Geoduck", "abundance": "moderate", "tidal_zone": "very low", "min_tide_ft": -2.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "GEODUCK beach! Excellent Manila/littleneck digging. 5,000ft of shoreline. Near Hood Canal Bridge. No restrooms."
+    },
+    {
+      "id": 31,
+      "name": "Wolfe Property State Park",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.9201,
+      "lon": -122.6789,
+      "tide_station_id": "9446807",
+      "doh_object_id": 131,
+      "species": [
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0},
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Better oysters than Shine Tidelands. Adjacent to Shine. Walk/picnic along high tide line."
+    },
+    {
+      "id": 32,
+      "name": "Triton Cove State Park",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.6062,
+      "lon": -122.9860,
+      "tide_station_id": "9446807",
+      "doh_object_id": 132,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Hood Canal location with good shellfish habitat. Small park, less crowded."
+    },
+    {
+      "id": 33,
+      "name": "Pleasant Harbor State Park",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.6654,
+      "lon": -122.9082,
+      "tide_station_id": "9446807",
+      "doh_object_id": 133,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Sheltered harbor near Black Point. Excellent oyster habitat. Marina and resort nearby."
+    },
+    {
+      "id": 34,
+      "name": "Point Whitney Tidelands",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.7604,
+      "lon": -122.8513,
+      "tide_station_id": "9446807",
+      "doh_object_id": 134,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Near WDFW shellfish hatchery. Oysters in lagoon and outer tidelands. 2.5in minimum oyster size."
+    },
+    {
+      "id": 35,
+      "name": "Quilcene Bay",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.8000,
+      "lon": -122.8583,
+      "tide_station_id": "9446807",
+      "doh_object_id": 135,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Eastern Softshell Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Large Manila clam population. Famous Quilcene oysters - briny, light and clean flavor."
+    },
+    {
+      "id": 36,
+      "name": "Discovery Park",
+      "county": "King",
+      "region": "Central Sound",
+      "lat": 47.6572,
+      "lon": -122.4172,
+      "tide_station_id": "9447130",
+      "doh_object_id": 136,
+      "species": [
+        {"name": "Manila Clams", "abundance": "low", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Seattle's largest park. CHECK CLOSURES - often closed due to urban runoff. West Point Lighthouse."
+    },
+    {
+      "id": 37,
+      "name": "Lincoln Park",
+      "county": "King",
+      "region": "Central Sound",
+      "lat": 47.5306,
+      "lon": -122.3939,
+      "tide_station_id": "9447130",
+      "doh_object_id": 137,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "West Seattle park with Colman Pool. Beach access. CHECK CLOSURES for urban beach status."
+    },
+    {
+      "id": 38,
+      "name": "Seahurst County Park",
+      "county": "King",
+      "region": "Central Sound",
+      "lat": 47.4653,
+      "lon": -122.3611,
+      "tide_station_id": "9447130",
+      "doh_object_id": 138,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Burien beach park. Recently restored with seawall removal. Check biotoxin status."
+    },
+    {
+      "id": 39,
+      "name": "Richmond Beach Saltwater Park",
+      "county": "King",
+      "region": "Central Sound",
+      "lat": 47.7669,
+      "lon": -122.3844,
+      "tide_station_id": "9447130",
+      "doh_object_id": 139,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Shoreline park. Sandy beach with tide flats. Rail tracks between parking and beach."
+    },
+    {
+      "id": 40,
+      "name": "Fay Bainbridge Park",
+      "county": "Kitsap",
+      "region": "Central Sound",
+      "lat": 47.7019,
+      "lon": -122.5094,
+      "tide_station_id": "9447130",
+      "doh_object_id": 140,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Bainbridge Island park with camping. Views of Seattle skyline and Mt. Rainier."
+    },
+    {
+      "id": 41,
+      "name": "Illahee State Park",
+      "county": "Kitsap",
+      "region": "Central Sound",
+      "lat": 47.5972,
+      "lon": -122.5969,
+      "tide_station_id": "9447130",
+      "doh_object_id": 141,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Near Bremerton. Pier for fishing. Old-growth forest trails. Camping available."
+    },
+    {
+      "id": 42,
+      "name": "Kitsap Memorial State Park",
+      "county": "Kitsap",
+      "region": "Hood Canal",
+      "lat": 47.8169,
+      "lon": -122.6408,
+      "tide_station_id": "9446807",
+      "doh_object_id": 142,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Northern Hood Canal. WWII memorial park. Good shellfish habitat in protected cove."
+    },
+    {
+      "id": 43,
+      "name": "Foulweather Bluff (DNR-64)",
+      "county": "Kitsap",
+      "region": "Admiralty",
+      "lat": 47.9281,
+      "lon": -122.5933,
+      "tide_station_id": "9444900",
+      "doh_object_id": 143,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "DNR public beach at Hood Canal-Admiralty junction. Nature Conservancy preserve nearby. Excellent views."
+    },
+    {
+      "id": 44,
+      "name": "Cama Beach State Park",
+      "county": "Island",
+      "region": "North Sound",
+      "lat": 48.1467,
+      "lon": -122.5103,
+      "tide_station_id": "9447427",
+      "doh_object_id": 144,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Historic 1930s fishing resort on Camano Island. Restored cabins for rent. Saratoga Passage."
+    },
+    {
+      "id": 45,
+      "name": "Fort Casey State Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.1586,
+      "lon": -122.6732,
+      "tide_station_id": "9444900",
+      "doh_object_id": 145,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Historic fort location. Good beach access with parking. Mix of sand and gravel."
+    },
+    {
+      "id": 46,
+      "name": "South Whidbey State Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.0568,
+      "lon": -122.5940,
+      "tide_station_id": "9447130",
+      "doh_object_id": 146,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Beautiful old-growth forest backdrop. Beach access via trail."
+    },
+    {
+      "id": 47,
+      "name": "Double Bluff State Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 47.9826,
+      "lon": -122.5142,
+      "tide_station_id": "9447130",
+      "doh_object_id": 147,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Popular off-leash dog beach. 2-mile beach with good clam habitat. Views of Olympics. Sandy flats good for horse clams."
+    },
+    {
+      "id": 48,
+      "name": "Hope Island State Park",
+      "county": "Mason",
+      "region": "South Sound",
+      "lat": 47.1667,
+      "lon": -122.9167,
+      "tide_station_id": "9446969",
+      "doh_object_id": 148,
+      "species": [
+        {"name": "Geoduck", "abundance": "good", "tidal_zone": "very low", "min_tide_ft": -2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Manila Clams", "abundance": "low", "tidal_zone": "middle/upper", "min_tide_ft": 2.0}
+      ],
+      "notes": "GEODUCK beach! Popular geoduck spot on west/south sides. Boat access only. Watch for rough piddocks (split siphon).",
+      "access_type": "boat"
+    },
+    {
+      "id": 49,
+      "name": "Jarrell Cove State Park",
+      "county": "Mason",
+      "region": "South Sound",
+      "lat": 47.2797,
+      "lon": -122.8856,
+      "tide_station_id": "9446969",
+      "doh_object_id": 149,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Protected cove with dock. Good for kayak/boat access."
+    },
+    {
+      "id": 50,
+      "name": "McMicken Island State Park",
+      "county": "Mason",
+      "region": "South Sound",
+      "lat": 47.2350,
+      "lon": -122.8711,
+      "tide_station_id": "9446969",
+      "doh_object_id": 150,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Island park connected to Harstene Island at low tide. Boat access recommended.",
+      "access_type": "boat"
+    },
+    {
+      "id": 51,
+      "name": "Oakland Bay",
+      "county": "Mason",
+      "region": "South Sound",
+      "lat": 47.1833,
+      "lon": -123.0500,
+      "tide_station_id": "9446969",
+      "doh_object_id": 151,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Horse Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Near Shelton - commercial oyster growing area. Taylor Shellfish nearby. Excellent oyster habitat."
+    },
+    {
+      "id": 52,
+      "name": "Cutts Island State Park",
+      "county": "Pierce",
+      "region": "South Sound",
+      "lat": 47.2756,
+      "lon": -122.6867,
+      "tide_station_id": "9446484",
+      "doh_object_id": 152,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Small island in Carr Inlet. BOAT ACCESS ONLY - kayak/paddleboard accessible. Undeveloped marine park.",
+      "access_type": "boat"
+    },
+    {
+      "id": 53,
+      "name": "Burfoot County Park",
+      "county": "Thurston",
+      "region": "South Sound",
+      "lat": 47.1264,
+      "lon": -122.8578,
+      "tide_station_id": "9446969",
+      "doh_object_id": 153,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Budd Inlet beach near Boston Harbor. Old-growth forest trail. Quiet alternative to Tolmie."
+    },
+    {
+      "id": 54,
+      "name": "Frye Cove County Park",
+      "county": "Thurston",
+      "region": "South Sound",
+      "lat": 47.1375,
+      "lon": -122.9236,
+      "tide_station_id": "9446969",
+      "doh_object_id": 154,
+      "species": [
+        {"name": "Geoduck", "abundance": "moderate", "tidal_zone": "very low", "min_tide_ft": -2.0},
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "GEODUCK beach! Good variety of shellfish. Near Olympia."
+    },
+    {
+      "id": 55,
+      "name": "Spencer Spit State Park",
+      "county": "San Juan",
+      "region": "San Juan Islands",
+      "lat": 48.5353,
+      "lon": -122.8622,
+      "tide_station_id": "9449880",
+      "doh_object_id": 155,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Lopez Island - car accessible! Best clams on north side of spit in muddy gravel. Lagoon CLOSED."
+    },
+    {
+      "id": 56,
+      "name": "Odlin County Park",
+      "county": "San Juan",
+      "region": "San Juan Islands",
+      "lat": 48.5106,
+      "lon": -122.8886,
+      "tide_station_id": "9449880",
+      "doh_object_id": 156,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Alternative to Spencer Spit on Lopez Island. Near ferry landing."
+    },
+    {
+      "id": 57,
+      "name": "West Penn Cove",
+      "county": "Island",
+      "region": "North Sound",
+      "lat": 48.2236,
+      "lon": -122.7092,
+      "tide_station_id": "9447427",
+      "doh_object_id": 157,
+      "species": [
+        {"name": "Mussels", "abundance": "excellent", "tidal_zone": "upper/middle", "min_tide_ft": 2.5},
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Penn Cove mussel country! Penn Cove Shellfish operates commercial mussel rafts here. World-famous mussels."
+    },
+    {
+      "id": 58,
+      "name": "Picnic Point County Park",
+      "county": "Snohomish",
+      "region": "Central Sound",
+      "lat": 47.8761,
+      "lon": -122.3272,
+      "tide_station_id": "9447130",
+      "doh_object_id": 158,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Sandy beach with pier. Stream flows through. Popular swimming beach in summer."
+    },
+    {
+      "id": 59,
+      "name": "Howarth Park",
+      "county": "Snohomish",
+      "region": "Central Sound",
+      "lat": 47.9647,
+      "lon": -122.2383,
+      "tide_station_id": "9447130",
+      "doh_object_id": 159,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Everett city park. Pedestrian bridge over railroad tracks to beach. Playground and trails."
+    },
+    {
+      "id": 60,
+      "name": "Duckabush",
+      "county": "Jefferson",
+      "region": "Hood Canal",
+      "lat": 47.6392,
+      "lon": -122.9083,
+      "tide_station_id": "9446807",
+      "doh_object_id": 160,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "excellent", "tidal_zone": "middle/lower", "min_tide_ft": 1.0},
+        {"name": "Geoduck", "abundance": "good", "tidal_zone": "very low", "min_tide_ft": -2.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "GEODUCK beach! Top spot to watch experienced geoduck diggers. Great Manila bed. Less crowded than Dosewallips. Open year-round."
+    },
+    {
+      "id": 61,
+      "name": "Possession Point State Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 47.9076,
+      "lon": -122.3765,
+      "tide_station_id": "9447130",
+      "doh_object_id": 161,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Southern tip of Whidbey Island. Sandy beach with good clam habitat. Views of Seattle."
+    },
+    {
+      "id": 62,
+      "name": "Freeland County Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.0200,
+      "lon": -122.5280,
+      "tide_station_id": "9447130",
+      "doh_object_id": 162,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Holmes Harbor area. Protected bay with boat launch. Family-friendly beach."
+    },
+    {
+      "id": 63,
+      "name": "Dave Mackie County Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 47.9350,
+      "lon": -122.4550,
+      "tide_station_id": "9447130",
+      "doh_object_id": 163,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "Sandy Point area on south Whidbey. Good beach access."
+    },
+    {
+      "id": 64,
+      "name": "Useless Bay (South)",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 47.9868,
+      "lon": -122.4860,
+      "tide_station_id": "9447130",
+      "doh_object_id": 164,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "Large tide flats - excellent for clamming. Near Double Bluff. Sandy substrate with horse clams."
+    },
+    {
+      "id": 65,
+      "name": "Scatchet Head",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 47.9129,
+      "lon": -122.4190,
+      "tide_station_id": "9447130",
+      "doh_object_id": 165,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Bluff area with beach access. More rocky substrate."
+    },
+    {
+      "id": 66,
+      "name": "Mutiny Bay",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 47.9932,
+      "lon": -122.5580,
+      "tide_station_id": "9447130",
+      "doh_object_id": 166,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Protected bay with good shellfish habitat."
+    },
+    {
+      "id": 67,
+      "name": "Lagoon Point",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.0804,
+      "lon": -122.6206,
+      "tide_station_id": "9447130",
+      "doh_object_id": 167,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Private community area - check access. Near Greenbank."
+    },
+    {
+      "id": 68,
+      "name": "Bush Point",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.0309,
+      "lon": -122.6070,
+      "tide_station_id": "9447130",
+      "doh_object_id": 168,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Historic lighthouse area. Narrow passage with strong currents."
+    },
+    {
+      "id": 69,
+      "name": "Coupeville",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.2200,
+      "lon": -122.6860,
+      "tide_station_id": "9447427",
+      "doh_object_id": 169,
+      "species": [
+        {"name": "Mussels", "abundance": "excellent", "tidal_zone": "upper/middle", "min_tide_ft": 2.5},
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Penn Cove - famous for world-class mussels! Penn Cove Shellfish farm nearby. Best mussels Oct-April."
+    },
+    {
+      "id": 70,
+      "name": "Oak Harbor Beach",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.2883,
+      "lon": -122.6484,
+      "tide_station_id": "9447427",
+      "doh_object_id": 170,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "City beach near downtown Oak Harbor. Naval Air Station nearby."
+    },
+    {
+      "id": 71,
+      "name": "Deception Pass State Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.3937,
+      "lon": -122.6488,
+      "tide_station_id": "9447427",
+      "doh_object_id": 171,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Mussels", "abundance": "good", "tidal_zone": "upper", "min_tide_ft": 3.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Scenic bridge and park. Rocky shoreline in places. Strong currents."
+    },
+    {
+      "id": 72,
+      "name": "Joseph Whidbey State Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.3081,
+      "lon": -122.7130,
+      "tide_station_id": "9447427",
+      "doh_object_id": 172,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "West-facing beach on Strait of Juan de Fuca. Can be windy."
+    },
+    {
+      "id": 73,
+      "name": "Libbey Beach County Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.2319,
+      "lon": -122.7664,
+      "tide_station_id": "9444900",
+      "doh_object_id": 173,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "Near Fort Ebey. Long sandy beach good for families."
+    },
+    {
+      "id": 74,
+      "name": "Fort Ebey State Park",
+      "county": "Island",
+      "region": "Whidbey Island",
+      "lat": 48.2170,
+      "lon": -122.7560,
+      "tide_station_id": "9444900",
+      "doh_object_id": 174,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "WWII-era fort. Hiking trails and campground. Mixed sand/gravel beach."
+    },
+    {
+      "id": 75,
+      "name": "Point Robinson",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.3879,
+      "lon": -122.3742,
+      "tide_station_id": "9447130",
+      "doh_object_id": 175,
+      "species": [
+        {"name": "Manila Clams", "abundance": "excellent", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "One of the best Vashon beaches! Historic lighthouse. Large sandy tide flats. Excellent Manila clams."
+    },
+    {
+      "id": 76,
+      "name": "Lisabeula Park",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.4059,
+      "lon": -122.5203,
+      "tide_station_id": "9447130",
+      "doh_object_id": 176,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "West side of Vashon. Quiet beach with good clam habitat. Limited parking."
+    },
+    {
+      "id": 77,
+      "name": "Dockton County Park",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.3697,
+      "lon": -122.4594,
+      "tide_station_id": "9447130",
+      "doh_object_id": 177,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Maury Island side near Quartermaster Harbor. CHECK STATUS - often closed due to biotoxin. Boat launch available."
+    },
+    {
+      "id": 78,
+      "name": "KVI Beach",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.4217,
+      "lon": -122.4324,
+      "tide_station_id": "9447130",
+      "doh_object_id": 178,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+      ],
+      "notes": "North end of Vashon near ferry terminal. Named after old radio tower. Sandy beach."
+    },
+    {
+      "id": 79,
+      "name": "Burton Acres Park",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.3901,
+      "lon": -122.4529,
+      "tide_station_id": "9447130",
+      "doh_object_id": 179,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Oysters", "abundance": "good", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+      ],
+      "notes": "Jensen Point area on Quartermaster Harbor. Protected bay with calm waters. Good for families."
+    },
+    {
+      "id": 80,
+      "name": "Tramp Harbor",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.4050,
+      "lon": -122.4280,
+      "tide_station_id": "9447130",
+      "doh_object_id": 180,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "East side of Vashon/Maury Island. Public fishing pier. Good clam flats at low tide."
+    },
+    {
+      "id": 81,
+      "name": "DNR-77 (Vashon Island)",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.4550,
+      "lon": -122.5030,
+      "tide_station_id": "9447130",
+      "doh_object_id": 181,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "BOAT ACCESS ONLY - no public upland access. West side of Vashon on Colvos Passage. Open year-round.",
+      "access_type": "boat"
+    },
+    {
+      "id": 82,
+      "name": "DNR-78 (Vashon Island)",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.4400,
+      "lon": -122.5120,
+      "tide_station_id": "9447130",
+      "doh_object_id": 182,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "BOAT ACCESS ONLY - no public upland access. West side of Vashon on Colvos Passage. Open year-round.",
+      "access_type": "boat"
+    },
+    {
+      "id": 83,
+      "name": "DNR-79 (Vashon Island)",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.4150,
+      "lon": -122.5080,
+      "tide_station_id": "9447130",
+      "doh_object_id": 183,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "BOAT ACCESS ONLY - no public upland access. West side of Vashon. Open year-round.",
+      "access_type": "boat"
+    },
+    {
+      "id": 84,
+      "name": "DNR-83 (Vashon Island)",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.3750,
+      "lon": -122.3950,
+      "tide_station_id": "9447130",
+      "doh_object_id": 184,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "BOAT ACCESS ONLY - no public upland access. East side of Maury Island. Open year-round.",
+      "access_type": "boat"
+    },
+    {
+      "id": 85,
+      "name": "DNR-85 (Vashon Island)",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.3550,
+      "lon": -122.4150,
+      "tide_station_id": "9447130",
+      "doh_object_id": 185,
+      "species": [
+        {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "BOAT ACCESS ONLY - no public upland access. Southeast side of Maury Island. Open year-round.",
+      "access_type": "boat"
+    },
+    {
+      "id": 86,
+      "name": "North End Boat Ramp (Vashon)",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.5080,
+      "lon": -122.4750,
+      "tide_station_id": "9447130",
+      "doh_object_id": 186,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+      ],
+      "notes": "North tip of Vashon near ferry terminal. Water access for shellfish. Open year-round."
+    },
+    {
+      "id": 87,
+      "name": "Fern Cove",
+      "county": "King",
+      "region": "Vashon Island",
+      "lat": 47.4700,
+      "lon": -122.5200,
+      "tide_station_id": "9447130",
+      "doh_object_id": 187,
+      "species": [
+        {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+      ],
+      "notes": "Nature preserve at Shinglemill Creek delta. Limited access - check preserve rules. Northwest Vashon."
     }
   ]
 }

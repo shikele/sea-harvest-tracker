@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 
@@ -109,18 +109,62 @@ const markerIcons = {
   gray: createColoredIcon('#a0aec0')
 };
 
-// Component to fit bounds when beaches change
-function FitBounds({ beaches }) {
+// Create user location marker (blue with pulsing effect)
+function createUserLocationIcon() {
+  const markerHtml = `
+    <div style="position: relative;">
+      <div style="
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: rgba(66, 153, 225, 0.3);
+        border-radius: 50%;
+        top: -12px;
+        left: -12px;
+        animation: pulse 2s infinite;
+      "></div>
+      <div style="
+        width: 16px;
+        height: 16px;
+        background: #4299e1;
+        border: 3px solid white;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      "></div>
+    </div>
+    <style>
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.5); opacity: 0.5; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+    </style>
+  `;
+
+  return L.divIcon({
+    html: markerHtml,
+    className: 'user-location-marker',
+    iconSize: [16, 16],
+    iconAnchor: [8, 8],
+    popupAnchor: [0, -10]
+  });
+}
+
+const userLocationIcon = createUserLocationIcon();
+
+// Component to fit bounds only on initial load
+function FitBounds({ beaches, initialFitDone, setInitialFitDone }) {
   const map = useMap();
 
   useEffect(() => {
-    if (beaches.length > 0) {
+    if (beaches.length > 0 && !initialFitDone) {
       const bounds = L.latLngBounds(
         beaches.map(b => [b.lat, b.lon])
       );
       map.fitBounds(bounds, { padding: [30, 30] });
+      setInitialFitDone(true);
     }
-  }, [beaches, map]);
+  }, [beaches, map, initialFitDone, setInitialFitDone]);
 
   return null;
 }
@@ -135,9 +179,11 @@ function formatTideTime(dateTimeStr) {
   });
 }
 
-export default function MapView({ beaches, onBeachClick }) {
-  // Center on Puget Sound region
-  const center = [47.6, -122.7];
+export default function MapView({ beaches, onBeachClick, userLocation }) {
+  const [initialFitDone, setInitialFitDone] = useState(false);
+
+  // Center on Puget Sound region (or user location if available)
+  const center = userLocation ? [userLocation.lat, userLocation.lon] : [47.6, -122.7];
 
   return (
     <div style={styles.container}>
@@ -156,6 +202,12 @@ export default function MapView({ beaches, onBeachClick }) {
             <div style={{ ...styles.legendDot, backgroundColor: '#f56565' }} />
             <span>Closed</span>
           </div>
+          {userLocation && (
+            <div style={styles.legendItem}>
+              <div style={{ ...styles.legendDot, backgroundColor: '#4299e1', border: '2px solid white', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }} />
+              <span>You</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -171,7 +223,24 @@ export default function MapView({ beaches, onBeachClick }) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          <FitBounds beaches={beaches} />
+          <FitBounds beaches={beaches} initialFitDone={initialFitDone} setInitialFitDone={setInitialFitDone} />
+
+          {userLocation && (
+            <Marker
+              position={[userLocation.lat, userLocation.lon]}
+              icon={userLocationIcon}
+              zIndexOffset={1000}
+            >
+              <Popup>
+                <div style={styles.popup}>
+                  <div style={styles.popupName}>Your Location</div>
+                  <div style={styles.popupLocation}>
+                    {userLocation.lat.toFixed(4)}, {userLocation.lon.toFixed(4)}
+                  </div>
+                </div>
+              </Popup>
+            </Marker>
+          )}
 
           {beaches.map((beach) => (
             <Marker

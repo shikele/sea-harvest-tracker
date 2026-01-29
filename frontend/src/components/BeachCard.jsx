@@ -85,6 +85,23 @@ const styles = {
     color: '#2b6cb0',
     fontWeight: '500',
     marginBottom: '2px'
+  },
+  distanceBadge: {
+    fontSize: '12px',
+    color: '#805ad5',
+    fontWeight: '500',
+    marginLeft: '8px'
+  },
+  boatBadge: {
+    display: 'inline-block',
+    padding: '2px 6px',
+    borderRadius: '4px',
+    fontSize: '10px',
+    fontWeight: '600',
+    backgroundColor: '#ebf8ff',
+    color: '#2b6cb0',
+    marginLeft: '8px',
+    textTransform: 'uppercase'
   }
 };
 
@@ -155,9 +172,19 @@ export default function BeachCard({ beach, onClick }) {
     >
       <div style={styles.header}>
         <div>
-          <div style={styles.name}>{beach.name}</div>
+          <div style={styles.name}>
+            {beach.name}
+            {beach.accessType === 'boat' && (
+              <span style={styles.boatBadge}>Boat</span>
+            )}
+          </div>
           <div style={styles.location}>
             {beach.region} - {beach.county} County
+            {beach.distance !== null && beach.distance !== undefined && (
+              <span style={styles.distanceBadge}>
+                ({beach.distance.toFixed(1)} mi)
+              </span>
+            )}
           </div>
         </div>
         <span

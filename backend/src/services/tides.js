@@ -12,7 +12,8 @@ export const TIDE_STATIONS = {
   '9447427': { name: 'Stanwood', location: 'North Sound' },
   '9449211': { name: 'Blaine', location: 'North Sound' },
   '9444090': { name: 'Port Angeles', location: 'Strait of Juan de Fuca' },
-  '9446969': { name: 'Olympia', location: 'South Sound' }
+  '9446969': { name: 'Olympia', location: 'South Sound' },
+  '9449880': { name: 'Friday Harbor', location: 'San Juan Islands' }
 };
 
 /**

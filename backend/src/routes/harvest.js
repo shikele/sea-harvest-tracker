@@ -103,7 +103,11 @@ router.get('/', async (req, res) => {
           nextGoodTide: tideResult.nextGoodTide,
           opportunityScore: score,
           statusColor,
-          harvestable: beach.biotoxin_status === 'open' && beach.wdfw_season_open
+          harvestable: beach.biotoxin_status === 'open' && beach.wdfw_season_open,
+          species: beach.species || [],
+          notes: beach.notes || null,
+          tide_station_id: beach.tide_station_id,
+          accessType: beach.access_type || 'public'
         };
       })
     );
