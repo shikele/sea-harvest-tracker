@@ -76,10 +76,23 @@ function formatTime(dateTimeStr) {
   });
 }
 
-export default function TideChart({ stationId, stationName }) {
+function formatTooltipTime(dateTimeStr) {
+  const date = new Date(dateTimeStr);
+  return date.toLocaleString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit'
+  });
+}
+
+export default function TideChart({ stationId, stationName, days = 3, expanded = false, onClose }) {
   const [tideData, setTideData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hoveredPoint, setHoveredPoint] = useState(null);
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     async function fetchTides() {
@@ -91,7 +104,7 @@ export default function TideChart({ stationId, stationName }) {
 
       setLoading(true);
       try {
-        const data = await getTides(stationId, 3);
+        const data = await getTides(stationId, days);
         setTideData(data);
         setError(null);
       } catch (err) {
@@ -102,7 +115,7 @@ export default function TideChart({ stationId, stationName }) {
     }
 
     fetchTides();
-  }, [stationId]);
+  }, [stationId, days]);
 
   if (loading) {
     return (
@@ -168,14 +181,38 @@ export default function TideChart({ stationId, stationName }) {
     { label: predictions[predictions.length - 1]?.datetime?.split(' ')[0] || '', x: paddingLeft + chartWidth }
   ];
 
+  const maxTideItems = expanded ? 30 : 8;
+
   return (
-    <div style={styles.container}>
-      <div style={styles.title}>
-        Tide Predictions - {stationName || tideData.stationName}
+    <div style={{...styles.container, ...(expanded ? { maxHeight: '80vh', overflowY: 'auto' } : {})}}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+        <div style={styles.title}>
+          Tide Predictions - {stationName || tideData.stationName}
+          {expanded && <span style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginLeft: '8px' }}>({days} days)</span>}
+        </div>
+        {expanded && onClose && (
+          <button
+            onClick={onClose}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontSize: '20px',
+              cursor: 'pointer',
+              color: '#718096',
+              padding: '4px 8px'
+            }}
+          >
+            ×
+          </button>
+        )}
       </div>
 
-      <div style={styles.chart}>
-        <svg viewBox={`0 0 ${width} ${height}`} style={styles.svg}>
+      <div style={{ ...styles.chart, position: 'relative' }}>
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          style={styles.svg}
+          onMouseLeave={() => setHoveredPoint(null)}
+        >
           {/* Y-axis */}
           <line
             x1={paddingLeft}
@@ -244,17 +281,78 @@ export default function TideChart({ stationId, stationName }) {
             strokeWidth="2"
           />
 
-          {/* Data points */}
+          {/* Data points with hover */}
           {points.map((p, i) => (
             <circle
               key={i}
               cx={p.x}
               cy={p.y}
-              r="5"
+              r={hoveredPoint === i ? 8 : 5}
               fill={p.isLowTide ? '#48bb78' : '#f56565'}
+              stroke={hoveredPoint === i ? '#fff' : 'none'}
+              strokeWidth="2"
+              style={{ cursor: 'pointer', transition: 'r 0.15s ease' }}
+              onMouseEnter={(e) => {
+                setHoveredPoint(i);
+                const rect = e.target.ownerSVGElement.getBoundingClientRect();
+                const scaleX = rect.width / width;
+                const scaleY = rect.height / height;
+                setTooltipPos({
+                  x: p.x * scaleX,
+                  y: p.y * scaleY
+                });
+              }}
+              onMouseLeave={() => setHoveredPoint(null)}
             />
           ))}
         </svg>
+
+        {/* Tooltip */}
+        {hoveredPoint !== null && points[hoveredPoint] && (
+          <div
+            style={{
+              position: 'absolute',
+              left: tooltipPos.x,
+              top: tooltipPos.y - 60,
+              transform: 'translateX(-50%)',
+              backgroundColor: '#1a202c',
+              color: 'white',
+              padding: '8px 12px',
+              borderRadius: '6px',
+              fontSize: '12px',
+              whiteSpace: 'nowrap',
+              pointerEvents: 'none',
+              zIndex: 10,
+              boxShadow: '0 4px 6px rgba(0,0,0,0.2)'
+            }}
+          >
+            <div style={{ fontWeight: '600', marginBottom: '4px' }}>
+              {formatTooltipTime(points[hoveredPoint].datetime)}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: points[hoveredPoint].isLowTide ? '#48bb78' : '#f56565'
+              }} />
+              <span>{points[hoveredPoint].isLowTide ? 'Low' : 'High'} Tide</span>
+              <span style={{ fontWeight: '600' }}>{points[hoveredPoint].height.toFixed(1)} ft</span>
+            </div>
+            {/* Tooltip arrow */}
+            <div style={{
+              position: 'absolute',
+              bottom: '-6px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 0,
+              height: 0,
+              borderLeft: '6px solid transparent',
+              borderRight: '6px solid transparent',
+              borderTop: '6px solid #1a202c'
+            }} />
+          </div>
+        )}
       </div>
 
       <div style={styles.legend}>
@@ -269,7 +367,7 @@ export default function TideChart({ stationId, stationName }) {
       </div>
 
       <div style={styles.tideList}>
-        {predictions.slice(0, 8).map((p, i) => (
+        {predictions.slice(0, maxTideItems).map((p, i) => (
           <div key={i} style={styles.tideItem}>
             <div style={styles.tideType}>
               <div

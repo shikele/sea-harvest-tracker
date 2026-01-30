@@ -58,10 +58,13 @@ async function fetchTidePredictionsFromNOAA(stationId, beginDate, endDate) {
 
 /**
  * Get tide predictions for a station, fetching from NOAA if not cached
+ * @param stationId - NOAA station ID
+ * @param days - Number of days to fetch
+ * @param customStartDate - Optional custom start date (for historical data)
  */
-export async function getTides(stationId, days = 7) {
-  const startDate = new Date();
-  const endDate = new Date();
+export async function getTides(stationId, days = 7, customStartDate = null) {
+  const startDate = customStartDate ? new Date(customStartDate) : new Date();
+  const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + days);
 
   const startStr = startDate.toISOString().split('T')[0];
@@ -161,9 +164,12 @@ function classifyTideQuality(height) {
 
 /**
  * Get all low tides for a station in the next N days
+ * @param stationId - NOAA station ID
+ * @param days - Number of days to fetch
+ * @param customStartDate - Optional custom start date (for historical data)
  */
-export async function getLowTides(stationId, days = 7) {
-  const tideData = await getTides(stationId, days);
+export async function getLowTides(stationId, days = 7, customStartDate = null) {
+  const tideData = await getTides(stationId, days, customStartDate);
 
   return tideData.predictions
     .filter(p => p.isLowTide)

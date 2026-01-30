@@ -48,8 +48,12 @@ export async function getHarvestWindows() {
   return fetchJson(`${API_BASE}/harvest-windows`);
 }
 
-export async function getHarvestCalendar(days = 7, includeAll = true) {
-  return fetchJson(`${API_BASE}/harvest-windows/calendar?days=${days}&includeAll=${includeAll}`);
+export async function getHarvestCalendar(days = 7, includeAll = true, startDate = null) {
+  let url = `${API_BASE}/harvest-windows/calendar?days=${days}&includeAll=${includeAll}`;
+  if (startDate) {
+    url += `&startDate=${startDate}`;
+  }
+  return fetchJson(url);
 }
 
 export async function refreshData() {

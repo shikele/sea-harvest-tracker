@@ -131,19 +131,28 @@ router.get('/', async (req, res) => {
 /**
  * GET /api/harvest-windows/calendar
  * Returns calendar view of harvest opportunities
- * Query params: days (default 7, max 90)
+ * Query params:
+ *   - days (default 7, max 90)
+ *   - startDate (optional, YYYY-MM-DD format, for fetching past data)
  */
 router.get('/calendar', async (req, res) => {
   try {
     const beaches = getAllBeaches();
     const days = Math.min(parseInt(req.query.days) || 7, 90);
 
+    // Support custom start date for month view (to include past days)
+    let startDate;
+    if (req.query.startDate) {
+      startDate = new Date(req.query.startDate + 'T00:00:00');
+    } else {
+      startDate = new Date();
+    }
+
     // Build calendar data structure
     const calendar = [];
-    const now = new Date();
 
     for (let i = 0; i < days; i++) {
-      const date = new Date(now);
+      const date = new Date(startDate);
       date.setDate(date.getDate() + i);
       const dateStr = date.toISOString().split('T')[0];
 
@@ -162,7 +171,7 @@ router.get('/calendar', async (req, res) => {
       const isClosed = beach.biotoxin_status === 'closed';
       if (isClosed && !includeAll) continue;
 
-      const lowTides = await getLowTides(beach.tide_station_id, days);
+      const lowTides = await getLowTides(beach.tide_station_id, days, req.query.startDate || null);
 
       for (const tide of lowTides) {
         const tideDate = tide.datetime.split(' ')[0];

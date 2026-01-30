@@ -98,6 +98,100 @@ const styles = {
     marginBottom: '16px',
     color: '#1a202c'
   },
+  filterSection: {
+    backgroundColor: '#f7fafc',
+    borderRadius: '10px',
+    padding: '12px',
+    marginBottom: '16px'
+  },
+  searchSortRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    marginBottom: '10px'
+  },
+  searchWrapper: {
+    position: 'relative',
+    flex: '0 0 180px'
+  },
+  searchIcon: {
+    position: 'absolute',
+    left: '8px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    fontSize: '12px',
+    opacity: 0.5
+  },
+  searchInputSmall: {
+    width: '100%',
+    padding: '6px 10px 6px 28px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '6px',
+    fontSize: '13px',
+    outline: 'none',
+    backgroundColor: 'white'
+  },
+  iconButton: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '4px',
+    padding: '6px 12px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '6px',
+    backgroundColor: 'white',
+    fontSize: '12px',
+    cursor: 'pointer',
+    transition: 'all 0.2s'
+  },
+  iconButtonActive: {
+    backgroundColor: '#805ad5',
+    color: 'white',
+    borderColor: '#805ad5'
+  },
+  buttonIcon: {
+    fontSize: '12px'
+  },
+  filterIcon: {
+    fontSize: '14px',
+    opacity: 0.6,
+    marginRight: '4px'
+  },
+  searchInputCompact: {
+    width: '100%',
+    padding: '8px 12px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '6px',
+    fontSize: '14px',
+    marginBottom: '10px',
+    outline: 'none',
+    backgroundColor: 'white'
+  },
+  filterGroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px'
+  },
+  filterGroupRow: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '6px'
+  },
+  filterLabel: {
+    fontSize: '12px',
+    fontWeight: '600',
+    color: '#4a5568',
+    marginRight: '4px'
+  },
+  filterButtonSmall: {
+    padding: '4px 10px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '14px',
+    backgroundColor: 'white',
+    fontSize: '12px',
+    cursor: 'pointer',
+    transition: 'all 0.2s'
+  },
   filterRow: {
     display: 'flex',
     gap: '8px',
@@ -116,6 +210,37 @@ const styles = {
     backgroundColor: '#4299e1',
     color: 'white',
     borderColor: '#4299e1'
+  },
+  filterButtonActiveAlt: {
+    backgroundColor: '#805ad5',
+    color: 'white',
+    borderColor: '#805ad5'
+  },
+  speciesFilterRow: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '6px'
+  },
+  speciesChips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '4px',
+    flex: 1
+  },
+  speciesChip: {
+    padding: '3px 8px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '12px',
+    backgroundColor: 'white',
+    fontSize: '11px',
+    cursor: 'pointer',
+    transition: 'all 0.2s',
+    color: '#4a5568'
+  },
+  speciesChipActive: {
+    backgroundColor: '#9f7aea',
+    color: 'white',
+    borderColor: '#9f7aea'
   },
   sortRow: {
     display: 'flex',
@@ -310,6 +435,7 @@ export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [accessFilter, setAccessFilter] = useState('all'); // 'all', 'public', 'boat'
   const [activeTab, setActiveTab] = useState('beaches'); // 'beaches' or 'species'
+  const [showFullTides, setShowFullTides] = useState(false);
   const beachesPerPage = 10;
 
   async function loadData() {
@@ -417,6 +543,11 @@ export default function Dashboard() {
     setCurrentPage(1);
   };
 
+  const handleBeachSelect = (beach) => {
+    setSelectedBeach(beach);
+    setShowFullTides(false);
+  };
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setCurrentPage(1);
@@ -516,8 +647,8 @@ export default function Dashboard() {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.header}>
+    <div style={styles.container} className="dashboard-container">
+      <div style={styles.header} className="dashboard-header">
         <div>
           <h1 style={styles.title}>Sea Harvest Tracker</h1>
           <p style={styles.subtitle}>
@@ -529,6 +660,7 @@ export default function Dashboard() {
             ...styles.refreshButton,
             opacity: refreshing ? 0.7 : 1
           }}
+          className="refresh-button"
           onClick={handleRefresh}
           disabled={refreshing}
         >
@@ -536,12 +668,13 @@ export default function Dashboard() {
         </button>
       </div>
 
-      <div style={styles.tabContainer}>
+      <div style={styles.tabContainer} className="tab-container">
         <button
           style={{
             ...styles.tab,
             ...(activeTab === 'beaches' ? styles.tabActive : {})
           }}
+          className="tab-button"
           onClick={() => setActiveTab('beaches')}
         >
           Beaches
@@ -551,6 +684,7 @@ export default function Dashboard() {
             ...styles.tab,
             ...(activeTab === 'species' ? styles.tabActive : {})
           }}
+          className="tab-button"
           onClick={() => setActiveTab('species')}
         >
           Species Guide
@@ -561,126 +695,137 @@ export default function Dashboard() {
         <SpeciesGuide />
       ) : (
         <>
-      <div style={styles.statsRow}>
-        <div style={styles.statCard}>
-          <div style={styles.statLabel}>Total Beaches</div>
-          <div style={{ ...styles.statValue, color: '#4299e1' }}>{stats.total}</div>
+      <div style={styles.statsRow} className="stats-row">
+        <div style={styles.statCard} className="stat-card">
+          <div style={styles.statLabel} className="stat-label">Total Beaches</div>
+          <div style={{ ...styles.statValue, color: '#4299e1' }} className="stat-value">{stats.total}</div>
         </div>
-        <div style={styles.statCard}>
-          <div style={styles.statLabel}>Open</div>
-          <div style={{ ...styles.statValue, color: '#48bb78' }}>{stats.open}</div>
+        <div style={styles.statCard} className="stat-card">
+          <div style={styles.statLabel} className="stat-label">Open</div>
+          <div style={{ ...styles.statValue, color: '#48bb78' }} className="stat-value">{stats.open}</div>
         </div>
-        <div style={styles.statCard}>
-          <div style={styles.statLabel}>Closed</div>
-          <div style={{ ...styles.statValue, color: '#f56565' }}>{stats.closed}</div>
+        <div style={styles.statCard} className="stat-card">
+          <div style={styles.statLabel} className="stat-label">Closed</div>
+          <div style={{ ...styles.statValue, color: '#f56565' }} className="stat-value">{stats.closed}</div>
         </div>
-        <div style={styles.statCard}>
-          <div style={styles.statLabel}>Ready to Harvest</div>
-          <div style={{ ...styles.statValue, color: '#805ad5' }}>{stats.harvestable}</div>
+        <div style={styles.statCard} className="stat-card">
+          <div style={styles.statLabel} className="stat-label">Ready to Harvest</div>
+          <div style={{ ...styles.statValue, color: '#805ad5' }} className="stat-value">{stats.harvestable}</div>
         </div>
       </div>
 
-      <MapView beaches={filteredBeaches} onBeachClick={setSelectedBeach} userLocation={userLocation} />
+      <div className="map-container">
+        <MapView beaches={filteredBeaches} onBeachClick={handleBeachSelect} userLocation={userLocation} />
+      </div>
 
-      <div style={styles.mainContent}>
+      <div style={styles.mainContent} className="main-content">
         <div style={styles.leftColumn}>
-          <HarvestCalendar onBeachClick={(beach) => setSelectedBeach(beach)} />
+          <HarvestCalendar onBeachClick={handleBeachSelect} />
 
-          <div style={styles.beachList}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
-              <h2 style={{ ...styles.sectionTitle, marginBottom: 0 }}>
+          <div style={styles.beachList} className="beach-list-section">
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
+              <h2 style={{ ...styles.sectionTitle, marginBottom: 0 }} className="section-title">
                 Beaches by {sortMode === 'distance' ? 'Distance' : 'Opportunity'}
               </h2>
               <span style={styles.filterCount}>
                 {filteredBeaches.length} of {beaches.length}
               </span>
               {hasActiveFilters && (
-                <button style={styles.clearFiltersButton} onClick={clearAllFilters}>
+                <button style={styles.clearFiltersButton} className="filter-button" onClick={clearAllFilters}>
                   Clear Filters
                 </button>
               )}
             </div>
 
-            <input
-              type="text"
-              placeholder="Search beaches by name..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              style={styles.searchInput}
-            />
-
-            <div style={styles.sortRow}>
-              <button
-                style={{
-                  ...styles.sortButton,
-                  ...(sortMode === 'distance' ? styles.sortButtonActive : {})
-                }}
-                onClick={handleSortByDistance}
-                disabled={locationLoading}
-              >
-                {locationLoading ? 'Getting location...' : sortMode === 'distance' ? 'Sorted by Distance' : 'Sort by Distance'}
-              </button>
-              {userLocation && (
-                <span style={styles.locationStatus}>
-                  Location: {userLocation.lat.toFixed(4)}, {userLocation.lon.toFixed(4)}
-                </span>
-              )}
-              {locationError && (
-                <span style={styles.locationError}>{locationError}</span>
-              )}
-            </div>
-
-            <div style={styles.filterRow}>
-              {['all', 'harvestable', 'open', 'closed'].map((f) => (
+            <div style={styles.filterSection} className="filter-section">
+              <div style={styles.searchSortRow} className="search-sort-row">
+                <div style={styles.searchWrapper}>
+                  <span style={styles.searchIcon}>&#128269;</span>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    style={styles.searchInputSmall}
+                    className="search-input"
+                  />
+                </div>
                 <button
-                  key={f}
                   style={{
-                    ...styles.filterButton,
-                    ...(filter === f ? styles.filterButtonActive : {})
+                    ...styles.iconButton,
+                    ...(sortMode === 'distance' ? styles.iconButtonActive : {})
                   }}
-                  onClick={() => handleFilterChange(f)}
+                  className="filter-button sort-button"
+                  onClick={handleSortByDistance}
+                  disabled={locationLoading}
+                  title="Sort by distance from your location"
                 >
-                  {f.charAt(0).toUpperCase() + f.slice(1)}
+                  <span style={styles.buttonIcon}>&#128205;</span>
+                  {locationLoading ? '...' : 'Distance'}
                 </button>
-              ))}
-            </div>
-
-            <div style={{ ...styles.filterRow, marginBottom: '16px' }}>
-              <span style={{ fontSize: '13px', color: '#4a5568', marginRight: '8px' }}>Access:</span>
-              {[
-                { value: 'all', label: 'All' },
-                { value: 'public', label: 'Public' },
-                { value: 'boat', label: 'Boat Only' }
-              ].map((option) => (
-                <button
-                  key={option.value}
-                  style={{
-                    ...styles.filterButton,
-                    ...(accessFilter === option.value ? { backgroundColor: '#805ad5', color: 'white', borderColor: '#805ad5' } : {})
-                  }}
-                  onClick={() => handleAccessFilterChange(option.value)}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-
-            <div style={styles.speciesFilterSection}>
-              <div style={styles.speciesFilterTitle}>
-                Filter by Species {selectedSpecies.length > 0 && `(${selectedSpecies.length} selected)`}
+                {locationError && (
+                  <span style={styles.locationError}>{locationError}</span>
+                )}
               </div>
-              <div style={styles.speciesCheckboxGrid}>
-                {allSpecies.map((species) => (
-                  <label key={species} style={styles.speciesCheckboxLabel}>
-                    <input
-                      type="checkbox"
-                      checked={selectedSpecies.includes(species)}
-                      onChange={() => handleSpeciesToggle(species)}
-                      style={styles.speciesCheckbox}
+
+              <div style={styles.filterGroup} className="filter-group">
+                <div style={styles.filterGroupRow} className="filter-group-row">
+                  <span style={styles.filterIcon} title="Filter by status">&#9881;</span>
+                  {[
+                    { value: 'all', label: 'All', icon: '' },
+                    { value: 'harvestable', label: 'Harvestable', icon: '&#9989;' },
+                    { value: 'open', label: 'Open', icon: '&#128994;' },
+                    { value: 'closed', label: 'Closed', icon: '&#128308;' }
+                  ].map((f) => (
+                    <button
+                      key={f.value}
+                      style={{
+                        ...styles.filterButtonSmall,
+                        ...(filter === f.value ? styles.filterButtonActive : {})
+                      }}
+                      className="filter-button"
+                      onClick={() => handleFilterChange(f.value)}
+                      dangerouslySetInnerHTML={{ __html: f.icon ? `${f.icon} ${f.label}` : f.label }}
                     />
-                    {species}
-                  </label>
-                ))}
+                  ))}
+
+                  <span style={{ ...styles.filterIcon, marginLeft: '10px' }} title="Filter by access type">&#128675;</span>
+                  {[
+                    { value: 'all', label: 'All' },
+                    { value: 'public', label: 'Public', icon: '&#128694;' },
+                    { value: 'boat', label: 'Boat', icon: '&#9973;' }
+                  ].map((option) => (
+                    <button
+                      key={option.value}
+                      style={{
+                        ...styles.filterButtonSmall,
+                        ...(accessFilter === option.value ? styles.filterButtonActiveAlt : {})
+                      }}
+                      className="filter-button"
+                      onClick={() => handleAccessFilterChange(option.value)}
+                      dangerouslySetInnerHTML={{ __html: option.icon ? `${option.icon} ${option.label}` : option.label }}
+                    />
+                  ))}
+                </div>
+
+                <div style={styles.speciesFilterRow} className="species-filter-row">
+                  <span style={styles.filterIcon} title="Filter by species">&#129438;</span>
+                  <div style={styles.speciesChips} className="species-chips">
+                    {allSpecies.map((species) => (
+                      <button
+                        key={species}
+                        style={{
+                          ...styles.speciesChip,
+                          ...(selectedSpecies.includes(species) ? styles.speciesChipActive : {})
+                        }}
+                        className="species-chip"
+                        onClick={() => handleSpeciesToggle(species)}
+                      >
+                        {species}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -688,21 +833,22 @@ export default function Dashboard() {
               <BeachCard
                 key={beach.id}
                 beach={beach}
-                onClick={setSelectedBeach}
+                onClick={handleBeachSelect}
               />
             ))}
 
             {totalPages > 1 && (
-              <div style={styles.pagination}>
+              <div style={styles.pagination} className="pagination">
                 <button
                   style={{
                     ...styles.pageButton,
                     ...(currentPage === 1 ? styles.pageButtonDisabled : {})
                   }}
+                  className="page-button"
                   onClick={() => goToPage(currentPage - 1)}
                   disabled={currentPage === 1}
                 >
-                  Previous
+                  Prev
                 </button>
 
                 {[...Array(totalPages)].map((_, i) => {
@@ -720,6 +866,7 @@ export default function Dashboard() {
                           ...styles.pageButton,
                           ...(currentPage === page ? styles.pageButtonActive : {})
                         }}
+                        className="page-button"
                         onClick={() => goToPage(page)}
                       >
                         {page}
@@ -736,13 +883,14 @@ export default function Dashboard() {
                     ...styles.pageButton,
                     ...(currentPage === totalPages ? styles.pageButtonDisabled : {})
                   }}
+                  className="page-button"
                   onClick={() => goToPage(currentPage + 1)}
                   disabled={currentPage === totalPages}
                 >
                   Next
                 </button>
 
-                <span style={styles.pageInfo}>
+                <span style={styles.pageInfo} className="page-info">
                   {startIndex + 1}-{Math.min(endIndex, filteredBeaches.length)} of {filteredBeaches.length}
                 </span>
               </div>
@@ -750,9 +898,9 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div style={styles.rightColumn}>
+        <div style={styles.rightColumn} className="right-column">
           {selectedBeach && (
-            <div style={styles.selectedBeachPanel}>
+            <div style={styles.selectedBeachPanel} className="selected-beach-panel">
               <button
                 style={styles.closeButton}
                 onClick={() => setSelectedBeach(null)}
@@ -830,6 +978,30 @@ export default function Dashboard() {
                 </div>
               )}
 
+              <button
+                onClick={() => setShowFullTides(true)}
+                style={{
+                  width: '100%',
+                  padding: '10px 16px',
+                  marginBottom: '16px',
+                  backgroundColor: '#ebf8ff',
+                  border: '1px solid #90cdf4',
+                  borderRadius: '8px',
+                  color: '#2b6cb0',
+                  fontSize: '13px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <span style={{ fontSize: '16px' }}>🌊</span>
+                View Full Tide Data (14 days)
+              </button>
+
               <TideChart
                 stationId={selectedBeach.tide_station_id || beaches.find(b => b.id === selectedBeach.id)?.tide_station_id}
                 stationName={selectedBeach.region}
@@ -846,6 +1018,56 @@ export default function Dashboard() {
         </div>
       </div>
         </>
+      )}
+
+      {/* Full Tide Data Modal */}
+      {showFullTides && selectedBeach && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '20px'
+          }}
+          onClick={() => setShowFullTides(false)}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '16px',
+              padding: '24px',
+              maxWidth: '600px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflow: 'auto',
+              boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ marginBottom: '16px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#1a202c', marginBottom: '4px' }}>
+                {selectedBeach.name}
+              </h2>
+              <p style={{ fontSize: '13px', color: '#718096' }}>
+                {selectedBeach.region} - {selectedBeach.county} County
+              </p>
+            </div>
+            <TideChart
+              stationId={selectedBeach.tide_station_id || beaches.find(b => b.id === selectedBeach.id)?.tide_station_id}
+              stationName={selectedBeach.region}
+              days={14}
+              expanded={true}
+              onClose={() => setShowFullTides(false)}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
