@@ -1,0 +1,15 @@
+{
+  "name": "sea-harvest-tracker",
+  "version": "1.0.0",
+  "description": "Washington State shellfish harvesting tracker",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+    "start": "cd backend && node src/index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

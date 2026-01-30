@@ -90,7 +90,7 @@ const styles = {
     backgroundColor: '#f7fafc',
     borderRadius: '8px',
     padding: '12px',
-    height: '180px',
+    height: '220px',
     overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column'
@@ -300,7 +300,7 @@ function getMonthData(year, month) {
   return { startPadding, daysInMonth, firstDay, lastDay };
 }
 
-export default function HarvestCalendar({ onBeachClick }) {
+export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', accessFilter = 'all', selectedSpecies = [], allBeaches = [] }) {
   const [calendarData, setCalendarData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -338,10 +338,106 @@ export default function HarvestCalendar({ onBeachClick }) {
     fetchCalendar();
   }, []); // Only fetch once on mount
 
+  // Create a lookup map for full beach data (to get species info)
+  const beachDataMap = useMemo(() => {
+    const map = {};
+    for (const beach of allBeaches) {
+      map[beach.id] = beach;
+    }
+    return map;
+  }, [allBeaches]);
+
+  // Apply filters to calendar data with species-aware tide requirements
+  const filteredCalendarData = useMemo(() => {
+    // If no species selected, show no beaches (user must select species)
+    if (selectedSpecies.length === 0) {
+      return calendarData.map(day => ({
+        ...day,
+        beaches: [],
+        hasSpeciesBeaches: false,
+        tideHighForSpecies: false
+      }));
+    }
+
+    return calendarData.map(day => {
+      // If original day has no beaches, tides are too high for all species
+      if (day.beaches.length === 0) {
+        return {
+          ...day,
+          beaches: [],
+          hasSpeciesBeaches: false,
+          tideHighForSpecies: true  // Tides too high for any species
+        };
+      }
+
+      // Track if any beach has the selected species (regardless of tide)
+      let hasSpeciesBeaches = false;
+      let tideHighForSpecies = false;
+
+      const filteredBeaches = day.beaches.map(beach => {
+        const fullBeach = beachDataMap[beach.id];
+        if (!fullBeach) return null;
+
+        // Status filter
+        if (statusFilter !== 'all') {
+          if (statusFilter === 'open' && beach.biotoxinStatus !== 'open') return null;
+          if (statusFilter === 'conditional' && beach.biotoxinStatus !== 'conditional') return null;
+          if (statusFilter === 'closed' && beach.biotoxinStatus !== 'closed') return null;
+        }
+
+        // Access filter
+        if (accessFilter !== 'all') {
+          if (accessFilter === 'public' && fullBeach.accessType === 'boat') return null;
+          if (accessFilter === 'boat' && fullBeach.accessType !== 'boat') return null;
+        }
+
+        // Species filter with tide requirement check
+        const beachSpecies = fullBeach.species || [];
+
+        // Check if beach has any of the selected species
+        const speciesOnBeach = selectedSpecies.map(selectedName => {
+          return beachSpecies.find(s => s.name === selectedName);
+        }).filter(Boolean);
+
+        if (speciesOnBeach.length > 0) {
+          hasSpeciesBeaches = true;
+
+          // Find the best (lowest) min_tide requirement among selected species on this beach
+          const lowestMinTide = Math.min(...speciesOnBeach.map(s => s.min_tide_ft ?? 1));
+
+          // Check if tide is good, slightly high (within 1ft), or too high
+          if (beach.tideHeight <= lowestMinTide) {
+            // Tide is good
+            return { ...beach, tideStatus: 'good' };
+          } else if (beach.tideHeight <= lowestMinTide + 1) {
+            // Tide is slightly too high (within 1ft)
+            return { ...beach, tideStatus: 'slightlyHigh', minTideNeeded: lowestMinTide };
+          } else {
+            // Tide is too high
+            tideHighForSpecies = true;
+            return null;
+          }
+        }
+
+        return null;
+      }).filter(Boolean);
+
+      // Sort by tide height (lowest first) and take top 2
+      filteredBeaches.sort((a, b) => a.tideHeight - b.tideHeight);
+
+      return {
+        ...day,
+        beaches: filteredBeaches.slice(0, 2),
+        hasSpeciesBeaches,
+        tideHighForSpecies
+      };
+    });
+  }, [calendarData, selectedSpecies, statusFilter, accessFilter, beachDataMap]);
+
   // Filter calendar data to only include today and future for week view
   const futureCalendarData = useMemo(() => {
-    return calendarData.filter(day => day.date >= today);
-  }, [calendarData, today]);
+    return filteredCalendarData.filter(day => day.date >= today);
+  }, [filteredCalendarData, today]);
 
   // Get current week's data based on offset (from today onwards)
   const weekData = useMemo(() => {
@@ -359,8 +455,21 @@ export default function HarvestCalendar({ onBeachClick }) {
 
   const maxWeeks = Math.max(1, Math.floor(futureCalendarData.length / 7));
 
-  // Create a map of date -> beaches for quick lookup
+  // Create a map of date -> day data for quick lookup (uses filtered data)
   const dateMap = useMemo(() => {
+    const map = {};
+    for (const day of filteredCalendarData) {
+      map[day.date] = {
+        beaches: day.beaches,
+        hasSpeciesBeaches: day.hasSpeciesBeaches,
+        tideHighForSpecies: day.tideHighForSpecies
+      };
+    }
+    return map;
+  }, [filteredCalendarData]);
+
+  // Create a map of date -> original beaches (unfiltered) to distinguish "tides too high" from "filtered out"
+  const originalDateMap = useMemo(() => {
     const map = {};
     for (const day of calendarData) {
       map[day.date] = day.beaches;
@@ -382,19 +491,28 @@ export default function HarvestCalendar({ onBeachClick }) {
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = `${currentMonth.year}-${String(currentMonth.month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
       const isPast = dateStr < today;
-      const hasData = dateStr in dateMap;
+      const hasData = dateStr in originalDateMap;
+      const originalBeaches = originalDateMap[dateStr] || [];
+      const dayData = dateMap[dateStr] || { beaches: [], hasSpeciesBeaches: false, tideHighForSpecies: false };
+
+      // If original data has no beaches, tides are too high for all species
+      const tidesHighForAll = hasData && originalBeaches.length === 0;
+
       grid.push({
         date: dateStr,
         day,
-        beaches: dateMap[dateStr] || [],
+        beaches: dayData.beaches,
         isToday: dateStr === today,
         isPast,
-        hasData
+        hasData,
+        hadOriginalBeaches: originalBeaches.length > 0,
+        hasSpeciesBeaches: dayData.hasSpeciesBeaches,
+        tideHighForSpecies: dayData.tideHighForSpecies || tidesHighForAll
       });
     }
 
     return grid;
-  }, [currentMonth, dateMap, today]);
+  }, [currentMonth, dateMap, originalDateMap, today]);
 
   const monthLabel = new Date(currentMonth.year, currentMonth.month).toLocaleDateString('en-US', {
     month: 'long',
@@ -457,7 +575,14 @@ export default function HarvestCalendar({ onBeachClick }) {
   return (
     <div style={styles.container} className="calendar-container">
       <div style={styles.header} className="calendar-header">
-        <div style={styles.title} className="calendar-title">Harvest Calendar</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          <div style={styles.title} className="calendar-title">Harvest Calendar</div>
+          {selectedSpecies.length > 0 && (
+            <span style={{ fontSize: '11px', color: '#805ad5', backgroundColor: '#e9d8fd', padding: '2px 8px', borderRadius: '10px' }}>
+              {selectedSpecies.join(', ')}
+            </span>
+          )}
+        </div>
         <div style={styles.viewToggle} className="calendar-view-toggle">
           <button
             style={{
@@ -549,7 +674,12 @@ export default function HarvestCalendar({ onBeachClick }) {
               <div style={styles.beachList} className="calendar-beach-list">
                 {day.beaches.length === 0 ? (
                   <div style={styles.emptyDay}>
-                    {!(day.date in dateMap) ? (
+                    {selectedSpecies.length === 0 ? (
+                      <>
+                        <span style={{ fontSize: '20px', color: '#a0aec0' }}>🦪</span>
+                        <span style={{ color: '#718096', fontSize: '10px' }}>Select a species</span>
+                      </>
+                    ) : !(day.date in originalDateMap) ? (
                       <>
                         <span style={{ fontSize: '14px', color: '#a0aec0' }}>—</span>
                         <span style={{ fontStyle: 'italic' }}>No data</span>
@@ -568,16 +698,21 @@ export default function HarvestCalendar({ onBeachClick }) {
                         key={`${beach.id}-${i}`}
                         style={{
                           ...styles.beachItem,
-                          borderLeftColor: qualityColors[beach.tideQuality] || '#4299e1',
-                          cursor: 'pointer'
+                          borderLeftColor: beach.tideStatus === 'slightlyHigh' ? '#ed8936' : (qualityColors[beach.tideQuality] || '#4299e1'),
+                          cursor: 'pointer',
+                          ...(beach.tideStatus === 'slightlyHigh' ? { backgroundColor: '#fffaf0' } : {})
                         }}
                         className="calendar-beach-item"
                         onClick={() => onBeachClick?.(beach)}
-                        title={beach.name}
+                        title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high (needs ${beach.minTideNeeded}ft)` : beach.name}
                       >
-                        <div style={styles.beachName} className="calendar-beach-name">{beach.name}</div>
-                        <div style={styles.tideTime} className="calendar-tide-time">
+                        <div style={styles.beachName} className="calendar-beach-name">
+                          {beach.tideStatus === 'slightlyHigh' && <span style={{ marginRight: '4px' }}>⚠️</span>}
+                          {beach.name}
+                        </div>
+                        <div style={{...styles.tideTime, ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {})}} className="calendar-tide-time">
                           {beach.tideHeight.toFixed(1)}ft {formatTime(beach.tideTime)}
+                          {beach.tideStatus === 'slightlyHigh' && <span style={{ fontSize: '9px', marginLeft: '4px' }}>(need {beach.minTideNeeded}ft)</span>}
                         </div>
                       </div>
                     ))}
@@ -599,7 +734,9 @@ export default function HarvestCalendar({ onBeachClick }) {
                   ...styles.dayCardMonth,
                   ...(cell.isToday ? styles.dayCardToday : {}),
                   ...(cell.isPast ? styles.dayCardPast : {}),
-                  ...(cell.beaches.length > 0 && !cell.isPast ? { backgroundColor: '#f0fff4' } : {}),
+                  ...(cell.beaches.length > 0 && !cell.isPast ? {
+                    backgroundColor: cell.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
+                  } : {}),
                   position: 'relative'
                 }}
                 className={`calendar-month-day ${cell.isPast ? 'past-day' : ''}`}
@@ -618,7 +755,9 @@ export default function HarvestCalendar({ onBeachClick }) {
 
                 {cell.beaches.length === 0 ? (
                   <div style={styles.emptyDayMonth}>
-                    {!cell.hasData ? (
+                    {selectedSpecies.length === 0 ? (
+                      <span style={{ fontSize: '14px', color: '#a0aec0' }}>🦪</span>
+                    ) : !cell.hasData ? (
                       <span style={{ fontSize: '10px', color: '#a0aec0', fontStyle: 'italic' }}>No data</span>
                     ) : (
                       <span style={{...styles.emptyIconSmall, ...(cell.isPast ? { color: '#cbd5e0' } : {})}}>⬆</span>
@@ -631,19 +770,23 @@ export default function HarvestCalendar({ onBeachClick }) {
                         key={`${beach.id}-${i}`}
                         style={{
                           ...styles.beachItemMonth,
-                          borderLeftColor: cell.isPast ? '#cbd5e0' : (qualityColors[beach.tideQuality] || '#4299e1'),
-                          cursor: cell.isPast ? 'default' : 'pointer'
+                          borderLeftColor: cell.isPast ? '#cbd5e0' : (beach.tideStatus === 'slightlyHigh' ? '#ed8936' : (qualityColors[beach.tideQuality] || '#4299e1')),
+                          cursor: cell.isPast ? 'default' : 'pointer',
+                          ...(beach.tideStatus === 'slightlyHigh' && !cell.isPast ? { backgroundColor: '#fffaf0' } : {})
                         }}
                         className="calendar-month-beach-item"
                         onClick={(e) => {
                           e.stopPropagation();
                           if (!cell.isPast) onBeachClick?.(beach);
                         }}
-                        title={beach.name}
+                        title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high` : beach.name}
                       >
-                        <div style={{...styles.beachName, ...(cell.isPast ? { color: '#a0aec0' } : {})}} className="calendar-beach-name">{beach.name}</div>
-                        <div style={styles.tideTimeMonth} className="calendar-tide-time-month">
-                          {beach.tideHeight.toFixed(1)}ft {formatTime(beach.tideTime)}
+                        <div style={{...styles.beachName, ...(cell.isPast ? { color: '#a0aec0' } : {}), ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {})}} className="calendar-beach-name">
+                          {beach.tideStatus === 'slightlyHigh' && <span style={{ fontSize: '8px' }}>⚠️</span>}
+                          {beach.name}
+                        </div>
+                        <div style={{...styles.tideTimeMonth, ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {})}} className="calendar-tide-time-month">
+                          {beach.tideHeight.toFixed(1)}ft
                         </div>
                       </div>
                     ))}
@@ -656,22 +799,31 @@ export default function HarvestCalendar({ onBeachClick }) {
       )}
 
       <div style={styles.legend} className="calendar-legend">
-        <div style={styles.legendItem} className="calendar-legend-item">
-          <span style={{ ...styles.tideDot, backgroundColor: qualityColors.excellent }} />
-          Excellent (&lt;0ft)
-        </div>
-        <div style={styles.legendItem} className="calendar-legend-item">
-          <span style={{ ...styles.tideDot, backgroundColor: qualityColors.good }} />
-          Good (0-1ft)
-        </div>
-        <div style={styles.legendItem} className="calendar-legend-item">
-          <span style={{ fontSize: '14px', color: '#a0aec0' }}>⬆</span>
-          Tides too high
-        </div>
-        <div style={styles.legendItem} className="calendar-legend-item">
-          <span style={{ fontSize: '11px', color: '#a0aec0', fontStyle: 'italic' }}>No data</span>
-          Beyond forecast
-        </div>
+        {selectedSpecies.length === 0 ? (
+          <div style={styles.legendItem} className="calendar-legend-item">
+            <span style={{ fontSize: '14px' }}>🦪</span>
+            Select a species above to see harvest opportunities
+          </div>
+        ) : (
+          <>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.excellent }} />
+              Excellent (&lt;0ft)
+            </div>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.good }} />
+              Good (0-1ft)
+            </div>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ ...styles.tideDot, backgroundColor: '#ed8936' }} />
+              <span>⚠️ Slightly high</span>
+            </div>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ fontSize: '14px', color: '#a0aec0' }}>⬆</span>
+              Tide too high
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

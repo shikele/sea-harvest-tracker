@@ -1,5 +1,27 @@
 /* Mobile-first responsive styles for Sea Harvest Tracker */
 
+/* Remove focus outlines from all buttons */
+button {
+  outline: none !important;
+}
+
+button:focus,
+button:focus-visible,
+button:active,
+button:-moz-focusring,
+.species-chip:focus,
+.species-chip:focus-visible,
+.filter-button:focus,
+.filter-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: inherit !important;
+}
+
+*:focus {
+  outline: none !important;
+}
+
 /* Minimum width - forces desktop layout */
 body {
   min-width: 1000px;

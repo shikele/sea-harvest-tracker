@@ -152,6 +152,50 @@ function createUserLocationIcon() {
 
 const userLocationIcon = createUserLocationIcon();
 
+// Create highlighted marker for selected beach
+function createSelectedIcon(color) {
+  const markerHtml = `
+    <div style="position: relative;">
+      <div style="
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: rgba(66, 153, 225, 0.3);
+        border-radius: 50%;
+        top: -12px;
+        left: -12px;
+        animation: selectedPulse 1.5s infinite;
+      "></div>
+      <svg width="30" height="48" viewBox="0 0 25 41" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.5 0C5.6 0 0 5.6 0 12.5c0 9.4 12.5 28.5 12.5 28.5S25 21.9 25 12.5C25 5.6 19.4 0 12.5 0z" fill="${color}" stroke="#4299e1" stroke-width="3"/>
+        <circle cx="12.5" cy="12.5" r="5" fill="#fff"/>
+      </svg>
+    </div>
+    <style>
+      @keyframes selectedPulse {
+        0% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.3); opacity: 0.4; }
+        100% { transform: scale(1); opacity: 0.8; }
+      }
+    </style>
+  `;
+
+  return L.divIcon({
+    html: markerHtml,
+    className: 'selected-marker',
+    iconSize: [30, 48],
+    iconAnchor: [15, 48],
+    popupAnchor: [0, -40]
+  });
+}
+
+const selectedIcons = {
+  green: createSelectedIcon('#48bb78'),
+  yellow: createSelectedIcon('#ecc94b'),
+  red: createSelectedIcon('#f56565'),
+  gray: createSelectedIcon('#a0aec0')
+};
+
 // Component to fit bounds only on initial load
 function FitBounds({ beaches, initialFitDone, setInitialFitDone }) {
   const map = useMap();
@@ -169,6 +213,21 @@ function FitBounds({ beaches, initialFitDone, setInitialFitDone }) {
   return null;
 }
 
+// Component to pan to selected beach
+function PanToSelected({ selectedBeach }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (selectedBeach && selectedBeach.lat && selectedBeach.lon) {
+      map.flyTo([selectedBeach.lat, selectedBeach.lon], 12, {
+        duration: 0.8
+      });
+    }
+  }, [selectedBeach, map]);
+
+  return null;
+}
+
 function formatTideTime(dateTimeStr) {
   if (!dateTimeStr) return '';
   const date = new Date(dateTimeStr);
@@ -179,7 +238,7 @@ function formatTideTime(dateTimeStr) {
   });
 }
 
-export default function MapView({ beaches, onBeachClick, userLocation }) {
+export default function MapView({ beaches, onBeachClick, userLocation, selectedBeach }) {
   const [initialFitDone, setInitialFitDone] = useState(false);
 
   // Center on Puget Sound region (or user location if available)
@@ -228,6 +287,7 @@ export default function MapView({ beaches, onBeachClick, userLocation }) {
           />
 
           <FitBounds beaches={beaches} initialFitDone={initialFitDone} setInitialFitDone={setInitialFitDone} />
+          <PanToSelected selectedBeach={selectedBeach} />
 
           {userLocation && (
             <Marker
@@ -246,11 +306,15 @@ export default function MapView({ beaches, onBeachClick, userLocation }) {
             </Marker>
           )}
 
-          {beaches.map((beach) => (
+          {beaches.map((beach) => {
+            const isSelected = selectedBeach && selectedBeach.id === beach.id;
+            const iconSet = isSelected ? selectedIcons : markerIcons;
+            return (
             <Marker
               key={beach.id}
               position={[beach.lat, beach.lon]}
-              icon={markerIcons[beach.statusColor] || markerIcons.gray}
+              icon={iconSet[beach.statusColor] || iconSet.gray}
+              zIndexOffset={isSelected ? 1000 : 0}
               eventHandlers={{
                 click: () => onBeachClick?.(beach)
               }}
@@ -280,7 +344,8 @@ export default function MapView({ beaches, onBeachClick, userLocation }) {
                 </div>
               </Popup>
             </Marker>
-          ))}
+            );
+          })}
         </MapContainer>
       </div>
     </div>

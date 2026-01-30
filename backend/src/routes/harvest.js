@@ -157,7 +157,8 @@ router.get('/calendar', async (req, res) => {
     for (let i = 0; i < days; i++) {
       const date = new Date(startDate);
       date.setDate(date.getDate() + i);
-      const dateStr = date.toISOString().split('T')[0];
+      // Use local date format to avoid timezone issues
+      const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 
       calendar.push({
         date: dateStr,
@@ -197,10 +198,9 @@ router.get('/calendar', async (req, res) => {
       }
     }
 
-    // Sort beaches by lowest tide height, keep only top 2
+    // Sort beaches by lowest tide height - return all for frontend filtering
     for (const day of calendar) {
       day.beaches.sort((a, b) => a.tideHeight - b.tideHeight);
-      day.beaches = day.beaches.slice(0, 2);
     }
 
     res.json({

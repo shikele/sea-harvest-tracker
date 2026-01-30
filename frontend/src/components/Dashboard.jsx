@@ -130,7 +130,8 @@ const styles = {
     backgroundColor: 'white',
     fontSize: '12px',
     cursor: 'pointer',
-    transition: 'all 0.2s'
+    transition: 'all 0.2s',
+    outline: 'none'
   },
   iconButtonActive: {
     backgroundColor: '#805ad5',
@@ -179,7 +180,8 @@ const styles = {
     backgroundColor: 'white',
     fontSize: '12px',
     cursor: 'pointer',
-    transition: 'all 0.2s'
+    transition: 'all 0.2s',
+    outline: 'none'
   },
   filterRow: {
     display: 'flex',
@@ -224,7 +226,10 @@ const styles = {
     fontSize: '11px',
     cursor: 'pointer',
     transition: 'all 0.2s',
-    color: '#4a5568'
+    color: '#4a5568',
+    outline: 'none',
+    boxShadow: 'none',
+    WebkitTapHighlightColor: 'transparent'
   },
   speciesChipActive: {
     backgroundColor: '#9f7aea',
@@ -501,8 +506,8 @@ export default function Dashboard() {
   const handleSpeciesToggle = (speciesName) => {
     setSelectedSpecies(prev =>
       prev.includes(speciesName)
-        ? prev.filter(s => s !== speciesName)
-        : [...prev, speciesName]
+        ? []  // Deselect if clicking the same species
+        : [speciesName]  // Single selection - only this species
     );
     setCurrentPage(1);
   };
@@ -688,12 +693,18 @@ export default function Dashboard() {
       </div>
 
       <div className="map-container">
-        <MapView beaches={filteredBeaches} onBeachClick={handleBeachSelect} userLocation={userLocation} />
+        <MapView beaches={filteredBeaches} onBeachClick={handleBeachSelect} userLocation={userLocation} selectedBeach={selectedBeach} />
       </div>
 
       <div style={styles.mainContent} className="main-content">
         <div style={styles.leftColumn}>
-          <HarvestCalendar onBeachClick={handleBeachSelect} />
+          <HarvestCalendar
+            onBeachClick={handleBeachSelect}
+            statusFilter={filter}
+            accessFilter={accessFilter}
+            selectedSpecies={selectedSpecies}
+            allBeaches={beaches}
+          />
 
           <div style={styles.beachList} className="beach-list-section">
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>

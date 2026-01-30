@@ -1,10 +1,15 @@
 import express from 'express';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import beachesRouter from './routes/beaches.js';
 import tidesRouter from './routes/tides.js';
 import harvestRouter from './routes/harvest.js';
 import { refreshBiotoxinData } from './services/biotoxin.js';
 import { refreshAllTides } from './services/tides.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -12,6 +17,12 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static frontend files in production
+if (process.env.NODE_ENV === 'production') {
+  const frontendPath = join(__dirname, '../../frontend/dist');
+  app.use(express.static(frontendPath));
+}
 
 // Routes
 app.use('/api/beaches', beachesRouter);
@@ -46,6 +57,14 @@ app.post('/api/refresh', async (req, res) => {
     });
   }
 });
+
+// Serve frontend for all non-API routes (client-side routing)
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    const frontendPath = join(__dirname, '../../frontend/dist/index.html');
+    res.sendFile(frontendPath);
+  });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {

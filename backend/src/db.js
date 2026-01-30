@@ -1,13 +1,28 @@
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const DATA_DIR = join(__dirname, '..', 'data');
+// Use persistent disk in production (Render), local data dir in development
+const LOCAL_DATA_DIR = join(__dirname, '..', 'data');
+const PROD_DATA_DIR = '/var/data';
+const DATA_DIR = process.env.NODE_ENV === 'production' && existsSync(PROD_DATA_DIR)
+  ? PROD_DATA_DIR
+  : LOCAL_DATA_DIR;
+
 const DB_FILE = join(DATA_DIR, 'db.json');
-const BEACHES_FILE = join(DATA_DIR, 'beaches.json');
+const BEACHES_FILE = join(LOCAL_DATA_DIR, 'beaches.json'); // Always read from local (static data)
+
+// Ensure data directory exists in production
+if (process.env.NODE_ENV === 'production' && existsSync(PROD_DATA_DIR)) {
+  // Copy beaches.json to persistent disk if not present
+  const prodBeachesFile = join(PROD_DATA_DIR, 'beaches.json');
+  if (!existsSync(prodBeachesFile) && existsSync(join(LOCAL_DATA_DIR, 'beaches.json'))) {
+    copyFileSync(join(LOCAL_DATA_DIR, 'beaches.json'), prodBeachesFile);
+  }
+}
 
 // Initialize or load database
 function loadDb() {
