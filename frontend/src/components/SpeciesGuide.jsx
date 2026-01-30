@@ -392,6 +392,7 @@ function SpeciesCard({ species, onClick }) {
   return (
     <div
       style={{ ...styles.card, ...(isHovered ? styles.cardHover : {}) }}
+      className="species-card"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onClick(species)}
@@ -420,11 +421,11 @@ function SpeciesCard({ species, onClick }) {
           </div>
         )}
       </div>
-      <div style={styles.cardBody}>
-        <div style={styles.speciesName}>{species.name}</div>
-        <div style={styles.chineseName}>{species.chineseName}</div>
-        <div style={styles.scientificName}>{species.scientificName}</div>
-        <div style={styles.description}>{species.description}</div>
+      <div style={styles.cardBody} className="species-card-body">
+        <div style={styles.speciesName} className="species-name">{species.name}</div>
+        <div style={styles.chineseName} className="chinese-name">{species.chineseName}</div>
+        <div style={styles.scientificName} className="scientific-name">{species.scientificName}</div>
+        <div style={styles.description} className="species-description">{species.description}</div>
         <div style={styles.infoGrid}>
           <div style={styles.infoItem}>
             <span style={styles.infoLabel}>Size</span>
@@ -465,28 +466,31 @@ function SpeciesModal({ species, onClose }) {
 
   return (
     <div style={styles.modal} onClick={onClose}>
-      <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+      <div style={styles.modalContent} className="species-modal-content" onClick={(e) => e.stopPropagation()}>
         <div style={{ position: 'relative' }}>
           <img
             src={currentImage.url}
             alt={species.name}
             style={styles.modalImage}
+            className="modal-image"
             onError={(e) => {
               e.target.src = 'https://via.placeholder.com/600x300?text=' + encodeURIComponent(species.name);
             }}
           />
-          <button style={styles.closeButton} onClick={onClose}>x</button>
+          <button style={styles.closeButton} className="close-button" onClick={onClose}>x</button>
 
           {images.length > 1 && (
             <>
               <button
                 style={{ ...styles.imageNavButton, left: '12px' }}
+                className="image-nav-button"
                 onClick={goToPrev}
               >
                 ‹
               </button>
               <button
                 style={{ ...styles.imageNavButton, right: '12px' }}
+                className="image-nav-button"
                 onClick={goToNext}
               >
                 ›
@@ -503,7 +507,7 @@ function SpeciesModal({ species, onClose }) {
         )}
 
         {images.length > 1 && (
-          <div style={styles.thumbnailStrip}>
+          <div style={styles.thumbnailStrip} className="thumbnail-strip">
             {images.map((img, idx) => (
               <img
                 key={idx}
@@ -513,6 +517,7 @@ function SpeciesModal({ species, onClose }) {
                   ...styles.thumbnail,
                   ...(idx === currentImageIndex ? styles.thumbnailActive : {})
                 }}
+                className="thumbnail"
                 onClick={() => setCurrentImageIndex(idx)}
                 onError={(e) => {
                   e.target.src = 'https://via.placeholder.com/60x45?text=' + (idx + 1);
@@ -522,10 +527,10 @@ function SpeciesModal({ species, onClose }) {
           </div>
         )}
 
-        <div style={styles.modalBody}>
-          <div style={styles.speciesName}>{species.name}</div>
-          <div style={styles.chineseName}>{species.chineseName}</div>
-          <div style={styles.scientificName}>{species.scientificName}</div>
+        <div style={styles.modalBody} className="modal-body">
+          <div style={styles.speciesName} className="species-name">{species.name}</div>
+          <div style={styles.chineseName} className="chinese-name">{species.chineseName}</div>
+          <div style={styles.scientificName} className="scientific-name">{species.scientificName}</div>
 
           <div style={{ marginTop: '20px' }}>
             <div style={styles.detailSection}>
@@ -538,7 +543,7 @@ function SpeciesModal({ species, onClose }) {
               <div style={styles.detailValue}>{species.habitat}</div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }} className="detail-grid">
               <div style={styles.detailSection}>
                 <div style={styles.detailLabel}>Size</div>
                 <div style={styles.detailValue}>{species.size}</div>
@@ -563,15 +568,15 @@ export default function SpeciesGuide() {
   const [selectedSpecies, setSelectedSpecies] = useState(null);
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="species-guide-container">
       <div style={styles.header}>
-        <h1 style={styles.title}>Species Guide</h1>
+        <h1 style={styles.title} className="species-guide-title">Species Guide</h1>
         <p style={styles.subtitle}>
           Learn about the shellfish species you can harvest in Washington State
         </p>
       </div>
 
-      <div style={styles.grid}>
+      <div style={styles.grid} className="species-grid">
         {speciesData.map((species) => (
           <SpeciesCard
             key={species.id}

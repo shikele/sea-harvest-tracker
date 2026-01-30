@@ -544,7 +544,19 @@ export default function Dashboard() {
   };
 
   const handleBeachSelect = (beach) => {
-    setSelectedBeach(beach);
+    // If beach comes from calendar view, it may not have full species data
+    // Look up the full beach data from our beaches array
+    if (beach && (!beach.species || beach.species.length === 0)) {
+      const fullBeach = beaches.find(b => b.id === beach.id);
+      if (fullBeach) {
+        // Merge calendar-specific data (like tideTime, tideHeight) with full beach data
+        setSelectedBeach({ ...fullBeach, ...beach, species: fullBeach.species, notes: fullBeach.notes });
+      } else {
+        setSelectedBeach(beach);
+      }
+    } else {
+      setSelectedBeach(beach);
+    }
     setShowFullTides(false);
   };
 

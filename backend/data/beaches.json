@@ -212,9 +212,10 @@
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
-        {"name": "Butter Clams", "abundance": "low", "tidal_zone": "lower", "min_tide_ft": 0.0}
+        {"name": "Butter Clams", "abundance": "low", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Urban beach with moderate clam populations. Good for beginners."
+      "notes": "Urban beach with moderate clam populations. Good for beginners. Open for clam and oyster harvesting."
     },
     {
       "id": 14,
@@ -282,9 +283,11 @@
       "species": [
         {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
-        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Large tide flats. Wildlife refuge - some areas restricted."
+      "notes": "Large tide flats. Wildlife refuge - some areas restricted. Sandy substrate. Famous Dungeness Spit."
     },
     {
       "id": 18,
@@ -386,7 +389,8 @@
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "Urban beach between Seattle and Tacoma. Good for beginners. Underwater park for divers."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest. DOH cautions shellfish not fit for human consumption at any time due to water quality concerns. Underwater park for divers.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 24,
@@ -431,9 +435,11 @@
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0},
         {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
       ],
-      "notes": "Popular beach park. Pier for fishing. Campground and day use areas."
+      "notes": "Popular beach park. Open for clam and oyster harvesting. Pier for fishing. Campground and day use areas."
     },
     {
       "id": 27,
@@ -448,7 +454,8 @@
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "1.25-mile trail to beach. Lunds Gulch Creek estuary. Day use only."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest year-round. DOH cautions shellfish not fit for human consumption at any time. 1.25-mile trail to beach. Lunds Gulch Creek estuary.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 28,
@@ -463,7 +470,8 @@
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "Historic lighthouse. Near Whidbey Island ferry terminal. Scuba diving popular."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest year-round. Historic lighthouse near Whidbey Island ferry terminal. Scuba diving popular.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 29,
@@ -598,7 +606,8 @@
         {"name": "Manila Clams", "abundance": "low", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "Seattle's largest park. CHECK CLOSURES - often closed due to urban runoff. West Point Lighthouse."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest year-round. DOH cautions shellfish not fit for human consumption at any time. Seattle's largest park with West Point Lighthouse.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 37,
@@ -613,7 +622,8 @@
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "West Seattle park with Colman Pool. Beach access. CHECK CLOSURES for urban beach status."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest year-round. DOH cautions shellfish not fit for human consumption at any time. West Seattle park with Colman Pool.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 38,
@@ -626,9 +636,11 @@
       "doh_object_id": 138,
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
-        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "low", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "low", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Burien beach park. Recently restored with seawall removal. Check biotoxin status."
+      "notes": "Burien beach park. Recently restored with seawall removal. CHECK CLOSURES - urban beach may have health advisories. Check biotoxin status before harvesting."
     },
     {
       "id": 39,
@@ -643,7 +655,8 @@
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "Shoreline park. Sandy beach with tide flats. Rail tracks between parking and beach."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest year-round. DOH cautions shellfish not fit for human consumption at any time. Shoreline park with rail tracks between parking and beach.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 40,
@@ -808,9 +821,11 @@
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "low", "tidal_zone": "lower", "min_tide_ft": 0.0},
         {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Protected cove with dock. Good for kayak/boat access."
+      "notes": "Protected cove with dock on Harstene Island. Good for kayak/boat access. Camping available."
     },
     {
       "id": 50,
@@ -823,9 +838,11 @@
       "doh_object_id": 150,
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
         {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Island park connected to Harstene Island at low tide. Boat access recommended.",
+      "notes": "Island park connected to Harstene Island at low tide via sand tombolo. Boat access recommended. Walk across at low tide.",
       "access_type": "boat"
     },
     {
@@ -874,9 +891,10 @@
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
         {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Budd Inlet beach near Boston Harbor. Old-growth forest trail. Quiet alternative to Tolmie."
+      "notes": "Budd Inlet beach near Boston Harbor. Old-growth forest trail. Quiet alternative to Tolmie. Near Olympia."
     },
     {
       "id": 54,
@@ -906,9 +924,11 @@
       "doh_object_id": 155,
       "species": [
         {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
-        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5}
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "low", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Lopez Island - car accessible! Best clams on north side of spit in muddy gravel. Lagoon CLOSED."
+      "notes": "Lopez Island - car accessible! Open March 1 - July 31. Best clams on north side of spit in muddy gravel. Tip of spit has higher clam density. Lagoon CLOSED. Oysters not common."
     },
     {
       "id": 56,
@@ -921,9 +941,11 @@
       "doh_object_id": 156,
       "species": [
         {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
-        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5}
+        {"name": "Native Littleneck Clams", "abundance": "good", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Alternative to Spencer Spit on Lopez Island. Near ferry landing."
+      "notes": "Alternative to Spencer Spit on Lopez Island. Near ferry landing. Open year-round. Clam resources not well documented by WDFW."
     },
     {
       "id": 57,
@@ -954,7 +976,8 @@
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "low", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "Sandy beach with pier. Stream flows through. Popular swimming beach in summer."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest year-round. DOH cautions shellfish not fit for human consumption at any time. Sandy beach with pier.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 59,
@@ -969,7 +992,8 @@
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "Everett city park. Pedestrian bridge over railroad tracks to beach. Playground and trails."
+      "notes": "WARNING: PERMANENTLY CLOSED for shellfish harvest year-round. Everett city park with pedestrian bridge over railroad tracks to beach.",
+      "harvest_status": "permanently_closed"
     },
     {
       "id": 60,
@@ -1067,9 +1091,11 @@
       "doh_object_id": 165,
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
-        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "low", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Bluff area with beach access. More rocky substrate."
+      "notes": "Bluff area with beach access. More rocky substrate makes digging challenging."
     },
     {
       "id": 66,
@@ -1098,9 +1124,11 @@
       "doh_object_id": 167,
       "species": [
         {"name": "Manila Clams", "abundance": "good", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
         {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "Private community area - check access. Near Greenbank."
+      "notes": "Private community area - check access. Near Greenbank on Whidbey Island."
     },
     {
       "id": 68,
@@ -1146,9 +1174,11 @@
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
-        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "moderate", "tidal_zone": "middle/lower", "min_tide_ft": 1.0},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
       ],
-      "notes": "City beach near downtown Oak Harbor. Naval Air Station nearby."
+      "notes": "City beach near downtown Oak Harbor. Naval Air Station nearby. Mixed substrate."
     },
     {
       "id": 71,
@@ -1178,9 +1208,11 @@
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
-        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0}
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "low", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Oysters", "abundance": "low", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
-      "notes": "West-facing beach on Strait of Juan de Fuca. Can be windy."
+      "notes": "West-facing beach on Strait of Juan de Fuca. Can be windy. Sandy substrate."
     },
     {
       "id": 73,
@@ -1412,7 +1444,9 @@
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
         {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
-        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0}
+        {"name": "Butter Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Mussels", "abundance": "moderate", "tidal_zone": "upper", "min_tide_ft": 3.0},
+        {"name": "Oysters", "abundance": "low", "tidal_zone": "middle/lower", "min_tide_ft": 1.0}
       ],
       "notes": "North tip of Vashon near ferry terminal. Water access for shellfish. Open year-round."
     },
@@ -1427,9 +1461,12 @@
       "doh_object_id": 187,
       "species": [
         {"name": "Manila Clams", "abundance": "moderate", "tidal_zone": "middle/upper", "min_tide_ft": 2.0},
-        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
+        {"name": "Native Littleneck Clams", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5},
+        {"name": "Butter Clams", "abundance": "good", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Horse Clams", "abundance": "moderate", "tidal_zone": "lower", "min_tide_ft": 0.0},
+        {"name": "Cockles", "abundance": "moderate", "tidal_zone": "middle", "min_tide_ft": 1.5}
       ],
-      "notes": "Nature preserve at Shinglemill Creek delta. Limited access - check preserve rules. Northwest Vashon."
+      "notes": "Open year-round. Nature preserve at Shinglemill Creek delta. Limited access - check preserve rules. Rocky substrate makes digging more difficult. Northwest Vashon."
     }
   ]
 }
