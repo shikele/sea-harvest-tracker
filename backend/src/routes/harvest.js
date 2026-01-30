@@ -50,20 +50,21 @@ function calculateOpportunityScore(beach, lowTides) {
 
 /**
  * Determine the status color for UI
+ * green = open (fully open for all species)
+ * yellow = conditional (species-specific restrictions)
+ * red = closed (full biotoxin closure)
+ * gray = unclassified
  */
 function getStatusColor(beach, lowTides) {
   if (beach.biotoxin_status === 'closed') {
     return 'red';
   }
 
-  if (beach.biotoxin_status === 'open' && lowTides.length > 0) {
-    const nextLow = lowTides[0];
-    if (nextLow.quality === 'excellent' || nextLow.quality === 'good') {
-      return 'green';
-    }
+  if (beach.biotoxin_status === 'open') {
+    return 'green';
   }
 
-  if (beach.biotoxin_status === 'open' || beach.biotoxin_status === 'conditional') {
+  if (beach.biotoxin_status === 'conditional') {
     return 'yellow';
   }
 
@@ -97,6 +98,8 @@ router.get('/', async (req, res) => {
           biotoxinStatus: beach.biotoxin_status,
           closureReason: beach.closure_reason,
           speciesAffected: beach.species_affected,
+          seasonInfo: beach.season_info,
+          wdfwUrl: beach.wdfw_url,
           seasonOpen: beach.wdfw_season_open,
           lastUpdated: beach.last_updated,
           nextLowTides: lowTides.slice(0, 5),

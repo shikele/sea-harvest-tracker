@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { getHarvestWindows, refreshData } from '../services/api';
+import { getHarvestWindows } from '../services/api';
 import BeachCard from './BeachCard';
 import TideChart from './TideChart';
 import HarvestCalendar from './HarvestCalendar';
@@ -43,17 +43,6 @@ const styles = {
     fontSize: '14px',
     color: '#718096',
     marginTop: '4px'
-  },
-  refreshButton: {
-    padding: '10px 20px',
-    backgroundColor: '#4299e1',
-    color: 'white',
-    border: 'none',
-    borderRadius: '8px',
-    fontSize: '14px',
-    fontWeight: '500',
-    cursor: 'pointer',
-    transition: 'background-color 0.2s'
   },
   statsRow: {
     display: 'grid',
@@ -423,7 +412,6 @@ export default function Dashboard() {
   const [beaches, setBeaches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [refreshing, setRefreshing] = useState(false);
   const [filter, setFilter] = useState('all');
   const [selectedBeach, setSelectedBeach] = useState(null);
   const [sortMode, setSortMode] = useState('opportunity'); // 'opportunity' or 'distance'
@@ -454,17 +442,6 @@ export default function Dashboard() {
     loadData();
   }, []);
 
-  async function handleRefresh() {
-    setRefreshing(true);
-    try {
-      await refreshData();
-      await loadData();
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setRefreshing(false);
-    }
-  }
 
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -602,8 +579,8 @@ export default function Dashboard() {
       // Status filter
       if (filter === 'all') return true;
       if (filter === 'open') return beach.biotoxinStatus === 'open';
+      if (filter === 'conditional') return beach.biotoxinStatus === 'conditional';
       if (filter === 'closed') return beach.biotoxinStatus === 'closed';
-      if (filter === 'harvestable') return beach.harvestable;
       return true;
     })
     .sort((a, b) => {
@@ -629,8 +606,9 @@ export default function Dashboard() {
   const stats = {
     total: beaches.length,
     open: beaches.filter(b => b.biotoxinStatus === 'open').length,
+    conditional: beaches.filter(b => b.biotoxinStatus === 'conditional').length,
     closed: beaches.filter(b => b.biotoxinStatus === 'closed').length,
-    harvestable: beaches.filter(b => b.harvestable).length
+    unclassified: beaches.filter(b => b.biotoxinStatus === 'unclassified').length
   };
 
   if (loading) {
@@ -647,12 +625,6 @@ export default function Dashboard() {
         <div style={styles.error}>
           <h3>Error loading data</h3>
           <p>{error}</p>
-          <button
-            style={{ ...styles.refreshButton, marginTop: '16px' }}
-            onClick={handleRefresh}
-          >
-            Try Again
-          </button>
         </div>
       </div>
     );
@@ -667,17 +639,6 @@ export default function Dashboard() {
             Shellfish harvesting conditions near Redmond, WA
           </p>
         </div>
-        <button
-          style={{
-            ...styles.refreshButton,
-            opacity: refreshing ? 0.7 : 1
-          }}
-          className="refresh-button"
-          onClick={handleRefresh}
-          disabled={refreshing}
-        >
-          {refreshing ? 'Refreshing...' : 'Refresh Data'}
-        </button>
       </div>
 
       <div style={styles.tabContainer} className="tab-container">
@@ -709,20 +670,20 @@ export default function Dashboard() {
         <>
       <div style={styles.statsRow} className="stats-row">
         <div style={styles.statCard} className="stat-card">
-          <div style={styles.statLabel} className="stat-label">Total Beaches</div>
-          <div style={{ ...styles.statValue, color: '#4299e1' }} className="stat-value">{stats.total}</div>
-        </div>
-        <div style={styles.statCard} className="stat-card">
           <div style={styles.statLabel} className="stat-label">Open</div>
           <div style={{ ...styles.statValue, color: '#48bb78' }} className="stat-value">{stats.open}</div>
+        </div>
+        <div style={styles.statCard} className="stat-card">
+          <div style={styles.statLabel} className="stat-label">Conditional</div>
+          <div style={{ ...styles.statValue, color: '#ecc94b' }} className="stat-value">{stats.conditional}</div>
         </div>
         <div style={styles.statCard} className="stat-card">
           <div style={styles.statLabel} className="stat-label">Closed</div>
           <div style={{ ...styles.statValue, color: '#f56565' }} className="stat-value">{stats.closed}</div>
         </div>
         <div style={styles.statCard} className="stat-card">
-          <div style={styles.statLabel} className="stat-label">Ready to Harvest</div>
-          <div style={{ ...styles.statValue, color: '#805ad5' }} className="stat-value">{stats.harvestable}</div>
+          <div style={styles.statLabel} className="stat-label">Unclassified</div>
+          <div style={{ ...styles.statValue, color: '#a0aec0' }} className="stat-value">{stats.unclassified}</div>
         </div>
       </div>
 
@@ -785,8 +746,8 @@ export default function Dashboard() {
                   <span style={styles.filterIcon} title="Filter by status">&#9881;</span>
                   {[
                     { value: 'all', label: 'All', icon: '' },
-                    { value: 'harvestable', label: 'Harvestable', icon: '&#9989;' },
                     { value: 'open', label: 'Open', icon: '&#128994;' },
+                    { value: 'conditional', label: 'Conditional', icon: '&#128993;' },
                     { value: 'closed', label: 'Closed', icon: '&#128308;' }
                   ].map((f) => (
                     <button
@@ -940,9 +901,29 @@ export default function Dashboard() {
                 </span>
               </div>
 
-              {selectedBeach.closureReason && (
+              {selectedBeach.closureReason && selectedBeach.biotoxinStatus === 'closed' && (
                 <div style={{ marginBottom: '16px', color: '#c53030' }}>
                   <strong>Closure Reason:</strong> {selectedBeach.closureReason}
+                </div>
+              )}
+
+              {selectedBeach.biotoxinStatus === 'conditional' && selectedBeach.speciesAffected && (
+                <div style={{
+                  marginBottom: '16px',
+                  padding: '12px',
+                  backgroundColor: '#fefcbf',
+                  borderRadius: '8px',
+                  borderLeft: '4px solid #ecc94b'
+                }}>
+                  <strong style={{ color: '#744210', display: 'block', marginBottom: '4px' }}>
+                    Species Restriction:
+                  </strong>
+                  <span style={{ color: '#744210', fontSize: '14px' }}>
+                    {selectedBeach.speciesAffected}
+                  </span>
+                  <p style={{ color: '#975a16', fontSize: '12px', marginTop: '8px', marginBottom: 0 }}>
+                    Other species may be harvested. Check current regulations.
+                  </p>
                 </div>
               )}
 
@@ -1081,6 +1062,49 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+
+      {/* Footer with resources */}
+      <div style={{
+        marginTop: '40px',
+        padding: '20px',
+        borderTop: '1px solid #e2e8f0',
+        textAlign: 'center',
+        color: '#718096',
+        fontSize: '13px'
+      }}>
+        <p style={{ marginBottom: '8px' }}>
+          <strong>Resources:</strong>
+        </p>
+        <p>
+          <a
+            href="https://wdfw.wa.gov/sites/default/files/fishing/shellfishing/WDFWAnnualBeachSeasonsBarChart.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#4299e1', textDecoration: 'none', marginRight: '16px' }}
+          >
+            WDFW 2026 Beach Seasons (PDF)
+          </a>
+          <a
+            href="https://fortress.wa.gov/doh/eh/portal/odw/si/Shellfish.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#4299e1', textDecoration: 'none', marginRight: '16px' }}
+          >
+            DOH Shellfish Safety Map
+          </a>
+          <a
+            href="https://wdfw.wa.gov/places-to-go/shellfish-beaches"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#4299e1', textDecoration: 'none' }}
+          >
+            WDFW Shellfish Beaches
+          </a>
+        </p>
+        <p style={{ marginTop: '12px', fontSize: '11px', color: '#a0aec0' }}>
+          Always check DOH biotoxin status on the day of harvest. Both WDFW season AND DOH approval required.
+        </p>
+      </div>
     </div>
   );
 }

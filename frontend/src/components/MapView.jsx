@@ -192,15 +192,19 @@ export default function MapView({ beaches, onBeachClick, userLocation }) {
         <div style={styles.legend}>
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendDot, backgroundColor: '#48bb78' }} />
-            <span>Open + Good Tide</span>
+            <span>Open</span>
           </div>
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendDot, backgroundColor: '#ecc94b' }} />
-            <span>Open</span>
+            <span>Conditional</span>
           </div>
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendDot, backgroundColor: '#f56565' }} />
             <span>Closed</span>
+          </div>
+          <div style={styles.legendItem}>
+            <div style={{ ...styles.legendDot, backgroundColor: '#a0aec0' }} />
+            <span>Unclassified</span>
           </div>
           {userLocation && (
             <div style={styles.legendItem}>

@@ -46,7 +46,7 @@ for (const beach of beaches) {
   if (!db.beachStatus[beach.id]) {
     db.beachStatus[beach.id] = {
       beach_id: beach.id,
-      biotoxin_status: 'unknown',
+      biotoxin_status: 'unclassified',
       closure_reason: null,
       species_affected: null,
       wdfw_season_open: true,
@@ -81,9 +81,11 @@ export function getBeachById(id) {
 export function updateBeachStatus(beachId, status) {
   db.beachStatus[beachId] = {
     beach_id: beachId,
-    biotoxin_status: status.biotoxin_status || 'unknown',
+    biotoxin_status: status.biotoxin_status || 'unclassified',
     closure_reason: status.closure_reason || null,
     species_affected: status.species_affected || null,
+    season_info: status.season_info || null,
+    wdfw_url: status.wdfw_url || null,
     wdfw_season_open: status.wdfw_season_open !== false,
     last_updated: new Date().toISOString()
   };
