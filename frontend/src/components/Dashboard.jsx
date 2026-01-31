@@ -597,6 +597,25 @@ export default function Dashboard() {
       if (sortMode === 'distance' && a.distance !== null && b.distance !== null) {
         return a.distance - b.distance;
       }
+      // If species selected, sort by tide height (lower is better)
+      if (selectedSpecies.length > 0) {
+        const getTideHeight = (beach) => {
+          if (selectedCalendarDate && beach.nextLowTides) {
+            // Find tide for the selected date
+            const tide = beach.nextLowTides.find(t => {
+              const tideDate = new Date(t.datetime);
+              const selectedDate = new Date(selectedCalendarDate);
+              return tideDate.getFullYear() === selectedDate.getFullYear() &&
+                     tideDate.getMonth() === selectedDate.getMonth() &&
+                     tideDate.getDate() === selectedDate.getDate();
+            });
+            return tide ? tide.height : 999;
+          }
+          // Use next low tide if no date selected
+          return beach.nextLowTides?.[0]?.height ?? 999;
+        };
+        return getTideHeight(a) - getTideHeight(b);
+      }
       // Default: sort by opportunity score (already sorted from API)
       return 0;
     });
