@@ -94,7 +94,7 @@ html, body {
     max-height: 180px !important;
     border-radius: 8px !important;
     margin-top: 0 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 120px !important;
     overflow: hidden !important;
     z-index: 1 !important;
   }
@@ -215,11 +215,11 @@ html, body {
     margin-bottom: 4px !important;
   }
 
-  /* 7-day grid - VERTICAL layout on mobile (compact) */
+  /* 7-day grid - VERTICAL layout on mobile (ultra-compact) */
   .calendar-7day-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 6px !important;
+    gap: 4px !important;
     padding: 0 !important;
     margin: 0 !important;
     overflow: visible !important;
@@ -230,63 +230,63 @@ html, body {
     min-width: unset !important;
     flex-shrink: 0 !important;
     height: auto !important;
-    min-height: 50px !important;
-    padding: 8px 10px !important;
-    border-radius: 6px !important;
+    min-height: 36px !important;
+    padding: 5px 8px !important;
+    border-radius: 5px !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
 
   .calendar-day-header {
     margin-bottom: 0 !important;
-    min-width: 44px !important;
+    min-width: 38px !important;
     text-align: center !important;
     flex-shrink: 0 !important;
   }
 
   .calendar-day-of-week {
-    font-size: 10px !important;
-    margin-bottom: 1px !important;
+    font-size: 9px !important;
+    margin-bottom: 0 !important;
   }
 
   .calendar-day-date {
-    font-size: 16px !important;
+    font-size: 14px !important;
     line-height: 1 !important;
   }
 
-  /* Beach list in day card - compact */
+  /* Beach list in day card - ultra-compact */
   .calendar-beach-list {
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 4px !important;
+    gap: 2px !important;
   }
 
   .calendar-beach-item {
-    padding: 5px 8px !important;
+    padding: 3px 6px !important;
     margin-bottom: 0 !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
   }
 
   .calendar-beach-name {
-    font-size: 12px !important;
+    font-size: 11px !important;
   }
 
   .calendar-tide-time {
-    font-size: 10px !important;
+    font-size: 9px !important;
   }
 
-  /* Empty day message - compact */
+  /* Empty day message - ultra-compact */
   .calendar-day-card .empty-day,
   .calendar-beach-list > div {
-    font-size: 11px !important;
+    font-size: 10px !important;
   }
 
   .calendar-beach-list .empty-day {
     flex-direction: row !important;
-    gap: 6px !important;
+    gap: 4px !important;
     justify-content: flex-start !important;
   }
 
