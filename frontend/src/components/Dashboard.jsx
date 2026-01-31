@@ -828,7 +828,7 @@ export default function Dashboard() {
               >
                 x
               </button>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px', marginTop: '24px' }}>
                 <h3 style={{ ...styles.sectionTitle, marginBottom: 0 }}>{selectedBeach.name}</h3>
                 <span
                   style={{
