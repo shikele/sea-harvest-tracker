@@ -15,7 +15,6 @@ const styles = {
     backgroundColor: 'white',
     borderRadius: '12px',
     padding: '20px',
-    paddingBottom: '24px',
     boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
     marginBottom: '24px'
   },
@@ -279,7 +278,7 @@ export default function MapView({ beaches, onBeachClick, userLocation, selectedB
         </div>
       </div>
 
-      <div style={styles.mapWrapper}>
+      <div style={styles.mapWrapper} className="map-wrapper">
         <MapContainer
           center={center}
           zoom={9}
