@@ -66,32 +66,39 @@ html, body {
     min-height: 44px !important;
   }
 
-  /* Stats row - 2x2 grid */
+  /* Stats row - 2x2 grid (compact) */
   .stats-row {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    margin-bottom: 16px !important;
+    gap: 6px !important;
+    margin-bottom: 12px !important;
   }
 
   .stat-card {
-    padding: 12px !important;
-    border-radius: 8px !important;
+    padding: 8px 10px !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
   }
 
   .stat-value {
-    font-size: 24px !important;
+    font-size: 20px !important;
+    order: 2 !important;
   }
 
   .stat-label {
     font-size: 11px !important;
+    order: 1 !important;
   }
 
   /* Map - ensure no overlap, move up */
   .map-container {
     position: relative !important;
-    height: 220px !important;
-    min-height: 220px !important;
-    max-height: 220px !important;
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
     border-radius: 8px !important;
     margin-top: 0 !important;
     margin-bottom: 120px !important;
