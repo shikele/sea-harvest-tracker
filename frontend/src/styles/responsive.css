@@ -86,14 +86,15 @@ html, body {
     font-size: 11px !important;
   }
 
-  /* Map - ensure no overlap */
+  /* Map - ensure no overlap, move up */
   .map-container {
     position: relative !important;
-    height: 200px !important;
-    min-height: 200px !important;
-    max-height: 200px !important;
+    height: 180px !important;
+    min-height: 180px !important;
+    max-height: 180px !important;
     border-radius: 8px !important;
-    margin-bottom: 16px !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
     overflow: hidden !important;
     z-index: 1 !important;
   }
@@ -214,11 +215,11 @@ html, body {
     margin-bottom: 4px !important;
   }
 
-  /* 7-day grid - VERTICAL layout on mobile */
+  /* 7-day grid - VERTICAL layout on mobile (compact) */
   .calendar-7day-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 8px !important;
+    gap: 6px !important;
     padding: 0 !important;
     margin: 0 !important;
     overflow: visible !important;
@@ -229,58 +230,64 @@ html, body {
     min-width: unset !important;
     flex-shrink: 0 !important;
     height: auto !important;
-    min-height: 80px !important;
-    padding: 12px !important;
-    border-radius: 8px !important;
+    min-height: 50px !important;
+    padding: 8px 10px !important;
+    border-radius: 6px !important;
     display: flex !important;
     flex-direction: row !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
+    align-items: center !important;
+    gap: 10px !important;
   }
 
   .calendar-day-header {
     margin-bottom: 0 !important;
-    min-width: 50px !important;
+    min-width: 44px !important;
     text-align: center !important;
     flex-shrink: 0 !important;
   }
 
   .calendar-day-of-week {
-    font-size: 11px !important;
+    font-size: 10px !important;
+    margin-bottom: 1px !important;
   }
 
   .calendar-day-date {
-    font-size: 20px !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
   }
 
-  /* Beach list in day card - horizontal on mobile */
+  /* Beach list in day card - compact */
   .calendar-beach-list {
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 6px !important;
+    gap: 4px !important;
   }
 
   .calendar-beach-item {
-    padding: 8px 10px !important;
+    padding: 5px 8px !important;
     margin-bottom: 0 !important;
-    border-radius: 6px !important;
+    border-radius: 4px !important;
   }
 
   .calendar-beach-name {
-    font-size: 13px !important;
+    font-size: 12px !important;
   }
 
   .calendar-tide-time {
+    font-size: 10px !important;
+  }
+
+  /* Empty day message - compact */
+  .calendar-day-card .empty-day,
+  .calendar-beach-list > div {
     font-size: 11px !important;
   }
 
-  /* Empty day message centered */
-  .calendar-day-card .empty-day {
-    flex: 1 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  .calendar-beach-list .empty-day {
+    flex-direction: row !important;
+    gap: 6px !important;
+    justify-content: flex-start !important;
   }
 
   /* Month view */
@@ -572,11 +579,11 @@ html, body {
     height: 280px !important;
   }
 
-  /* Tablet: Vertical calendar layout */
+  /* Tablet: Vertical calendar layout (compact) */
   .calendar-7day-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
 
   .calendar-day-card {
@@ -584,18 +591,23 @@ html, body {
     min-width: unset !important;
     display: flex !important;
     flex-direction: row !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
-    min-height: 80px !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-height: 56px !important;
+    padding: 10px 12px !important;
   }
 
   .calendar-day-header {
-    min-width: 60px !important;
+    min-width: 50px !important;
     text-align: center !important;
   }
 
   .calendar-beach-list {
     flex: 1 !important;
+  }
+
+  .map-container {
+    margin-bottom: 20px !important;
   }
 
   .species-grid {
