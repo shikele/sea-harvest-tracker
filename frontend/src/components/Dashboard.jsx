@@ -594,7 +594,7 @@ export default function Dashboard() {
       if (filter === 'all') return true;
       if (filter === 'open') return beach.biotoxinStatus === 'open';
       if (filter === 'conditional') return beach.biotoxinStatus === 'conditional';
-      if (filter === 'closed') return beach.biotoxinStatus === 'closed';
+      if (filter === 'unclassified') return beach.biotoxinStatus === 'unclassified';
       return true;
     })
     .sort((a, b) => {
@@ -646,7 +646,7 @@ export default function Dashboard() {
     if (filter === 'all') return true;
     if (filter === 'open') return beach.biotoxinStatus === 'open';
     if (filter === 'conditional') return beach.biotoxinStatus === 'conditional';
-    if (filter === 'closed') return beach.biotoxinStatus === 'closed';
+    if (filter === 'unclassified') return beach.biotoxinStatus === 'unclassified';
     return true;
   });
 
@@ -962,7 +962,7 @@ export default function Dashboard() {
                     { value: 'all', label: 'All', icon: '' },
                     { value: 'open', label: 'Open', icon: '&#128994;' },
                     { value: 'conditional', label: 'Conditional', icon: '&#128993;' },
-                    { value: 'closed', label: 'Closed', icon: '&#128308;' }
+                    { value: 'unclassified', label: 'Unclassified', icon: '&#9898;' }
                   ].map((f) => (
                     <button
                       key={f.value}
