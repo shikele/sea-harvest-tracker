@@ -965,9 +965,6 @@ export default function Dashboard() {
                   `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
                 ) : sortMode === 'distance' ? 'Closest to me' : 'Beaches by Opportunity'}
               </h2>
-              <span style={styles.filterCount}>
-                {displayBeaches.length} of {beaches.length}
-              </span>
               {hasActiveFilters && (
                 <button style={{ ...styles.clearFiltersButton, display: 'block', margin: '8px auto 0' }} className="filter-button" onClick={clearAllFilters}>
                   Clear Filters
