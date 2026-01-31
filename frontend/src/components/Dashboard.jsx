@@ -860,7 +860,7 @@ export default function Dashboard() {
               <h2 style={{ ...styles.sectionTitle, marginBottom: 0 }} className="section-title">
                 {selectedSpecies.length > 0 && selectedCalendarDate ? (
                   `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
-                ) : sortMode === 'distance' ? 'Beaches by Distance' : 'Beaches by Opportunity'}
+                ) : sortMode === 'distance' ? 'Closest to me' : 'Beaches by Opportunity'}
               </h2>
               <span style={styles.filterCount}>
                 {filteredBeaches.length} of {beaches.length}
@@ -896,7 +896,7 @@ export default function Dashboard() {
                   title="Sort by distance from your location"
                 >
                   <span style={styles.buttonIcon}>&#128205;</span>
-                  {locationLoading ? '...' : 'Distance'}
+                  {locationLoading ? '...' : 'Closest to me'}
                 </button>
                 {locationError && (
                   <span style={styles.locationError}>{locationError}</span>
@@ -923,12 +923,13 @@ export default function Dashboard() {
                       dangerouslySetInnerHTML={{ __html: f.icon ? `${f.icon} ${f.label}` : f.label }}
                     />
                   ))}
-
-                  <span style={{ ...styles.filterIcon, marginLeft: '10px' }} title="Filter by access type">&#128675;</span>
+                </div>
+                <div style={styles.filterGroupRow} className="filter-group-row">
+                  <span style={styles.filterIcon} title="Filter by access type">&#128675;</span>
                   {[
                     { value: 'all', label: 'All' },
-                    { value: 'public', label: 'Public', icon: '&#128694;' },
-                    { value: 'boat', label: 'Boat', icon: '&#9973;' }
+                    { value: 'public', label: 'Road accessible', icon: '&#128694;' },
+                    { value: 'boat', label: 'Only by Boat', icon: '&#9973;' }
                   ].map((option) => (
                     <button
                       key={option.value}
@@ -942,7 +943,6 @@ export default function Dashboard() {
                     />
                   ))}
                 </div>
-
               </div>
             </div>
 
