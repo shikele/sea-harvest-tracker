@@ -506,11 +506,13 @@ export default function Dashboard() {
   )].sort();
 
   const handleSpeciesToggle = (speciesName) => {
-    setSelectedSpecies(prev =>
-      prev.includes(speciesName)
-        ? []  // Deselect if clicking the same species
-        : [speciesName]  // Single selection - only this species
-    );
+    if (!speciesName) {
+      setSelectedSpecies([]);  // Clear selection when empty option selected
+    } else {
+      setSelectedSpecies([speciesName]);  // Single selection
+    }
+    setSelectedCalendarDate(null);  // Clear calendar date when species changes
+    setCalendarDayBeaches([]);
     setCurrentPage(1);
   };
 

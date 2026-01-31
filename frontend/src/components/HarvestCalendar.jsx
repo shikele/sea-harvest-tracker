@@ -279,29 +279,17 @@ const styles = {
     color: '#4a5568',
     marginRight: '4px'
   },
-  speciesChips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '6px',
-    flex: 1
-  },
-  speciesChip: {
-    padding: '4px 10px',
+  speciesSelect: {
+    flex: 1,
+    padding: '8px 12px',
+    fontSize: '14px',
     border: '1px solid #e2e8f0',
-    borderRadius: '14px',
+    borderRadius: '8px',
     backgroundColor: 'white',
-    fontSize: '12px',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
     color: '#4a5568',
+    cursor: 'pointer',
     outline: 'none',
-    boxShadow: 'none',
-    WebkitTapHighlightColor: 'transparent'
-  },
-  speciesChipActive: {
-    backgroundColor: '#9f7aea',
-    color: 'white',
-    borderColor: '#9f7aea'
+    minWidth: '150px'
   }
 };
 
@@ -647,21 +635,19 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
       {allSpecies.length > 0 && (
         <div style={styles.speciesFilter} className="species-filter">
           <span style={styles.speciesLabel}>🦪 Species:</span>
-          <div style={styles.speciesChips} className="species-chips">
+          <select
+            style={styles.speciesSelect}
+            className="species-select"
+            value={selectedSpecies[0] || ''}
+            onChange={(e) => onSpeciesToggle?.(e.target.value)}
+          >
+            <option value="">Select a species...</option>
             {allSpecies.map((species) => (
-              <button
-                key={species}
-                style={{
-                  ...styles.speciesChip,
-                  ...(selectedSpecies.includes(species) ? styles.speciesChipActive : {})
-                }}
-                className="species-chip"
-                onClick={() => onSpeciesToggle?.(species)}
-              >
+              <option key={species} value={species}>
                 {species}
-              </button>
+              </option>
             ))}
-          </div>
+          </select>
         </div>
       )}
 
