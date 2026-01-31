@@ -43,13 +43,18 @@ html, body {
   /* Header */
   .dashboard-header {
     flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 4px !important;
     margin-bottom: 16px !important;
   }
 
   .dashboard-header h1 {
     font-size: 22px !important;
+  }
+
+  .dashboard-header p {
+    font-size: 12px !important;
   }
 
   /* Tab container */
