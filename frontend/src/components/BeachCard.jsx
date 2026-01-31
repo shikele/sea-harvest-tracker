@@ -236,7 +236,7 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
     <div
       style={{
         ...styles.card,
-        borderLeftColor: colors.border,
+        borderLeft: `4px solid ${colors.border}`,
         ...(isSelected ? styles.cardSelected : {})
       }}
       className="beach-card"
