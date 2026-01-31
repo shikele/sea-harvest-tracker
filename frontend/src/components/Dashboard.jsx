@@ -834,18 +834,29 @@ export default function Dashboard() {
               </p>
 
               <div style={{ marginBottom: '16px' }}>
-                <strong>Status:</strong>{' '}
                 <span
                   style={{
+                    display: 'inline-block',
+                    padding: '6px 14px',
+                    borderRadius: '16px',
+                    fontSize: '13px',
+                    fontWeight: '600',
+                    textTransform: 'uppercase',
+                    backgroundColor:
+                      selectedBeach.biotoxinStatus === 'open'
+                        ? '#c6f6d5'
+                        : selectedBeach.biotoxinStatus === 'closed'
+                        ? '#fed7d7'
+                        : '#fefcbf',
                     color:
                       selectedBeach.biotoxinStatus === 'open'
-                        ? '#48bb78'
+                        ? '#22543d'
                         : selectedBeach.biotoxinStatus === 'closed'
-                        ? '#f56565'
-                        : '#ecc94b'
+                        ? '#742a2a'
+                        : '#744210'
                   }}
                 >
-                  {selectedBeach.biotoxinStatus.toUpperCase()}
+                  {selectedBeach.biotoxinStatus}
                 </span>
               </div>
 
