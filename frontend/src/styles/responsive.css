@@ -426,21 +426,10 @@ html, body {
     min-height: 44px !important;
   }
 
-  /* Top beaches 2-column grid */
-  .top-beaches-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 6px !important;
-    margin-bottom: 6px !important;
-  }
-
-  .top-beaches-grid .beach-card {
-    margin-bottom: 0 !important;
-  }
-
   /* Beach cards */
   .beach-card {
-    padding: 10px !important;
-    margin-bottom: 6px !important;
+    padding: 12px !important;
+    margin-bottom: 10px !important;
     border-radius: 8px !important;
   }
 

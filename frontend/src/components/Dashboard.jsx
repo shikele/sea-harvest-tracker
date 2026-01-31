@@ -545,6 +545,12 @@ export default function Dashboard() {
   };
 
   const handleBeachSelect = (beach, date = null, allBeachesForDay = null) => {
+    // Toggle: if clicking the same beach, unselect it
+    if (beach && selectedBeach?.id === beach.id) {
+      setSelectedBeach(null);
+      return;
+    }
+
     // If beach comes from calendar view, it may not have full species data
     // Look up the full beach data from our beaches array
     if (beach && (!beach.species || beach.species.length === 0)) {
@@ -1012,28 +1018,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Top 2 beaches in 2-column grid */}
-            {paginatedBeaches.length > 0 && (
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: paginatedBeaches.length === 1 ? '1fr' : 'repeat(2, 1fr)',
-                gap: '8px',
-                marginBottom: '8px'
-              }} className="top-beaches-grid">
-                {paginatedBeaches.slice(0, 2).map((beach) => (
-                  <BeachCard
-                    key={beach.id}
-                    beach={beach}
-                    onClick={handleBeachSelect}
-                    selectedDate={selectedCalendarDate}
-                    isSelected={selectedBeach?.id === beach.id}
-                  />
-                ))}
-              </div>
-            )}
-
-            {/* Remaining beaches */}
-            {paginatedBeaches.slice(2).map((beach) => (
+            {paginatedBeaches.map((beach) => (
               <BeachCard
                 key={beach.id}
                 beach={beach}
