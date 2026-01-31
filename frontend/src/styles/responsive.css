@@ -710,9 +710,15 @@ html, body {
   .tab-button,
   .refresh-button,
   .calendar-view-button,
-  .calendar-nav-button,
   .species-chip {
     min-height: 44px !important;
+  }
+
+  /* Calendar nav needs consistent height for button + label */
+  .calendar-nav-button,
+  .calendar-label {
+    height: 40px !important;
+    min-height: 40px !important;
   }
 
   .beach-card {
