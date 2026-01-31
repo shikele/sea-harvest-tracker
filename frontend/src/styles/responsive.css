@@ -226,19 +226,22 @@ html, body {
   }
 
   .calendar-nav-button {
-    height: 36px !important;
-    width: 36px !important;
-    min-height: 36px !important;
+    box-sizing: border-box !important;
+    height: 34px !important;
+    width: 34px !important;
+    min-height: 34px !important;
     padding: 0 !important;
-    font-size: 14px !important;
+    margin: 0 !important;
+    font-size: 16px !important;
     flex-shrink: 0 !important;
   }
 
   .calendar-label {
-    height: 36px !important;
+    box-sizing: border-box !important;
+    height: 34px !important;
     font-size: 12px !important;
-    min-width: 120px !important;
-    padding: 0 12px !important;
+    min-width: 110px !important;
+    padding: 0 10px !important;
     flex-shrink: 0 !important;
   }
 

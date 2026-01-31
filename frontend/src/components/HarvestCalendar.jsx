@@ -655,19 +655,20 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
         <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
           <button
             style={{
-              height: '40px',
-              width: '40px',
+              boxSizing: 'border-box',
+              height: '38px',
+              width: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: '1px solid #cbd5e0',
-              borderRight: 'none',
-              borderRadius: '8px 0 0 8px',
-              backgroundColor: weekOffset === 0 ? '#edf2f7' : 'white',
+              border: '1px solid black',
+              borderRadius: '4px 0 0 4px',
+              backgroundColor: weekOffset === 0 ? '#e0e0e0' : 'white',
               cursor: weekOffset === 0 ? 'not-allowed' : 'pointer',
-              fontSize: '16px',
-              color: weekOffset === 0 ? '#a0aec0' : '#4a5568',
-              transition: 'all 0.15s ease'
+              fontSize: '18px',
+              color: weekOffset === 0 ? '#999' : 'black',
+              padding: 0,
+              margin: 0
             }}
             className="calendar-nav-button"
             onClick={() => setWeekOffset(w => Math.max(0, w - 1))}
@@ -676,34 +677,37 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
             ‹
           </button>
           <div style={{
-            height: '40px',
+            boxSizing: 'border-box',
+            height: '38px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '0 20px',
-            backgroundColor: '#4299e1',
-            borderTop: '1px solid #3182ce',
-            borderBottom: '1px solid #3182ce',
+            padding: '0 16px',
+            backgroundColor: 'black',
+            border: '1px solid black',
+            borderLeft: 'none',
+            borderRight: 'none',
             fontSize: '14px',
             fontWeight: '600',
             color: 'white',
-            minWidth: '160px'
+            minWidth: '150px'
           }} className="calendar-label">{weekLabel}</div>
           <button
             style={{
-              height: '40px',
-              width: '40px',
+              boxSizing: 'border-box',
+              height: '38px',
+              width: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: '1px solid #cbd5e0',
-              borderLeft: 'none',
-              borderRadius: '0 8px 8px 0',
-              backgroundColor: weekOffset >= maxWeeks - 1 ? '#edf2f7' : 'white',
+              border: '1px solid black',
+              borderRadius: '0 4px 4px 0',
+              backgroundColor: weekOffset >= maxWeeks - 1 ? '#e0e0e0' : 'white',
               cursor: weekOffset >= maxWeeks - 1 ? 'not-allowed' : 'pointer',
-              fontSize: '16px',
-              color: weekOffset >= maxWeeks - 1 ? '#a0aec0' : '#4a5568',
-              transition: 'all 0.15s ease'
+              fontSize: '18px',
+              color: weekOffset >= maxWeeks - 1 ? '#999' : 'black',
+              padding: 0,
+              margin: 0
             }}
             className="calendar-nav-button"
             onClick={() => setWeekOffset(w => Math.min(maxWeeks - 1, w + 1))}
@@ -718,19 +722,20 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
         <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
           <button
             style={{
-              height: '40px',
-              width: '40px',
+              boxSizing: 'border-box',
+              height: '38px',
+              width: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: '1px solid #cbd5e0',
-              borderRight: 'none',
-              borderRadius: '8px 0 0 8px',
-              backgroundColor: isCurrentMonth ? '#edf2f7' : 'white',
+              border: '1px solid black',
+              borderRadius: '4px 0 0 4px',
+              backgroundColor: isCurrentMonth ? '#e0e0e0' : 'white',
               cursor: isCurrentMonth ? 'not-allowed' : 'pointer',
-              fontSize: '16px',
-              color: isCurrentMonth ? '#a0aec0' : '#4a5568',
-              transition: 'all 0.15s ease'
+              fontSize: '18px',
+              color: isCurrentMonth ? '#999' : 'black',
+              padding: 0,
+              margin: 0
             }}
             className="calendar-nav-button"
             onClick={() => navigateMonth(-1)}
@@ -739,34 +744,37 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
             ‹
           </button>
           <div style={{
-            height: '40px',
+            boxSizing: 'border-box',
+            height: '38px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '0 20px',
-            backgroundColor: '#4299e1',
-            borderTop: '1px solid #3182ce',
-            borderBottom: '1px solid #3182ce',
+            padding: '0 16px',
+            backgroundColor: 'black',
+            border: '1px solid black',
+            borderLeft: 'none',
+            borderRight: 'none',
             fontSize: '14px',
             fontWeight: '600',
             color: 'white',
-            minWidth: '160px'
+            minWidth: '150px'
           }} className="calendar-label">{monthLabel}</div>
           <button
             style={{
-              height: '40px',
-              width: '40px',
+              boxSizing: 'border-box',
+              height: '38px',
+              width: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: '1px solid #cbd5e0',
-              borderLeft: 'none',
-              borderRadius: '0 8px 8px 0',
-              backgroundColor: isMaxMonth ? '#edf2f7' : 'white',
+              border: '1px solid black',
+              borderRadius: '0 4px 4px 0',
+              backgroundColor: isMaxMonth ? '#e0e0e0' : 'white',
               cursor: isMaxMonth ? 'not-allowed' : 'pointer',
-              fontSize: '16px',
-              color: isMaxMonth ? '#a0aec0' : '#4a5568',
-              transition: 'all 0.15s ease'
+              fontSize: '18px',
+              color: isMaxMonth ? '#999' : 'black',
+              padding: 0,
+              margin: 0
             }}
             className="calendar-nav-button"
             onClick={() => navigateMonth(1)}
