@@ -704,6 +704,8 @@ export default function Dashboard() {
             accessFilter={accessFilter}
             selectedSpecies={selectedSpecies}
             allBeaches={beaches}
+            allSpecies={allSpecies}
+            onSpeciesToggle={handleSpeciesToggle}
           />
 
           <div style={styles.beachList} className="beach-list-section">
@@ -792,24 +794,6 @@ export default function Dashboard() {
                   ))}
                 </div>
 
-                <div style={styles.speciesFilterRow} className="species-filter-row">
-                  <span style={styles.filterIcon} title="Filter by species">&#129438;</span>
-                  <div style={styles.speciesChips} className="species-chips">
-                    {allSpecies.map((species) => (
-                      <button
-                        key={species}
-                        style={{
-                          ...styles.speciesChip,
-                          ...(selectedSpecies.includes(species) ? styles.speciesChipActive : {})
-                        }}
-                        className="species-chip"
-                        onClick={() => handleSpeciesToggle(species)}
-                      >
-                        {species}
-                      </button>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
 

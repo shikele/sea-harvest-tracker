@@ -262,6 +262,46 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: '4px'
+  },
+  speciesFilter: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    marginBottom: '16px',
+    padding: '12px',
+    backgroundColor: '#f7fafc',
+    borderRadius: '8px',
+    flexWrap: 'wrap'
+  },
+  speciesLabel: {
+    fontSize: '12px',
+    fontWeight: '600',
+    color: '#4a5568',
+    marginRight: '4px'
+  },
+  speciesChips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '6px',
+    flex: 1
+  },
+  speciesChip: {
+    padding: '4px 10px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '14px',
+    backgroundColor: 'white',
+    fontSize: '12px',
+    cursor: 'pointer',
+    transition: 'all 0.2s',
+    color: '#4a5568',
+    outline: 'none',
+    boxShadow: 'none',
+    WebkitTapHighlightColor: 'transparent'
+  },
+  speciesChipActive: {
+    backgroundColor: '#9f7aea',
+    color: 'white',
+    borderColor: '#9f7aea'
   }
 };
 
@@ -300,7 +340,7 @@ function getMonthData(year, month) {
   return { startPadding, daysInMonth, firstDay, lastDay };
 }
 
-export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', accessFilter = 'all', selectedSpecies = [], allBeaches = [] }) {
+export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', accessFilter = 'all', selectedSpecies = [], allBeaches = [], allSpecies = [], onSpeciesToggle }) {
   const [calendarData, setCalendarData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -575,14 +615,7 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
   return (
     <div style={styles.container} className="calendar-container">
       <div style={styles.header} className="calendar-header">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-          <div style={styles.title} className="calendar-title">Harvest Calendar</div>
-          {selectedSpecies.length > 0 && (
-            <span style={{ fontSize: '11px', color: '#805ad5', backgroundColor: '#e9d8fd', padding: '2px 8px', borderRadius: '10px' }}>
-              {selectedSpecies.join(', ')}
-            </span>
-          )}
-        </div>
+        <div style={styles.title} className="calendar-title">Harvest Calendar</div>
         <div style={styles.viewToggle} className="calendar-view-toggle">
           <button
             style={{
@@ -606,6 +639,28 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
           </button>
         </div>
       </div>
+
+      {/* Species Filter */}
+      {allSpecies.length > 0 && (
+        <div style={styles.speciesFilter} className="species-filter">
+          <span style={styles.speciesLabel}>🦪 Species:</span>
+          <div style={styles.speciesChips} className="species-chips">
+            {allSpecies.map((species) => (
+              <button
+                key={species}
+                style={{
+                  ...styles.speciesChip,
+                  ...(selectedSpecies.includes(species) ? styles.speciesChipActive : {})
+                }}
+                className="species-chip"
+                onClick={() => onSpeciesToggle?.(species)}
+              >
+                {species}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {viewMode === 'week' && (
         <div style={styles.monthNav} className="calendar-nav">
