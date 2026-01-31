@@ -130,9 +130,9 @@ const styles = {
     border: '2px solid #4299e1'
   },
   dayCardSelected: {
-    backgroundColor: '#ebf8ff',
-    border: '2px solid #3182ce',
-    boxShadow: '0 0 0 1px #3182ce'
+    backgroundColor: '#fff7ed',
+    border: '2px solid #ed8936',
+    boxShadow: '0 0 0 1px #ed8936'
   },
   dayHeader: {
     textAlign: 'center',
