@@ -110,6 +110,16 @@ const styles = {
     color: '#2b6cb0',
     marginLeft: '8px',
     textTransform: 'uppercase'
+  },
+  badTimeBadge: {
+    display: 'inline-block',
+    padding: '2px 6px',
+    borderRadius: '10px',
+    fontSize: '10px',
+    fontWeight: '500',
+    backgroundColor: '#fed7d7',
+    color: '#c53030',
+    marginLeft: '6px'
   }
 };
 
@@ -158,6 +168,14 @@ function formatTimeOnly(dateTimeStr) {
     hour: 'numeric',
     minute: '2-digit'
   });
+}
+
+function isBadTime(dateTimeStr) {
+  if (!dateTimeStr) return false;
+  const date = new Date(dateTimeStr);
+  const hour = date.getHours();
+  // Bad time if before 8am or after 8pm (20:00)
+  return hour < 8 || hour >= 20;
 }
 
 function isSameDay(date1, date2) {
@@ -253,6 +271,9 @@ export default function BeachCard({ beach, onClick, selectedDate }) {
             >
               {nextTide.quality}
             </span>
+          )}
+          {isBadTime(nextTide.datetime) && (
+            <span style={styles.badTimeBadge}>bad time</span>
           )}
         </div>
       ) : !selectedDate && nextTide && beach.biotoxinStatus !== 'closed' && (
