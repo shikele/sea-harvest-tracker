@@ -115,7 +115,7 @@ const styles = {
   },
   searchWrapper: {
     position: 'relative',
-    flex: '0 0 180px'
+    flex: 1
   },
   searchIcon: {
     position: 'absolute',
