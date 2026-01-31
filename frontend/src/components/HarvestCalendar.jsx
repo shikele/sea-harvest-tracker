@@ -175,7 +175,9 @@ const styles = {
   beachList: {
     fontSize: '11px',
     flex: 1,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column'
   },
   beachItem: {
     padding: '10px 10px',
@@ -841,7 +843,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                     )}
                   </div>
                 ) : (
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px', height: '100%', alignContent: 'start' }} className="calendar-beach-grid">
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gridAutoRows: '1fr', gap: '4px', flex: 1 }} className="calendar-beach-grid">
                     {day.beaches.map((beach, i) => (
                       <div
                         key={`${beach.id}-${i}`}
