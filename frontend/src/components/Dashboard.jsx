@@ -1012,12 +1012,34 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {paginatedBeaches.map((beach) => (
+            {/* Top 2 beaches in 2-column grid */}
+            {paginatedBeaches.length > 0 && (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: paginatedBeaches.length === 1 ? '1fr' : 'repeat(2, 1fr)',
+                gap: '8px',
+                marginBottom: '8px'
+              }} className="top-beaches-grid">
+                {paginatedBeaches.slice(0, 2).map((beach) => (
+                  <BeachCard
+                    key={beach.id}
+                    beach={beach}
+                    onClick={handleBeachSelect}
+                    selectedDate={selectedCalendarDate}
+                    isSelected={selectedBeach?.id === beach.id}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Remaining beaches */}
+            {paginatedBeaches.slice(2).map((beach) => (
               <BeachCard
                 key={beach.id}
                 beach={beach}
                 onClick={handleBeachSelect}
                 selectedDate={selectedCalendarDate}
+                isSelected={selectedBeach?.id === beach.id}
               />
             ))}
 

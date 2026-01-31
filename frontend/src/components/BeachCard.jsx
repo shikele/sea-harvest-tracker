@@ -9,7 +9,13 @@ const styles = {
     boxShadow: '0 1px 2px rgba(0,0,0,0.08)',
     borderLeft: '4px solid',
     cursor: 'pointer',
-    transition: 'transform 0.1s, box-shadow 0.1s'
+    transition: 'transform 0.1s, box-shadow 0.1s',
+    border: '2px solid transparent'
+  },
+  cardSelected: {
+    border: '2px solid #ed8936',
+    boxShadow: '0 2px 8px rgba(237, 137, 54, 0.3)',
+    backgroundColor: '#fffaf0'
   },
   header: {
     display: 'flex',
@@ -195,7 +201,7 @@ function getStatusColorFromStatus(biotoxinStatus) {
   return 'gray';
 }
 
-export default function BeachCard({ beach, onClick, selectedDate }) {
+export default function BeachCard({ beach, onClick, selectedDate, isSelected = false }) {
   const colorKey = beach.statusColor || getStatusColorFromStatus(beach.biotoxinStatus);
   const colors = statusColors[colorKey] || statusColors.gray;
 
@@ -224,15 +230,24 @@ export default function BeachCard({ beach, onClick, selectedDate }) {
 
   return (
     <div
-      style={{ ...styles.card, borderLeftColor: colors.border }}
+      style={{
+        ...styles.card,
+        borderLeftColor: colors.border,
+        ...(isSelected ? styles.cardSelected : {})
+      }}
+      className="beach-card"
       onClick={() => onClick?.(beach)}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        if (!isSelected) {
+          e.currentTarget.style.transform = 'translateY(-2px)';
+          e.currentTarget.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        }
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+        if (!isSelected) {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+        }
       }}
     >
       <div style={styles.header}>
