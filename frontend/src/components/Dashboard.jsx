@@ -39,11 +39,6 @@ const styles = {
     fontWeight: '700',
     color: '#1a202c'
   },
-  subtitle: {
-    fontSize: '14px',
-    color: '#718096',
-    marginTop: '4px'
-  },
   statsRow: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
@@ -645,9 +640,6 @@ export default function Dashboard() {
       <div style={styles.header} className="dashboard-header">
         <div>
           <h1 style={styles.title}>Sea Harvest Tracker</h1>
-          <p style={styles.subtitle}>
-            Shellfish harvesting conditions near Redmond, WA
-          </p>
         </div>
       </div>
 
