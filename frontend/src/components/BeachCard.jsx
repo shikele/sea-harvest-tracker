@@ -269,7 +269,7 @@ export default function BeachCard({ beach, onClick, selectedDate }) {
                 color: tideQualityColors.text
               }}
             >
-              {nextTide.quality}
+              {nextTide.quality === 'poor' ? 'poor tide' : nextTide.quality}
             </span>
           )}
           {isBadTime(nextTide.datetime) && (
@@ -295,7 +295,7 @@ export default function BeachCard({ beach, onClick, selectedDate }) {
                 color: tideQualityColors.text
               }}
             >
-              {nextTide.quality}
+              {nextTide.quality === 'poor' ? 'poor tide' : nextTide.quality}
             </span>
           )}
         </div>
@@ -319,7 +319,7 @@ export default function BeachCard({ beach, onClick, selectedDate }) {
               color: qualityColors[nextGoodTide.quality]?.text || '#4a5568'
             }}
           >
-            {nextGoodTide.quality}
+            {nextGoodTide.quality === 'poor' ? 'poor tide' : nextGoodTide.quality}
           </span>
         </div>
       )}
