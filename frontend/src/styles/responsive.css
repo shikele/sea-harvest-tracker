@@ -1,8 +1,10 @@
 /* Mobile-first responsive styles for Sea Harvest Tracker */
+/* Optimized for iPhone 14 (390px width) */
 
 /* Remove focus outlines from all buttons */
 button {
   outline: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:focus,
@@ -22,128 +24,58 @@ button:-moz-focusring,
   outline: none !important;
 }
 
-/* Minimum width - forces desktop layout */
-body {
-  min-width: 1000px;
+/* Base styles - Mobile first (no min-width constraint) */
+html, body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Base responsive adjustments */
-@media screen and (max-width: 1024px) {
+/* ==================== */
+/* MOBILE (iPhone 14)   */
+/* ==================== */
+@media screen and (max-width: 430px) {
+  /* Dashboard container */
   .dashboard-container {
-    padding: 16px !important;
+    padding: 12px !important;
+    max-width: 100% !important;
   }
 
-  .main-content {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  /* Move tide prediction above park list when single column */
-  .right-column {
-    order: -1 !important;
-  }
-
-  .stats-row {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-  }
-}
-
-/* Tablet and large phones */
-@media screen and (max-width: 768px) {
+  /* Header */
   .dashboard-header {
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 12px !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
   }
 
   .dashboard-header h1 {
-    font-size: 24px !important;
+    font-size: 22px !important;
   }
 
-  .refresh-button {
+  /* Tab container */
+  .tab-container {
+    gap: 0 !important;
     width: 100% !important;
+    margin-bottom: 16px !important;
   }
 
-  .filter-row {
-    flex-wrap: wrap !important;
-  }
-
-  .filter-button {
-    padding: 10px 16px !important;
+  .tab-button {
+    flex: 1 !important;
+    padding: 12px 8px !important;
     font-size: 14px !important;
+    min-height: 44px !important;
   }
 
-  .species-checkbox-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .map-container {
-    height: 300px !important;
-  }
-
-  .beach-list-section {
-    padding: 16px !important;
-  }
-
-  .section-title {
-    font-size: 16px !important;
-  }
-
-  /* Species Guide */
-  .species-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  .species-card {
-    min-width: unset !important;
-  }
-
-  .species-modal-content {
-    max-width: 100% !important;
-    margin: 10px !important;
-    max-height: calc(100vh - 20px) !important;
-    border-radius: 12px !important;
-  }
-
-  .modal-image {
-    height: 200px !important;
-  }
-
-  .thumbnail-strip {
-    padding: 8px !important;
-    gap: 6px !important;
-  }
-
-  .thumbnail {
-    width: 50px !important;
-    height: 38px !important;
-  }
-
-  .image-nav-button {
-    width: 40px !important;
-    height: 40px !important;
-  }
-}
-
-/* Small phones (iPhone SE, etc.) */
-@media screen and (max-width: 480px) {
-  .dashboard-container {
-    padding: 12px !important;
-  }
-
-  .dashboard-header h1 {
-    font-size: 20px !important;
-  }
-
+  /* Stats row - 2x2 grid */
   .stats-row {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
+    margin-bottom: 16px !important;
   }
 
   .stat-card {
     padding: 12px !important;
+    border-radius: 8px !important;
   }
 
   .stat-value {
@@ -154,341 +86,121 @@ body {
     font-size: 11px !important;
   }
 
-  .tab-container {
-    gap: 0 !important;
-  }
-
-  .tab-button {
-    padding: 10px 16px !important;
-    font-size: 14px !important;
-  }
-
-  .search-input {
-    padding: 12px !important;
-    font-size: 16px !important; /* Prevents zoom on iOS */
-  }
-
-  .sort-row {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-  }
-
-  .sort-button {
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  .filter-row {
-    gap: 6px !important;
-  }
-
-  .filter-button {
-    padding: 8px 12px !important;
-    font-size: 13px !important;
-    flex: 1 !important;
-    text-align: center !important;
-  }
-
-  .access-filter-row {
-    flex-wrap: wrap !important;
-  }
-
-  .species-filter-section {
-    padding: 10px !important;
-  }
-
-  .species-checkbox-label {
-    padding: 8px 0 !important;
-    font-size: 14px !important;
-  }
-
-  .species-checkbox {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .beach-card {
-    padding: 12px !important;
-  }
-
-  .beach-name {
-    font-size: 15px !important;
-  }
-
-  .beach-location {
-    font-size: 12px !important;
-  }
-
-  .tide-info {
-    padding: 8px !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-  }
-
-  .pagination {
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-  }
-
-  .page-button {
-    min-width: 40px !important;
-    padding: 10px !important;
-  }
-
-  /* Species Guide mobile */
-  .species-guide-container {
-    padding: 12px !important;
-  }
-
-  .species-guide-title {
-    font-size: 22px !important;
-  }
-
-  .species-card-body {
-    padding: 12px !important;
-  }
-
-  .species-name {
-    font-size: 16px !important;
-  }
-
-  .chinese-name {
-    font-size: 14px !important;
-  }
-
-  .scientific-name {
-    font-size: 12px !important;
-  }
-
-  .species-description {
-    font-size: 13px !important;
-    line-height: 1.4 !important;
-  }
-
-  .modal-body {
-    padding: 16px !important;
-  }
-
-  .detail-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  .close-button {
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 20px !important;
-  }
-
-  /* Right column / selected beach panel */
-  .selected-beach-panel {
-    padding: 12px !important;
-  }
-
-  .tide-chart-container {
-    height: 200px !important;
-  }
-}
-
-/* Touch-friendly improvements */
-@media (hover: none) and (pointer: coarse) {
-  .filter-button,
-  .sort-button,
-  .page-button,
-  .tab-button,
-  .refresh-button {
-    min-height: 44px !important;
-  }
-
-  .beach-card {
-    min-height: 44px !important;
-  }
-
-  .species-checkbox-label {
-    min-height: 44px !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  .thumbnail {
-    min-width: 44px !important;
-    min-height: 44px !important;
-  }
-
-  .image-nav-button {
-    min-width: 44px !important;
-    min-height: 44px !important;
-  }
-}
-
-/* Landscape phone */
-@media screen and (max-width: 896px) and (orientation: landscape) {
+  /* Map */
   .map-container {
     height: 200px !important;
+    border-radius: 8px !important;
+    margin-bottom: 16px !important;
   }
 
-  .modal-image {
-    height: 150px !important;
+  /* Main content - single column */
+  .main-content {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
 
-  .species-modal-content {
-    max-height: calc(100vh - 20px) !important;
+  /* Right column moves to top on mobile */
+  .right-column {
+    order: -1 !important;
   }
-}
 
-/* ==================== */
-/* CALENDAR RESPONSIVE  */
-/* ==================== */
-
-/* Tablet and below - Calendar fixes */
-@media screen and (max-width: 768px) {
+  /* Calendar container */
   .calendar-container {
-    padding: 16px !important;
-    overflow: visible !important;
+    padding: 12px !important;
+    border-radius: 10px !important;
   }
 
   .calendar-header {
     flex-direction: column !important;
     align-items: stretch !important;
-    gap: 12px !important;
-  }
-
-  .calendar-title {
-    text-align: center !important;
-  }
-
-  .calendar-view-toggle {
-    justify-content: center !important;
-  }
-
-  .calendar-view-button {
-    padding: 10px 20px !important;
-    font-size: 14px !important;
-    min-height: 44px !important;
-  }
-
-  .calendar-nav {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 8px !important;
-  }
-
-  .calendar-nav-button {
-    padding: 10px 16px !important;
-    font-size: 14px !important;
-    min-height: 44px !important;
-  }
-
-  .calendar-label {
-    min-width: 140px !important;
-    font-size: 15px !important;
-    order: -1 !important;
-    width: 100% !important;
-    margin-bottom: 8px !important;
-  }
-
-  /* 7-day grid - horizontal scroll on tablet */
-  .calendar-7day-grid {
-    display: flex !important;
-    overflow-x: auto !important;
-    gap: 12px !important;
-    padding-bottom: 12px !important;
-    -webkit-overflow-scrolling: touch !important;
-    scroll-snap-type: x mandatory !important;
-  }
-
-  .calendar-day-card {
-    min-width: 140px !important;
-    flex-shrink: 0 !important;
-    height: auto !important;
-    min-height: 160px !important;
-    scroll-snap-align: start !important;
-  }
-
-  /* Month grid - smaller cells */
-  .calendar-month-grid {
-    gap: 3px !important;
-  }
-
-  .calendar-month-day {
-    padding: 6px !important;
-    min-height: 80px !important;
-  }
-
-  .calendar-weekday-label {
-    font-size: 11px !important;
-    padding: 6px 0 !important;
-  }
-
-  .calendar-month-beach-item {
-    padding: 2px 3px !important;
-    font-size: 9px !important;
-  }
-
-  .calendar-legend {
-    margin-top: 16px !important;
-    gap: 12px !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-  }
-}
-
-/* Small phones - Calendar */
-@media screen and (max-width: 480px) {
-  .calendar-container {
-    padding: 12px !important;
-    border-radius: 8px !important;
-  }
-
-  .calendar-header {
     gap: 10px !important;
     margin-bottom: 12px !important;
   }
 
   .calendar-title {
     font-size: 16px !important;
+    text-align: center !important;
   }
 
   .calendar-view-toggle {
     width: 100% !important;
     padding: 3px !important;
+    justify-content: center !important;
   }
 
   .calendar-view-button {
     flex: 1 !important;
-    padding: 10px 12px !important;
+    padding: 10px 16px !important;
     font-size: 13px !important;
+    min-height: 44px !important;
   }
 
+  /* Species filter in calendar */
+  .species-filter {
+    padding: 10px !important;
+    margin-bottom: 12px !important;
+    gap: 6px !important;
+  }
+
+  .species-chips {
+    gap: 6px !important;
+  }
+
+  .species-chip {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    min-height: 36px !important;
+    border-radius: 18px !important;
+  }
+
+  /* Calendar navigation */
   .calendar-nav {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
     margin-bottom: 12px !important;
   }
 
   .calendar-nav-button {
-    padding: 10px 12px !important;
+    padding: 10px 14px !important;
     font-size: 13px !important;
+    min-height: 44px !important;
   }
 
   .calendar-label {
     font-size: 14px !important;
     min-width: 120px !important;
+    text-align: center !important;
+    order: -1 !important;
+    width: 100% !important;
+    margin-bottom: 4px !important;
   }
 
-  /* 7-day grid on small phones */
+  /* 7-day grid - horizontal scroll */
   .calendar-7day-grid {
-    gap: 8px !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 10px !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    margin: 0 -12px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
 
   .calendar-day-card {
-    min-width: 120px !important;
+    min-width: 130px !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    min-height: 150px !important;
     padding: 10px !important;
-    min-height: 140px !important;
+    scroll-snap-align: start !important;
+    border-radius: 8px !important;
   }
 
   .calendar-day-header {
-    margin-bottom: 6px !important;
+    margin-bottom: 8px !important;
   }
 
   .calendar-day-of-week {
@@ -496,12 +208,13 @@ body {
   }
 
   .calendar-day-date {
-    font-size: 16px !important;
+    font-size: 18px !important;
   }
 
   .calendar-beach-item {
-    padding: 5px 6px !important;
-    margin-bottom: 4px !important;
+    padding: 6px 8px !important;
+    margin-bottom: 5px !important;
+    border-radius: 4px !important;
   }
 
   .calendar-beach-name {
@@ -512,23 +225,23 @@ body {
     font-size: 10px !important;
   }
 
-  /* Month grid on small phones */
+  /* Month view */
   .calendar-weekday-header {
     gap: 2px !important;
   }
 
   .calendar-weekday-label {
     font-size: 10px !important;
-    padding: 4px 0 !important;
+    padding: 6px 0 !important;
   }
 
   .calendar-month-grid {
-    gap: 2px !important;
+    gap: 3px !important;
   }
 
   .calendar-month-day {
     padding: 4px !important;
-    min-height: 60px !important;
+    min-height: 55px !important;
     border-radius: 4px !important;
   }
 
@@ -537,86 +250,383 @@ body {
   }
 
   .calendar-month-beach-item {
-    padding: 1px 2px !important;
+    padding: 2px 3px !important;
     margin-bottom: 1px !important;
     font-size: 8px !important;
     border-left-width: 2px !important;
   }
 
   .calendar-month-beach-item .calendar-beach-name {
-    font-size: 8px !important;
+    font-size: 7px !important;
   }
 
   .calendar-tide-time-month {
     font-size: 7px !important;
   }
 
+  /* Calendar legend */
   .calendar-legend {
+    margin-top: 12px !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
     font-size: 10px !important;
+  }
+
+  .calendar-legend-item {
+    font-size: 10px !important;
+  }
+
+  /* Beach list section */
+  .beach-list-section {
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+
+  .section-title {
+    font-size: 16px !important;
+  }
+
+  /* Filter section */
+  .filter-section {
+    padding: 10px !important;
+    border-radius: 8px !important;
+  }
+
+  .search-sort-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .search-input,
+  .search-input-small {
+    font-size: 16px !important; /* Prevents iOS zoom */
+    padding: 10px 12px !important;
+    width: 100% !important;
+  }
+
+  .filter-group {
     gap: 10px !important;
+  }
+
+  .filter-group-row {
+    gap: 6px !important;
+  }
+
+  .filter-button,
+  .filter-button-small {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    min-height: 36px !important;
+  }
+
+  .sort-button {
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+    min-height: 44px !important;
+  }
+
+  /* Beach cards */
+  .beach-card {
+    padding: 12px !important;
+    margin-bottom: 10px !important;
+    border-radius: 8px !important;
+  }
+
+  .beach-name {
+    font-size: 14px !important;
+  }
+
+  .beach-location {
+    font-size: 11px !important;
+  }
+
+  .beach-status {
+    font-size: 11px !important;
+    padding: 3px 8px !important;
+  }
+
+  .tide-info {
+    padding: 8px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    font-size: 12px !important;
+  }
+
+  /* Pagination */
+  .pagination {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    justify-content: center !important;
+  }
+
+  .page-button {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 8px !important;
+    font-size: 13px !important;
+  }
+
+  .page-info {
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 8px !important;
+  }
+
+  /* Selected beach panel */
+  .selected-beach-panel {
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+
+  .tide-chart-container {
+    height: 180px !important;
+  }
+
+  /* Species Guide */
+  .species-guide-container {
+    padding: 12px !important;
+  }
+
+  .species-guide-title {
+    font-size: 20px !important;
+  }
+
+  .species-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .species-card {
+    min-width: unset !important;
+  }
+
+  .species-card-body {
+    padding: 12px !important;
+  }
+
+  .species-name {
+    font-size: 15px !important;
+  }
+
+  .chinese-name {
+    font-size: 13px !important;
+  }
+
+  .scientific-name {
+    font-size: 11px !important;
+  }
+
+  .species-description {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Modal */
+  .species-modal-content {
+    max-width: 100% !important;
+    margin: 8px !important;
+    max-height: calc(100vh - 16px) !important;
+    border-radius: 12px !important;
+  }
+
+  .modal-image {
+    height: 180px !important;
+  }
+
+  .modal-body {
+    padding: 14px !important;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .close-button {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+  }
+
+  .thumbnail-strip {
+    padding: 8px !important;
+    gap: 6px !important;
+  }
+
+  .thumbnail {
+    width: 48px !important;
+    height: 36px !important;
+  }
+
+  .image-nav-button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 16px 12px !important;
+    font-size: 11px !important;
+  }
+
+  .footer a {
+    display: block !important;
+    margin: 6px 0 !important;
   }
 }
 
-/* Extra small phones */
-@media screen and (max-width: 375px) {
+/* ==================== */
+/* TABLET (768px)       */
+/* ==================== */
+@media screen and (min-width: 431px) and (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px !important;
+  }
+
+  .main-content {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .right-column {
+    order: -1 !important;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .map-container {
+    height: 280px !important;
+  }
+
+  .calendar-7day-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 12px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
   .calendar-day-card {
-    min-width: 100px !important;
+    min-width: 140px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .species-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ==================== */
+/* DESKTOP (769px+)     */
+/* ==================== */
+@media screen and (min-width: 769px) {
+  .dashboard-container {
+    padding: 20px !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  .main-content {
+    grid-template-columns: 1fr 400px !important;
+    gap: 24px !important;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .calendar-7day-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    overflow-x: visible !important;
+  }
+
+  .calendar-day-card {
+    min-width: unset !important;
+  }
+}
+
+/* ==================== */
+/* TOUCH DEVICES        */
+/* ==================== */
+@media (hover: none) and (pointer: coarse) {
+  /* Ensure all interactive elements meet 44px touch target */
+  .filter-button,
+  .sort-button,
+  .page-button,
+  .tab-button,
+  .refresh-button,
+  .calendar-view-button,
+  .calendar-nav-button,
+  .species-chip {
+    min-height: 44px !important;
+  }
+
+  .beach-card {
+    min-height: 60px !important;
+  }
+
+  .species-checkbox-label {
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .thumbnail,
+  .image-nav-button {
+    min-width: 44px !important;
+    min-height: 44px !important;
   }
 
   .calendar-month-day {
     min-height: 50px !important;
-    padding: 3px !important;
-  }
-
-  .calendar-month-beach-item {
-    display: none !important; /* Hide beach names, just show colored indicator */
-  }
-
-  .calendar-month-day::after {
-    content: '';
-    display: block;
   }
 }
 
-/* Touch-friendly calendar buttons */
-@media (hover: none) and (pointer: coarse) {
-  .calendar-view-button,
-  .calendar-nav-button {
-    min-height: 44px !important;
-    min-width: 44px !important;
-  }
-
-  .calendar-day-card,
-  .calendar-month-day {
-    min-height: 44px !important;
-  }
-}
-
-/* Landscape phone - calendar */
+/* ==================== */
+/* LANDSCAPE PHONE      */
+/* ==================== */
 @media screen and (max-width: 896px) and (orientation: landscape) {
-  .calendar-7day-grid {
-    display: flex !important;
-    overflow-x: auto !important;
+  .map-container {
+    height: 180px !important;
+  }
+
+  .modal-image {
+    height: 140px !important;
+  }
+
+  .species-modal-content {
+    max-height: calc(100vh - 16px) !important;
   }
 
   .calendar-day-card {
-    min-width: 100px !important;
     min-height: 120px !important;
   }
+}
 
-  .calendar-month-day {
-    min-height: 70px !important;
+/* ==================== */
+/* SAFE AREA (Notch)    */
+/* ==================== */
+@supports (padding: max(0px)) {
+  .dashboard-container {
+    padding-left: max(12px, env(safe-area-inset-left)) !important;
+    padding-right: max(12px, env(safe-area-inset-right)) !important;
+    padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
   }
 }
 
-/* Prevent horizontal scroll */
-html, body {
-  overflow-x: hidden;
-}
-
-/* Smooth scrolling for mobile */
+/* Smooth scrolling */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  /* Can add dark mode styles here if needed */
 }
