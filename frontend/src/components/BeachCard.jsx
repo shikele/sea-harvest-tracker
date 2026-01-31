@@ -267,11 +267,9 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
               </span>
             )}
           </div>
-          {!selectedDate && (
-            <div style={styles.location}>
-              {beach.region} - {beach.county} County
-            </div>
-          )}
+          <div style={styles.location}>
+            {beach.region} - {beach.county} County
+          </div>
         </div>
         <span
           style={{
@@ -284,7 +282,7 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
         </span>
       </div>
 
-      {beach.closureReason && !selectedDate && (
+      {beach.closureReason && (
         <div style={styles.closureReason}>
           Closed: {beach.closureReason}
           {beach.speciesAffected && ` (${beach.speciesAffected})`}
