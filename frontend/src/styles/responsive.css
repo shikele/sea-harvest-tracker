@@ -111,14 +111,15 @@ html, body {
   /* Map - ensure no overlap, move up */
   .map-container {
     position: relative !important;
-    height: 300px !important;
-    min-height: 300px !important;
-    max-height: 300px !important;
+    height: 450px !important;
+    min-height: 450px !important;
+    max-height: 450px !important;
     border-radius: 8px !important;
     margin-top: 0 !important;
     margin-bottom: 16px !important;
     overflow: hidden !important;
     z-index: 1 !important;
+    padding-bottom: 12px !important;
   }
 
   .map-container > div {
