@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getTides } from '../services/api';
 
 const styles = {
@@ -111,8 +111,6 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
   const [hoveredPoint, setHoveredPoint] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [showDetails, setShowDetails] = useState(false);
-  const longPressTimer = useRef(null);
-  const svgRef = useRef(null);
 
   useEffect(() => {
     async function fetchTides() {
@@ -325,27 +323,19 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
               onMouseLeave={() => setHoveredPoint(null)}
               onTouchStart={(e) => {
                 e.preventDefault();
-                longPressTimer.current = setTimeout(() => {
-                  setHoveredPoint(i);
-                  const rect = e.target.ownerSVGElement.getBoundingClientRect();
-                  const scaleX = rect.width / width;
-                  const scaleY = rect.height / height;
-                  setTooltipPos({
-                    x: p.x * scaleX,
-                    y: p.y * scaleY
-                  });
-                }, 300);
+                // Show tooltip immediately on touch (same as hover)
+                setHoveredPoint(i);
+                const rect = e.target.ownerSVGElement.getBoundingClientRect();
+                const scaleX = rect.width / width;
+                const scaleY = rect.height / height;
+                setTooltipPos({
+                  x: p.x * scaleX,
+                  y: p.y * scaleY
+                });
               }}
               onTouchEnd={() => {
-                if (longPressTimer.current) {
-                  clearTimeout(longPressTimer.current);
-                }
+                // Hide tooltip after 2 seconds on touch release
                 setTimeout(() => setHoveredPoint(null), 2000);
-              }}
-              onTouchMove={() => {
-                if (longPressTimer.current) {
-                  clearTimeout(longPressTimer.current);
-                }
               }}
             />
           ))}
