@@ -428,10 +428,9 @@ export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [accessFilter, setAccessFilter] = useState('all'); // 'all', 'public', 'boat'
   const [activeTab, setActiveTab] = useState('beaches'); // 'beaches' or 'species'
-  const [showFullTides, setShowFullTides] = useState(false);
   const [selectedCalendarDate, setSelectedCalendarDate] = useState(null); // Track date clicked from calendar
   const [calendarDayBeaches, setCalendarDayBeaches] = useState([]); // All suitable beaches for selected day
-  const beachesPerPage = 10;
+  const beachesPerPage = 5;
 
   async function loadData() {
     try {
@@ -550,7 +549,6 @@ export default function Dashboard() {
       setSelectedCalendarDate(date);
       setCalendarDayBeaches(allBeachesForDay || []);
     }
-    setShowFullTides(false);
   };
 
   const handleSearchChange = (e) => {
@@ -867,34 +865,14 @@ export default function Dashboard() {
                 </div>
               )}
 
-              <button
-                onClick={() => setShowFullTides(true)}
-                style={{
-                  width: '100%',
-                  padding: '10px 16px',
-                  marginBottom: '16px',
-                  backgroundColor: '#ebf8ff',
-                  border: '1px solid #90cdf4',
-                  borderRadius: '8px',
-                  color: '#2b6cb0',
-                  fontSize: '13px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  transition: 'all 0.2s'
-                }}
-              >
-                <span style={{ fontSize: '16px' }}>🌊</span>
-                View Full Tide Data (14 days)
-              </button>
-
               <TideChart
                 stationId={selectedBeach.tide_station_id || beaches.find(b => b.id === selectedBeach.id)?.tide_station_id}
                 stationName={selectedBeach.region}
                 selectedDate={selectedCalendarDate}
+                onResetToToday={() => {
+                  setSelectedCalendarDate(null);
+                  setCalendarDayBeaches([]);
+                }}
               />
             </div>
           )}
@@ -904,6 +882,10 @@ export default function Dashboard() {
               stationId={beaches[0].tide_station_id}
               stationName="Hood Canal (Default)"
               selectedDate={selectedCalendarDate}
+              onResetToToday={() => {
+                setSelectedCalendarDate(null);
+                setCalendarDayBeaches([]);
+              }}
             />
           )}
         </div>
@@ -1073,57 +1055,6 @@ export default function Dashboard() {
         </div>
       </div>
         </>
-      )}
-
-      {/* Full Tide Data Modal */}
-      {showFullTides && selectedBeach && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            padding: '20px'
-          }}
-          onClick={() => setShowFullTides(false)}
-        >
-          <div
-            style={{
-              backgroundColor: 'white',
-              borderRadius: '16px',
-              padding: '24px',
-              maxWidth: '600px',
-              width: '100%',
-              maxHeight: '90vh',
-              overflow: 'auto',
-              boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div style={{ marginBottom: '16px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#1a202c', marginBottom: '4px' }}>
-                {selectedBeach.name}
-              </h2>
-              <p style={{ fontSize: '13px', color: '#718096' }}>
-                {selectedBeach.region} - {selectedBeach.county} County
-              </p>
-            </div>
-            <TideChart
-              stationId={selectedBeach.tide_station_id || beaches.find(b => b.id === selectedBeach.id)?.tide_station_id}
-              stationName={selectedBeach.region}
-              days={14}
-              expanded={true}
-              onClose={() => setShowFullTides(false)}
-              selectedDate={selectedCalendarDate}
-            />
-          </div>
-        </div>
       )}
 
       {/* Footer with resources */}

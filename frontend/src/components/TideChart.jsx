@@ -104,7 +104,7 @@ function formatTooltipTime(dateTimeStr) {
   });
 }
 
-export default function TideChart({ stationId, stationName, days = 7, expanded = false, onClose, selectedDate = null }) {
+export default function TideChart({ stationId, stationName, days = 7, expanded = false, onClose, selectedDate = null, onResetToToday = null }) {
   const [tideData, setTideData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -112,27 +112,36 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [showDetails, setShowDetails] = useState(false);
 
-  // Calculate the week start date based on selected date
-  const getWeekStart = (date) => {
-    const d = new Date(date);
-    const day = d.getDay(); // 0 = Sunday
-    const diff = d.getDate() - day;
-    const weekStart = new Date(d.setDate(diff));
-    weekStart.setHours(0, 0, 0, 0);
-    return weekStart;
+  // Calculate 7-day range starting from selected date (or today)
+  const getWeekRange = (date) => {
+    const start = new Date(date);
+    start.setHours(0, 0, 0, 0);
+
+    const end = new Date(start);
+    end.setDate(end.getDate() + 6);
+    end.setHours(23, 59, 59, 999);
+
+    return { start, end };
   };
 
-  const getWeekEnd = (weekStart) => {
-    const weekEnd = new Date(weekStart);
-    weekEnd.setDate(weekEnd.getDate() + 6);
-    weekEnd.setHours(23, 59, 59, 999);
-    return weekEnd;
-  };
-
-  // Determine the week to display
+  // Determine the 7-day range to display
   const displayDate = selectedDate ? new Date(selectedDate) : new Date();
-  const weekStart = getWeekStart(displayDate);
-  const weekEnd = getWeekEnd(weekStart);
+  const { start: weekStart, end: weekEnd } = getWeekRange(displayDate);
+
+  // Check if showing today or a selected date
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const isShowingToday = !selectedDate || (displayDate.toDateString() === today.toDateString());
+
+  // Helper to check if a prediction is on the selected date
+  const isOnSelectedDate = (datetime) => {
+    if (!selectedDate) return false;
+    const predDate = new Date(datetime);
+    const selDate = new Date(selectedDate);
+    return predDate.getFullYear() === selDate.getFullYear() &&
+           predDate.getMonth() === selDate.getMonth() &&
+           predDate.getDate() === selDate.getDate();
+  };
 
   useEffect(() => {
     async function fetchTides() {
@@ -188,11 +197,14 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
     return predDate >= weekStart && predDate <= weekEnd;
   });
 
-  // Format the week start date for the title
-  const weekOfDate = weekStart.toLocaleDateString('en-US', {
+  // Format the date range for the title
+  const startDateStr = weekStart.toLocaleDateString('en-US', {
     month: 'short',
-    day: 'numeric',
-    year: 'numeric'
+    day: 'numeric'
+  });
+  const endDateStr = weekEnd.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
   });
 
   // If no predictions for selected week, show message
@@ -200,12 +212,12 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
     return (
       <div style={styles.container}>
         <div style={styles.title}>
-          Tide Predictions for the Week of {weekOfDate}
+          Tide Predictions: {startDateStr} - {endDateStr}
           <div style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginTop: '4px' }}>
             {stationName || tideData.stationName}
           </div>
         </div>
-        <div style={styles.loading}>No tide data available for this week</div>
+        <div style={styles.loading}>No tide data available for this period</div>
       </div>
     );
   }
@@ -254,26 +266,44 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
     <div style={{...styles.container, ...(expanded ? { maxHeight: '80vh', overflowY: 'auto' } : {})}}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <div style={styles.title}>
-          Tide Predictions for the Week of {weekOfDate}
+          Tide Predictions: {startDateStr} - {endDateStr}
           <div style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginTop: '4px' }}>
             {stationName || tideData.stationName}
           </div>
         </div>
-        {expanded && onClose && (
-          <button
-            onClick={onClose}
-            style={{
-              background: 'none',
-              border: 'none',
-              fontSize: '20px',
-              cursor: 'pointer',
-              color: '#718096',
-              padding: '4px 8px'
-            }}
-          >
-            ×
-          </button>
-        )}
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          {!isShowingToday && onResetToToday && (
+            <button
+              onClick={onResetToToday}
+              style={{
+                padding: '6px 12px',
+                backgroundColor: '#ebf8ff',
+                border: '1px solid #90cdf4',
+                borderRadius: '6px',
+                fontSize: '12px',
+                color: '#2b6cb0',
+                cursor: 'pointer'
+              }}
+            >
+              Reset to Today
+            </button>
+          )}
+          {expanded && onClose && (
+            <button
+              onClick={onClose}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '20px',
+                cursor: 'pointer',
+                color: '#718096',
+                padding: '4px 8px'
+              }}
+            >
+              ×
+            </button>
+          )}
+        </div>
       </div>
 
       <div style={{ ...styles.chart, position: 'relative' }}>
@@ -351,15 +381,23 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
           />
 
           {/* Data points with hover and long-press */}
-          {points.map((p, i) => (
+          {points.map((p, i) => {
+            const isSelected = isOnSelectedDate(p.datetime);
+            // Use orange for selected date points, otherwise green (low) or red (high)
+            const fillColor = isSelected
+              ? '#ed8936' // orange for selected date
+              : (p.isLowTide ? '#48bb78' : '#f56565');
+            const pointSize = isSelected ? 7 : 5;
+
+            return (
             <circle
               key={i}
               cx={p.x}
               cy={p.y}
-              r={hoveredPoint === i ? 8 : 5}
-              fill={p.isLowTide ? '#48bb78' : '#f56565'}
-              stroke={hoveredPoint === i ? '#fff' : 'none'}
-              strokeWidth="2"
+              r={hoveredPoint === i ? 8 : pointSize}
+              fill={fillColor}
+              stroke={isSelected ? '#dd6b20' : (hoveredPoint === i ? '#fff' : 'none')}
+              strokeWidth={isSelected ? 2 : 2}
               style={{ cursor: 'pointer', transition: 'r 0.15s ease' }}
               onMouseEnter={(e) => {
                 setHoveredPoint(i);
@@ -389,7 +427,8 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
                 setTimeout(() => setHoveredPoint(null), 2000);
               }}
             />
-          ))}
+          );
+          })}
         </svg>
 
         {/* Tooltip */}
@@ -449,6 +488,12 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
           <div style={{ ...styles.legendDot, backgroundColor: '#f56565' }} />
           <span>High Tide</span>
         </div>
+        {selectedDate && (
+          <div style={styles.legendItem}>
+            <div style={{ ...styles.legendDot, backgroundColor: '#ed8936', border: '2px solid #dd6b20' }} />
+            <span>Selected Date</span>
+          </div>
+        )}
       </div>
 
       {/* Collapsible Details Toggle */}
