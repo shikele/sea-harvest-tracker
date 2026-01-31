@@ -3,7 +3,7 @@ import { getTidePredictions, saveTidePredictions, getUniqueStationIds } from '..
 
 const NOAA_BASE_URL = 'https://api.tidesandcurrents.noaa.gov/api/prod/datagetter';
 
-// Tide station information
+// Tide station information - all 15 NOAA stations used by beaches
 export const TIDE_STATIONS = {
   '9447130': { name: 'Seattle', location: 'Central Sound' },
   '9446484': { name: 'Tacoma', location: 'South Sound' },
@@ -13,7 +13,13 @@ export const TIDE_STATIONS = {
   '9449211': { name: 'Blaine', location: 'North Sound' },
   '9444090': { name: 'Port Angeles', location: 'Strait of Juan de Fuca' },
   '9446969': { name: 'Olympia', location: 'South Sound' },
-  '9449880': { name: 'Friday Harbor', location: 'San Juan Islands' }
+  '9449880': { name: 'Friday Harbor', location: 'San Juan Islands' },
+  '9441102': { name: 'Westport', location: 'Grays Harbor' },
+  '9440910': { name: 'Toke Point', location: 'Willapa Bay' },
+  '9447659': { name: 'Bremerton', location: 'Sinclair Inlet' },
+  '9448576': { name: 'Anacortes', location: 'Guemes Channel' },
+  '9449424': { name: 'Cherry Point', location: 'North Sound' },
+  '9443090': { name: 'Neah Bay', location: 'Strait of Juan de Fuca' }
 };
 
 /**
