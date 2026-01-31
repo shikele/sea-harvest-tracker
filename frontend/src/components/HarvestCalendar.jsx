@@ -809,7 +809,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                 ...(selectedDate === day.date ? styles.dayCardSelected : {})
               }}
               className="calendar-day-card"
-              onClick={() => onDateSelect?.(day.date, day.allBeaches || day.beaches)}
+              onClick={() => onDateSelect?.(selectedDate === day.date ? null : day.date, selectedDate === day.date ? [] : (day.allBeaches || day.beaches))}
             >
               <div style={styles.dayHeader} className="calendar-day-header">
                 <div style={styles.dayOfWeek} className="calendar-day-of-week">{day.dayOfWeek}</div>
@@ -886,7 +886,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                   position: 'relative'
                 }}
                 className={`calendar-month-day ${cell.isPast ? 'past-day' : ''}`}
-                onClick={() => !cell.isPast && onDateSelect?.(cell.date, cell.allBeaches || cell.beaches)}
+                onClick={() => !cell.isPast && onDateSelect?.(selectedDate === cell.date ? null : cell.date, selectedDate === cell.date ? [] : (cell.allBeaches || cell.beaches))}
               >
                 {cell.isPast && <span style={styles.pastLabel}>Past</span>}
                 <div style={styles.dayHeaderMonth} className="calendar-month-day-header">
