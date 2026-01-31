@@ -89,7 +89,7 @@ const styles = {
   dayCard: {
     backgroundColor: '#f7fafc',
     borderRadius: '8px',
-    padding: '12px',
+    padding: '8px',
     height: '220px',
     overflow: 'hidden',
     display: 'flex',
@@ -136,8 +136,12 @@ const styles = {
   },
   dayHeader: {
     textAlign: 'center',
-    marginBottom: '2px',
-    flexShrink: 0
+    marginBottom: '4px',
+    flexShrink: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    gap: '4px'
   },
   dayHeaderMonth: {
     marginBottom: '6px'
@@ -812,8 +816,8 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
               onClick={() => onDateSelect?.(selectedDate === day.date ? null : day.date, selectedDate === day.date ? [] : (day.allBeaches || day.beaches))}
             >
               <div style={styles.dayHeader} className="calendar-day-header">
-                <div style={styles.dayOfWeek} className="calendar-day-of-week">{day.dayOfWeek}</div>
-                <div style={styles.dayDate} className="calendar-day-date">{formatDayDate(day.date)}</div>
+                <span style={styles.dayOfWeek} className="calendar-day-of-week">{day.dayOfWeek}</span>
+                <span style={styles.dayDate} className="calendar-day-date">{formatDayDate(day.date)}</span>
               </div>
 
               <div style={styles.beachList} className="calendar-beach-list">
