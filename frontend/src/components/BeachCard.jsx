@@ -15,11 +15,10 @@ const styles = {
     transition: 'transform 0.1s, box-shadow 0.1s'
   },
   cardSelected: {
-    borderTop: '2px solid #ed8936',
-    borderRight: '2px solid #ed8936',
-    borderBottom: '2px solid #ed8936',
-    boxShadow: '0 2px 8px rgba(237, 137, 54, 0.3)',
-    backgroundColor: '#fffaf0'
+    borderTop: '2px solid #48bb78',
+    borderRight: '2px solid #48bb78',
+    borderBottom: '2px solid #48bb78',
+    boxShadow: '0 2px 8px rgba(72, 187, 120, 0.3)'
   },
   header: {
     display: 'flex',

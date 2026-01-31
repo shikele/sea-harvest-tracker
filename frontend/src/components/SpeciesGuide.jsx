@@ -365,14 +365,14 @@ const styles = {
     borderRadius: '16px',
     maxWidth: '600px',
     width: '100%',
-    maxHeight: '90vh',
+    maxHeight: '70vh',
     overflow: 'auto',
     touchAction: 'auto',
     overscrollBehavior: 'contain'
   },
   modalImage: {
     width: '100%',
-    height: '400px',
+    height: '280px',
     objectFit: 'contain',
     backgroundColor: '#1a202c'
   },

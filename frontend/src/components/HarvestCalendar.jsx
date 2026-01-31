@@ -90,8 +90,8 @@ const styles = {
     backgroundColor: '#f7fafc',
     borderRadius: '8px',
     padding: '0 8px',
-    minHeight: '55px',
-    height: '55px',
+    minHeight: '280px',
+    height: '280px',
     overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
@@ -110,9 +110,7 @@ const styles = {
     flexDirection: 'column'
   },
   dayCardEmpty: {
-    backgroundColor: 'transparent',
-    height: '125px',
-    visibility: 'hidden'
+    backgroundColor: 'transparent'
   },
   dayCardPast: {
     backgroundColor: '#f1f1f1',
@@ -131,9 +129,8 @@ const styles = {
     border: '2px solid #4299e1'
   },
   dayCardSelected: {
-    backgroundColor: '#fff7ed',
-    border: '2px solid #ed8936',
-    boxShadow: '0 0 0 1px #ed8936'
+    border: '2px solid #718096',
+    boxShadow: '0 0 0 1px #718096'
   },
   dayHeader: {
     textAlign: 'center',
@@ -219,11 +216,15 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    gap: '0px'
+    gap: '0px',
+    paddingTop: '12px',
+    paddingBottom: '12px'
   },
   emptyIcon: {
     fontSize: '28px',
-    color: '#e53e3e'
+    color: '#e53e3e',
+    lineHeight: 1,
+    marginBottom: '-4px'
   },
   emptyIconSmall: {
     fontSize: '20px',
@@ -290,9 +291,9 @@ const styles = {
     transition: 'all 0.2s ease'
   },
   speciesFilterHighlight: {
-    border: '2px solid #ed8936',
-    backgroundColor: '#fff7ed',
-    boxShadow: '0 0 0 1px #ed8936'
+    border: '2px solid #48bb78',
+    backgroundColor: '#f0fff4',
+    boxShadow: '0 0 0 1px #48bb78'
   },
   speciesLabel: {
     fontSize: '12px',
@@ -318,6 +319,17 @@ const qualityColors = {
   lowEnough: '#805ad5',   // purple - tide is low enough
   slightlyHigh: '#dd6b20' // orange - tide slightly high
 };
+
+const statusColors = {
+  open: '#48bb78',        // green
+  closed: '#f56565',      // red
+  conditional: '#ecc94b', // yellow
+  unclassified: '#a0aec0' // gray
+};
+
+function getStatusBorderColor(biotoxinStatus) {
+  return statusColors[biotoxinStatus] || statusColors.unclassified;
+}
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -453,11 +465,11 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
 
           // Check if tide is good, slightly high (within 1ft), or too high
           if (beach.tideHeight <= lowestMinTide) {
-            // Tide is good
-            return { ...beach, tideStatus: 'good' };
+            // Tide is good - include fullBeach data for lat/lon
+            return { ...fullBeach, ...beach, tideStatus: 'good' };
           } else if (beach.tideHeight <= lowestMinTide + 1) {
-            // Tide is slightly too high (within 1ft)
-            return { ...beach, tideStatus: 'slightlyHigh', minTideNeeded: lowestMinTide };
+            // Tide is slightly too high (within 1ft) - include fullBeach data for lat/lon
+            return { ...fullBeach, ...beach, tideStatus: 'slightlyHigh', minTideNeeded: lowestMinTide };
           } else {
             // Tide is too high
             tideHighForSpecies = true;
@@ -674,135 +686,211 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
 
       {viewMode === 'week' && (
         <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
-          <button
-            style={{
+          <div style={{ display: 'flex', alignItems: 'stretch' }} className="calendar-nav-buttons">
+            <button
+              style={{
+                boxSizing: 'border-box',
+                height: '38px',
+                width: '38px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid black',
+                borderRadius: '4px 0 0 4px',
+                backgroundColor: weekOffset === 0 ? '#e0e0e0' : 'white',
+                cursor: weekOffset === 0 ? 'not-allowed' : 'pointer',
+                fontSize: '18px',
+                color: weekOffset === 0 ? '#999' : 'black',
+                padding: 0,
+                margin: 0
+              }}
+              className="calendar-nav-button"
+              onClick={() => setWeekOffset(w => Math.max(0, w - 1))}
+              disabled={weekOffset === 0}
+            >
+              ‹
+            </button>
+            <div style={{
               boxSizing: 'border-box',
               height: '38px',
-              width: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              padding: '0 16px',
+              backgroundColor: 'white',
               border: '1px solid black',
-              borderRadius: '4px 0 0 4px',
-              backgroundColor: weekOffset === 0 ? '#e0e0e0' : 'white',
-              cursor: weekOffset === 0 ? 'not-allowed' : 'pointer',
-              fontSize: '18px',
-              color: weekOffset === 0 ? '#999' : 'black',
-              padding: 0,
-              margin: 0
-            }}
-            className="calendar-nav-button"
-            onClick={() => setWeekOffset(w => Math.max(0, w - 1))}
-            disabled={weekOffset === 0}
-          >
-            ‹
-          </button>
-          <div style={{
-            boxSizing: 'border-box',
-            height: '38px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '0 16px',
-            backgroundColor: 'white',
-            border: '1px solid black',
-            borderLeft: 'none',
-            borderRight: 'none',
-            fontSize: '14px',
-            fontWeight: '600',
-            color: 'black',
-            minWidth: '150px'
-          }} className="calendar-label">{weekLabel}</div>
-          <button
-            style={{
-              boxSizing: 'border-box',
-              height: '38px',
-              width: '38px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid black',
-              borderRadius: '0 4px 4px 0',
-              backgroundColor: weekOffset >= maxWeeks - 1 ? '#e0e0e0' : 'white',
-              cursor: weekOffset >= maxWeeks - 1 ? 'not-allowed' : 'pointer',
-              fontSize: '18px',
-              color: weekOffset >= maxWeeks - 1 ? '#999' : 'black',
-              padding: 0,
-              margin: 0
-            }}
-            className="calendar-nav-button"
-            onClick={() => setWeekOffset(w => Math.min(maxWeeks - 1, w + 1))}
-            disabled={weekOffset >= maxWeeks - 1}
-          >
-            ›
-          </button>
+              borderLeft: 'none',
+              borderRight: 'none',
+              fontSize: '14px',
+              fontWeight: '600',
+              color: 'black',
+              minWidth: '150px'
+            }} className="calendar-label">{weekLabel}</div>
+            <button
+              style={{
+                boxSizing: 'border-box',
+                height: '38px',
+                width: '38px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid black',
+                borderRadius: '0 4px 4px 0',
+                backgroundColor: weekOffset >= maxWeeks - 1 ? '#e0e0e0' : 'white',
+                cursor: weekOffset >= maxWeeks - 1 ? 'not-allowed' : 'pointer',
+                fontSize: '18px',
+                color: weekOffset >= maxWeeks - 1 ? '#999' : 'black',
+                padding: 0,
+                margin: 0
+              }}
+              className="calendar-nav-button"
+              onClick={() => setWeekOffset(w => Math.min(maxWeeks - 1, w + 1))}
+              disabled={weekOffset >= maxWeeks - 1}
+            >
+              ›
+            </button>
+          </div>
+          <div className="calendar-nav-toggle" style={{
+            display: 'none',
+            backgroundColor: '#edf2f7',
+            borderRadius: '6px',
+            padding: '2px'
+          }}>
+            <button
+              style={{
+                padding: '6px 8px',
+                border: 'none',
+                borderRadius: '4px',
+                fontSize: '11px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                backgroundColor: '#4299e1',
+                color: 'white'
+              }}
+            >
+              7D
+            </button>
+            <button
+              style={{
+                padding: '6px 8px',
+                border: 'none',
+                borderRadius: '4px',
+                fontSize: '11px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                backgroundColor: 'transparent',
+                color: '#718096'
+              }}
+              onClick={() => setViewMode('month')}
+            >
+              Mo
+            </button>
+          </div>
         </div>
       )}
 
       {viewMode === 'month' && (
         <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
-          <button
-            style={{
+          <div style={{ display: 'flex', alignItems: 'stretch' }} className="calendar-nav-buttons">
+            <button
+              style={{
+                boxSizing: 'border-box',
+                height: '38px',
+                width: '38px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid black',
+                borderRadius: '4px 0 0 4px',
+                backgroundColor: isCurrentMonth ? '#e0e0e0' : 'white',
+                cursor: isCurrentMonth ? 'not-allowed' : 'pointer',
+                fontSize: '18px',
+                color: isCurrentMonth ? '#999' : 'black',
+                padding: 0,
+                margin: 0
+              }}
+              className="calendar-nav-button"
+              onClick={() => navigateMonth(-1)}
+              disabled={isCurrentMonth}
+            >
+              ‹
+            </button>
+            <div style={{
               boxSizing: 'border-box',
               height: '38px',
-              width: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              padding: '0 16px',
+              backgroundColor: 'white',
               border: '1px solid black',
-              borderRadius: '4px 0 0 4px',
-              backgroundColor: isCurrentMonth ? '#e0e0e0' : 'white',
-              cursor: isCurrentMonth ? 'not-allowed' : 'pointer',
-              fontSize: '18px',
-              color: isCurrentMonth ? '#999' : 'black',
-              padding: 0,
-              margin: 0
-            }}
-            className="calendar-nav-button"
-            onClick={() => navigateMonth(-1)}
-            disabled={isCurrentMonth}
-          >
-            ‹
-          </button>
-          <div style={{
-            boxSizing: 'border-box',
-            height: '38px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '0 16px',
-            backgroundColor: 'white',
-            border: '1px solid black',
-            borderLeft: 'none',
-            borderRight: 'none',
-            fontSize: '14px',
-            fontWeight: '600',
-            color: 'black',
-            minWidth: '150px'
-          }} className="calendar-label">{monthLabel}</div>
-          <button
-            style={{
-              boxSizing: 'border-box',
-              height: '38px',
-              width: '38px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid black',
-              borderRadius: '0 4px 4px 0',
-              backgroundColor: isMaxMonth ? '#e0e0e0' : 'white',
-              cursor: isMaxMonth ? 'not-allowed' : 'pointer',
-              fontSize: '18px',
-              color: isMaxMonth ? '#999' : 'black',
-              padding: 0,
-              margin: 0
-            }}
-            className="calendar-nav-button"
-            onClick={() => navigateMonth(1)}
-            disabled={isMaxMonth}
-          >
-            ›
-          </button>
+              borderLeft: 'none',
+              borderRight: 'none',
+              fontSize: '14px',
+              fontWeight: '600',
+              color: 'black',
+              minWidth: '150px'
+            }} className="calendar-label">{monthLabel}</div>
+            <button
+              style={{
+                boxSizing: 'border-box',
+                height: '38px',
+                width: '38px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid black',
+                borderRadius: '0 4px 4px 0',
+                backgroundColor: isMaxMonth ? '#e0e0e0' : 'white',
+                cursor: isMaxMonth ? 'not-allowed' : 'pointer',
+                fontSize: '18px',
+                color: isMaxMonth ? '#999' : 'black',
+                padding: 0,
+                margin: 0
+              }}
+              className="calendar-nav-button"
+              onClick={() => navigateMonth(1)}
+              disabled={isMaxMonth}
+            >
+              ›
+            </button>
+          </div>
+          <div className="calendar-nav-toggle" style={{
+            display: 'none',
+            backgroundColor: '#edf2f7',
+            borderRadius: '6px',
+            padding: '2px'
+          }}>
+            <button
+              style={{
+                padding: '6px 8px',
+                border: 'none',
+                borderRadius: '4px',
+                fontSize: '11px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                backgroundColor: 'transparent',
+                color: '#718096'
+              }}
+              onClick={() => setViewMode('week')}
+            >
+              7D
+            </button>
+            <button
+              style={{
+                padding: '6px 8px',
+                border: 'none',
+                borderRadius: '4px',
+                fontSize: '11px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                backgroundColor: '#4299e1',
+                color: 'white'
+              }}
+            >
+              Mo
+            </button>
+          </div>
         </div>
       )}
 
@@ -821,6 +909,9 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
               key={day.date}
               style={{
                 ...styles.dayCard,
+                ...(day.beaches.length > 0 ? {
+                  backgroundColor: day.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
+                } : {}),
                 ...(isSameDay(day.date, today) ? styles.dayCardToday : {}),
                 ...(selectedDate === day.date ? styles.dayCardSelected : {})
               }}
@@ -853,16 +944,15 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                     )}
                   </div>
                 ) : (
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gridAutoRows: '1fr', gap: '4px', flex: 1 }} className="calendar-beach-grid">
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1, overflow: 'auto' }} className="calendar-beach-grid">
                     {day.beaches.map((beach, i) => (
                       <div
                         key={`${beach.id}-${i}`}
                         style={{
                           ...styles.beachItem,
-                          borderLeftColor: beach.tideStatus === 'slightlyHigh' ? qualityColors.slightlyHigh : qualityColors.lowEnough,
+                          borderLeftColor: getStatusBorderColor(beach.biotoxinStatus),
                           cursor: 'default',
-                          marginBottom: 0,
-                          ...(beach.tideStatus === 'slightlyHigh' ? { backgroundColor: '#fffaf0' } : {})
+                          marginBottom: 0
                         }}
                         className="calendar-beach-item"
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high (needs ${beach.minTideNeeded}ft)` : beach.name}
@@ -893,12 +983,12 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                 key={cell.date}
                 style={{
                   ...styles.dayCardMonth,
+                  ...(cell.beaches.length > 0 && !cell.isPast ? {
+                    backgroundColor: cell.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
+                  } : {}),
                   ...(cell.isToday ? styles.dayCardToday : {}),
                   ...(cell.isPast ? styles.dayCardPast : {}),
                   ...(selectedDate === cell.date && !cell.isPast ? styles.dayCardSelected : {}),
-                  ...(cell.beaches.length > 0 && !cell.isPast && selectedDate !== cell.date ? {
-                    backgroundColor: cell.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
-                  } : {}),
                   position: 'relative'
                 }}
                 className={`calendar-month-day ${cell.isPast ? 'past-day' : ''}`}
@@ -916,13 +1006,13 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                 </div>
 
                 {cell.beaches.length === 0 ? (
-                  <div style={styles.emptyDayMonth}>
+                  <div style={styles.emptyDayMonth} className="calendar-month-empty-content">
                     {selectedSpecies.length === 0 ? (
-                      <span style={{ fontSize: '14px', color: '#a0aec0' }}>🦪</span>
+                      <span className="calendar-month-icon">🦪</span>
                     ) : !cell.hasData ? (
-                      <span style={{ fontSize: '10px', color: '#a0aec0', fontStyle: 'italic' }}>No data</span>
+                      <span className="calendar-month-no-data">No data</span>
                     ) : (
-                      <span style={{...styles.emptyIconSmall, ...(cell.isPast ? { color: '#cbd5e0' } : {})}}>⬆</span>
+                      <span className="calendar-month-icon calendar-month-arrow" style={{...(cell.isPast ? { color: '#cbd5e0' } : { color: '#e53e3e' })}}>⬆</span>
                     )}
                   </div>
                 ) : (
@@ -933,14 +1023,10 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                         style={{
                           ...styles.beachItemMonth,
                           borderLeftColor: cell.isPast ? '#cbd5e0' : (beach.tideStatus === 'slightlyHigh' ? qualityColors.slightlyHigh : qualityColors.lowEnough),
-                          cursor: cell.isPast ? 'default' : 'pointer',
+                          cursor: 'default',
                           ...(beach.tideStatus === 'slightlyHigh' && !cell.isPast ? { backgroundColor: '#fffaf0' } : {})
                         }}
                         className="calendar-month-beach-item"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (!cell.isPast) onBeachClick?.(beach, cell.date, cell.allBeaches);
-                        }}
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high` : beach.name}
                       >
                         <div style={{...styles.beachName, ...(cell.isPast ? { color: '#a0aec0' } : {}), ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {})}} className="calendar-beach-name">
@@ -966,15 +1052,34 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
             <span style={{ fontSize: '14px' }}>🦪</span>
             Select a species above to see harvest opportunities
           </div>
+        ) : viewMode === 'week' ? (
+          <>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
+              Good tide
+            </div>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
+              ⚠️ Slightly high
+            </div>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ color: '#e53e3e', fontSize: '14px' }}>⬆</span>
+              Too high
+            </div>
+          </>
         ) : (
           <>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.lowEnough }} />
-              Tide low enough
+              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
+              Low enough
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.slightlyHigh }} />
-              <span>⚠️ Slightly high</span>
+              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
+              Slightly high
+            </div>
+            <div style={styles.legendItem} className="calendar-legend-item">
+              <span style={{ color: '#e53e3e', fontSize: '14px' }}>⬆</span>
+              Too high
             </div>
           </>
         )}

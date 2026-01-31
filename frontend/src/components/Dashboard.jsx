@@ -140,8 +140,10 @@ const styles = {
     gap: '4px',
     padding: '6px 12px',
     border: '1px solid #e2e8f0',
+    borderColor: '#e2e8f0',
     borderRadius: '14px',
     backgroundColor: 'white',
+    color: '#4a5568',
     fontSize: '12px',
     cursor: 'pointer',
     transition: 'all 0.2s',
@@ -190,8 +192,10 @@ const styles = {
   filterButtonSmall: {
     padding: '4px 10px',
     border: '1px solid #e2e8f0',
+    borderColor: '#e2e8f0',
     borderRadius: '14px',
     backgroundColor: 'white',
+    color: '#4a5568',
     fontSize: '12px',
     cursor: 'pointer',
     transition: 'all 0.2s',
@@ -205,8 +209,10 @@ const styles = {
   filterButton: {
     padding: '6px 14px',
     border: '1px solid #e2e8f0',
+    borderColor: '#e2e8f0',
     borderRadius: '20px',
     backgroundColor: 'white',
+    color: '#4a5568',
     fontSize: '13px',
     cursor: 'pointer',
     transition: 'all 0.2s'
@@ -681,8 +687,20 @@ export default function Dashboard() {
       return statusFilters.includes(beach.biotoxinStatus);
     })
     .sort((a, b) => {
-      if (sortMode === 'distance' && a.distance !== null && b.distance !== null) {
-        return a.distance - b.distance;
+      if (sortMode === 'distance') {
+        // Both have distance - sort by distance
+        if (a.distance !== null && b.distance !== null) {
+          return a.distance - b.distance;
+        }
+        // Only a has distance - a comes first
+        if (a.distance !== null && b.distance === null) {
+          return -1;
+        }
+        // Only b has distance - b comes first
+        if (a.distance === null && b.distance !== null) {
+          return 1;
+        }
+        // Neither has distance - fall through to other sorting
       }
       // If species selected, sort by tide height (lower is better)
       if (selectedSpecies.length > 0) {
@@ -715,20 +733,45 @@ export default function Dashboard() {
 
   // When a date is selected from calendar, show all suitable beaches for that day
   // Apply status and access filters to calendar beaches as well
-  const filteredCalendarBeaches = calendarDayBeaches.filter((beach) => {
-    // Search filter
-    if (searchQuery && !beach.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-      return false;
-    }
-    // Access type filter
-    if (accessFilter !== 'all') {
-      if (accessFilter === 'public' && beach.accessType === 'boat') return false;
-      if (accessFilter === 'boat' && beach.accessType !== 'boat') return false;
-    }
-    // Status filter (empty array = all)
-    if (statusFilters.length === 0) return true;
-    return statusFilters.includes(beach.biotoxinStatus);
-  });
+  const filteredCalendarBeaches = calendarDayBeaches
+    .map((beach) => {
+      // Calculate distance if user location is available
+      if (userLocation && beach.lat && beach.lon) {
+        const distance = calculateDistance(
+          userLocation.lat, userLocation.lon,
+          beach.lat, beach.lon
+        );
+        return { ...beach, distance };
+      }
+      return { ...beach, distance: null };
+    })
+    .filter((beach) => {
+      // Search filter
+      if (searchQuery && !beach.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+        return false;
+      }
+      // Access type filter
+      if (accessFilter !== 'all') {
+        if (accessFilter === 'public' && beach.accessType === 'boat') return false;
+        if (accessFilter === 'boat' && beach.accessType !== 'boat') return false;
+      }
+      // Status filter (empty array = all)
+      if (statusFilters.length === 0) return true;
+      return statusFilters.includes(beach.biotoxinStatus);
+    })
+    .sort((a, b) => {
+      if (sortMode === 'distance') {
+        if (a.distance !== null && b.distance !== null) {
+          return a.distance - b.distance;
+        }
+        if (a.distance !== null && b.distance === null) return -1;
+        if (a.distance === null && b.distance !== null) return 1;
+      }
+      // Default: sort by tide height (lower is better for harvesting)
+      const aHeight = a.tideHeight ?? 999;
+      const bHeight = b.tideHeight ?? 999;
+      return aHeight - bHeight;
+    });
 
   // Use filtered calendar beaches when date is selected, otherwise regular filtered beaches
   const displayBeaches = (selectedCalendarDate && calendarDayBeaches.length > 0)
@@ -884,11 +927,6 @@ export default function Dashboard() {
                   `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
                 ) : sortMode === 'distance' ? 'Closest to me' : 'Beaches by Opportunity'}
               </h2>
-              {hasActiveFilters && (
-                <button style={{ ...styles.clearFiltersButton, display: 'block', margin: '8px auto 0' }} className="filter-button" onClick={clearAllFilters}>
-                  Clear Filters
-                </button>
-              )}
             </div>
 
             <div style={styles.filterSection} className="filter-section">
@@ -924,9 +962,7 @@ export default function Dashboard() {
 
               <div style={styles.filterGroup} className="filter-group">
                 <div style={styles.filterGroupRow} className="filter-group-row">
-                  <span style={styles.filterIcon} title="Filter by access type">&#128739;</span>
                   {[
-                    { value: 'all', label: 'All' },
                     { value: 'public', label: 'Road accessible', icon: '&#128663;' },
                     { value: 'boat', label: 'Only by Boat', icon: '&#9973;' }
                   ].map((option) => (
@@ -941,6 +977,19 @@ export default function Dashboard() {
                       dangerouslySetInnerHTML={{ __html: option.icon ? `${option.icon} ${option.label}` : option.label }}
                     />
                   ))}
+                  <button
+                    style={{
+                      ...styles.filterButtonSmall,
+                      marginLeft: 'auto',
+                      color: hasActiveFilters ? '#e53e3e' : '#a0aec0',
+                      borderColor: hasActiveFilters ? '#fed7d7' : '#e2e8f0',
+                      backgroundColor: hasActiveFilters ? '#fff5f5' : 'white'
+                    }}
+                    className="filter-button"
+                    onClick={clearAllFilters}
+                  >
+                    Clear
+                  </button>
                 </div>
               </div>
             </div>
