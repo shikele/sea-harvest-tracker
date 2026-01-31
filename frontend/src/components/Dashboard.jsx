@@ -127,7 +127,7 @@ const styles = {
   },
   searchInputSmall: {
     width: '100%',
-    padding: '6px 10px 6px 28px',
+    padding: '6px 10px 6px 32px',
     border: '1px solid #e2e8f0',
     borderRadius: '6px',
     fontSize: '13px',
