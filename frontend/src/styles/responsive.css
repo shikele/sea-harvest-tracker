@@ -116,7 +116,7 @@ html, body {
     max-height: 300px !important;
     border-radius: 8px !important;
     margin-top: 0 !important;
-    margin-bottom: 120px !important;
+    margin-bottom: 16px !important;
     overflow: hidden !important;
     z-index: 1 !important;
   }
