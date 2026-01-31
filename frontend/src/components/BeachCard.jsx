@@ -7,13 +7,17 @@ const styles = {
     padding: '12px 14px',
     marginBottom: '8px',
     boxShadow: '0 1px 2px rgba(0,0,0,0.08)',
+    borderTop: '2px solid transparent',
+    borderRight: '2px solid transparent',
+    borderBottom: '2px solid transparent',
     borderLeft: '4px solid',
     cursor: 'pointer',
-    transition: 'transform 0.1s, box-shadow 0.1s',
-    border: '2px solid transparent'
+    transition: 'transform 0.1s, box-shadow 0.1s'
   },
   cardSelected: {
-    border: '2px solid #ed8936',
+    borderTop: '2px solid #ed8936',
+    borderRight: '2px solid #ed8936',
+    borderBottom: '2px solid #ed8936',
     boxShadow: '0 2px 8px rgba(237, 137, 54, 0.3)',
     backgroundColor: '#fffaf0'
   },
