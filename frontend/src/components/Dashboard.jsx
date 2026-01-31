@@ -600,6 +600,10 @@ export default function Dashboard() {
       // If species selected, sort by tide height (lower is better)
       if (selectedSpecies.length > 0) {
         const getTideHeight = (beach) => {
+          // Use direct tide data from calendar if available
+          if (beach.tideHeight !== undefined) {
+            return beach.tideHeight;
+          }
           if (selectedCalendarDate && beach.nextLowTides) {
             // Find tide for the selected date
             const tide = beach.nextLowTides.find(t => {

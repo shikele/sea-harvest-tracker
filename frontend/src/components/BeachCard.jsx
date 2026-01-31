@@ -190,12 +190,18 @@ function isSameDay(date1, date2) {
 export default function BeachCard({ beach, onClick, selectedDate }) {
   const colors = statusColors[beach.statusColor] || statusColors.gray;
 
-  // If selectedDate is provided, find the tide for that day
-  const tideForSelectedDay = selectedDate && beach.nextLowTides
+  // If beach has direct tide data from calendar (tideHeight, tideTime, tideQuality), use it
+  const hasDirectTideData = beach.tideHeight !== undefined && beach.tideTime !== undefined;
+
+  // If selectedDate is provided, find the tide for that day from nextLowTides
+  const tideForSelectedDay = selectedDate && beach.nextLowTides && !hasDirectTideData
     ? beach.nextLowTides.find(t => isSameDay(t.datetime, selectedDate))
     : null;
 
-  const nextTide = tideForSelectedDay || beach.nextLowTides?.[0];
+  // Build tide object from direct data or looked up data
+  const nextTide = hasDirectTideData
+    ? { datetime: beach.tideTime, height: beach.tideHeight, quality: beach.tideQuality }
+    : (tideForSelectedDay || beach.nextLowTides?.[0]);
   const tideQualityColors = nextTide ? qualityColors[nextTide.quality] : null;
 
   // Check if there's a good/excellent tide in the 7-day period
