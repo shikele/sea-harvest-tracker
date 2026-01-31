@@ -938,7 +938,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                       </>
                     ) : (
                       <>
-                        <span style={styles.emptyIcon}>⬆</span>
+                        <span style={styles.emptyIcon}>↑</span>
                         <span style={{ color: '#e53e3e' }}>Tides too high</span>
                       </>
                     )}
@@ -1012,7 +1012,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                     ) : !cell.hasData ? (
                       <span className="calendar-month-no-data">No data</span>
                     ) : (
-                      <span className="calendar-month-icon calendar-month-arrow" style={{...(cell.isPast ? { color: '#cbd5e0' } : { color: '#e53e3e' })}}>⬆</span>
+                      <span className="calendar-month-icon calendar-month-arrow" style={{...(cell.isPast ? { color: '#cbd5e0' } : { color: '#e53e3e' })}}>↑</span>
                     )}
                   </div>
                 ) : (
@@ -1063,7 +1063,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
               ⚠️ Slightly high
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ color: '#e53e3e', fontSize: '14px' }}>⬆</span>
+              <span style={{ color: '#e53e3e', fontSize: '14px' }}>↑</span>
               Too high
             </div>
           </>
@@ -1078,7 +1078,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
               Slightly high
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ color: '#e53e3e', fontSize: '14px' }}>⬆</span>
+              <span style={{ color: '#e53e3e', fontSize: '14px' }}>↑</span>
               Too high
             </div>
           </>
