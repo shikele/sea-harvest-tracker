@@ -365,7 +365,7 @@ const styles = {
     borderRadius: '16px',
     maxWidth: '600px',
     width: '100%',
-    maxHeight: '70vh',
+    maxHeight: '55vh',
     overflow: 'auto',
     touchAction: 'auto',
     overscrollBehavior: 'contain'
