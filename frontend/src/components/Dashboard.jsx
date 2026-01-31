@@ -828,18 +828,14 @@ export default function Dashboard() {
               >
                 x
               </button>
-              <h3 style={styles.sectionTitle}>{selectedBeach.name}</h3>
-              <p style={{ color: '#718096', marginBottom: '16px' }}>
-                {selectedBeach.region} - {selectedBeach.county} County
-              </p>
-
-              <div style={{ marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+                <h3 style={{ ...styles.sectionTitle, marginBottom: 0 }}>{selectedBeach.name}</h3>
                 <span
                   style={{
                     display: 'inline-block',
-                    padding: '6px 14px',
-                    borderRadius: '16px',
-                    fontSize: '13px',
+                    padding: '4px 12px',
+                    borderRadius: '12px',
+                    fontSize: '12px',
                     fontWeight: '600',
                     textTransform: 'uppercase',
                     backgroundColor:
@@ -859,6 +855,9 @@ export default function Dashboard() {
                   {selectedBeach.biotoxinStatus}
                 </span>
               </div>
+              <p style={{ color: '#718096', marginBottom: '16px' }}>
+                {selectedBeach.region} - {selectedBeach.county} County
+              </p>
 
               {selectedBeach.closureReason && selectedBeach.biotoxinStatus === 'closed' && (
                 <div style={{ marginBottom: '16px', color: '#c53030' }}>
