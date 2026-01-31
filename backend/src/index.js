@@ -76,7 +76,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
   console.log(`Sea Harvest Tracker API running on http://localhost:${PORT}`);
   console.log('');
   console.log('Available endpoints:');
@@ -92,23 +92,24 @@ app.listen(PORT, async () => {
   console.log('  GET  /api/harvest-windows/calendar - 7-day calendar');
   console.log('  POST /api/refresh            - Refresh all data');
   console.log('');
+  console.log('Server ready! Starting background data refresh...');
 
-  // Initial data refresh on startup
-  console.log('Performing initial data refresh...');
-  try {
-    await refreshAllTides(7);
-    console.log('Tide data refreshed');
-  } catch (error) {
-    console.error('Failed to refresh tide data:', error.message);
-  }
+  // Initial data refresh in background (don't block server startup)
+  (async () => {
+    try {
+      await refreshAllTides(7);
+      console.log('Tide data refreshed');
+    } catch (error) {
+      console.error('Failed to refresh tide data:', error.message);
+    }
 
-  try {
-    await refreshBiotoxinData();
-    console.log('Biotoxin data refreshed');
-  } catch (error) {
-    console.error('Failed to refresh biotoxin data:', error.message);
-  }
+    try {
+      await refreshBiotoxinData();
+      console.log('Biotoxin data refreshed');
+    } catch (error) {
+      console.error('Failed to refresh biotoxin data:', error.message);
+    }
 
-  console.log('');
-  console.log('Server ready!');
+    console.log('Data refresh complete!');
+  })();
 });
