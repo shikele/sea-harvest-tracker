@@ -30,14 +30,21 @@ const styles = {
   },
   header: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
     alignItems: 'center',
+    textAlign: 'center',
     marginBottom: '24px'
   },
   title: {
     fontSize: '28px',
     fontWeight: '700',
-    color: '#1a202c'
+    color: '#1a202c',
+    marginBottom: '4px'
+  },
+  subtitle: {
+    fontSize: '14px',
+    color: '#718096',
+    fontWeight: '400'
   },
   statsRow: {
     display: 'grid',
@@ -700,9 +707,8 @@ export default function Dashboard() {
   return (
     <div style={styles.container} className="dashboard-container">
       <div style={styles.header} className="dashboard-header">
-        <div>
-          <h1 style={styles.title}>Sea Harvest All in One</h1>
-        </div>
+        <h1 style={styles.title}>Sea Harvest All in One</h1>
+        <p style={styles.subtitle}>Follow all laws and guidance, and make sure you have a valid license</p>
       </div>
 
       <div style={styles.tabContainer} className="tab-container">
