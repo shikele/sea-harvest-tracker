@@ -11,13 +11,10 @@ services:
   - type: web
     name: sea-harvest-tracker
     runtime: node
+    plan: free
     buildCommand: npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
         value: production
-    disk:
-      name: sea-harvest-data
-      mountPath: /var/data
-      sizeGB: 1
