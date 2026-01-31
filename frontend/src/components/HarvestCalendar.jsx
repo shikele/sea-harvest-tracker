@@ -143,13 +143,13 @@ const styles = {
     marginBottom: '6px'
   },
   dayOfWeek: {
-    fontSize: '12px',
+    fontSize: '10px',
     color: '#718096',
     textTransform: 'uppercase',
     fontWeight: '500'
   },
   dayDate: {
-    fontSize: '18px',
+    fontSize: '14px',
     fontWeight: '600',
     color: '#2d3748'
   },
@@ -837,7 +837,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                     )}
                   </div>
                 ) : (
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px' }} className="calendar-beach-grid">
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px', height: '100%', alignContent: 'start' }} className="calendar-beach-grid">
                     {day.beaches.map((beach, i) => (
                       <div
                         key={`${beach.id}-${i}`}
