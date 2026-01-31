@@ -837,7 +837,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                     )}
                   </div>
                 ) : (
-                  <>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px' }} className="calendar-beach-grid">
                     {day.beaches.map((beach, i) => (
                       <div
                         key={`${beach.id}-${i}`}
@@ -845,10 +845,11 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                           ...styles.beachItem,
                           borderLeftColor: beach.tideStatus === 'slightlyHigh' ? '#ed8936' : (qualityColors[beach.tideQuality] || '#4299e1'),
                           cursor: 'pointer',
+                          marginBottom: 0,
                           ...(beach.tideStatus === 'slightlyHigh' ? { backgroundColor: '#fffaf0' } : {})
                         }}
                         className="calendar-beach-item"
-                        onClick={() => onBeachClick?.(beach, day.date, day.allBeaches)}
+                        onClick={(e) => { e.stopPropagation(); onBeachClick?.(beach, day.date, day.allBeaches); }}
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high (needs ${beach.minTideNeeded}ft)` : beach.name}
                       >
                         <div style={styles.beachName} className="calendar-beach-name">
@@ -861,7 +862,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                         </div>
                       </div>
                     ))}
-                  </>
+                  </div>
                 )}
               </div>
             </div>
