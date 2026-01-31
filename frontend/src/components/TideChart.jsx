@@ -104,13 +104,35 @@ function formatTooltipTime(dateTimeStr) {
   });
 }
 
-export default function TideChart({ stationId, stationName, days = 3, expanded = false, onClose }) {
+export default function TideChart({ stationId, stationName, days = 7, expanded = false, onClose, selectedDate = null }) {
   const [tideData, setTideData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [showDetails, setShowDetails] = useState(false);
+
+  // Calculate the week start date based on selected date
+  const getWeekStart = (date) => {
+    const d = new Date(date);
+    const day = d.getDay(); // 0 = Sunday
+    const diff = d.getDate() - day;
+    const weekStart = new Date(d.setDate(diff));
+    weekStart.setHours(0, 0, 0, 0);
+    return weekStart;
+  };
+
+  const getWeekEnd = (weekStart) => {
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekEnd.getDate() + 6);
+    weekEnd.setHours(23, 59, 59, 999);
+    return weekEnd;
+  };
+
+  // Determine the week to display
+  const displayDate = selectedDate ? new Date(selectedDate) : new Date();
+  const weekStart = getWeekStart(displayDate);
+  const weekEnd = getWeekEnd(weekStart);
 
   useEffect(() => {
     async function fetchTides() {
@@ -122,7 +144,8 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
 
       setLoading(true);
       try {
-        const data = await getTides(stationId, days);
+        // Fetch enough days to cover the week (14 days to be safe)
+        const data = await getTides(stationId, 14);
         setTideData(data);
         setError(null);
       } catch (err) {
@@ -133,7 +156,7 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
     }
 
     fetchTides();
-  }, [stationId, days]);
+  }, [stationId]);
 
   if (loading) {
     return (
@@ -159,7 +182,33 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
     );
   }
 
-  const predictions = tideData.predictions;
+  // Filter predictions to only show the selected week
+  const predictions = tideData.predictions.filter(p => {
+    const predDate = new Date(p.datetime);
+    return predDate >= weekStart && predDate <= weekEnd;
+  });
+
+  // Format the week start date for the title
+  const weekOfDate = weekStart.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+
+  // If no predictions for selected week, show message
+  if (predictions.length === 0) {
+    return (
+      <div style={styles.container}>
+        <div style={styles.title}>
+          Tide Predictions for the Week of {weekOfDate}
+          <div style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginTop: '4px' }}>
+            {stationName || tideData.stationName}
+          </div>
+        </div>
+        <div style={styles.loading}>No tide data available for this week</div>
+      </div>
+    );
+  }
   const minHeight = Math.min(...predictions.map(p => p.height));
   const maxHeight = Math.max(...predictions.map(p => p.height));
   const range = maxHeight - minHeight || 1;
@@ -205,8 +254,10 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
     <div style={{...styles.container, ...(expanded ? { maxHeight: '80vh', overflowY: 'auto' } : {})}}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <div style={styles.title}>
-          Tide Predictions - {stationName || tideData.stationName}
-          {expanded && <span style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginLeft: '8px' }}>({days} days)</span>}
+          Tide Predictions for the Week of {weekOfDate}
+          <div style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginTop: '4px' }}>
+            {stationName || tideData.stationName}
+          </div>
         </div>
         {expanded && onClose && (
           <button

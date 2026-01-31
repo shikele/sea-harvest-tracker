@@ -894,6 +894,7 @@ export default function Dashboard() {
               <TideChart
                 stationId={selectedBeach.tide_station_id || beaches.find(b => b.id === selectedBeach.id)?.tide_station_id}
                 stationName={selectedBeach.region}
+                selectedDate={selectedCalendarDate}
               />
             </div>
           )}
@@ -902,6 +903,7 @@ export default function Dashboard() {
             <TideChart
               stationId={beaches[0].tide_station_id}
               stationName="Hood Canal (Default)"
+              selectedDate={selectedCalendarDate}
             />
           )}
         </div>
@@ -1118,6 +1120,7 @@ export default function Dashboard() {
               days={14}
               expanded={true}
               onClose={() => setShowFullTides(false)}
+              selectedDate={selectedCalendarDate}
             />
           </div>
         </div>
