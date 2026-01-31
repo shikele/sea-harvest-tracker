@@ -140,7 +140,7 @@ const styles = {
     gap: '4px',
     padding: '6px 12px',
     border: '1px solid #e2e8f0',
-    borderRadius: '6px',
+    borderRadius: '14px',
     backgroundColor: 'white',
     fontSize: '12px',
     cursor: 'pointer',
