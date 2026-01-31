@@ -3,10 +3,10 @@ import React from 'react';
 const styles = {
   card: {
     backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '16px',
-    marginBottom: '12px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+    borderRadius: '10px',
+    padding: '12px 14px',
+    marginBottom: '8px',
+    boxShadow: '0 1px 2px rgba(0,0,0,0.08)',
     borderLeft: '4px solid',
     cursor: 'pointer',
     transition: 'transform 0.1s, box-shadow 0.1s'
@@ -14,8 +14,8 @@ const styles = {
   header: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: '8px'
+    alignItems: 'center',
+    marginBottom: '0'
   },
   name: {
     fontSize: '16px',
@@ -38,22 +38,30 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
-    marginTop: '12px',
-    padding: '10px',
+    marginTop: '8px',
+    padding: '8px 10px',
     backgroundColor: '#f7fafc',
-    borderRadius: '8px'
+    borderRadius: '6px'
+  },
+  tideInfoCompact: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    marginTop: '6px',
+    fontSize: '13px',
+    color: '#4a5568'
   },
   tideLabel: {
-    fontSize: '12px',
+    fontSize: '11px',
     color: '#718096'
   },
   tideTime: {
-    fontSize: '14px',
+    fontSize: '13px',
     fontWeight: '500',
     color: '#2d3748'
   },
   tideHeight: {
-    fontSize: '13px',
+    fontSize: '12px',
     color: '#4a5568'
   },
   closureReason: {
@@ -143,9 +151,33 @@ function getTimeUntil(dateTimeStr) {
   return `${days}d`;
 }
 
-export default function BeachCard({ beach, onClick }) {
+function formatTimeOnly(dateTimeStr) {
+  if (!dateTimeStr) return '';
+  const date = new Date(dateTimeStr);
+  return date.toLocaleString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit'
+  });
+}
+
+function isSameDay(date1, date2) {
+  if (!date1 || !date2) return false;
+  const d1 = new Date(date1);
+  const d2 = new Date(date2);
+  return d1.getFullYear() === d2.getFullYear() &&
+         d1.getMonth() === d2.getMonth() &&
+         d1.getDate() === d2.getDate();
+}
+
+export default function BeachCard({ beach, onClick, selectedDate }) {
   const colors = statusColors[beach.statusColor] || statusColors.gray;
-  const nextTide = beach.nextLowTides?.[0];
+
+  // If selectedDate is provided, find the tide for that day
+  const tideForSelectedDay = selectedDate && beach.nextLowTides
+    ? beach.nextLowTides.find(t => isSameDay(t.datetime, selectedDate))
+    : null;
+
+  const nextTide = tideForSelectedDay || beach.nextLowTides?.[0];
   const tideQualityColors = nextTide ? qualityColors[nextTide.quality] : null;
 
   // Check if there's a good/excellent tide in the 7-day period
@@ -155,7 +187,7 @@ export default function BeachCard({ beach, onClick }) {
 
   // Get the next good tide (may be extended beyond 7 days)
   const nextGoodTide = beach.nextGoodTide;
-  const showExtendedTide = !hasGoodTideIn7Days && nextGoodTide?.isExtended;
+  const showExtendedTide = !hasGoodTideIn7Days && nextGoodTide?.isExtended && !selectedDate;
 
   return (
     <div
@@ -177,15 +209,17 @@ export default function BeachCard({ beach, onClick }) {
             {beach.accessType === 'boat' && (
               <span style={styles.boatBadge}>Boat</span>
             )}
-          </div>
-          <div style={styles.location}>
-            {beach.region} - {beach.county} County
             {beach.distance !== null && beach.distance !== undefined && (
               <span style={styles.distanceBadge}>
                 ({beach.distance.toFixed(1)} mi)
               </span>
             )}
           </div>
+          {!selectedDate && (
+            <div style={styles.location}>
+              {beach.region} - {beach.county} County
+            </div>
+          )}
         </div>
         <span
           style={{
@@ -198,14 +232,30 @@ export default function BeachCard({ beach, onClick }) {
         </span>
       </div>
 
-      {beach.closureReason && (
+      {beach.closureReason && !selectedDate && (
         <div style={styles.closureReason}>
           Closed: {beach.closureReason}
           {beach.speciesAffected && ` (${beach.speciesAffected})`}
         </div>
       )}
 
-      {nextTide && beach.biotoxinStatus !== 'closed' && (
+      {selectedDate && nextTide && beach.biotoxinStatus !== 'closed' ? (
+        <div style={styles.tideInfoCompact}>
+          <span>Low tide: <strong>{formatTimeOnly(nextTide.datetime)}</strong></span>
+          <span>{nextTide.height.toFixed(1)} ft</span>
+          {tideQualityColors && (
+            <span
+              style={{
+                ...styles.qualityBadge,
+                backgroundColor: tideQualityColors.bg,
+                color: tideQualityColors.text
+              }}
+            >
+              {nextTide.quality}
+            </span>
+          )}
+        </div>
+      ) : !selectedDate && nextTide && beach.biotoxinStatus !== 'closed' && (
         <div style={styles.tideInfo}>
           <div style={{ flex: 1 }}>
             <div style={styles.tideLabel}>Next Low Tide</div>

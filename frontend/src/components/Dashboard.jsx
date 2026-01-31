@@ -856,8 +856,8 @@ export default function Dashboard() {
         <div className="beach-list-wrapper" style={{ order: 3 }}>
 
           <div style={styles.beachList} className="beach-list-section">
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
-              <h2 style={{ ...styles.sectionTitle, marginBottom: 0 }} className="section-title">
+            <div style={{ textAlign: 'center', marginBottom: '12px' }}>
+              <h2 style={{ ...styles.sectionTitle, marginBottom: '4px' }} className="section-title">
                 {selectedSpecies.length > 0 && selectedCalendarDate ? (
                   `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
                 ) : sortMode === 'distance' ? 'Closest to me' : 'Beaches by Opportunity'}
@@ -866,7 +866,7 @@ export default function Dashboard() {
                 {filteredBeaches.length} of {beaches.length}
               </span>
               {hasActiveFilters && (
-                <button style={styles.clearFiltersButton} className="filter-button" onClick={clearAllFilters}>
+                <button style={{ ...styles.clearFiltersButton, display: 'block', margin: '8px auto 0' }} className="filter-button" onClick={clearAllFilters}>
                   Clear Filters
                 </button>
               )}
@@ -951,6 +951,7 @@ export default function Dashboard() {
                 key={beach.id}
                 beach={beach}
                 onClick={handleBeachSelect}
+                selectedDate={selectedCalendarDate}
               />
             ))}
 
