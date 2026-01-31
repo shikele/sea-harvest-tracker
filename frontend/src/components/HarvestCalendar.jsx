@@ -136,7 +136,7 @@ const styles = {
   },
   dayHeader: {
     textAlign: 'center',
-    marginBottom: '8px',
+    marginBottom: '4px',
     flexShrink: 0
   },
   dayHeaderMonth: {
@@ -174,7 +174,7 @@ const styles = {
     overflow: 'hidden'
   },
   beachItem: {
-    padding: '6px 8px',
+    padding: '8px 10px',
     marginBottom: '6px',
     borderRadius: '4px',
     backgroundColor: 'white',
