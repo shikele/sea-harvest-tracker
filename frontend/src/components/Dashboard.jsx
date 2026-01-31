@@ -430,6 +430,7 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('beaches'); // 'beaches' or 'species'
   const [showFullTides, setShowFullTides] = useState(false);
   const [selectedCalendarDate, setSelectedCalendarDate] = useState(null); // Track date clicked from calendar
+  const [calendarDayBeaches, setCalendarDayBeaches] = useState([]); // All suitable beaches for selected day
   const beachesPerPage = 10;
 
   async function loadData() {
@@ -518,6 +519,8 @@ export default function Dashboard() {
     setSelectedSpecies([]);
     setFilter('all');
     setAccessFilter('all');
+    setSelectedCalendarDate(null);
+    setCalendarDayBeaches([]);
     setCurrentPage(1);
   };
 
@@ -526,7 +529,7 @@ export default function Dashboard() {
     setCurrentPage(1);
   };
 
-  const handleBeachSelect = (beach, date = null) => {
+  const handleBeachSelect = (beach, date = null, allBeachesForDay = null) => {
     // If beach comes from calendar view, it may not have full species data
     // Look up the full beach data from our beaches array
     if (beach && (!beach.species || beach.species.length === 0)) {
@@ -540,9 +543,10 @@ export default function Dashboard() {
     } else {
       setSelectedBeach(beach);
     }
-    // Track date if provided (from calendar click)
+    // Track date and all beaches for that day if provided (from calendar click)
     if (date) {
       setSelectedCalendarDate(date);
+      setCalendarDayBeaches(allBeachesForDay || []);
     }
     setShowFullTides(false);
   };
@@ -626,11 +630,17 @@ export default function Dashboard() {
 
   const hasActiveFilters = searchQuery || selectedSpecies.length > 0 || filter !== 'all' || accessFilter !== 'all';
 
+  // When a date is selected from calendar, show all suitable beaches for that day
+  // Otherwise show the regular filtered beaches
+  const displayBeaches = (selectedCalendarDate && calendarDayBeaches.length > 0)
+    ? calendarDayBeaches
+    : filteredBeaches;
+
   // Pagination calculations
-  const totalPages = Math.ceil(filteredBeaches.length / beachesPerPage);
+  const totalPages = Math.ceil(displayBeaches.length / beachesPerPage);
   const startIndex = (currentPage - 1) * beachesPerPage;
   const endIndex = startIndex + beachesPerPage;
-  const paginatedBeaches = filteredBeaches.slice(startIndex, endIndex);
+  const paginatedBeaches = displayBeaches.slice(startIndex, endIndex);
 
   const goToPage = (page) => {
     setCurrentPage(Math.max(1, Math.min(page, totalPages)));
@@ -886,7 +896,7 @@ export default function Dashboard() {
                 ) : sortMode === 'distance' ? 'Closest to me' : 'Beaches by Opportunity'}
               </h2>
               <span style={styles.filterCount}>
-                {filteredBeaches.length} of {beaches.length}
+                {displayBeaches.length} of {beaches.length}
               </span>
               {hasActiveFilters && (
                 <button style={{ ...styles.clearFiltersButton, display: 'block', margin: '8px auto 0' }} className="filter-button" onClick={clearAllFilters}>
@@ -1032,7 +1042,7 @@ export default function Dashboard() {
                 </button>
 
                 <span style={styles.pageInfo} className="page-info">
-                  {startIndex + 1}-{Math.min(endIndex, filteredBeaches.length)} of {filteredBeaches.length}
+                  {startIndex + 1}-{Math.min(endIndex, displayBeaches.length)} of {displayBeaches.length}
                 </span>
               </div>
             )}
