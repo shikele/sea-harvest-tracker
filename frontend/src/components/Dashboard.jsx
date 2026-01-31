@@ -841,6 +841,7 @@ export default function Dashboard() {
                     fontSize: '12px',
                     fontWeight: '600',
                     textTransform: 'uppercase',
+                    marginRight: '10px',
                     backgroundColor:
                       selectedBeach.biotoxinStatus === 'open'
                         ? '#c6f6d5'
