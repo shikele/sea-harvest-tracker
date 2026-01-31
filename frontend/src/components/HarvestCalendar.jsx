@@ -89,8 +89,9 @@ const styles = {
   dayCard: {
     backgroundColor: '#f7fafc',
     borderRadius: '8px',
-    padding: '8px',
-    height: '220px',
+    padding: '0 8px',
+    minHeight: '55px',
+    height: '55px',
     overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
@@ -218,15 +219,15 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    gap: '4px'
+    gap: '0px'
   },
   emptyIcon: {
     fontSize: '28px',
-    color: '#a0aec0'
+    color: '#e53e3e'
   },
   emptyIconSmall: {
     fontSize: '20px',
-    color: '#a0aec0'
+    color: '#e53e3e'
   },
   emptyDayMonth: {
     color: '#a0aec0',
@@ -284,7 +285,14 @@ const styles = {
     padding: '12px',
     backgroundColor: '#f7fafc',
     borderRadius: '8px',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    border: '2px solid transparent',
+    transition: 'all 0.2s ease'
+  },
+  speciesFilterHighlight: {
+    border: '2px solid #ed8936',
+    backgroundColor: '#fff7ed',
+    boxShadow: '0 0 0 1px #ed8936'
   },
   speciesLabel: {
     fontSize: '12px',
@@ -307,9 +315,8 @@ const styles = {
 };
 
 const qualityColors = {
-  excellent: '#48bb78',
-  good: '#4299e1',
-  fair: '#ecc94b'
+  lowEnough: '#805ad5',   // purple - tide is low enough
+  slightlyHigh: '#dd6b20' // orange - tide slightly high
 };
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -644,7 +651,10 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
 
       {/* Species Filter */}
       {allSpecies.length > 0 && (
-        <div style={styles.speciesFilter} className="species-filter">
+        <div style={{
+          ...styles.speciesFilter,
+          ...(selectedSpecies.length === 0 ? styles.speciesFilterHighlight : {})
+        }} className="species-filter">
           <span style={styles.speciesLabel}>🦪 Species:</span>
           <select
             style={styles.speciesSelect}
@@ -694,13 +704,13 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
             alignItems: 'center',
             justifyContent: 'center',
             padding: '0 16px',
-            backgroundColor: 'black',
+            backgroundColor: 'white',
             border: '1px solid black',
             borderLeft: 'none',
             borderRight: 'none',
             fontSize: '14px',
             fontWeight: '600',
-            color: 'white',
+            color: 'black',
             minWidth: '150px'
           }} className="calendar-label">{weekLabel}</div>
           <button
@@ -761,13 +771,13 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
             alignItems: 'center',
             justifyContent: 'center',
             padding: '0 16px',
-            backgroundColor: 'black',
+            backgroundColor: 'white',
             border: '1px solid black',
             borderLeft: 'none',
             borderRight: 'none',
             fontSize: '14px',
             fontWeight: '600',
-            color: 'white',
+            color: 'black',
             minWidth: '150px'
           }} className="calendar-label">{monthLabel}</div>
           <button
@@ -838,7 +848,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                     ) : (
                       <>
                         <span style={styles.emptyIcon}>⬆</span>
-                        <span>Tides too high</span>
+                        <span style={{ color: '#e53e3e' }}>Tides too high</span>
                       </>
                     )}
                   </div>
@@ -849,13 +859,12 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                         key={`${beach.id}-${i}`}
                         style={{
                           ...styles.beachItem,
-                          borderLeftColor: beach.tideStatus === 'slightlyHigh' ? '#ed8936' : (qualityColors[beach.tideQuality] || '#4299e1'),
-                          cursor: 'pointer',
+                          borderLeftColor: beach.tideStatus === 'slightlyHigh' ? qualityColors.slightlyHigh : qualityColors.lowEnough,
+                          cursor: 'default',
                           marginBottom: 0,
                           ...(beach.tideStatus === 'slightlyHigh' ? { backgroundColor: '#fffaf0' } : {})
                         }}
                         className="calendar-beach-item"
-                        onClick={(e) => { e.stopPropagation(); onBeachClick?.(beach, day.date, day.allBeaches); }}
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high (needs ${beach.minTideNeeded}ft)` : beach.name}
                       >
                         <div style={styles.beachName} className="calendar-beach-name">
@@ -923,7 +932,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                         key={`${beach.id}-${i}`}
                         style={{
                           ...styles.beachItemMonth,
-                          borderLeftColor: cell.isPast ? '#cbd5e0' : (beach.tideStatus === 'slightlyHigh' ? '#ed8936' : (qualityColors[beach.tideQuality] || '#4299e1')),
+                          borderLeftColor: cell.isPast ? '#cbd5e0' : (beach.tideStatus === 'slightlyHigh' ? qualityColors.slightlyHigh : qualityColors.lowEnough),
                           cursor: cell.isPast ? 'default' : 'pointer',
                           ...(beach.tideStatus === 'slightlyHigh' && !cell.isPast ? { backgroundColor: '#fffaf0' } : {})
                         }}
@@ -960,20 +969,12 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
         ) : (
           <>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.excellent }} />
-              Excellent (&lt;0ft)
+              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.lowEnough }} />
+              Tide low enough
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.good }} />
-              Good (0-1ft)
-            </div>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ ...styles.tideDot, backgroundColor: '#ed8936' }} />
+              <span style={{ ...styles.tideDot, backgroundColor: qualityColors.slightlyHigh }} />
               <span>⚠️ Slightly high</span>
-            </div>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ fontSize: '14px', color: '#a0aec0' }}>⬆</span>
-              Tide too high
             </div>
           </>
         )}
