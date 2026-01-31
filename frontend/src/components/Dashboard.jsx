@@ -631,9 +631,28 @@ export default function Dashboard() {
   const hasActiveFilters = searchQuery || selectedSpecies.length > 0 || filter !== 'all' || accessFilter !== 'all';
 
   // When a date is selected from calendar, show all suitable beaches for that day
-  // Otherwise show the regular filtered beaches
+  // Apply status and access filters to calendar beaches as well
+  const filteredCalendarBeaches = calendarDayBeaches.filter((beach) => {
+    // Search filter
+    if (searchQuery && !beach.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false;
+    }
+    // Access type filter
+    if (accessFilter !== 'all') {
+      if (accessFilter === 'public' && beach.accessType === 'boat') return false;
+      if (accessFilter === 'boat' && beach.accessType !== 'boat') return false;
+    }
+    // Status filter
+    if (filter === 'all') return true;
+    if (filter === 'open') return beach.biotoxinStatus === 'open';
+    if (filter === 'conditional') return beach.biotoxinStatus === 'conditional';
+    if (filter === 'closed') return beach.biotoxinStatus === 'closed';
+    return true;
+  });
+
+  // Use filtered calendar beaches when date is selected, otherwise regular filtered beaches
   const displayBeaches = (selectedCalendarDate && calendarDayBeaches.length > 0)
-    ? calendarDayBeaches
+    ? filteredCalendarBeaches
     : filteredBeaches;
 
   // Pagination calculations
