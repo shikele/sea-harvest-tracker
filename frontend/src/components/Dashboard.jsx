@@ -905,7 +905,7 @@ export default function Dashboard() {
 
               <div style={styles.filterGroup} className="filter-group">
                 <div style={styles.filterGroupRow} className="filter-group-row">
-                  <span style={styles.filterIcon} title="Filter by status">&#9881;</span>
+                  <span style={styles.filterIcon} title="Filter by status">&#127958;</span>
                   {[
                     { value: 'all', label: 'All', icon: '' },
                     { value: 'open', label: 'Open', icon: '&#128994;' },
@@ -925,10 +925,10 @@ export default function Dashboard() {
                   ))}
                 </div>
                 <div style={styles.filterGroupRow} className="filter-group-row">
-                  <span style={styles.filterIcon} title="Filter by access type">&#128675;</span>
+                  <span style={styles.filterIcon} title="Filter by access type">&#128739;</span>
                   {[
                     { value: 'all', label: 'All' },
-                    { value: 'public', label: 'Road accessible', icon: '&#128694;' },
+                    { value: 'public', label: 'Road accessible', icon: '&#128663;' },
                     { value: 'boat', label: 'Only by Boat', icon: '&#9973;' }
                   ].map((option) => (
                     <button
