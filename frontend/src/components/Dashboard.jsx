@@ -639,7 +639,7 @@ export default function Dashboard() {
     <div style={styles.container} className="dashboard-container">
       <div style={styles.header} className="dashboard-header">
         <div>
-          <h1 style={styles.title}>Sea Harvest Tracker</h1>
+          <h1 style={styles.title}>Sea Harvest All in One</h1>
         </div>
       </div>
 
