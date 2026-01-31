@@ -758,7 +758,7 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
                           ...(beach.tideStatus === 'slightlyHigh' ? { backgroundColor: '#fffaf0' } : {})
                         }}
                         className="calendar-beach-item"
-                        onClick={() => onBeachClick?.(beach)}
+                        onClick={() => onBeachClick?.(beach, day.date)}
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high (needs ${beach.minTideNeeded}ft)` : beach.name}
                       >
                         <div style={styles.beachName} className="calendar-beach-name">
@@ -795,7 +795,7 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
                   position: 'relative'
                 }}
                 className={`calendar-month-day ${cell.isPast ? 'past-day' : ''}`}
-                onClick={() => !cell.isPast && cell.beaches[0] && onBeachClick?.(cell.beaches[0])}
+                onClick={() => !cell.isPast && cell.beaches[0] && onBeachClick?.(cell.beaches[0], cell.date)}
               >
                 {cell.isPast && <span style={styles.pastLabel}>Past</span>}
                 <div style={styles.dayHeaderMonth} className="calendar-month-day-header">
@@ -832,7 +832,7 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
                         className="calendar-month-beach-item"
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (!cell.isPast) onBeachClick?.(beach);
+                          if (!cell.isPast) onBeachClick?.(beach, cell.date);
                         }}
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high` : beach.name}
                       >

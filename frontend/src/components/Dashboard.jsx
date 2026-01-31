@@ -429,6 +429,7 @@ export default function Dashboard() {
   const [accessFilter, setAccessFilter] = useState('all'); // 'all', 'public', 'boat'
   const [activeTab, setActiveTab] = useState('beaches'); // 'beaches' or 'species'
   const [showFullTides, setShowFullTides] = useState(false);
+  const [selectedCalendarDate, setSelectedCalendarDate] = useState(null); // Track date clicked from calendar
   const beachesPerPage = 10;
 
   async function loadData() {
@@ -525,7 +526,7 @@ export default function Dashboard() {
     setCurrentPage(1);
   };
 
-  const handleBeachSelect = (beach) => {
+  const handleBeachSelect = (beach, date = null) => {
     // If beach comes from calendar view, it may not have full species data
     // Look up the full beach data from our beaches array
     if (beach && (!beach.species || beach.species.length === 0)) {
@@ -538,6 +539,10 @@ export default function Dashboard() {
       }
     } else {
       setSelectedBeach(beach);
+    }
+    // Track date if provided (from calendar click)
+    if (date) {
+      setSelectedCalendarDate(date);
     }
     setShowFullTides(false);
   };
@@ -853,7 +858,9 @@ export default function Dashboard() {
           <div style={styles.beachList} className="beach-list-section">
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
               <h2 style={{ ...styles.sectionTitle, marginBottom: 0 }} className="section-title">
-                Beaches by {sortMode === 'distance' ? 'Distance' : 'Opportunity'}
+                {selectedSpecies.length > 0 && selectedCalendarDate ? (
+                  `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
+                ) : sortMode === 'distance' ? 'Beaches by Distance' : 'Beaches by Opportunity'}
               </h2>
               <span style={styles.filterCount}>
                 {filteredBeaches.length} of {beaches.length}
