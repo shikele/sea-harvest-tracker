@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { getTides } from '../services/api';
 
 const styles = {
@@ -41,7 +41,22 @@ const styles = {
     borderRadius: '50%'
   },
   tideList: {
-    marginTop: '16px'
+    marginTop: '12px'
+  },
+  detailsToggle: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '6px',
+    padding: '8px',
+    marginTop: '12px',
+    backgroundColor: '#f7fafc',
+    border: '1px solid #e2e8f0',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    fontSize: '13px',
+    color: '#4a5568',
+    width: '100%'
   },
   tideItem: {
     display: 'flex',
@@ -95,6 +110,9 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
   const [error, setError] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [showDetails, setShowDetails] = useState(false);
+  const longPressTimer = useRef(null);
+  const svgRef = useRef(null);
 
   useEffect(() => {
     async function fetchTides() {
@@ -283,7 +301,7 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
             strokeWidth="2"
           />
 
-          {/* Data points with hover */}
+          {/* Data points with hover and long-press */}
           {points.map((p, i) => (
             <circle
               key={i}
@@ -305,6 +323,30 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
                 });
               }}
               onMouseLeave={() => setHoveredPoint(null)}
+              onTouchStart={(e) => {
+                e.preventDefault();
+                longPressTimer.current = setTimeout(() => {
+                  setHoveredPoint(i);
+                  const rect = e.target.ownerSVGElement.getBoundingClientRect();
+                  const scaleX = rect.width / width;
+                  const scaleY = rect.height / height;
+                  setTooltipPos({
+                    x: p.x * scaleX,
+                    y: p.y * scaleY
+                  });
+                }, 300);
+              }}
+              onTouchEnd={() => {
+                if (longPressTimer.current) {
+                  clearTimeout(longPressTimer.current);
+                }
+                setTimeout(() => setHoveredPoint(null), 2000);
+              }}
+              onTouchMove={() => {
+                if (longPressTimer.current) {
+                  clearTimeout(longPressTimer.current);
+                }
+              }}
             />
           ))}
         </svg>
@@ -368,23 +410,34 @@ export default function TideChart({ stationId, stationName, days = 3, expanded =
         </div>
       </div>
 
-      <div style={styles.tideList}>
-        {predictions.slice(0, maxTideItems).map((p, i) => (
-          <div key={i} style={styles.tideItem}>
-            <div style={styles.tideType}>
-              <div
-                style={{
-                  ...styles.tideIcon,
-                  backgroundColor: p.isLowTide ? '#48bb78' : '#f56565'
-                }}
-              />
-              <span>{p.isLowTide ? 'Low' : 'High'}</span>
+      {/* Collapsible Details Toggle */}
+      <button
+        style={styles.detailsToggle}
+        onClick={() => setShowDetails(!showDetails)}
+      >
+        <span>{showDetails ? '▲ Hide' : '▼ Show'} Tide Details</span>
+      </button>
+
+      {/* Collapsible Tide List */}
+      {showDetails && (
+        <div style={styles.tideList}>
+          {predictions.slice(0, maxTideItems).map((p, i) => (
+            <div key={i} style={styles.tideItem}>
+              <div style={styles.tideType}>
+                <div
+                  style={{
+                    ...styles.tideIcon,
+                    backgroundColor: p.isLowTide ? '#48bb78' : '#f56565'
+                  }}
+                />
+                <span>{p.isLowTide ? 'Low' : 'High'}</span>
+              </div>
+              <span>{formatTime(p.datetime)}</span>
+              <span>{p.height.toFixed(1)} ft</span>
             </div>
-            <span>{formatTime(p.datetime)}</span>
-            <span>{p.height.toFixed(1)} ft</span>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
