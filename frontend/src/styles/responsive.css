@@ -259,8 +259,8 @@ html, body {
     width: 100% !important;
     min-width: unset !important;
     flex-shrink: 0 !important;
-    height: auto !important;
-    min-height: 36px !important;
+    height: 60px !important;
+    min-height: 60px !important;
     padding: 5px 8px !important;
     border-radius: 5px !important;
     display: flex !important;
@@ -623,7 +623,8 @@ html, body {
     flex-direction: row !important;
     align-items: center !important;
     gap: 12px !important;
-    min-height: 56px !important;
+    height: 70px !important;
+    min-height: 70px !important;
     padding: 10px 12px !important;
   }
 
@@ -759,6 +760,7 @@ html, body {
   }
 
   .calendar-day-card {
+    height: 120px !important;
     min-height: 120px !important;
   }
 }
