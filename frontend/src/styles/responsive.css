@@ -89,9 +89,9 @@ html, body {
   /* Map - ensure no overlap, move up */
   .map-container {
     position: relative !important;
-    height: 180px !important;
-    min-height: 180px !important;
-    max-height: 180px !important;
+    height: 220px !important;
+    min-height: 220px !important;
+    max-height: 220px !important;
     border-radius: 8px !important;
     margin-top: 0 !important;
     margin-bottom: 120px !important;
