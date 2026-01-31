@@ -25,9 +25,7 @@ const speciesData = [
     scientificName: 'Leukoma staminea',
     images: [
       { url: '/images/species/littleneck-1.jpg', caption: 'Native littleneck on rocky beach (WDFW)' },
-      { url: '/images/species/littleneck-2.jpg', caption: 'Native littleneck clam specimen (WDFW)' },
-      { url: '/images/species/littleneck-3.jpg', caption: 'Littleneck clam left valve' },
-      { url: '/images/species/littleneck-4.jpg', caption: 'Littleneck clam right valve' }
+      { url: '/images/species/littleneck-2.jpg', caption: 'Native littleneck clam specimen (WDFW)' }
     ],
     description: 'Native to the Pacific Northwest. Has distinctive lattice pattern on shell. Sweeter and more tender than Manila clams. Excellent steamed or in chowder.',
     habitat: 'Gravel and rocky beaches, often mixed with Manila clams.',
@@ -43,9 +41,8 @@ const speciesData = [
     images: [
       { url: '/images/species/butter-clam-1.jpg', caption: 'Butter clam close-up' },
       { url: '/images/species/butter-clam-2.jpg', caption: 'Butter clam specimen (WDFW)' },
-      { url: '/images/species/butter-clam3.jpg', caption: 'Butter clam shell detail' },
-      { url: '/images/species/butter-clam-4.jpg', caption: 'Butter clam exterior' },
-      { url: '/images/species/butter-clam-5.jpg', caption: 'Butter clam valve specimen' }
+      { url: '/images/species/butter-clam-3.jpg', caption: 'Butter clam shell detail' },
+      { url: '/images/species/butter-clam-4.jpg', caption: 'Butter clam exterior' }
     ],
     description: 'Large, meaty clam native to the Pacific coast. Named for buttery color when young. Can accumulate PSP toxins - always check advisories. Great for chowder.',
     habitat: 'Sandy beaches in lower intertidal zone, buried 6-12 inches deep.',
@@ -95,8 +92,7 @@ const speciesData = [
     images: [
       { url: '/images/species/geoduck-1.jpg', caption: 'Freshly harvested geoduck' },
       { url: '/images/species/geoduck-2.jpg', caption: 'Geoduck siphons in sand (WDFW)' },
-      { url: '/images/species/geoduck-3.jpg', caption: '6.53-pound geoduck specimen (WDFW)' },
-      { url: '/images/species/geoduck-4.jpg', caption: 'Geoduck held in two hands' }
+      { url: '/images/species/geoduck-3.jpg', caption: '6.53-pound geoduck specimen (WDFW)' }
     ],
     description: 'World\'s largest burrowing clam, can live 140+ years! Prized in Asian cuisine for its crunchy texture. Requires very low tides and significant digging effort.',
     habitat: 'Sandy beaches, buried 2-3 feet deep. Look for siphon "show".',
@@ -129,7 +125,7 @@ const speciesData = [
     scientificName: 'Nuttallia obscurata',
     images: [
       { url: '/images/species/varnish-clam-1.jpg', caption: 'Varnish clam exterior' },
-      { url: '/images/species/varnish-clam-4.jpg', caption: 'Varnish clam at Dumas Bay' }
+      { url: '/images/species/varnish-clam-2.jpg', caption: 'Varnish clam interior (purple)' }
     ],
     description: 'Invasive species from Asia, now abundant in Puget Sound. Shiny, varnished appearance. Quick to cook - just 2-3 minutes. Good in stir-fry and soups.',
     habitat: 'Upper intertidal zone in sand and gravel, easy to access.',
@@ -160,8 +156,8 @@ const speciesData = [
     scientificName: 'Mytilus trossulus',
     images: [
       { url: '/images/species/mussel-1.jpg', caption: 'Blue mussels' },
-      { url: '/images/species/mussel-4.jpg', caption: 'Blue mussel cluster' },
-      { url: '/images/species/mussel-5.jpg', caption: 'Mytilus edulis specimen' }
+      { url: '/images/species/mussel-2.jpg', caption: 'Mussels on beach' },
+      { url: '/images/species/mussel-3.jpg', caption: 'Live blue mussel' }
     ],
     description: 'Blue mussels attach to rocks and pilings. Easy to harvest - just pull off surfaces. Steam with wine, garlic, and herbs. Check for red tide closures.',
     habitat: 'Attached to rocks, docks, and hard surfaces in upper intertidal.',
@@ -195,9 +191,7 @@ const speciesData = [
     images: [
       { url: '/images/species/razor-clam-1.jpg', caption: 'Fresh razor clams in container (WDFW)' },
       { url: '/images/species/razor-clam-2.jpg', caption: 'Razor clam limit with shovel (WDFW)' },
-      { url: '/images/species/razor-clam-3.jpg', caption: 'Pacific Beach harvest location' },
-      { url: '/images/species/razor-clam-4.jpg', caption: 'Digging razor clams at low tide (NOAA)' },
-      { url: '/images/species/razor-clam5.jpg', caption: 'Harvested razor clam (NOAA)' }
+      { url: '/images/species/razor-clam-3.jpg', caption: 'Pacific Beach harvest location' }
     ],
     description: 'One of the most sought-after shellfish in Washington. Found on ocean beaches from California to Alaska. Look for keyhole-shaped depressions in sand. Daily limit is 15 clams - keep the first 15 you dig regardless of size.',
     habitat: 'Sandy ocean beaches in the intertidal zone, from +3 ft to -2 ft tide level. Found at Long Beach, Twin Harbors, Copalis, and Mocrocks.',
