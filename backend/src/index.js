@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cron from 'node-cron';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import beachesRouter from './routes/beaches.js';
@@ -112,4 +113,29 @@ app.listen(PORT, () => {
 
     console.log('Data refresh complete!');
   })();
+
+  // Schedule daily data refresh at 6:00 AM
+  cron.schedule('0 6 * * *', async () => {
+    console.log(`[${new Date().toISOString()}] Running scheduled daily data refresh...`);
+
+    try {
+      const tidesResult = await refreshAllTides(7);
+      console.log(`[Scheduled] Tide data refreshed: ${tidesResult.totalPredictions} predictions`);
+    } catch (error) {
+      console.error('[Scheduled] Failed to refresh tide data:', error.message);
+    }
+
+    try {
+      const biotoxinResult = await refreshBiotoxinData();
+      console.log(`[Scheduled] Biotoxin data refreshed: ${biotoxinResult.updated} beaches updated`);
+    } catch (error) {
+      console.error('[Scheduled] Failed to refresh biotoxin data:', error.message);
+    }
+
+    console.log(`[${new Date().toISOString()}] Scheduled daily refresh complete!`);
+  }, {
+    timezone: 'America/Los_Angeles' // Pacific Time
+  });
+
+  console.log('Scheduled daily data refresh at 6:00 AM Pacific Time');
 });
