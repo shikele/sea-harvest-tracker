@@ -652,97 +652,127 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
       )}
 
       {viewMode === 'week' && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
+        <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
           <button
             style={{
-              padding: '8px 12px',
-              border: '1px solid #e2e8f0',
-              borderRadius: '6px 0 0 6px',
-              backgroundColor: weekOffset === 0 ? '#f7fafc' : 'white',
+              height: '40px',
+              width: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #cbd5e0',
+              borderRight: 'none',
+              borderRadius: '8px 0 0 8px',
+              backgroundColor: weekOffset === 0 ? '#edf2f7' : 'white',
               cursor: weekOffset === 0 ? 'not-allowed' : 'pointer',
-              fontSize: '14px',
-              opacity: weekOffset === 0 ? 0.5 : 1
+              fontSize: '16px',
+              color: weekOffset === 0 ? '#a0aec0' : '#4a5568',
+              transition: 'all 0.15s ease'
             }}
             className="calendar-nav-button"
             onClick={() => setWeekOffset(w => Math.max(0, w - 1))}
             disabled={weekOffset === 0}
           >
-            &larr;
+            ‹
           </button>
           <div style={{
-            padding: '8px 20px',
-            backgroundColor: '#f7fafc',
-            borderTop: '1px solid #e2e8f0',
-            borderBottom: '1px solid #e2e8f0',
-            fontSize: '15px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0 20px',
+            backgroundColor: '#4299e1',
+            borderTop: '1px solid #3182ce',
+            borderBottom: '1px solid #3182ce',
+            fontSize: '14px',
             fontWeight: '600',
-            color: '#2d3748',
-            minWidth: '140px',
-            textAlign: 'center'
+            color: 'white',
+            minWidth: '160px'
           }} className="calendar-label">{weekLabel}</div>
           <button
             style={{
-              padding: '8px 12px',
-              border: '1px solid #e2e8f0',
-              borderRadius: '0 6px 6px 0',
-              backgroundColor: weekOffset >= maxWeeks - 1 ? '#f7fafc' : 'white',
+              height: '40px',
+              width: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #cbd5e0',
+              borderLeft: 'none',
+              borderRadius: '0 8px 8px 0',
+              backgroundColor: weekOffset >= maxWeeks - 1 ? '#edf2f7' : 'white',
               cursor: weekOffset >= maxWeeks - 1 ? 'not-allowed' : 'pointer',
-              fontSize: '14px',
-              opacity: weekOffset >= maxWeeks - 1 ? 0.5 : 1
+              fontSize: '16px',
+              color: weekOffset >= maxWeeks - 1 ? '#a0aec0' : '#4a5568',
+              transition: 'all 0.15s ease'
             }}
             className="calendar-nav-button"
             onClick={() => setWeekOffset(w => Math.min(maxWeeks - 1, w + 1))}
             disabled={weekOffset >= maxWeeks - 1}
           >
-            &rarr;
+            ›
           </button>
         </div>
       )}
 
       {viewMode === 'month' && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
+        <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
           <button
             style={{
-              padding: '8px 12px',
-              border: '1px solid #e2e8f0',
-              borderRadius: '6px 0 0 6px',
-              backgroundColor: isCurrentMonth ? '#f7fafc' : 'white',
+              height: '40px',
+              width: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #cbd5e0',
+              borderRight: 'none',
+              borderRadius: '8px 0 0 8px',
+              backgroundColor: isCurrentMonth ? '#edf2f7' : 'white',
               cursor: isCurrentMonth ? 'not-allowed' : 'pointer',
-              fontSize: '14px',
-              opacity: isCurrentMonth ? 0.5 : 1
+              fontSize: '16px',
+              color: isCurrentMonth ? '#a0aec0' : '#4a5568',
+              transition: 'all 0.15s ease'
             }}
             className="calendar-nav-button"
             onClick={() => navigateMonth(-1)}
             disabled={isCurrentMonth}
           >
-            &larr;
+            ‹
           </button>
           <div style={{
-            padding: '8px 20px',
-            backgroundColor: '#f7fafc',
-            borderTop: '1px solid #e2e8f0',
-            borderBottom: '1px solid #e2e8f0',
-            fontSize: '15px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0 20px',
+            backgroundColor: '#4299e1',
+            borderTop: '1px solid #3182ce',
+            borderBottom: '1px solid #3182ce',
+            fontSize: '14px',
             fontWeight: '600',
-            color: '#2d3748',
-            minWidth: '160px',
-            textAlign: 'center'
+            color: 'white',
+            minWidth: '160px'
           }} className="calendar-label">{monthLabel}</div>
           <button
             style={{
-              padding: '8px 12px',
-              border: '1px solid #e2e8f0',
-              borderRadius: '0 6px 6px 0',
-              backgroundColor: isMaxMonth ? '#f7fafc' : 'white',
+              height: '40px',
+              width: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #cbd5e0',
+              borderLeft: 'none',
+              borderRadius: '0 8px 8px 0',
+              backgroundColor: isMaxMonth ? '#edf2f7' : 'white',
               cursor: isMaxMonth ? 'not-allowed' : 'pointer',
-              fontSize: '14px',
-              opacity: isMaxMonth ? 0.5 : 1
+              fontSize: '16px',
+              color: isMaxMonth ? '#a0aec0' : '#4a5568',
+              transition: 'all 0.15s ease'
             }}
             className="calendar-nav-button"
             onClick={() => navigateMonth(1)}
             disabled={isMaxMonth}
           >
-            &rarr;
+            ›
           </button>
         </div>
       )}
