@@ -93,6 +93,21 @@ html, body {
     order: 1 !important;
   }
 
+  /* Map header - centered title with legend below */
+  .map-header {
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .map-title {
+    font-size: 16px !important;
+  }
+
+  .map-legend {
+    gap: 8px !important;
+    font-size: 10px !important;
+  }
+
   /* Map - ensure no overlap, move up */
   .map-container {
     position: relative !important;

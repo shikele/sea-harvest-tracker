@@ -20,19 +20,23 @@ const styles = {
   },
   header: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: '16px'
+    marginBottom: '16px',
+    gap: '10px'
   },
   title: {
     fontSize: '18px',
     fontWeight: '600',
-    color: '#1a202c'
+    color: '#1a202c',
+    textAlign: 'center'
   },
   legend: {
     display: 'flex',
-    gap: '16px',
-    fontSize: '12px'
+    gap: '12px',
+    fontSize: '12px',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
   },
   legendItem: {
     display: 'flex',
@@ -246,9 +250,9 @@ export default function MapView({ beaches, onBeachClick, userLocation, selectedB
 
   return (
     <div style={styles.container}>
-      <div style={styles.header}>
-        <h2 style={styles.title}>Beach Map</h2>
-        <div style={styles.legend}>
+      <div style={styles.header} className="map-header">
+        <h2 style={styles.title} className="map-title">Beach Map</h2>
+        <div style={styles.legend} className="map-legend">
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendDot, backgroundColor: '#48bb78' }} />
             <span>Open</span>
