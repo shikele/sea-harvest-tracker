@@ -951,7 +951,7 @@ export default function Dashboard() {
             <div style={{ textAlign: 'center', marginBottom: '12px' }}>
               <h2 style={{ ...styles.sectionTitle, marginBottom: '4px' }} className="section-title">
                 {selectedSpecies.length > 0 && selectedCalendarDate ? (
-                  `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
+                  `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
                 ) : sortMode === 'distance' ? 'Closest to me' : 'Beaches by Opportunity'}
               </h2>
               <span style={styles.filterCount}>
