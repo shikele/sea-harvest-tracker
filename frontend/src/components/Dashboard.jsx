@@ -551,6 +551,11 @@ export default function Dashboard() {
     }
   };
 
+  const handleDateSelect = (date, allBeachesForDay = []) => {
+    setSelectedCalendarDate(date);
+    setCalendarDayBeaches(allBeachesForDay || []);
+  };
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setCurrentPage(1);
@@ -755,6 +760,8 @@ export default function Dashboard() {
         <div className="calendar-section" style={{ order: 1 }}>
           <HarvestCalendar
             onBeachClick={handleBeachSelect}
+            onDateSelect={handleDateSelect}
+            selectedDate={selectedCalendarDate}
             statusFilter={filter}
             accessFilter={accessFilter}
             selectedSpecies={selectedSpecies}

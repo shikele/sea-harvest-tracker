@@ -93,7 +93,9 @@ const styles = {
     height: '220px',
     overflow: 'hidden',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    cursor: 'pointer',
+    transition: 'all 0.15s ease'
   },
   dayCardMonth: {
     backgroundColor: '#f7fafc',
@@ -126,6 +128,11 @@ const styles = {
   },
   dayCardToday: {
     border: '2px solid #4299e1'
+  },
+  dayCardSelected: {
+    backgroundColor: '#ebf8ff',
+    border: '2px solid #3182ce',
+    boxShadow: '0 0 0 1px #3182ce'
   },
   dayHeader: {
     textAlign: 'center',
@@ -328,7 +335,7 @@ function getMonthData(year, month) {
   return { startPadding, daysInMonth, firstDay, lastDay };
 }
 
-export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', accessFilter = 'all', selectedSpecies = [], allBeaches = [], allSpecies = [], onSpeciesToggle }) {
+export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDate, statusFilter = 'all', accessFilter = 'all', selectedSpecies = [], allBeaches = [], allSpecies = [], onSpeciesToggle }) {
   const [calendarData, setCalendarData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -796,10 +803,16 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
       {viewMode === 'week' ? (
         <div style={styles.calendar7Day} className="calendar-7day-grid">
           {weekData.map((day) => (
-            <div key={day.date} style={{
-              ...styles.dayCard,
-              ...(isSameDay(day.date, today) ? styles.dayCardToday : {})
-            }} className="calendar-day-card">
+            <div
+              key={day.date}
+              style={{
+                ...styles.dayCard,
+                ...(isSameDay(day.date, today) ? styles.dayCardToday : {}),
+                ...(selectedDate === day.date ? styles.dayCardSelected : {})
+              }}
+              className="calendar-day-card"
+              onClick={() => onDateSelect?.(day.date, day.allBeaches || day.beaches)}
+            >
               <div style={styles.dayHeader} className="calendar-day-header">
                 <div style={styles.dayOfWeek} className="calendar-day-of-week">{day.dayOfWeek}</div>
                 <div style={styles.dayDate} className="calendar-day-date">{formatDayDate(day.date)}</div>
@@ -868,13 +881,14 @@ export default function HarvestCalendar({ onBeachClick, statusFilter = 'all', ac
                   ...styles.dayCardMonth,
                   ...(cell.isToday ? styles.dayCardToday : {}),
                   ...(cell.isPast ? styles.dayCardPast : {}),
-                  ...(cell.beaches.length > 0 && !cell.isPast ? {
+                  ...(selectedDate === cell.date && !cell.isPast ? styles.dayCardSelected : {}),
+                  ...(cell.beaches.length > 0 && !cell.isPast && selectedDate !== cell.date ? {
                     backgroundColor: cell.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
                   } : {}),
                   position: 'relative'
                 }}
                 className={`calendar-month-day ${cell.isPast ? 'past-day' : ''}`}
-                onClick={() => !cell.isPast && cell.beaches[0] && onBeachClick?.(cell.beaches[0], cell.date, cell.allBeaches)}
+                onClick={() => !cell.isPast && onDateSelect?.(cell.date, cell.allBeaches || cell.beaches)}
               >
                 {cell.isPast && <span style={styles.pastLabel}>Past</span>}
                 <div style={styles.dayHeaderMonth} className="calendar-month-day-header">
