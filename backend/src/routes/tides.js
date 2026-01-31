@@ -28,10 +28,15 @@ router.get('/:stationId', async (req, res) => {
     const { stationId } = req.params;
     const days = parseInt(req.query.days) || 7;
 
-    if (!TIDE_STATIONS[stationId]) {
-      return res.status(404).json({
-        success: false,
-        error: 'Station not found'
+    // Handle undefined or invalid stationId gracefully
+    if (!stationId || stationId === 'undefined' || stationId === 'null' || !TIDE_STATIONS[stationId]) {
+      return res.json({
+        success: true,
+        data: {
+          stationId: null,
+          stationName: 'Unknown',
+          predictions: []
+        }
       });
     }
 

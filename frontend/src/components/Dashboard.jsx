@@ -1013,7 +1013,7 @@ export default function Dashboard() {
             </div>
           )}
 
-          {!selectedBeach && beaches[0] && (
+          {!selectedBeach && beaches[0]?.tide_station_id && (
             <TideChart
               stationId={beaches[0].tide_station_id}
               stationName="Hood Canal (Default)"
