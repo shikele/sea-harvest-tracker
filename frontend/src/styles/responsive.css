@@ -93,15 +93,24 @@ html, body {
     margin-bottom: 16px !important;
   }
 
-  /* Main content - single column */
+  /* Main content - single column on mobile */
   .main-content {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 16px !important;
   }
 
-  /* Right column moves to top on mobile */
-  .right-column {
-    order: -1 !important;
+  /* Mobile ordering: Calendar (1), Beach Detail (2), Beach List (3) */
+  .calendar-section {
+    order: 1 !important;
+  }
+
+  .beach-detail-section {
+    order: 2 !important;
+  }
+
+  .beach-list-wrapper {
+    order: 3 !important;
   }
 
   /* Calendar container */
@@ -485,13 +494,24 @@ html, body {
     padding: 16px !important;
   }
 
+  /* Tablet: Single column with flex ordering */
   .main-content {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 20px !important;
   }
 
-  .right-column {
-    order: -1 !important;
+  /* Tablet ordering: Calendar (1), Beach Detail (2), Beach List (3) */
+  .calendar-section {
+    order: 1 !important;
+  }
+
+  .beach-detail-section {
+    order: 2 !important;
+  }
+
+  .beach-list-wrapper {
+    order: 3 !important;
   }
 
   .stats-row {
@@ -530,9 +550,33 @@ html, body {
     margin: 0 auto !important;
   }
 
+  /* Desktop: Two-column layout with CSS Grid */
   .main-content {
+    display: grid !important;
     grid-template-columns: 1fr 400px !important;
+    grid-template-rows: auto auto !important;
     gap: 24px !important;
+  }
+
+  /* Calendar spans left column, row 1 */
+  .calendar-section {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    order: unset !important;
+  }
+
+  /* Beach detail spans right column, both rows */
+  .beach-detail-section {
+    grid-column: 2 !important;
+    grid-row: 1 / 3 !important;
+    order: unset !important;
+  }
+
+  /* Beach list spans left column, row 2 */
+  .beach-list-wrapper {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    order: unset !important;
   }
 
   .stats-row {

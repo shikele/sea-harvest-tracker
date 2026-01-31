@@ -66,6 +66,11 @@ const styles = {
     fontWeight: '700'
   },
   mainContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px'
+  },
+  desktopGrid: {
     display: 'grid',
     gridTemplateColumns: '1fr 400px',
     gap: '24px'
@@ -697,7 +702,8 @@ export default function Dashboard() {
       </div>
 
       <div style={styles.mainContent} className="main-content">
-        <div style={styles.leftColumn}>
+        {/* Calendar Section - Order 1 on mobile */}
+        <div className="calendar-section" style={{ order: 1 }}>
           <HarvestCalendar
             onBeachClick={handleBeachSelect}
             statusFilter={filter}
@@ -707,6 +713,150 @@ export default function Dashboard() {
             allSpecies={allSpecies}
             onSpeciesToggle={handleSpeciesToggle}
           />
+        </div>
+
+        {/* Beach Detail Section - Order 2 on mobile */}
+        <div className="beach-detail-section" style={{ order: 2 }}>
+          {selectedBeach && (
+            <div style={styles.selectedBeachPanel} className="selected-beach-panel">
+              <button
+                style={styles.closeButton}
+                onClick={() => setSelectedBeach(null)}
+              >
+                x
+              </button>
+              <h3 style={styles.sectionTitle}>{selectedBeach.name}</h3>
+              <p style={{ color: '#718096', marginBottom: '16px' }}>
+                {selectedBeach.region} - {selectedBeach.county} County
+              </p>
+
+              <div style={{ marginBottom: '16px' }}>
+                <strong>Status:</strong>{' '}
+                <span
+                  style={{
+                    color:
+                      selectedBeach.biotoxinStatus === 'open'
+                        ? '#48bb78'
+                        : selectedBeach.biotoxinStatus === 'closed'
+                        ? '#f56565'
+                        : '#ecc94b'
+                  }}
+                >
+                  {selectedBeach.biotoxinStatus.toUpperCase()}
+                </span>
+              </div>
+
+              {selectedBeach.closureReason && selectedBeach.biotoxinStatus === 'closed' && (
+                <div style={{ marginBottom: '16px', color: '#c53030' }}>
+                  <strong>Closure Reason:</strong> {selectedBeach.closureReason}
+                </div>
+              )}
+
+              {selectedBeach.biotoxinStatus === 'conditional' && selectedBeach.speciesAffected && (
+                <div style={{
+                  marginBottom: '16px',
+                  padding: '12px',
+                  backgroundColor: '#fefcbf',
+                  borderRadius: '8px',
+                  borderLeft: '4px solid #ecc94b'
+                }}>
+                  <strong style={{ color: '#744210', display: 'block', marginBottom: '4px' }}>
+                    Species Restriction:
+                  </strong>
+                  <span style={{ color: '#744210', fontSize: '14px' }}>
+                    {selectedBeach.speciesAffected}
+                  </span>
+                  <p style={{ color: '#975a16', fontSize: '12px', marginTop: '8px', marginBottom: 0 }}>
+                    Other species may be harvested. Check current regulations.
+                  </p>
+                </div>
+              )}
+
+              {selectedBeach.species && selectedBeach.species.length > 0 && (
+                <div style={{ marginBottom: '16px' }}>
+                  <strong style={{ display: 'block', marginBottom: '8px' }}>What You Can Catch:</strong>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    {selectedBeach.species.map((s, i) => (
+                      <div key={i} style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '8px 12px',
+                        backgroundColor: '#f7fafc',
+                        borderRadius: '6px',
+                        fontSize: '13px'
+                      }}>
+                        <span style={{ fontWeight: '500' }}>{s.name}</span>
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                          <span style={{
+                            padding: '2px 8px',
+                            borderRadius: '10px',
+                            fontSize: '11px',
+                            backgroundColor: s.abundance === 'excellent' ? '#c6f6d5' :
+                                           s.abundance === 'good' ? '#bee3f8' :
+                                           s.abundance === 'moderate' ? '#fefcbf' : '#e2e8f0',
+                            color: s.abundance === 'excellent' ? '#22543d' :
+                                  s.abundance === 'good' ? '#2c5282' :
+                                  s.abundance === 'moderate' ? '#744210' : '#4a5568'
+                          }}>
+                            {s.abundance}
+                          </span>
+                          <span style={{ color: '#718096', fontSize: '11px' }}>
+                            &lt;{s.min_tide_ft}ft
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {selectedBeach.notes && (
+                    <div style={{ marginTop: '8px', fontSize: '12px', color: '#718096', fontStyle: 'italic' }}>
+                      {selectedBeach.notes}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <button
+                onClick={() => setShowFullTides(true)}
+                style={{
+                  width: '100%',
+                  padding: '10px 16px',
+                  marginBottom: '16px',
+                  backgroundColor: '#ebf8ff',
+                  border: '1px solid #90cdf4',
+                  borderRadius: '8px',
+                  color: '#2b6cb0',
+                  fontSize: '13px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <span style={{ fontSize: '16px' }}>🌊</span>
+                View Full Tide Data (14 days)
+              </button>
+
+              <TideChart
+                stationId={selectedBeach.tide_station_id || beaches.find(b => b.id === selectedBeach.id)?.tide_station_id}
+                stationName={selectedBeach.region}
+              />
+            </div>
+          )}
+
+          {!selectedBeach && beaches[0]?.tide_station_id && (
+            <TideChart
+              stationId={beaches[0].tide_station_id}
+              stationName="Hood Canal (Default)"
+            />
+          )}
+        </div>
+
+        {/* Beach List Section - Order 3 on mobile */}
+        <div className="beach-list-wrapper" style={{ order: 3 }}>
 
           <div style={styles.beachList} className="beach-list-section">
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
@@ -864,145 +1014,6 @@ export default function Dashboard() {
               </div>
             )}
           </div>
-        </div>
-
-        <div style={styles.rightColumn} className="right-column">
-          {selectedBeach && (
-            <div style={styles.selectedBeachPanel} className="selected-beach-panel">
-              <button
-                style={styles.closeButton}
-                onClick={() => setSelectedBeach(null)}
-              >
-                x
-              </button>
-              <h3 style={styles.sectionTitle}>{selectedBeach.name}</h3>
-              <p style={{ color: '#718096', marginBottom: '16px' }}>
-                {selectedBeach.region} - {selectedBeach.county} County
-              </p>
-
-              <div style={{ marginBottom: '16px' }}>
-                <strong>Status:</strong>{' '}
-                <span
-                  style={{
-                    color:
-                      selectedBeach.biotoxinStatus === 'open'
-                        ? '#48bb78'
-                        : selectedBeach.biotoxinStatus === 'closed'
-                        ? '#f56565'
-                        : '#ecc94b'
-                  }}
-                >
-                  {selectedBeach.biotoxinStatus.toUpperCase()}
-                </span>
-              </div>
-
-              {selectedBeach.closureReason && selectedBeach.biotoxinStatus === 'closed' && (
-                <div style={{ marginBottom: '16px', color: '#c53030' }}>
-                  <strong>Closure Reason:</strong> {selectedBeach.closureReason}
-                </div>
-              )}
-
-              {selectedBeach.biotoxinStatus === 'conditional' && selectedBeach.speciesAffected && (
-                <div style={{
-                  marginBottom: '16px',
-                  padding: '12px',
-                  backgroundColor: '#fefcbf',
-                  borderRadius: '8px',
-                  borderLeft: '4px solid #ecc94b'
-                }}>
-                  <strong style={{ color: '#744210', display: 'block', marginBottom: '4px' }}>
-                    Species Restriction:
-                  </strong>
-                  <span style={{ color: '#744210', fontSize: '14px' }}>
-                    {selectedBeach.speciesAffected}
-                  </span>
-                  <p style={{ color: '#975a16', fontSize: '12px', marginTop: '8px', marginBottom: 0 }}>
-                    Other species may be harvested. Check current regulations.
-                  </p>
-                </div>
-              )}
-
-              {selectedBeach.species && selectedBeach.species.length > 0 && (
-                <div style={{ marginBottom: '16px' }}>
-                  <strong style={{ display: 'block', marginBottom: '8px' }}>What You Can Catch:</strong>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    {selectedBeach.species.map((s, i) => (
-                      <div key={i} style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: '8px 12px',
-                        backgroundColor: '#f7fafc',
-                        borderRadius: '6px',
-                        fontSize: '13px'
-                      }}>
-                        <span style={{ fontWeight: '500' }}>{s.name}</span>
-                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                          <span style={{
-                            padding: '2px 8px',
-                            borderRadius: '10px',
-                            fontSize: '11px',
-                            backgroundColor: s.abundance === 'excellent' ? '#c6f6d5' :
-                                           s.abundance === 'good' ? '#bee3f8' :
-                                           s.abundance === 'moderate' ? '#fefcbf' : '#e2e8f0',
-                            color: s.abundance === 'excellent' ? '#22543d' :
-                                  s.abundance === 'good' ? '#2c5282' :
-                                  s.abundance === 'moderate' ? '#744210' : '#4a5568'
-                          }}>
-                            {s.abundance}
-                          </span>
-                          <span style={{ color: '#718096', fontSize: '11px' }}>
-                            &lt;{s.min_tide_ft}ft
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  {selectedBeach.notes && (
-                    <div style={{ marginTop: '8px', fontSize: '12px', color: '#718096', fontStyle: 'italic' }}>
-                      {selectedBeach.notes}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              <button
-                onClick={() => setShowFullTides(true)}
-                style={{
-                  width: '100%',
-                  padding: '10px 16px',
-                  marginBottom: '16px',
-                  backgroundColor: '#ebf8ff',
-                  border: '1px solid #90cdf4',
-                  borderRadius: '8px',
-                  color: '#2b6cb0',
-                  fontSize: '13px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  transition: 'all 0.2s'
-                }}
-              >
-                <span style={{ fontSize: '16px' }}>🌊</span>
-                View Full Tide Data (14 days)
-              </button>
-
-              <TideChart
-                stationId={selectedBeach.tide_station_id || beaches.find(b => b.id === selectedBeach.id)?.tide_station_id}
-                stationName={selectedBeach.region}
-              />
-            </div>
-          )}
-
-          {!selectedBeach && beaches[0]?.tide_station_id && (
-            <TideChart
-              stationId={beaches[0].tide_station_id}
-              stationName="Hood Canal (Default)"
-            />
-          )}
         </div>
       </div>
         </>
