@@ -56,7 +56,14 @@ const styles = {
     backgroundColor: 'white',
     borderRadius: '12px',
     padding: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+    cursor: 'pointer',
+    transition: 'all 0.15s ease',
+    border: '2px solid transparent'
+  },
+  statCardSelected: {
+    border: '2px solid #3182ce',
+    boxShadow: '0 2px 8px rgba(49, 130, 206, 0.3)'
   },
   statLabel: {
     fontSize: '13px',
@@ -424,7 +431,7 @@ export default function Dashboard() {
   const [beaches, setBeaches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState('all');
+  const [statusFilters, setStatusFilters] = useState([]); // empty = all, or array of selected statuses
   const [selectedBeach, setSelectedBeach] = useState(null);
   const [sortMode, setSortMode] = useState('opportunity'); // 'opportunity' or 'distance'
   const [userLocation, setUserLocation] = useState(null);
@@ -525,7 +532,7 @@ export default function Dashboard() {
   const clearAllFilters = () => {
     setSearchQuery('');
     setSelectedSpecies([]);
-    setFilter('all');
+    setStatusFilters([]);
     setAccessFilter('all');
     setSelectedCalendarDate(null);
     setCalendarDayBeaches([]);
@@ -568,8 +575,14 @@ export default function Dashboard() {
     setCurrentPage(1);
   };
 
-  const handleFilterChange = (f) => {
-    setFilter(f);
+  const toggleStatusFilter = (status) => {
+    setStatusFilters(prev => {
+      if (prev.includes(status)) {
+        return prev.filter(s => s !== status);
+      } else {
+        return [...prev, status];
+      }
+    });
     setCurrentPage(1);
   };
 
@@ -602,12 +615,9 @@ export default function Dashboard() {
         if (accessFilter === 'public' && beach.accessType === 'boat') return false;
         if (accessFilter === 'boat' && beach.accessType !== 'boat') return false;
       }
-      // Status filter
-      if (filter === 'all') return true;
-      if (filter === 'open') return beach.biotoxinStatus === 'open';
-      if (filter === 'conditional') return beach.biotoxinStatus === 'conditional';
-      if (filter === 'unclassified') return beach.biotoxinStatus === 'unclassified';
-      return true;
+      // Status filter (empty array = all, otherwise check if status is in selected filters)
+      if (statusFilters.length === 0) return true;
+      return statusFilters.includes(beach.biotoxinStatus);
     })
     .sort((a, b) => {
       if (sortMode === 'distance' && a.distance !== null && b.distance !== null) {
@@ -640,7 +650,7 @@ export default function Dashboard() {
       return 0;
     });
 
-  const hasActiveFilters = searchQuery || selectedSpecies.length > 0 || filter !== 'all' || accessFilter !== 'all';
+  const hasActiveFilters = searchQuery || selectedSpecies.length > 0 || statusFilters.length > 0 || accessFilter !== 'all';
 
   // When a date is selected from calendar, show all suitable beaches for that day
   // Apply status and access filters to calendar beaches as well
@@ -654,12 +664,9 @@ export default function Dashboard() {
       if (accessFilter === 'public' && beach.accessType === 'boat') return false;
       if (accessFilter === 'boat' && beach.accessType !== 'boat') return false;
     }
-    // Status filter
-    if (filter === 'all') return true;
-    if (filter === 'open') return beach.biotoxinStatus === 'open';
-    if (filter === 'conditional') return beach.biotoxinStatus === 'conditional';
-    if (filter === 'unclassified') return beach.biotoxinStatus === 'unclassified';
-    return true;
+    // Status filter (empty array = all)
+    if (statusFilters.length === 0) return true;
+    return statusFilters.includes(beach.biotoxinStatus);
   });
 
   // Use filtered calendar beaches when date is selected, otherwise regular filtered beaches
@@ -739,19 +746,47 @@ export default function Dashboard() {
       ) : (
         <>
       <div style={styles.statsRow} className="stats-row">
-        <div style={styles.statCard} className="stat-card">
+        <div
+          style={{
+            ...styles.statCard,
+            ...(statusFilters.includes('open') ? styles.statCardSelected : {})
+          }}
+          className="stat-card"
+          onClick={() => toggleStatusFilter('open')}
+        >
           <div style={styles.statLabel} className="stat-label">Open</div>
           <div style={{ ...styles.statValue, color: '#48bb78' }} className="stat-value">{stats.open}</div>
         </div>
-        <div style={styles.statCard} className="stat-card">
+        <div
+          style={{
+            ...styles.statCard,
+            ...(statusFilters.includes('conditional') ? styles.statCardSelected : {})
+          }}
+          className="stat-card"
+          onClick={() => toggleStatusFilter('conditional')}
+        >
           <div style={styles.statLabel} className="stat-label">Conditional</div>
           <div style={{ ...styles.statValue, color: '#ecc94b' }} className="stat-value">{stats.conditional}</div>
         </div>
-        <div style={styles.statCard} className="stat-card">
+        <div
+          style={{
+            ...styles.statCard,
+            ...(statusFilters.includes('closed') ? styles.statCardSelected : {})
+          }}
+          className="stat-card"
+          onClick={() => toggleStatusFilter('closed')}
+        >
           <div style={styles.statLabel} className="stat-label">Closed</div>
           <div style={{ ...styles.statValue, color: '#f56565' }} className="stat-value">{stats.closed}</div>
         </div>
-        <div style={styles.statCard} className="stat-card">
+        <div
+          style={{
+            ...styles.statCard,
+            ...(statusFilters.includes('unclassified') ? styles.statCardSelected : {})
+          }}
+          className="stat-card"
+          onClick={() => toggleStatusFilter('unclassified')}
+        >
           <div style={styles.statLabel} className="stat-label">Unclassified</div>
           <div style={{ ...styles.statValue, color: '#a0aec0' }} className="stat-value">{stats.unclassified}</div>
         </div>
@@ -768,7 +803,7 @@ export default function Dashboard() {
             onBeachClick={handleBeachSelect}
             onDateSelect={handleDateSelect}
             selectedDate={selectedCalendarDate}
-            statusFilter={filter}
+            statusFilters={statusFilters}
             accessFilter={accessFilter}
             selectedSpecies={selectedSpecies}
             allBeaches={beaches}
@@ -955,26 +990,6 @@ export default function Dashboard() {
               </div>
 
               <div style={styles.filterGroup} className="filter-group">
-                <div style={styles.filterGroupRow} className="filter-group-row">
-                  <span style={styles.filterIcon} title="Filter by status">&#127958;</span>
-                  {[
-                    { value: 'all', label: 'All', icon: '' },
-                    { value: 'open', label: 'Open', icon: '&#128994;' },
-                    { value: 'conditional', label: 'Conditional', icon: '&#128993;' },
-                    { value: 'unclassified', label: 'Unclassified', icon: '&#9898;' }
-                  ].map((f) => (
-                    <button
-                      key={f.value}
-                      style={{
-                        ...styles.filterButtonSmall,
-                        ...(filter === f.value ? styles.filterButtonActive : {})
-                      }}
-                      className="filter-button"
-                      onClick={() => handleFilterChange(f.value)}
-                      dangerouslySetInnerHTML={{ __html: f.icon ? `${f.icon} ${f.label}` : f.label }}
-                    />
-                  ))}
-                </div>
                 <div style={styles.filterGroupRow} className="filter-group-row">
                   <span style={styles.filterIcon} title="Filter by access type">&#128739;</span>
                   {[

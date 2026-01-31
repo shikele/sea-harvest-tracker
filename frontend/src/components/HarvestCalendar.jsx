@@ -335,7 +335,7 @@ function getMonthData(year, month) {
   return { startPadding, daysInMonth, firstDay, lastDay };
 }
 
-export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDate, statusFilter = 'all', accessFilter = 'all', selectedSpecies = [], allBeaches = [], allSpecies = [], onSpeciesToggle }) {
+export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDate, statusFilters = [], accessFilter = 'all', selectedSpecies = [], allBeaches = [], allSpecies = [], onSpeciesToggle }) {
   const [calendarData, setCalendarData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -413,11 +413,9 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
         const fullBeach = beachDataMap[beach.id];
         if (!fullBeach) return null;
 
-        // Status filter
-        if (statusFilter !== 'all') {
-          if (statusFilter === 'open' && beach.biotoxinStatus !== 'open') return null;
-          if (statusFilter === 'conditional' && beach.biotoxinStatus !== 'conditional') return null;
-          if (statusFilter === 'closed' && beach.biotoxinStatus !== 'closed') return null;
+        // Status filter (empty array = all)
+        if (statusFilters.length > 0 && !statusFilters.includes(beach.biotoxinStatus)) {
+          return null;
         }
 
         // Access filter
@@ -468,7 +466,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
         tideHighForSpecies
       };
     });
-  }, [calendarData, selectedSpecies, statusFilter, accessFilter, beachDataMap]);
+  }, [calendarData, selectedSpecies, statusFilters, accessFilter, beachDataMap]);
 
   // Filter calendar data to only include today and future for week view
   const futureCalendarData = useMemo(() => {
