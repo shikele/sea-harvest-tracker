@@ -187,8 +187,17 @@ function isSameDay(date1, date2) {
          d1.getDate() === d2.getDate();
 }
 
+// Derive status color from biotoxinStatus if statusColor not provided
+function getStatusColorFromStatus(biotoxinStatus) {
+  if (biotoxinStatus === 'open') return 'green';
+  if (biotoxinStatus === 'closed') return 'red';
+  if (biotoxinStatus === 'conditional') return 'yellow';
+  return 'gray';
+}
+
 export default function BeachCard({ beach, onClick, selectedDate }) {
-  const colors = statusColors[beach.statusColor] || statusColors.gray;
+  const colorKey = beach.statusColor || getStatusColorFromStatus(beach.biotoxinStatus);
+  const colors = statusColors[colorKey] || statusColors.gray;
 
   // If beach has direct tide data from calendar (tideHeight, tideTime, tideQuality), use it
   const hasDirectTideData = beach.tideHeight !== undefined && beach.tideTime !== undefined;
