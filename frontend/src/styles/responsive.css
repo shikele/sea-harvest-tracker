@@ -259,9 +259,9 @@ html, body {
     width: 100% !important;
     min-width: unset !important;
     flex-shrink: 0 !important;
-    height: 60px !important;
-    min-height: 60px !important;
-    padding: 5px 8px !important;
+    height: 80px !important;
+    min-height: 80px !important;
+    padding: 8px 10px !important;
     border-radius: 5px !important;
     display: flex !important;
     flex-direction: row !important;
@@ -623,8 +623,8 @@ html, body {
     flex-direction: row !important;
     align-items: center !important;
     gap: 12px !important;
-    height: 70px !important;
-    min-height: 70px !important;
+    height: 90px !important;
+    min-height: 90px !important;
     padding: 10px 12px !important;
   }
 
