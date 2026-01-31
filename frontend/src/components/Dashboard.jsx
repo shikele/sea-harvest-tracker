@@ -828,8 +828,11 @@ export default function Dashboard() {
               >
                 x
               </button>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px', marginTop: '24px' }}>
-                <h3 style={{ ...styles.sectionTitle, marginBottom: 0 }}>{selectedBeach.name}</h3>
+              <h3 style={styles.sectionTitle}>{selectedBeach.name}</h3>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <span style={{ color: '#718096' }}>
+                  {selectedBeach.region} - {selectedBeach.county} County
+                </span>
                 <span
                   style={{
                     display: 'inline-block',
@@ -855,9 +858,6 @@ export default function Dashboard() {
                   {selectedBeach.biotoxinStatus}
                 </span>
               </div>
-              <p style={{ color: '#718096', marginBottom: '16px' }}>
-                {selectedBeach.region} - {selectedBeach.county} County
-              </p>
 
               {selectedBeach.closureReason && selectedBeach.biotoxinStatus === 'closed' && (
                 <div style={{ marginBottom: '16px', color: '#c53030' }}>
