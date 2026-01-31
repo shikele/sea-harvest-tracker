@@ -10,8 +10,7 @@ const speciesData = [
       { url: '/images/species/manila-clam-1.jpg', caption: 'Manila clam specimen' },
       { url: '/images/species/manila-clam-2.jpg', caption: 'Fresh Manila clams harvest (WDFW)' },
       { url: '/images/species/manila-clam-3.jpg', caption: 'Manila clam close-up (WDFW)' },
-      { url: '/images/species/manila-clam-4.jpg', caption: 'Manila clam shell pattern' },
-      { url: '/images/species/manila-clam-5.jpg', caption: 'Manila clam trio specimens' }
+      { url: '/images/species/manila-clam-4.jpg', caption: 'Manila clam shell pattern' }
     ],
     description: 'One of the most popular clams for harvesting. Originally from Asia, now abundant in Puget Sound. Sweet, briny flavor perfect for steaming, chowders, and pasta dishes.',
     habitat: 'Sandy and muddy beaches in the middle to upper intertidal zone.',
@@ -27,9 +26,8 @@ const speciesData = [
     images: [
       { url: '/images/species/littleneck-1.jpg', caption: 'Native littleneck on rocky beach (WDFW)' },
       { url: '/images/species/littleneck-2.jpg', caption: 'Native littleneck clam specimen (WDFW)' },
-      { url: '/images/species/littleneck-3.jpg', caption: 'Historical illustration' },
-      { url: '/images/species/littleneck-4.jpg', caption: 'Littleneck clam left valve' },
-      { url: '/images/species/littleneck-5.jpg', caption: 'Littleneck clam right valve' }
+      { url: '/images/species/littleneck-3.jpg', caption: 'Littleneck clam left valve' },
+      { url: '/images/species/littleneck-4.jpg', caption: 'Littleneck clam right valve' }
     ],
     description: 'Native to the Pacific Northwest. Has distinctive lattice pattern on shell. Sweeter and more tender than Manila clams. Excellent steamed or in chowder.',
     habitat: 'Gravel and rocky beaches, often mixed with Manila clams.',
@@ -45,7 +43,7 @@ const speciesData = [
     images: [
       { url: '/images/species/butter-clam-1.jpg', caption: 'Butter clam close-up' },
       { url: '/images/species/butter-clam-2.jpg', caption: 'Butter clam specimen (WDFW)' },
-      { url: '/images/species/butter-clam-3.jpg', caption: 'Butter clam shell detail' },
+      { url: '/images/species/butter-clam3.jpg', caption: 'Butter clam shell detail' },
       { url: '/images/species/butter-clam-4.jpg', caption: 'Butter clam exterior' },
       { url: '/images/species/butter-clam-5.jpg', caption: 'Butter clam valve specimen' }
     ],
@@ -81,9 +79,7 @@ const speciesData = [
     images: [
       { url: '/images/species/horse-clam-1.jpg', caption: 'Horse clam on beach (WDFW)' },
       { url: '/images/species/horse-clam-2.jpg', caption: 'Horse clam specimen (WDFW)' },
-      { url: '/images/species/horse-clam-3.jpg', caption: 'Horse clam siphons exposed' },
-      { url: '/images/species/horse-clam-4.jpg', caption: 'Horse clam siphons close-up' },
-      { url: '/images/species/horse-clam-5.jpg', caption: 'Gaper clam illustration' }
+      { url: '/images/species/horse-clam-3.jpg', caption: 'Horse clam siphons exposed' }
     ],
     description: 'Large gaper clams similar to geoduck but easier to dig. Shell cannot fully close. Siphon is edible after removing tough skin. Good for chowder and fritters.',
     habitat: 'Sandy-mud beaches in lower intertidal, buried 12-16 inches.',
@@ -100,8 +96,7 @@ const speciesData = [
       { url: '/images/species/geoduck-1.jpg', caption: 'Freshly harvested geoduck' },
       { url: '/images/species/geoduck-2.jpg', caption: 'Geoduck siphons in sand (WDFW)' },
       { url: '/images/species/geoduck-3.jpg', caption: '6.53-pound geoduck specimen (WDFW)' },
-      { url: '/images/species/geoduck-4.jpg', caption: 'Geoduck held in two hands' },
-      { url: '/images/species/geoduck-5.jpg', caption: 'Pacific geoduck clam' }
+      { url: '/images/species/geoduck-4.jpg', caption: 'Geoduck held in two hands' }
     ],
     description: 'World\'s largest burrowing clam, can live 140+ years! Prized in Asian cuisine for its crunchy texture. Requires very low tides and significant digging effort.',
     habitat: 'Sandy beaches, buried 2-3 feet deep. Look for siphon "show".',
@@ -134,10 +129,7 @@ const speciesData = [
     scientificName: 'Nuttallia obscurata',
     images: [
       { url: '/images/species/varnish-clam-1.jpg', caption: 'Varnish clam exterior' },
-      { url: '/images/species/varnish-clam-2.jpg', caption: 'Varnish clam interior (purple)' },
-      { url: '/images/species/varnish-clam-3.jpg', caption: 'Purple varnish clam in habitat' },
-      { url: '/images/species/varnish-clam-4.jpg', caption: 'Varnish clam at Dumas Bay' },
-      { url: '/images/species/varnish-clam-5.jpg', caption: 'Varnish clam warning sign' }
+      { url: '/images/species/varnish-clam-4.jpg', caption: 'Varnish clam at Dumas Bay' }
     ],
     description: 'Invasive species from Asia, now abundant in Puget Sound. Shiny, varnished appearance. Quick to cook - just 2-3 minutes. Good in stir-fry and soups.',
     habitat: 'Upper intertidal zone in sand and gravel, easy to access.',
@@ -153,9 +145,7 @@ const speciesData = [
     images: [
       { url: '/images/species/softshell-1.jpg', caption: 'Softshell clam specimen' },
       { url: '/images/species/softshell-2.jpg', caption: 'Softshell clam shell' },
-      { url: '/images/species/softshell-3.jpg', caption: 'Mya arenaria specimen' },
-      { url: '/images/species/softshell-4.jpg', caption: 'Softshell clam right valve' },
-      { url: '/images/species/softshell-5.jpg', caption: 'Softshell clam left valve' }
+      { url: '/images/species/softshell-4.jpg', caption: 'Softshell clam valve' }
     ],
     description: 'Also called "steamers". Thin, fragile shells. Very tender meat. Classic New England steamer clam, now found in some Puget Sound beaches.',
     habitat: 'Muddy and sandy flats, buried 4-8 inches deep.',
@@ -170,8 +160,6 @@ const speciesData = [
     scientificName: 'Mytilus trossulus',
     images: [
       { url: '/images/species/mussel-1.jpg', caption: 'Blue mussels' },
-      { url: '/images/species/mussel-2.jpg', caption: 'Mussels on beach' },
-      { url: '/images/species/mussel-3.jpg', caption: 'Live blue mussel' },
       { url: '/images/species/mussel-4.jpg', caption: 'Blue mussel cluster' },
       { url: '/images/species/mussel-5.jpg', caption: 'Mytilus edulis specimen' }
     ],
@@ -209,7 +197,7 @@ const speciesData = [
       { url: '/images/species/razor-clam-2.jpg', caption: 'Razor clam limit with shovel (WDFW)' },
       { url: '/images/species/razor-clam-3.jpg', caption: 'Pacific Beach harvest location' },
       { url: '/images/species/razor-clam-4.jpg', caption: 'Digging razor clams at low tide (NOAA)' },
-      { url: '/images/species/razor-clam-5.jpg', caption: 'Harvested razor clam (NOAA)' }
+      { url: '/images/species/razor-clam5.jpg', caption: 'Harvested razor clam (NOAA)' }
     ],
     description: 'One of the most sought-after shellfish in Washington. Found on ocean beaches from California to Alaska. Look for keyhole-shaped depressions in sand. Daily limit is 15 clams - keep the first 15 you dig regardless of size.',
     habitat: 'Sandy ocean beaches in the intertidal zone, from +3 ft to -2 ft tide level. Found at Long Beach, Twin Harbors, Copalis, and Mocrocks.',
@@ -226,8 +214,7 @@ const speciesData = [
       { url: '/images/species/dungeness-crab-1.jpg', caption: 'Dungeness crab (WDFW)' },
       { url: '/images/species/dungeness-crab-2.jpg', caption: 'Measuring crab carapace (WDFW)' },
       { url: '/images/species/dungeness-crab-3.jpg', caption: 'Crabs in crab pot, Puget Sound (WDFW)' },
-      { url: '/images/species/dungeness-crab-4.jpg', caption: 'Live Dungeness crab close-up' },
-      { url: '/images/species/dungeness-crab-5.jpg', caption: 'Dungeness crab specimen' }
+      { url: '/images/species/dungeness-crab-4.jpg', caption: 'Live Dungeness crab close-up' }
     ],
     description: 'Washington\'s most valuable commercial fishery. Sweet, delicate meat prized worldwide. Males only, must be in hardshell condition. Look for white-tipped claws to identify. Over 1.5 million pounds caught recreationally each year.',
     habitat: 'Eelgrass beds and sandy/muddy bottoms. Found in Puget Sound and coastal waters.',
@@ -241,11 +228,7 @@ const speciesData = [
     chineseName: '海藻 / 海带',
     scientificName: 'Nereocystis luetkeana (Bull Kelp), Ulva sp. (Sea Lettuce)',
     images: [
-      { url: '/images/species/seaweed-1.jpg', caption: 'Bull kelp at Columbia River estuary' },
-      { url: '/images/species/seaweed-2.jpg', caption: 'Kelp forest underwater' },
-      { url: '/images/species/seaweed-3.jpg', caption: 'Sea lettuce on rocks' },
-      { url: '/images/species/seaweed-4.jpg', caption: 'Seaweed varieties' },
-      { url: '/images/species/seaweed-5.jpg', caption: 'Coastal seaweed habitat' }
+      { url: '/images/species/seaweed-1.jpg', caption: 'Bull kelp at Columbia River estuary' }
     ],
     description: 'Edible seaweeds include bull kelp (blades can be pickled or used in salsa) and sea lettuce (great in soups, salads, dried as crisps). No poisonous seaweeds in Pacific Northwest! Must cut seaweed, never pull from rocks.',
     habitat: 'Bull kelp in subtidal to 30+ ft depth. Sea lettuce in upper intertidal on rocks. Harvest only in clean water areas.',
