@@ -40,7 +40,8 @@ function createEmptyDb() {
   return {
     beachStatus: {},
     tidePredictions: {},
-    comments: {}
+    comments: {},
+    commentRateLimit: {}
   };
 }
 
@@ -183,6 +184,28 @@ export function deleteComment(beachId, commentId) {
   return removed;
 }
 
+// Rate limit: 1 comment per IP per day
+export function canPostComment(ip) {
+  if (!db.commentRateLimit) db.commentRateLimit = {};
+  const today = new Date().toISOString().slice(0, 10);
+  const entry = db.commentRateLimit[ip];
+  if (!entry || entry.date !== today) return true;
+  return false;
+}
+
+export function recordCommentPost(ip) {
+  if (!db.commentRateLimit) db.commentRateLimit = {};
+  const today = new Date().toISOString().slice(0, 10);
+  db.commentRateLimit[ip] = { date: today };
+  // Prune stale entries (older than today)
+  for (const key of Object.keys(db.commentRateLimit)) {
+    if (db.commentRateLimit[key].date !== today) {
+      delete db.commentRateLimit[key];
+    }
+  }
+  saveDb(db);
+}
+
 export default {
   getAllBeaches,
   getBeachById,
@@ -193,5 +216,7 @@ export default {
   getAllComments,
   getComments,
   addComment,
-  deleteComment
+  deleteComment,
+  canPostComment,
+  recordCommentPost
 };

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
 import { dirname, join, extname } from 'path';
 import { existsSync, mkdirSync, unlinkSync } from 'fs';
-import { getAllComments, getComments, addComment, deleteComment, getBeachById } from '../db.js';
+import { getAllComments, getComments, addComment, deleteComment, getBeachById, canPostComment, recordCommentPost } from '../db.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -116,6 +116,12 @@ router.post('/:beachId', commentLimiter, (req, res) => {
       return res.status(200).json({ success: true, data: { id: 'ok' } });
     }
 
+    // 1 comment per IP per day
+    const ip = req.ip || req.connection?.remoteAddress || 'unknown';
+    if (!canPostComment(ip)) {
+      return res.status(429).json({ success: false, error: 'Limit 1 comment per day. Please try again tomorrow.' });
+    }
+
     const beachId = parseInt(req.params.beachId, 10);
     if (isNaN(beachId)) {
       return res.status(400).json({ success: false, error: 'Invalid beach ID' });
@@ -166,6 +172,7 @@ router.post('/:beachId', commentLimiter, (req, res) => {
     };
 
     addComment(beachId, comment);
+    recordCommentPost(ip);
     res.status(201).json({ success: true, data: comment });
   });
 });
@@ -177,19 +184,23 @@ router.delete('/:beachId/:commentId', express.json(), (req, res) => {
     return res.status(400).json({ success: false, error: 'Invalid beach ID' });
   }
 
+  // Admin can delete any comment with the secret header
+  const adminSecret = process.env.ADMIN_SECRET;
+  const isAdmin = adminSecret && req.headers['x-admin-secret'] === adminSecret;
+
   const { author } = req.body || {};
-  if (!author) {
+  if (!isAdmin && !author) {
     return res.status(400).json({ success: false, error: 'Author is required for deletion' });
   }
 
-  // Find the comment first to verify author
+  // Find the comment first
   const comments = getComments(beachId);
   const comment = comments.find(c => c.id === req.params.commentId);
   if (!comment) {
     return res.status(404).json({ success: false, error: 'Comment not found' });
   }
 
-  if (comment.author !== author) {
+  if (!isAdmin && comment.author !== author) {
     return res.status(403).json({ success: false, error: 'You can only delete your own comments' });
   }
 
