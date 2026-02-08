@@ -74,23 +74,31 @@ saveDb(db);
 console.log(`Loaded ${beaches.length} beaches`);
 
 // Database query functions
-export function getAllBeaches() {
-  return beaches.map(beach => ({
+function mergeStatus(beach, status) {
+  if (!status) return beach;
+  return {
     ...beach,
-    ...db.beachStatus[beach.id]
-  })).sort((a, b) => {
-    if (a.region !== b.region) return a.region.localeCompare(b.region);
-    return a.name.localeCompare(b.name);
-  });
+    biotoxin_status: status.biotoxin_status,
+    closure_reason: status.closure_reason,
+    species_affected: status.species_affected,
+    season_info: status.season_info,
+    wdfw_season_open: status.wdfw_season_open,
+    last_updated: status.last_updated
+  };
+}
+
+export function getAllBeaches() {
+  return beaches.map(beach => mergeStatus(beach, db.beachStatus[beach.id]))
+    .sort((a, b) => {
+      if (a.region !== b.region) return a.region.localeCompare(b.region);
+      return a.name.localeCompare(b.name);
+    });
 }
 
 export function getBeachById(id) {
   const beach = beaches.find(b => b.id === id);
   if (!beach) return null;
-  return {
-    ...beach,
-    ...db.beachStatus[id]
-  };
+  return mergeStatus(beach, db.beachStatus[id]);
 }
 
 export function updateBeachStatus(beachId, status) {
@@ -100,7 +108,6 @@ export function updateBeachStatus(beachId, status) {
     closure_reason: status.closure_reason || null,
     species_affected: status.species_affected || null,
     season_info: status.season_info || null,
-    wdfw_url: status.wdfw_url || null,
     wdfw_season_open: status.wdfw_season_open !== false,
     last_updated: new Date().toISOString()
   };

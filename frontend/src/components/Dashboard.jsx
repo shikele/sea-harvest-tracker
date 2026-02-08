@@ -1090,6 +1090,21 @@ export default function Dashboard() {
               <div style={styles.beachDetailSubtitle}>
                 {selectedBeach.region} - {selectedBeach.county} County
               </div>
+              <div style={{ marginBottom: '8px' }}>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedBeach.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: '13px',
+                    color: '#3182ce',
+                    textDecoration: 'none',
+                    fontWeight: '500'
+                  }}
+                >
+                  View on Google Maps &#x2197;
+                </a>
+              </div>
               <span
                 style={{
                   display: 'inline-block',
@@ -1114,6 +1129,23 @@ export default function Dashboard() {
               >
                 {selectedBeach.biotoxinStatus}
               </span>
+              {selectedBeach.wdfwUrl && (
+                <div style={{ marginTop: '8px' }}>
+                  <a
+                    href={selectedBeach.wdfwUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontSize: '13px',
+                      color: '#3182ce',
+                      textDecoration: 'none',
+                      fontWeight: '500'
+                    }}
+                  >
+                    Check status on WDFW &#x2197;
+                  </a>
+                </div>
+              )}
             </div>
 
             {selectedBeach.closureReason && selectedBeach.biotoxinStatus === 'closed' && (
@@ -1162,11 +1194,9 @@ export default function Dashboard() {
                           padding: '4px 10px',
                           borderRadius: '12px',
                           fontSize: '12px',
-                          backgroundColor: s.abundance === 'excellent' ? '#c6f6d5' :
-                                         s.abundance === 'good' ? '#bee3f8' :
+                          backgroundColor: s.abundance === 'good' ? '#bee3f8' :
                                          s.abundance === 'moderate' ? '#fefcbf' : '#e2e8f0',
-                          color: s.abundance === 'excellent' ? '#22543d' :
-                                s.abundance === 'good' ? '#2c5282' :
+                          color: s.abundance === 'good' ? '#2c5282' :
                                 s.abundance === 'moderate' ? '#744210' : '#4a5568'
                         }}>
                           {s.abundance}

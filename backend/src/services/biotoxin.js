@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { getAllBeaches, updateBeachStatus } from '../db.js';
@@ -25,6 +25,10 @@ function loadWdfwStatus() {
 }
 
 const DOH_BASE_URL = 'https://fortress.wa.gov/doh/arcgis/arcgis/rest/services/Biotoxin/Biotoxin_v2/MapServer';
+
+// Cache DOH beach status for 24 hours
+const DOH_STATUS_CACHE_FILE = join(__dirname, '../data/doh-status-cache.json');
+const DOH_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
 // Layer IDs from DOH ArcGIS service
 const LAYERS = {
@@ -120,6 +124,122 @@ const ZONE_TO_BEACH_MAPPING = {
   'kvi beach': [78],
   'fern cove': [87],
 };
+
+/**
+ * Extract BIDN (beach ID number) from a WDFW URL
+ * e.g. "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220354" -> "220354"
+ */
+function extractBidn(wdfwUrl) {
+  if (!wdfwUrl) return null;
+  const match = wdfwUrl.match(/\/(\d+)$/);
+  return match ? match[1] : null;
+}
+
+/**
+ * Load cached DOH beach status if still fresh
+ */
+function loadDohStatusCache() {
+  try {
+    if (!existsSync(DOH_STATUS_CACHE_FILE)) return null;
+    const cached = JSON.parse(readFileSync(DOH_STATUS_CACHE_FILE, 'utf8'));
+    const age = Date.now() - cached.timestamp;
+    if (age < DOH_CACHE_TTL_MS) {
+      console.log(`Using cached DOH status (${Math.round(age / 60000)} min old)`);
+      return new Map(Object.entries(cached.data));
+    }
+    console.log('DOH status cache expired, will re-fetch');
+  } catch {
+    // Cache corrupt or unreadable
+  }
+  return null;
+}
+
+/**
+ * Save DOH beach status to cache file
+ */
+function saveDohStatusCache(statusMap) {
+  const cacheData = {
+    timestamp: Date.now(),
+    data: Object.fromEntries(statusMap)
+  };
+  try {
+    writeFileSync(DOH_STATUS_CACHE_FILE, JSON.stringify(cacheData, null, 2));
+  } catch (error) {
+    console.error('Failed to save DOH status cache:', error.message);
+  }
+}
+
+/**
+ * Fetch live beach classification status from DOH ArcGIS API (Layer 15: vBeachStatus)
+ * Returns a Map of bidn -> { finalstatus, classification, reasondescription, ... }
+ * Results are cached for 24 hours to avoid excessive API calls.
+ */
+async function fetchDohBeachStatus(bidns) {
+  if (!bidns || bidns.length === 0) return new Map();
+
+  // Check cache first
+  const cached = loadDohStatusCache();
+  if (cached) return cached;
+
+  const statusMap = new Map();
+  // Query in batches to avoid URL length limits
+  const batchSize = 50;
+  for (let i = 0; i < bidns.length; i += batchSize) {
+    const batch = bidns.slice(i, i + batchSize);
+    const whereClause = `bidn IN ('${batch.join("','")}')`;
+    const url = new URL(`${DOH_BASE_URL}/15/query`);
+    url.searchParams.set('where', whereClause);
+    url.searchParams.set('outFields', 'bidn,beachname,finalstatus,classification,reasondescription,growingareastatus,closurezonestatus');
+    url.searchParams.set('f', 'json');
+    url.searchParams.set('orderByFields', 'bidn');
+
+    try {
+      const response = await fetch(url.toString(), { timeout: 15000 });
+      if (!response.ok) continue;
+      const data = await response.json();
+      if (!data.features) continue;
+
+      for (const feature of data.features) {
+        const attrs = feature.attributes;
+        const bidn = attrs.bidn || attrs.BIDN;
+        if (!bidn) continue;
+        // If multiple records exist for same bidn, prefer the most restrictive status
+        const existing = statusMap.get(bidn);
+        const finalStatus = (attrs.finalstatus || attrs.FINALSTATUS || '').toLowerCase().trim();
+        if (!existing || statusPriority(finalStatus) > statusPriority(existing.finalstatus)) {
+          statusMap.set(bidn, {
+            finalstatus: finalStatus,
+            classification: (attrs.classification || '').toLowerCase().trim(),
+            reason: attrs.reasondescription || null,
+            growingareastatus: (attrs.growingareastatus || '').toLowerCase().trim(),
+            closurezonestatus: (attrs.closurezonestatus || '').toLowerCase().trim()
+          });
+        }
+      }
+    } catch (error) {
+      console.error(`Error fetching DOH beach status batch: ${error.message}`);
+    }
+  }
+
+  // Save to cache
+  if (statusMap.size > 0) {
+    saveDohStatusCache(statusMap);
+  }
+
+  return statusMap;
+}
+
+/**
+ * Priority ranking for status (higher = more restrictive, takes precedence)
+ */
+function statusPriority(status) {
+  if (!status) return 0;
+  if (status.includes('closed')) return 4;
+  if (status.includes('unclassified')) return 3;
+  if (status.includes('conditional')) return 2;
+  if (status.includes('open')) return 1;
+  return 0;
+}
 
 /**
  * Fetch biotoxin closure zones from DOH ArcGIS API
@@ -241,19 +361,34 @@ function matchBiotoxinToBeaches(biotoxinClosures, ourBeaches) {
  * Refresh beach status using WDFW data as primary source, with DOH biotoxin overlay
  */
 export async function refreshBiotoxinData() {
-  console.log('Refreshing beach status from WDFW + DOH...');
-
-  // Load WDFW status data
-  const wdfwData = loadWdfwStatus();
-
-  // Fetch DOH biotoxin closures
-  const dohFeatures = await fetchDohBiotoxinClosures();
-  const biotoxinClosures = dohFeatures ? parseDohBiotoxinClosures(dohFeatures) : [];
-
-  console.log(`Found ${biotoxinClosures.length} DOH biotoxin closures`);
+  console.log('Refreshing beach status from DOH...');
 
   const ourBeaches = getAllBeaches();
+
+  // Extract BIDNs from beach URLs for DOH status lookup
+  const bidnToBeach = new Map();
+  for (const beach of ourBeaches) {
+    const bidn = extractBidn(beach.wdfw_url);
+    if (bidn) bidnToBeach.set(bidn, beach);
+  }
+
+  // Fetch live DOH beach classification status
+  const dohStatusMap = await fetchDohBeachStatus([...bidnToBeach.keys()]);
+  console.log(`Fetched DOH classification for ${dohStatusMap.size} beaches`);
+
+  // Fetch DOH biotoxin closures (species-specific restrictions)
+  const dohFeatures = await fetchDohBiotoxinClosures();
+  const biotoxinClosures = dohFeatures ? parseDohBiotoxinClosures(dohFeatures) : [];
+  console.log(`Found ${biotoxinClosures.length} DOH biotoxin closures`);
+
   const biotoxinMap = matchBiotoxinToBeaches(biotoxinClosures, ourBeaches);
+
+  // Load WDFW status for supplementary season info only
+  const wdfwData = loadWdfwStatus();
+  const wdfwByUrl = {};
+  for (const entry of Object.values(wdfwData.beaches)) {
+    if (entry.wdfwUrl) wdfwByUrl[entry.wdfwUrl] = entry;
+  }
 
   let openCount = 0;
   let closedCount = 0;
@@ -261,61 +396,52 @@ export async function refreshBiotoxinData() {
   let unclassifiedCount = 0;
 
   for (const beach of ourBeaches) {
-    const wdfwInfo = wdfwData.beaches[beach.id.toString()];
+    const bidn = extractBidn(beach.wdfw_url);
+    const dohStatus = bidn ? dohStatusMap.get(bidn) : null;
     const biotoxinInfo = biotoxinMap.get(beach.id);
+    const wdfwInfo = beach.wdfw_url ? wdfwByUrl[beach.wdfw_url] : null;
 
     let finalStatus = 'unclassified';
     let closureReason = null;
     let speciesAffected = null;
-    let seasonInfo = null;
+    let seasonInfo = wdfwInfo?.season || null;
 
-    if (wdfwInfo) {
-      seasonInfo = wdfwInfo.season;
+    if (dohStatus) {
+      const dohFinal = dohStatus.finalstatus;
 
-      // Start with WDFW base status
-      if (wdfwInfo.wdfwStatus === 'closed') {
-        // WDFW closed (conservation, health advisory, etc.) - always closed
+      if (dohFinal.includes('closed')) {
         finalStatus = 'closed';
-        closureReason = wdfwInfo.season || 'WDFW Closure';
-      } else if (wdfwInfo.wdfwStatus === 'open') {
-        // WDFW open - check for DOH biotoxin overlay
+        closureReason = dohStatus.reason || 'DOH Closure';
+      } else if (dohFinal.includes('open') && !dohFinal.includes('conditional')) {
+        // DOH says open - check for biotoxin overlay
         if (biotoxinInfo) {
           if (biotoxinInfo.isAllSpecies) {
-            // All species affected by biotoxin - temporarily closed
             finalStatus = 'closed';
             closureReason = 'Biotoxin - All Species';
             speciesAffected = 'All Species';
           } else {
-            // Specific species affected - conditional
             finalStatus = 'conditional';
             closureReason = 'Biotoxin - Species Restriction';
             speciesAffected = biotoxinInfo.speciesAffected;
           }
         } else {
-          // WDFW open, no biotoxin issues
           finalStatus = 'open';
         }
-      } else if (wdfwInfo.wdfwStatus === 'conditional') {
-        // WDFW conditional (partial open, oysters only, etc.)
+      } else if (dohFinal.includes('conditional')) {
         finalStatus = 'conditional';
-        closureReason = wdfwInfo.season || 'Partial Season';
-        // Check for additional biotoxin restrictions
+        closureReason = dohStatus.reason || 'Conditionally Open';
         if (biotoxinInfo) {
           speciesAffected = biotoxinInfo.speciesAffected;
         }
-      } else if (wdfwInfo.wdfwStatus === 'unclassified') {
-        // WDFW explicitly says "Unclassified"
+      } else if (dohFinal.includes('unclassified')) {
         finalStatus = 'unclassified';
-        closureReason = 'Unclassified - check DOH daily';
+        closureReason = 'Unclassified by DOH';
       } else {
-        // Fallback to unclassified
         finalStatus = 'unclassified';
-        closureReason = 'Unclassified - check DOH daily';
+        closureReason = 'Unknown DOH status';
       }
     } else {
-      // No WDFW data - check DOH biotoxin only
-      finalStatus = 'unclassified';
-      closureReason = 'Unclassified - check DOH daily';
+      // No DOH data - check biotoxin closures
       if (biotoxinInfo) {
         finalStatus = biotoxinInfo.isAllSpecies ? 'closed' : 'conditional';
         closureReason = 'Biotoxin';
@@ -329,7 +455,7 @@ export async function refreshBiotoxinData() {
       closure_reason: closureReason,
       species_affected: speciesAffected,
       season_info: seasonInfo,
-      wdfw_url: wdfwInfo?.wdfwUrl || null
+      wdfw_season_open: dohStatus ? !dohStatus.finalstatus.includes('closed') : true
     });
 
     // Count by status
