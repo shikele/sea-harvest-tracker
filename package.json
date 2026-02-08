@@ -1,7 +1,7 @@
 {
   "name": "sea-harvest-tracker",
   "version": "1.0.0",
-  "description": "Washington State shellfish harvesting tracker",
+  "description": "Washington State shellfish harvesting tracker with biotoxin status, tide predictions, harvest calendars, and community comments",
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "npm run dev --prefix frontend",

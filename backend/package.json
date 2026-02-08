@@ -1,7 +1,7 @@
 {
   "name": "sea-harvest-tracker-backend",
   "version": "1.0.0",
-  "description": "Backend for Sea Harvesting Tracker",
+  "description": "Express API serving biotoxin status, NOAA tide predictions, harvest windows, and comments with photo uploads",
   "main": "src/index.js",
   "type": "module",
   "scripts": {

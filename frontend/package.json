@@ -1,6 +1,7 @@
 {
   "name": "sea-harvest-tracker-frontend",
   "version": "1.0.0",
+  "description": "React + Leaflet frontend with interactive map, harvest calendar, and community comments",
   "type": "module",
   "scripts": {
     "dev": "vite",
