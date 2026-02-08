@@ -114,13 +114,13 @@ app.listen(PORT, () => {
     console.log('Data refresh complete!');
   })();
 
-  // Schedule daily data refresh at 6:00 AM
-  cron.schedule('0 6 * * *', async () => {
-    console.log(`[${new Date().toISOString()}] Running scheduled daily data refresh...`);
+  // Schedule monthly data refresh at 6:00 AM on the 1st of each month
+  cron.schedule('0 6 1 * *', async () => {
+    console.log(`[${new Date().toISOString()}] Running scheduled monthly data refresh...`);
 
     try {
-      const tidesResult = await refreshAllTides(7);
-      console.log(`[Scheduled] Tide data refreshed: ${tidesResult.totalPredictions} predictions`);
+      const tidesResult = await refreshAllTides(120);
+      console.log(`[Scheduled] Tide data refreshed (120 days): ${tidesResult.stations} stations`);
     } catch (error) {
       console.error('[Scheduled] Failed to refresh tide data:', error.message);
     }
@@ -132,10 +132,10 @@ app.listen(PORT, () => {
       console.error('[Scheduled] Failed to refresh biotoxin data:', error.message);
     }
 
-    console.log(`[${new Date().toISOString()}] Scheduled daily refresh complete!`);
+    console.log(`[${new Date().toISOString()}] Scheduled monthly refresh complete!`);
   }, {
     timezone: 'America/Los_Angeles' // Pacific Time
   });
 
-  console.log('Scheduled daily data refresh at 6:00 AM Pacific Time');
+  console.log('Scheduled monthly data refresh at 6:00 AM Pacific Time on the 1st of each month');
 });

@@ -1,10 +1,10 @@
-name: Daily Data Refresh
+name: Monthly Data Refresh
 
 on:
   schedule:
-    # Run at 6:00 AM Pacific Time (14:00 UTC in winter, 13:00 UTC in summer)
-    # Using 14:00 UTC to cover PST; may be 7am during PDT
-    - cron: '0 14 * * *'
+    # Run at 6:00 AM Pacific Time on the 1st of each month
+    # (14:00 UTC in winter, 13:00 UTC in summer)
+    - cron: '0 14 1 * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:

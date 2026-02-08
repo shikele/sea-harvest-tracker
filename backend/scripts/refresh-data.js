@@ -10,8 +10,8 @@ async function main() {
   console.log(`[${new Date().toISOString()}] Starting scheduled data refresh...`);
 
   try {
-    console.log('Refreshing tide data...');
-    const tidesResult = await refreshAllTides(7);
+    console.log('Refreshing tide data (120 days)...');
+    const tidesResult = await refreshAllTides(120);
     console.log(`Tide data refreshed: ${tidesResult.stations} stations updated`);
   } catch (error) {
     console.error('Failed to refresh tide data:', error.message);
