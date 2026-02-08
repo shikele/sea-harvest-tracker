@@ -5,6 +5,7 @@ dist/
 .env
 .env.local
 .env.production
+.claude/
 backend/data/db.json
 backend/uploads/
 backend/src/data/doh-status-cache.json
