@@ -60,6 +60,48 @@ export async function refreshData() {
   return postJson(`${API_BASE}/refresh`);
 }
 
+// Comments API
+export async function getAllComments() {
+  return fetchJson(`${API_BASE}/comments`);
+}
+
+export async function getComments(beachId) {
+  return fetchJson(`${API_BASE}/comments/${beachId}`);
+}
+
+export async function postComment(beachId, formData) {
+  const response = await fetch(`${API_BASE}/comments/${beachId}`, {
+    method: 'POST',
+    body: formData
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.error || `API error: ${response.status}`);
+  }
+  const data = await response.json();
+  if (!data.success) {
+    throw new Error(data.error || 'Unknown error');
+  }
+  return data.data;
+}
+
+export async function deleteComment(beachId, commentId, author) {
+  const response = await fetch(`${API_BASE}/comments/${beachId}/${commentId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ author })
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.error || `API error: ${response.status}`);
+  }
+  const data = await response.json();
+  if (!data.success) {
+    throw new Error(data.error || 'Unknown error');
+  }
+  return data.data;
+}
+
 export default {
   getBeaches,
   getBeach,
@@ -68,5 +110,9 @@ export default {
   getTides,
   getHarvestWindows,
   getHarvestCalendar,
-  refreshData
+  refreshData,
+  getAllComments,
+  getComments,
+  postComment,
+  deleteComment
 };

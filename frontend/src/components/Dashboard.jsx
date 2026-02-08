@@ -5,6 +5,7 @@ import TideChart from './TideChart';
 import HarvestCalendar from './HarvestCalendar';
 import MapView from './MapView';
 import SpeciesGuide from './SpeciesGuide';
+import CommentsSection from './CommentsSection';
 
 /**
  * Calculate distance between two coordinates using Haversine formula
@@ -843,9 +844,21 @@ export default function Dashboard() {
         >
           Species Guide
         </button>
+        <button
+          style={{
+            ...styles.tab,
+            ...(activeTab === 'comments' ? styles.tabActive : {})
+          }}
+          className="tab-button"
+          onClick={() => setActiveTab('comments')}
+        >
+          Comments
+        </button>
       </div>
 
-      {activeTab === 'species' ? (
+      {activeTab === 'comments' ? (
+        <CommentsSection beaches={beaches} />
+      ) : activeTab === 'species' ? (
         <SpeciesGuide />
       ) : (
         <>
@@ -1225,6 +1238,7 @@ export default function Dashboard() {
                 setCalendarDayBeaches([]);
               }}
             />
+
           </div>
         </div>
       )}

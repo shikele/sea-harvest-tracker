@@ -39,7 +39,8 @@ function loadDb() {
 function createEmptyDb() {
   return {
     beachStatus: {},
-    tidePredictions: {}
+    tidePredictions: {},
+    comments: {}
   };
 }
 
@@ -147,11 +148,50 @@ export function getUniqueStationIds() {
   return [...new Set(beaches.map(b => b.tide_station_id))];
 }
 
+// Comments functions
+export function getAllComments() {
+  if (!db.comments) db.comments = {};
+  const all = [];
+  for (const beachId of Object.keys(db.comments)) {
+    for (const c of db.comments[beachId]) {
+      const beach = beaches.find(b => b.id === parseInt(beachId, 10));
+      all.push({ ...c, beachName: beach?.name || `Beach #${beachId}` });
+    }
+  }
+  return all.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+export function getComments(beachId) {
+  if (!db.comments) db.comments = {};
+  const comments = db.comments[beachId] || [];
+  return [...comments].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+export function addComment(beachId, comment) {
+  if (!db.comments) db.comments = {};
+  if (!db.comments[beachId]) db.comments[beachId] = [];
+  db.comments[beachId].push(comment);
+  saveDb(db);
+}
+
+export function deleteComment(beachId, commentId) {
+  if (!db.comments || !db.comments[beachId]) return null;
+  const index = db.comments[beachId].findIndex(c => c.id === commentId);
+  if (index === -1) return null;
+  const removed = db.comments[beachId].splice(index, 1)[0];
+  saveDb(db);
+  return removed;
+}
+
 export default {
   getAllBeaches,
   getBeachById,
   updateBeachStatus,
   getTidePredictions,
   saveTidePredictions,
-  getUniqueStationIds
+  getUniqueStationIds,
+  getAllComments,
+  getComments,
+  addComment,
+  deleteComment
 };

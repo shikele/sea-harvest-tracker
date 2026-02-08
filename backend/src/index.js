@@ -3,9 +3,11 @@ import cors from 'cors';
 import cron from 'node-cron';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { existsSync, mkdirSync } from 'fs';
 import beachesRouter from './routes/beaches.js';
 import tidesRouter from './routes/tides.js';
 import harvestRouter from './routes/harvest.js';
+import commentsRouter from './routes/comments.js';
 import { refreshBiotoxinData } from './services/biotoxin.js';
 import { refreshAllTides } from './services/tides.js';
 
@@ -15,9 +17,18 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Ensure uploads directory exists
+const uploadsDir = join(__dirname, '..', 'uploads');
+if (!existsSync(uploadsDir)) {
+  mkdirSync(uploadsDir, { recursive: true });
+}
+
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve uploaded files
+app.use('/uploads', express.static(uploadsDir));
 
 // Serve static frontend files in production
 if (process.env.NODE_ENV === 'production') {
@@ -29,6 +40,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/api/beaches', beachesRouter);
 app.use('/api/tides', tidesRouter);
 app.use('/api/harvest-windows', harvestRouter);
+app.use('/api/comments', commentsRouter);
 
 // Health check
 app.get('/api/health', (req, res) => {
