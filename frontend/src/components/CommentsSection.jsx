@@ -888,7 +888,7 @@ export default function CommentsSection({ beaches }) {
                     )}
 
                     <div style={{ display: 'flex', gap: '12px' }}>
-                      <div style={{ flex: 1 }}>
+                      <div style={{ flex: 1, minWidth: 0 }}>
                         <label style={styles.modalFieldLabel}>What did you catch?</label>
                         <select
                           style={styles.modalInput}
@@ -910,14 +910,14 @@ export default function CommentsSection({ beaches }) {
                           <option value="__other__">Other...</option>
                         </select>
                       </div>
-                      <div style={{ flex: 1 }}>
+                      <div style={{ flex: '0 0 auto', minWidth: 0 }}>
                         <label style={styles.modalFieldLabel}>Date</label>
                         <input
                           type="date"
                           value={postDate}
                           onChange={(e) => setPostDate(e.target.value)}
                           max={new Date().toISOString().slice(0, 10)}
-                          style={styles.modalInput}
+                          style={{ ...styles.modalInput, width: 'auto', minWidth: 0, WebkitAppearance: 'none', MozAppearance: 'none' }}
                         />
                       </div>
                     </div>
