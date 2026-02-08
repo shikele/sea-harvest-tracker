@@ -114,16 +114,9 @@ app.listen(PORT, () => {
     console.log('Data refresh complete!');
   })();
 
-  // Schedule monthly data refresh at 6:00 AM on the 1st of each month
-  cron.schedule('0 6 1 * *', async () => {
-    console.log(`[${new Date().toISOString()}] Running scheduled monthly data refresh...`);
-
-    try {
-      const tidesResult = await refreshAllTides(120);
-      console.log(`[Scheduled] Tide data refreshed (120 days): ${tidesResult.stations} stations`);
-    } catch (error) {
-      console.error('[Scheduled] Failed to refresh tide data:', error.message);
-    }
+  // Schedule DAILY biotoxin/health status refresh at 6:00 AM
+  cron.schedule('0 6 * * *', async () => {
+    console.log(`[${new Date().toISOString()}] Running scheduled daily biotoxin refresh...`);
 
     try {
       const biotoxinResult = await refreshBiotoxinData();
@@ -132,10 +125,26 @@ app.listen(PORT, () => {
       console.error('[Scheduled] Failed to refresh biotoxin data:', error.message);
     }
 
-    console.log(`[${new Date().toISOString()}] Scheduled monthly refresh complete!`);
+    console.log(`[${new Date().toISOString()}] Scheduled daily biotoxin refresh complete!`);
   }, {
     timezone: 'America/Los_Angeles' // Pacific Time
   });
 
-  console.log('Scheduled monthly data refresh at 6:00 AM Pacific Time on the 1st of each month');
+  // Schedule MONTHLY tide data refresh at 6:00 AM on the 1st of each month
+  cron.schedule('0 6 1 * *', async () => {
+    console.log(`[${new Date().toISOString()}] Running scheduled monthly tide refresh...`);
+
+    try {
+      const tidesResult = await refreshAllTides(120);
+      console.log(`[Scheduled] Tide data refreshed (120 days): ${tidesResult.stations} stations`);
+    } catch (error) {
+      console.error('[Scheduled] Failed to refresh tide data:', error.message);
+    }
+
+    console.log(`[${new Date().toISOString()}] Scheduled monthly tide refresh complete!`);
+  }, {
+    timezone: 'America/Los_Angeles' // Pacific Time
+  });
+
+  console.log('Scheduled: Daily biotoxin refresh at 6:00 AM PT, Monthly tide refresh on 1st of month');
 });

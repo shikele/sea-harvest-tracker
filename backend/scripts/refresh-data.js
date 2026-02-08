@@ -1,13 +1,12 @@
 /**
- * Standalone script to refresh beach and tide data
- * Used by GitHub Actions for daily scheduled refresh
+ * Standalone script to refresh tide predictions (120 days)
+ * Used by GitHub Actions for monthly scheduled refresh (1st of each month)
  */
 
-import { refreshBiotoxinData } from '../src/services/biotoxin.js';
 import { refreshAllTides } from '../src/services/tides.js';
 
 async function main() {
-  console.log(`[${new Date().toISOString()}] Starting scheduled data refresh...`);
+  console.log(`[${new Date().toISOString()}] Starting monthly tide refresh...`);
 
   try {
     console.log('Refreshing tide data (120 days)...');
@@ -18,20 +17,7 @@ async function main() {
     process.exitCode = 1;
   }
 
-  try {
-    console.log('Refreshing biotoxin data...');
-    const biotoxinResult = await refreshBiotoxinData();
-    console.log(`Biotoxin data refreshed: ${biotoxinResult.updated} beaches updated`);
-    console.log(`  - Open: ${biotoxinResult.open}`);
-    console.log(`  - Closed: ${biotoxinResult.closed}`);
-    console.log(`  - Conditional: ${biotoxinResult.conditional}`);
-    console.log(`  - Unclassified: ${biotoxinResult.unclassified}`);
-  } catch (error) {
-    console.error('Failed to refresh biotoxin data:', error.message);
-    process.exitCode = 1;
-  }
-
-  console.log(`[${new Date().toISOString()}] Data refresh complete!`);
+  console.log(`[${new Date().toISOString()}] Monthly tide refresh complete!`);
 }
 
 main();
