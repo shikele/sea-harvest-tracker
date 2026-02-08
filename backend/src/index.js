@@ -17,8 +17,10 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Ensure uploads directory exists
-const uploadsDir = join(__dirname, '..', 'uploads');
+// Ensure uploads directory exists (persistent disk in production)
+const uploadsDir = process.env.NODE_ENV === 'production' && existsSync('/var/data')
+  ? '/var/data/uploads'
+  : join(__dirname, '..', 'uploads');
 if (!existsSync(uploadsDir)) {
   mkdirSync(uploadsDir, { recursive: true });
 }

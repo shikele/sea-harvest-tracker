@@ -12,8 +12,10 @@ const __dirname = dirname(__filename);
 
 const router = express.Router();
 
-// Uploads directory
-const uploadsDir = join(__dirname, '..', '..', 'uploads');
+// Uploads directory (persistent disk in production)
+const uploadsDir = process.env.NODE_ENV === 'production' && existsSync('/var/data')
+  ? '/var/data/uploads'
+  : join(__dirname, '..', '..', 'uploads');
 if (!existsSync(uploadsDir)) {
   mkdirSync(uploadsDir, { recursive: true });
 }
@@ -193,7 +195,9 @@ router.delete('/:beachId/:commentId', express.json(), (req, res) => {
 
   // Delete uploaded photos from disk
   for (const photoPath of comment.photos || []) {
-    const fullPath = join(__dirname, '..', '..', photoPath);
+    // photoPath is like "uploads/abc.jpg" — resolve relative to uploadsDir parent
+    const filename = photoPath.replace('uploads/', '');
+    const fullPath = join(uploadsDir, filename);
     try {
       if (existsSync(fullPath)) unlinkSync(fullPath);
     } catch {
