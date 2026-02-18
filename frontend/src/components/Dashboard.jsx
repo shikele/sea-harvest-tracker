@@ -1287,7 +1287,7 @@ export default function Dashboard() {
         <p style={{ marginTop: '16px', fontSize: '12px', color: '#718096' }}>
           Like this project? Leave a star on{' '}
           <a
-            href="https://github.com/anthropics/sea-harvest-tracker"
+            href="https://github.com/shikele/sea-harvest-tracker"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: '#4299e1', textDecoration: 'none' }}
