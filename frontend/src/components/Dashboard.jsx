@@ -790,12 +790,20 @@ export default function Dashboard() {
     setCurrentPage(Math.max(1, Math.min(page, totalPages)));
   };
 
+  // Base set of beaches filtered by species (before status/search filters)
+  const speciesFilteredBeaches = selectedSpecies.length > 0
+    ? beachesWithDistance.filter(beach => {
+        const beachSpeciesNames = (beach.species || []).map(s => s.name);
+        return selectedSpecies.some(s => beachSpeciesNames.includes(s));
+      })
+    : beachesWithDistance;
+
   const stats = {
-    total: beaches.length,
-    open: beaches.filter(b => b.biotoxinStatus === 'open').length,
-    conditional: beaches.filter(b => b.biotoxinStatus === 'conditional').length,
-    closed: beaches.filter(b => b.biotoxinStatus === 'closed').length,
-    unclassified: beaches.filter(b => b.biotoxinStatus === 'unclassified').length
+    total: speciesFilteredBeaches.length,
+    open: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'open').length,
+    conditional: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'conditional').length,
+    closed: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'closed').length,
+    unclassified: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'unclassified').length
   };
 
   if (loading) {
