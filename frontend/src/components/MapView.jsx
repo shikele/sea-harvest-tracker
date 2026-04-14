@@ -16,7 +16,7 @@ const styles = {
     borderRadius: '12px',
     padding: '20px',
     boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-    marginBottom: '24px'
+    marginBottom: '0'
   },
   header: {
     display: 'flex',
@@ -49,9 +49,13 @@ const styles = {
     borderRadius: '50%'
   },
   mapWrapper: {
+    position: 'relative',
     height: '400px',
     borderRadius: '8px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    willChange: 'transform',
+    WebkitTransform: 'translateZ(0)',
+    transform: 'translateZ(0)'
   },
   popup: {
     minWidth: '200px'

@@ -504,6 +504,7 @@ export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [accessFilter, setAccessFilter] = useState('all'); // 'all', 'public', 'boat'
   const [activeTab, setActiveTab] = useState('beaches'); // 'beaches' or 'species'
+  const [showMap, setShowMap] = useState(false);
   const [selectedCalendarDate, setSelectedCalendarDate] = useState(null); // Track date clicked from calendar
   const [calendarDayBeaches, setCalendarDayBeaches] = useState([]); // All suitable beaches for selected day
   const beachesPerPage = 5;
@@ -820,7 +821,6 @@ export default function Dashboard() {
     <div style={styles.container} className="dashboard-container">
       <div style={styles.header} className="dashboard-header">
         <h1 style={styles.title}>Sea Harvest All in One</h1>
-        <p style={styles.subtitle}>Follow all laws and guidance, and make sure you have a valid license</p>
       </div>
 
       <div style={styles.tabContainer} className="tab-container">
@@ -861,6 +861,71 @@ export default function Dashboard() {
       ) : activeTab === 'species' ? (
         <SpeciesGuide />
       ) : (
+        <>
+      <p style={{ fontSize: '13px', color: '#718096', margin: '0 0 12px', textAlign: 'center' }}>
+        Select a species to find the best beaches and harvest times
+      </p>
+      {allSpecies.length > 0 && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '10px 14px',
+          backgroundColor: selectedSpecies.length === 0 ? '#f0fff4' : '#f7fafc',
+          border: selectedSpecies.length === 0 ? '2px solid #48bb78' : '2px solid transparent',
+          borderRadius: '8px',
+          boxShadow: selectedSpecies.length === 0 ? '0 0 0 1px #48bb78' : 'none',
+          transition: 'all 0.2s ease',
+          width: '100%',
+          maxWidth: '100%',
+          marginBottom: '12px'
+        }} className="species-filter">
+          <span style={{ fontSize: '12px', fontWeight: '600', color: '#4a5568', marginRight: '4px' }}>🦪 Species:</span>
+          <select
+            style={{
+              flex: 1,
+              padding: '8px 12px',
+              fontSize: '14px',
+              border: '1px solid #e2e8f0',
+              borderRadius: '8px',
+              backgroundColor: 'white',
+              color: '#2d3748',
+              cursor: 'pointer',
+              minWidth: 0
+            }}
+            className="species-select"
+            value={selectedSpecies[0] || ''}
+            onChange={(e) => handleSpeciesToggle(e.target.value)}
+          >
+            <option value="">Select a species...</option>
+            {allSpecies.map((species) => (
+              <option key={species} value={species}>
+                {species}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      <button
+        onClick={() => setShowMap(!showMap)}
+        style={{
+          width: '100%',
+          padding: '10px',
+          fontSize: '13px',
+          fontWeight: '500',
+          color: '#4a5568',
+          backgroundColor: '#f7fafc',
+          border: '1px solid #e2e8f0',
+          borderRadius: '8px',
+          cursor: 'pointer',
+          marginBottom: showMap ? '0' : '16px',
+          transition: 'all 0.2s ease'
+        }}
+      >
+        {showMap ? '🗺️ Hide Map' : '🗺️ Show Map'}
+      </button>
+
+      {showMap && (
         <>
       <div style={styles.statsRow} className="stats-row">
         <div
@@ -912,6 +977,8 @@ export default function Dashboard() {
       <div className="map-container">
         <MapView beaches={filteredBeaches} onBeachClick={handleBeachSelect} userLocation={userLocation} selectedBeach={selectedBeach} />
       </div>
+      </>
+      )}
 
       <div style={styles.mainContent} className="main-content">
         {/* Calendar Section - Order 1 on mobile */}
@@ -1283,6 +1350,9 @@ export default function Dashboard() {
         </p>
         <p style={{ marginTop: '12px', fontSize: '11px', color: '#a0aec0' }}>
           Always check DOH biotoxin status on the day of harvest. Both WDFW season AND DOH approval required.
+        </p>
+        <p style={{ marginTop: '12px', fontSize: '12px', color: '#4a5568', fontWeight: '500' }}>
+          Follow all laws and guidance, and make sure you have a valid license
         </p>
         <p style={{ marginTop: '16px', fontSize: '12px', color: '#718096' }}>
           Like this project? Leave a star on{' '}

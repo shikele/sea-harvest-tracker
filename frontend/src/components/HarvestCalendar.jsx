@@ -661,29 +661,6 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
         </div>
       </div>
 
-      {/* Species Filter */}
-      {allSpecies.length > 0 && (
-        <div style={{
-          ...styles.speciesFilter,
-          ...(selectedSpecies.length === 0 ? styles.speciesFilterHighlight : {})
-        }} className="species-filter">
-          <span style={styles.speciesLabel}>🦪 Species:</span>
-          <select
-            style={styles.speciesSelect}
-            className="species-select"
-            value={selectedSpecies[0] || ''}
-            onChange={(e) => onSpeciesToggle?.(e.target.value)}
-          >
-            <option value="">Select a species...</option>
-            {allSpecies.map((species) => (
-              <option key={species} value={species}>
-                {species}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
       {viewMode === 'week' && (
         <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
           <div style={{ display: 'flex', alignItems: 'stretch' }} className="calendar-nav-buttons">

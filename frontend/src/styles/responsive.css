@@ -41,7 +41,7 @@ html, body {
 /* ==================== */
 /* MOBILE (iPhone 14)   */
 /* ==================== */
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 640px) {
   /* Dashboard container */
   .dashboard-container {
     padding: 12px !important;
@@ -130,8 +130,12 @@ html, body {
     border-radius: 8px !important;
     margin-top: 0 !important;
     margin-bottom: 16px !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     z-index: 1 !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+    contain: paint !important;
   }
 
   .map-container > div {
@@ -645,83 +649,9 @@ html, body {
 }
 
 /* ==================== */
-/* TABLET (768px)       */
+/* DESKTOP (641px+)     */
 /* ==================== */
-@media screen and (min-width: 431px) and (max-width: 768px) {
-  .dashboard-container {
-    padding: 16px !important;
-  }
-
-  /* Tablet: Single column with flex ordering */
-  .main-content {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-  }
-
-  /* Tablet ordering: Calendar (1), Beach Detail (2), Beach List (3) */
-  .calendar-section {
-    order: 1 !important;
-  }
-
-  .beach-detail-section {
-    order: 2 !important;
-  }
-
-  .beach-list-wrapper {
-    order: 3 !important;
-  }
-
-  .stats-row {
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 12px !important;
-  }
-
-  .map-container {
-    height: 280px !important;
-  }
-
-  /* Tablet: Vertical calendar layout (compact) */
-  .calendar-7day-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 8px !important;
-  }
-
-  .calendar-day-card {
-    width: 100% !important;
-    min-width: unset !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 12px !important;
-    height: 90px !important;
-    min-height: 90px !important;
-    padding: 10px 12px !important;
-  }
-
-  .calendar-day-header {
-    min-width: 50px !important;
-    text-align: center !important;
-  }
-
-  .calendar-beach-list {
-    flex: 1 !important;
-  }
-
-  .map-container {
-    margin-bottom: 20px !important;
-  }
-
-  .species-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-/* ==================== */
-/* DESKTOP (769px+)     */
-/* ==================== */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 641px) {
   .dashboard-container {
     padding: 20px !important;
     max-width: 1400px !important;
@@ -812,6 +742,11 @@ html, body {
 @media screen and (max-width: 896px) and (orientation: landscape) {
   .map-container {
     height: 180px !important;
+    overflow: hidden !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+    contain: paint !important;
   }
 
   .modal-image {
