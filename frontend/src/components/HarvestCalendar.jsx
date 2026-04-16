@@ -373,7 +373,8 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
 
   const today = useMemo(() => {
     const now = new Date();
-    return now.toISOString().split('T')[0];
+    // Use local date components to avoid UTC timezone shift
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   }, []);
 
   // Fetch calendar data once on mount - covers current month + 4 months ahead

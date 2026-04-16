@@ -189,8 +189,9 @@ function isBadTime(dateTimeStr) {
 
 function isSameDay(date1, date2) {
   if (!date1 || !date2) return false;
-  const d1 = new Date(date1);
-  const d2 = new Date(date2);
+  // Ensure both dates parse in local timezone
+  const d1 = new Date(typeof date1 === 'string' && !date1.includes('T') && !date1.includes(':') ? date1 + 'T00:00:00' : date1);
+  const d2 = new Date(typeof date2 === 'string' && !date2.includes('T') && !date2.includes(':') ? date2 + 'T00:00:00' : date2);
   return d1.getFullYear() === d2.getFullYear() &&
          d1.getMonth() === d2.getMonth() &&
          d1.getDate() === d2.getDate();
