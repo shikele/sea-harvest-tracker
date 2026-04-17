@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import cron from 'node-cron';
@@ -8,6 +9,7 @@ import beachesRouter from './routes/beaches.js';
 import tidesRouter from './routes/tides.js';
 import harvestRouter from './routes/harvest.js';
 import commentsRouter from './routes/comments.js';
+import drivingRouter from './routes/driving.js';
 import { refreshBiotoxinData } from './services/biotoxin.js';
 import { refreshAllTides } from './services/tides.js';
 
@@ -43,6 +45,7 @@ app.use('/api/beaches', beachesRouter);
 app.use('/api/tides', tidesRouter);
 app.use('/api/harvest-windows', harvestRouter);
 app.use('/api/comments', commentsRouter);
+  app.use('/api/driving', drivingRouter);
 
 // Health check
 app.get('/api/health', (req, res) => {

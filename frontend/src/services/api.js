@@ -60,6 +60,10 @@ export async function refreshData() {
   return postJson(`${API_BASE}/refresh`);
 }
 
+export async function getDrivingDistances(lat, lon) {
+  return fetchJson(`${API_BASE}/driving?lat=${lat}&lon=${lon}`);
+}
+
 // Comments API
 export async function getAllComments() {
   return fetchJson(`${API_BASE}/comments`);
@@ -111,6 +115,7 @@ export default {
   getHarvestWindows,
   getHarvestCalendar,
   refreshData,
+  getDrivingDistances,
   getAllComments,
   getComments,
   postComment,

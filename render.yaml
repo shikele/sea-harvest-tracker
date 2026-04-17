@@ -24,3 +24,5 @@ services:
         value: production
       - key: ADMIN_SECRET
         sync: false  # Set manually in Render dashboard
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false  # Set in Render dashboard

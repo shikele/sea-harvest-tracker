@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { getHarvestWindows } from '../services/api';
+import { getHarvestWindows, getDrivingDistances } from '../services/api';
 import BeachCard from './BeachCard';
 import TideChart from './TideChart';
 import HarvestCalendar from './HarvestCalendar';
@@ -499,6 +499,8 @@ export default function Dashboard() {
   const [userLocation, setUserLocation] = useState(null);
   const [locationError, setLocationError] = useState(null);
   const [locationLoading, setLocationLoading] = useState(false);
+  const [drivingDistances, setDrivingDistances] = useState(null);
+  const [drivingLoading, setDrivingLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -573,6 +575,32 @@ export default function Dashboard() {
       requestLocation();
     }
   };
+
+  // Fetch driving distances when user location changes
+  useEffect(() => {
+    if (!userLocation) {
+      setDrivingDistances(null);
+      return;
+    }
+
+    let cancelled = false;
+    setDrivingLoading(true);
+
+    getDrivingDistances(userLocation.lat, userLocation.lon)
+      .then(data => {
+        if (!cancelled && data) {
+          setDrivingDistances(data);
+        }
+      })
+      .catch(err => {
+        console.error('Failed to load driving distances:', err.message);
+      })
+      .finally(() => {
+        if (!cancelled) setDrivingLoading(false);
+      });
+
+    return () => { cancelled = true; };
+  }, [userLocation]);
 
   // Extract unique species from all beaches
   const allSpecies = [...new Set(
@@ -658,11 +686,23 @@ export default function Dashboard() {
   // Calculate distances if user location is available
   const beachesWithDistance = beaches.map((beach) => {
     if (userLocation && beach.lat && beach.lon) {
+      // Prefer driving distance if available
+      if (drivingDistances && drivingDistances[beach.id]) {
+        const dd = drivingDistances[beach.id];
+        return {
+          ...beach,
+          distance: dd.distance_mi,
+          durationMin: dd.duration_min,
+          hasFerry: dd.has_ferry,
+          distanceSource: 'driving'
+        };
+      }
+      // Fallback to Haversine
       const distance = calculateDistance(
         userLocation.lat, userLocation.lon,
         beach.lat, beach.lon
       );
-      return { ...beach, distance };
+      return { ...beach, distance, distanceSource: 'haversine' };
     }
     return { ...beach, distance: null };
   });
@@ -690,8 +730,11 @@ export default function Dashboard() {
     })
     .sort((a, b) => {
       if (sortMode === 'distance') {
-        // Both have distance - sort by distance
+        // Both have distance - sort by drive time if available, else distance
         if (a.distance !== null && b.distance !== null) {
+          if (a.durationMin != null && b.durationMin != null) {
+            return a.durationMin - b.durationMin;
+          }
           return a.distance - b.distance;
         }
         // Only a has distance - a comes first
@@ -739,11 +782,21 @@ export default function Dashboard() {
     .map((beach) => {
       // Calculate distance if user location is available
       if (userLocation && beach.lat && beach.lon) {
+        if (drivingDistances && drivingDistances[beach.id]) {
+          const dd = drivingDistances[beach.id];
+          return {
+            ...beach,
+            distance: dd.distance_mi,
+            durationMin: dd.duration_min,
+            hasFerry: dd.has_ferry,
+            distanceSource: 'driving'
+          };
+        }
         const distance = calculateDistance(
           userLocation.lat, userLocation.lon,
           beach.lat, beach.lon
         );
-        return { ...beach, distance };
+        return { ...beach, distance, distanceSource: 'haversine' };
       }
       return { ...beach, distance: null };
     })
@@ -764,6 +817,9 @@ export default function Dashboard() {
     .sort((a, b) => {
       if (sortMode === 'distance') {
         if (a.distance !== null && b.distance !== null) {
+          if (a.durationMin != null && b.durationMin != null) {
+            return a.durationMin - b.durationMin;
+          }
           return a.distance - b.distance;
         }
         if (a.distance !== null && b.distance === null) return -1;
@@ -1041,7 +1097,7 @@ export default function Dashboard() {
                   title="Sort by distance from your location"
                 >
                   <span style={styles.buttonIcon}>&#128205;</span>
-                  {locationLoading ? '...' : 'Closest to me'}
+                  {locationLoading ? '...' : drivingLoading ? 'Calculating...' : 'Closest to me'}
                 </button>
                 {locationError && (
                   <span style={styles.locationError}>{locationError}</span>

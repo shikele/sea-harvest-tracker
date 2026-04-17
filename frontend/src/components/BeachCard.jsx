@@ -109,6 +109,16 @@ const styles = {
     fontWeight: '500',
     marginLeft: '8px'
   },
+  ferryBadge: {
+    display: 'inline-block',
+    padding: '2px 6px',
+    borderRadius: '4px',
+    fontSize: '10px',
+    fontWeight: '500',
+    backgroundColor: '#ebf8ff',
+    color: '#2b6cb0',
+    marginLeft: '4px'
+  },
   boatBadge: {
     display: 'inline-block',
     padding: '2px 6px',
@@ -262,9 +272,18 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
               <span style={styles.boatBadge}>Boat</span>
             )}
             {beach.distance !== null && beach.distance !== undefined && (
-              <span style={styles.distanceBadge}>
-                ({beach.distance.toFixed(1)} mi)
-              </span>
+              beach.distanceSource === 'driving' ? (
+                <span style={styles.distanceBadge}>
+                  ({beach.durationMin} min / {beach.distance.toFixed(1)} mi)
+                  {beach.hasFerry && (
+                    <span style={styles.ferryBadge}>ferry</span>
+                  )}
+                </span>
+              ) : (
+                <span style={styles.distanceBadge}>
+                  ({beach.distance.toFixed(1)} mi)
+                </span>
+              )
             )}
           </div>
           <div style={styles.location}>
