@@ -507,7 +507,8 @@ export default function Dashboard() {
   const [accessFilter, setAccessFilter] = useState('all'); // 'all', 'public', 'boat'
   const [activeTab, setActiveTab] = useState('beaches'); // 'beaches' or 'species'
   const [showMap, setShowMap] = useState(false);
-  const [selectedCalendarDate, setSelectedCalendarDate] = useState(null); // Track date clicked from calendar
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const [selectedCalendarDate, setSelectedCalendarDate] = useState(today); // Track date clicked from calendar
   const [calendarDayBeaches, setCalendarDayBeaches] = useState([]); // All suitable beaches for selected day
   const beachesPerPage = 5;
 
@@ -615,7 +616,7 @@ export default function Dashboard() {
     } else {
       setSelectedSpecies([speciesName]);  // Single selection
     }
-    setSelectedCalendarDate(null);  // Clear calendar date when species changes
+    setSelectedCalendarDate(today);  // Reset calendar date when species changes
     setCalendarDayBeaches([]);
     setCurrentPage(1);
   };
@@ -625,7 +626,7 @@ export default function Dashboard() {
     setSelectedSpecies([]);
     setStatusFilters([]);
     setAccessFilter('all');
-    setSelectedCalendarDate(null);
+    setSelectedCalendarDate(today);
     setCalendarDayBeaches([]);
     setCurrentPage(1);
   };
@@ -1338,10 +1339,10 @@ export default function Dashboard() {
                           padding: '4px 10px',
                           borderRadius: '12px',
                           fontSize: '12px',
-                          backgroundColor: s.abundance === 'good' ? '#bee3f8' :
-                                         s.abundance === 'moderate' ? '#fefcbf' : '#e2e8f0',
-                          color: s.abundance === 'good' ? '#2c5282' :
-                                s.abundance === 'moderate' ? '#744210' : '#4a5568'
+                          backgroundColor: s.abundance === 'abundant' ? '#bee3f8' :
+                                         s.abundance === 'scattered' ? '#fefcbf' : '#e2e8f0',
+                          color: s.abundance === 'abundant' ? '#2c5282' :
+                                s.abundance === 'scattered' ? '#744210' : '#4a5568'
                         }}>
                           {s.abundance}
                         </span>
@@ -1365,7 +1366,7 @@ export default function Dashboard() {
               stationName={selectedBeach.region}
               selectedDate={selectedCalendarDate}
               onResetToToday={() => {
-                setSelectedCalendarDate(null);
+                setSelectedCalendarDate(today);
                 setCalendarDayBeaches([]);
               }}
             />

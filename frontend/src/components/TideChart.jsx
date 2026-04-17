@@ -112,24 +112,16 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [showDetails, setShowDetails] = useState(false);
 
-  // Calculate 7-day range for the week containing the date (Sat to Fri)
-  const getWeekRange = (date) => {
-    // Parse in local timezone (date-only strings default to UTC which shifts the day)
+  // Calculate 7-day range starting from the selected date
+  const getRange = (date) => {
     const d = typeof date === 'string'
       ? new Date(date + 'T00:00:00')
       : new Date(date);
     d.setHours(0, 0, 0, 0);
 
-    // Find the Saturday of this week
-    // getDay(): 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-    const dayOfWeek = d.getDay();
-    const daysToSubtract = (dayOfWeek + 1) % 7; // Sat=0, Sun=1, Mon=2, etc.
-
     const start = new Date(d);
-    start.setDate(d.getDate() - daysToSubtract);
-
-    const end = new Date(start);
-    end.setDate(start.getDate() + 6); // Sat to Fri = 7 days
+    const end = new Date(d);
+    end.setDate(start.getDate() + 6); // 7 days inclusive
     end.setHours(23, 59, 59, 999);
 
     return { start, end };
@@ -137,7 +129,7 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
 
   // Determine the 7-day range to display
   const displayDate = selectedDate ? new Date(selectedDate + 'T00:00:00') : new Date();
-  const { start: weekStart, end: weekEnd } = getWeekRange(displayDate);
+  const { start: weekStart, end: weekEnd } = getRange(displayDate);
 
   // Check if showing today or a selected date
   const today = new Date();
