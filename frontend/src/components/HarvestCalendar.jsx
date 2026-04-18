@@ -441,11 +441,6 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
         const fullBeach = beachDataMap[beach.id];
         if (!fullBeach) return null;
 
-        // Only recommend truly open beaches (biotoxin safe AND season open AND road accessible)
-        const isOpen = fullBeach.biotoxinStatus === 'open' && fullBeach.seasonOpen !== false;
-        if (!isOpen) return null;
-        if (fullBeach.accessType === 'boat') return null;
-
         // Status filter (empty array = all)
         if (statusFilters.length > 0 && !statusFilters.includes(beach.biotoxinStatus)) {
           return null;
@@ -491,10 +486,15 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
       // Sort by tide height (lowest first)
       filteredBeaches.sort((a, b) => a.tideHeight - b.tideHeight);
 
+      // Calendar display: only open + road accessible beaches
+      const calendarBeaches = filteredBeaches.filter(b =>
+        b.biotoxinStatus === 'open' && b.seasonOpen !== false && b.accessType !== 'boat'
+      );
+
       return {
         ...day,
-        beaches: filteredBeaches.slice(0, 2), // Top 2 for calendar display
-        allBeaches: filteredBeaches, // All suitable beaches for beach list
+        beaches: calendarBeaches.slice(0, 2), // Top 2 for calendar display (open + road only)
+        allBeaches: filteredBeaches, // All matching beaches for beach list
         hasSpeciesBeaches,
         tideHighForSpecies
       };
