@@ -12,12 +12,8 @@ const DISTANCE_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix
 
 const CACHE_FILE = join(__dirname, '../data/driving-cache.json');
 const CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const CACHE_GRID_SIZE = 0.1; // ~7 mile grid cells — same metro area reuses cache
+const DEST_GRID_SIZE = 0.02; // ~1.4 mile grid — beaches in same area share one lookup
 const BATCH_SIZE = 25; // Google Maps Distance Matrix max destinations per request
-
-function makeCacheKey(lat, lon) {
-  return `${Math.round(lat / CACHE_GRID_SIZE)},${Math.round(lon / CACHE_GRID_SIZE)}`;
-}
 
 function loadCache() {
   try {
@@ -76,66 +72,100 @@ export async function getDrivingDistances(userLat, userLon) {
   if (!GOOGLE_MAPS_API_KEY) return null;
 
   const cache = evictExpired(loadCache());
-  const key = makeCacheKey(userLat, userLon);
-
-  // Check cache
-  if (cache[key] && (Date.now() - cache[key].timestamp < CACHE_TTL_MS)) {
-    console.log(`Driving cache hit for ${key}`);
-    return cache[key].results;
-  }
 
   const beaches = getAllBeaches().filter(b => b.lat && b.lon);
-  const origin = `${userLat},${userLon}`;
-  const results = {};
 
-  // Batch beaches (Google max 25 destinations per request)
-  for (let i = 0; i < beaches.length; i += BATCH_SIZE) {
-    const batch = beaches.slice(i, i + BATCH_SIZE);
-    const destinations = batch.map(b => `${b.lat},${b.lon}`).join('|');
+  // Group beaches by destination grid cell
+  const cellToBeaches = new Map();
+  for (const beach of beaches) {
+    const cellKey = `${Math.round(beach.lat / DEST_GRID_SIZE)},${Math.round(beach.lon / DEST_GRID_SIZE)}`;
+    if (!cellToBeaches.has(cellKey)) {
+      cellToBeaches.set(cellKey, []);
+    }
+    cellToBeaches.get(cellKey).push(beach);
+  }
 
-    try {
-      const url = `${DISTANCE_MATRIX_URL}?origins=${origin}&destinations=${destinations}&units=imperial&key=${GOOGLE_MAPS_API_KEY}`;
-      const response = await fetch(url);
+  // Check which cells need fresh lookups
+  const cellsToFetch = [];
+  const cellResults = new Map(); // cellKey -> { distance_mi, duration_min }
 
-      if (!response.ok) {
-        console.error(`Google Maps API error ${response.status}`);
-        continue;
-      }
-
-      const data = await response.json();
-
-      if (data.status !== 'OK') {
-        console.error(`Google Maps API error: ${data.status} - ${data.error_message || ''}`);
-        continue;
-      }
-
-      const elements = data.rows?.[0]?.elements || [];
-
-      for (let j = 0; j < elements.length; j++) {
-        const beach = batch[j];
-        const element = elements[j];
-
-        if (element?.status === 'OK' && element.distance && element.duration) {
-          const distMi = element.distance.value / 1609.34; // meters to miles
-          const durSec = element.duration.value;
-
-          results[beach.id] = {
-            distance_mi: Math.round(distMi * 10) / 10,
-            duration_min: Math.round(durSec / 60),
-            has_ferry: needsFerry(userLon, beach)
-          };
-        }
-      }
-    } catch (err) {
-      console.error(`Google Maps batch error: ${err.message}`);
+  for (const [cellKey, cellBeaches] of cellToBeaches) {
+    const cacheKey = `${userLat.toFixed(3)},${userLon.toFixed(3)}->${cellKey}`;
+    const cached = cache[cacheKey];
+    if (cached && (Date.now() - cached.timestamp < CACHE_TTL_MS)) {
+      cellResults.set(cellKey, cached.result);
+    } else {
+      cellsToFetch.push({ cellKey, representative: cellBeaches[0] });
     }
   }
 
-  // Save to cache
-  if (Object.keys(results).length > 0) {
-    cache[key] = { results, timestamp: Date.now() };
+  if (cellsToFetch.length > 0) {
+    console.log(`Driving lookup: ${cellsToFetch.length} areas (${cellToBeaches.size} total, ${cellResults.size} cached)`);
+
+    // Batch destination cells (Google max 25 per request)
+    for (let i = 0; i < cellsToFetch.length; i += BATCH_SIZE) {
+      const batch = cellsToFetch.slice(i, i + BATCH_SIZE);
+      const origin = `${userLat},${userLon}`;
+      const destinations = batch.map(c => `${c.representative.lat},${c.representative.lon}`).join('|');
+
+      try {
+        const url = `${DISTANCE_MATRIX_URL}?origins=${origin}&destinations=${destinations}&units=imperial&key=${GOOGLE_MAPS_API_KEY}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          console.error(`Google Maps API error ${response.status}`);
+          continue;
+        }
+
+        const data = await response.json();
+
+        if (data.status !== 'OK') {
+          console.error(`Google Maps API error: ${data.status} - ${data.error_message || ''}`);
+          continue;
+        }
+
+        const elements = data.rows?.[0]?.elements || [];
+
+        for (let j = 0; j < elements.length; j++) {
+          const { cellKey } = batch[j];
+          const element = elements[j];
+
+          if (element?.status === 'OK' && element.distance && element.duration) {
+            const distMi = element.distance.value / 1609.34;
+            const durSec = element.duration.value;
+            const result = {
+              distance_mi: Math.round(distMi * 10) / 10,
+              duration_min: Math.round(durSec / 60)
+            };
+            cellResults.set(cellKey, result);
+
+            // Cache per cell
+            const cacheKey = `${userLat.toFixed(3)},${userLon.toFixed(3)}->${cellKey}`;
+            cache[cacheKey] = { result, timestamp: Date.now() };
+          }
+        }
+      } catch (err) {
+        console.error(`Google Maps batch error: ${err.message}`);
+      }
+    }
+
     saveCache(cache);
-    console.log(`Cached driving distances for ${key} (${Object.keys(results).length} beaches)`);
+  } else {
+    console.log(`Driving cache full hit (${cellToBeaches.size} areas)`);
+  }
+
+  // Map cell results back to individual beaches
+  const results = {};
+  for (const beach of beaches) {
+    const cellKey = `${Math.round(beach.lat / DEST_GRID_SIZE)},${Math.round(beach.lon / DEST_GRID_SIZE)}`;
+    const cellResult = cellResults.get(cellKey);
+    if (cellResult) {
+      results[beach.id] = {
+        distance_mi: cellResult.distance_mi,
+        duration_min: cellResult.duration_min,
+        has_ferry: needsFerry(userLon, beach)
+      };
+    }
   }
 
   return Object.keys(results).length > 0 ? results : null;
