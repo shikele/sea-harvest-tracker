@@ -3,26 +3,10 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { getAllBeaches, updateBeachStatus } from '../db.js';
+import { checkWdfwSeason, loadWdfwStatus as loadScrapedWdfwStatus, scrapeAllBeaches } from './wdfw-scraper.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-// Load WDFW status data
-let wdfwStatusData = null;
-function loadWdfwStatus() {
-  if (!wdfwStatusData) {
-    try {
-      const dataPath = join(__dirname, '../data/wdfw-status.json');
-      const data = readFileSync(dataPath, 'utf8');
-      wdfwStatusData = JSON.parse(data);
-      console.log(`Loaded WDFW status data (last updated: ${wdfwStatusData.lastUpdated})`);
-    } catch (error) {
-      console.error('Error loading WDFW status data:', error.message);
-      wdfwStatusData = { beaches: {} };
-    }
-  }
-  return wdfwStatusData;
-}
 
 const DOH_BASE_URL = 'https://fortress.wa.gov/doh/arcgis/arcgis/rest/services/Biotoxin/Biotoxin_v2/MapServer';
 
@@ -383,10 +367,10 @@ export async function refreshBiotoxinData() {
 
   const biotoxinMap = matchBiotoxinToBeaches(biotoxinClosures, ourBeaches);
 
-  // Load WDFW status for supplementary season info only
-  const wdfwData = loadWdfwStatus();
+  // Load WDFW season data (scraped from WDFW beach pages)
+  const wdfwData = loadScrapedWdfwStatus();
   const wdfwByUrl = {};
-  for (const entry of Object.values(wdfwData.beaches)) {
+  for (const entry of Object.values(wdfwData.beaches || {})) {
     if (entry.wdfwUrl) wdfwByUrl[entry.wdfwUrl] = entry;
   }
 
@@ -401,10 +385,14 @@ export async function refreshBiotoxinData() {
     const biotoxinInfo = biotoxinMap.get(beach.id);
     const wdfwInfo = beach.wdfw_url ? wdfwByUrl[beach.wdfw_url] : null;
 
+    // Check WDFW season status from scraped data
+    const wdfwSeason = beach.wdfw_url ? checkWdfwSeason(beach.wdfw_url, beach.sub_beach) : { isOpen: true, seasonInfo: null };
+    const seasonInfo = wdfwSeason.seasonInfo || wdfwInfo?.season || null;
+    const wdfwSeasonOpen = wdfwSeason.isOpen;
+
     let finalStatus = 'unclassified';
     let closureReason = null;
     let speciesAffected = null;
-    let seasonInfo = wdfwInfo?.season || null;
 
     if (dohStatus) {
       const dohFinal = dohStatus.finalstatus;
@@ -450,12 +438,14 @@ export async function refreshBiotoxinData() {
     }
 
     // Update beach status
+    // Note: biotoxin_status reflects DOH/biotoxin only. Season status is in wdfw_season_open.
+    // The frontend combines both to determine harvestability.
     updateBeachStatus(beach.id, {
       biotoxin_status: finalStatus,
       closure_reason: closureReason,
       species_affected: speciesAffected,
       season_info: seasonInfo,
-      wdfw_season_open: dohStatus ? !dohStatus.finalstatus.includes('closed') : true
+      wdfw_season_open: wdfwSeasonOpen
     });
 
     // Count by status

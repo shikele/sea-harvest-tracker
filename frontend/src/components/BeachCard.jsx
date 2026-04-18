@@ -73,14 +73,6 @@ const styles = {
     fontSize: '12px',
     color: '#4a5568'
   },
-  closureReason: {
-    marginTop: '8px',
-    padding: '8px',
-    backgroundColor: '#fff5f5',
-    borderRadius: '6px',
-    fontSize: '13px',
-    color: '#c53030'
-  },
   qualityBadge: {
     padding: '2px 8px',
     borderRadius: '10px',
@@ -145,6 +137,7 @@ const styles = {
 const statusColors = {
   green: { border: '#48bb78', badge: '#c6f6d5', text: '#22543d' },
   yellow: { border: '#ecc94b', badge: '#fefcbf', text: '#744210' },
+  orange: { border: '#ed8936', badge: '#fefcbf', text: '#c05621' },
   red: { border: '#f56565', badge: '#fed7d7', text: '#742a2a' },
   gray: { border: '#a0aec0', badge: '#e2e8f0', text: '#4a5568' }
 };
@@ -207,30 +200,35 @@ function isSameDay(date1, date2) {
          d1.getDate() === d2.getDate();
 }
 
-// Derive status color from biotoxinStatus if statusColor not provided
-function getStatusColorFromStatus(biotoxinStatus) {
-  if (biotoxinStatus === 'open') return 'green';
+// Derive status color from biotoxinStatus and seasonOpen if statusColor not provided
+function getStatusColorFromStatus(biotoxinStatus, seasonOpen) {
   if (biotoxinStatus === 'closed') return 'red';
+  if (biotoxinStatus === 'open' && seasonOpen === false) return 'orange';
+  if (biotoxinStatus === 'open') return 'green';
   if (biotoxinStatus === 'conditional') return 'yellow';
   return 'gray';
 }
 
 export default function BeachCard({ beach, onClick, selectedDate, isSelected = false }) {
-  const colorKey = beach.statusColor || getStatusColorFromStatus(beach.biotoxinStatus);
+  const colorKey = beach.statusColor || getStatusColorFromStatus(beach.biotoxinStatus, beach.seasonOpen);
   const colors = statusColors[colorKey] || statusColors.gray;
 
   // If beach has direct tide data from calendar (tideHeight, tideTime, tideQuality), use it
   const hasDirectTideData = beach.tideHeight !== undefined && beach.tideTime !== undefined;
 
-  // If selectedDate is provided, find the tide for that day from nextLowTides
+  // If selectedDate is provided, find the best (lowest) tide for that day
   const tideForSelectedDay = selectedDate && beach.nextLowTides && !hasDirectTideData
-    ? beach.nextLowTides.find(t => isSameDay(t.datetime, selectedDate))
+    ? beach.nextLowTides
+        .filter(t => isSameDay(t.datetime, selectedDate))
+        .reduce((best, t) => (!best || t.height < best.height) ? t : best, null)
     : null;
 
   // Build tide object from direct data or looked up data
+  // For the default view (no selectedDate), prefer the first good/excellent tide
+  const firstGoodTide = beach.nextLowTides?.find(t => t.quality === 'good' || t.quality === 'excellent');
   const nextTide = hasDirectTideData
     ? { datetime: beach.tideTime, height: beach.tideHeight, quality: beach.tideQuality }
-    : (tideForSelectedDay || beach.nextLowTides?.[0]);
+    : (tideForSelectedDay || firstGoodTide || beach.nextLowTides?.[0]);
   const tideQualityColors = nextTide ? qualityColors[nextTide.quality] : null;
 
   // Check if there's a good/excellent tide in the 7-day period
@@ -297,18 +295,11 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
             color: colors.text
           }}
         >
-          {beach.biotoxinStatus}
+          {colorKey === 'green' ? 'OPEN' : 'CLOSED'}
         </span>
       </div>
 
-      {beach.closureReason && (
-        <div style={styles.closureReason}>
-          Closed: {beach.closureReason}
-          {beach.speciesAffected && ` (${beach.speciesAffected})`}
-        </div>
-      )}
-
-      {selectedDate && nextTide && beach.biotoxinStatus !== 'closed' ? (
+      {selectedDate && nextTide && colorKey === 'green' ? (
         <div style={styles.tideInfoCompact}>
           <span>Low tide: <strong>{formatTimeOnly(nextTide.datetime)}</strong></span>
           <span>{nextTide.height.toFixed(1)} ft</span>
@@ -327,7 +318,7 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
             <span style={styles.badTimeBadge}>bad time</span>
           )}
         </div>
-      ) : !selectedDate && nextTide && beach.biotoxinStatus !== 'closed' && (
+      ) : !selectedDate && nextTide && colorKey === 'green' && (
         <div style={styles.tideInfo}>
           <div style={{ flex: 1 }}>
             <div style={styles.tideLabel}>Next Low Tide</div>

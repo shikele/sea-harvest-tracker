@@ -3257,13 +3257,14 @@
     },
     {
       "id": 138,
-      "name": "Indian Island County Park (Lagoon Beach/Isthmus Beach)",
+      "name": "Lagoon Beach (Indian Island County Park)",
       "county": "Jefferson",
       "region": "Admiralty",
       "lat": 48.0214,
       "lon": -122.7112,
       "tide_station_id": "9444900",
       "doh_object_id": 254,
+      "sub_beach": "Lagoon Beach",
       "species": [
         {
           "name": "Butter Clams",
@@ -3301,7 +3302,33 @@
           "min_tide_ft": 2
         }
       ],
-      "notes": "Lagoon Beach: This is a good clam beach. There is over a mile of public beach. There is good digging for butter clams, native littleneck clams, Manila clams, cockles and horse clams just below the main (north) parking lot in the area around the tidal channel that drains the lagoon. The littleneck clams tend to be higher on the beach while the butter and horse clams are lower in the tidal zone. There are productive clam areas in sand and gravel substrate on this beach from the main county park (north) access all the way to the south border. Geoducks may be found on this beach below the -2.0 foot tide level. Oysters may be found in very limited numbers. Isthmus Beach: The eastern end of the Indian Island County Park beach complex consists of large sand flats that are exposed during minus tides. Horse clams and cockles are found in this area. Oysters are not common on this beach.",
+      "notes": "This is a good clam beach. There is over a mile of public beach. There is good digging for butter clams, native littleneck clams, Manila clams, cockles and horse clams just below the main (north) parking lot in the area around the tidal channel that drains the lagoon. The littleneck clams tend to be higher on the beach while the butter and horse clams are lower in the tidal zone. There are productive clam areas in sand and gravel substrate on this beach from the main county park (north) access all the way to the south border. Geoducks may be found on this beach below the -2.0 foot tide level. Oysters may be found in very limited numbers.",
+      "access_type": "public",
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250410"
+    },
+    {
+      "id": 217,
+      "name": "Isthmus Beach (Indian Island County Park)",
+      "county": "Jefferson",
+      "region": "Admiralty",
+      "lat": 48.018,
+      "lon": -122.698,
+      "tide_station_id": "9444900",
+      "doh_object_id": 254,
+      "sub_beach": "Isthmus Beach",
+      "species": [
+        {
+          "name": "Horse Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
+        },
+        {
+          "name": "Cockles",
+          "abundance": "abundant",
+          "min_tide_ft": 1
+        }
+      ],
+      "notes": "The eastern end of the Indian Island County Park beach complex consists of large sand flats that are exposed during minus tides. Horse clams and cockles are found in this area. Oysters are not common on this beach.",
       "access_type": "public",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250410"
     },
@@ -3382,7 +3409,7 @@
         }
       ],
       "notes": "This is an excellent beach for Manila clams. The most popular spot is on the north side of the spit in the mid-tidal area near the base of the spit and in the tidal lagoon located behind the spit. Small clams are abundant in the lagoon. Please measure and replant all clams smaller than 1 1/2 inches. Horse clams and geoducks are found primarily on the south side of the spit, all the way south to Lindsay Beach. Butter clams and native littleneck clams can be found in most areas with mixed sand and gravel substrate. This is an excellent beach for oysters. Before it was acquired by WDFW, this beach was a commercial oyster beach. There are large oyster beds on either side of Broad Spit and oysters are found from Broad Spit all the way to the south beach boundary. The private property to the north of the boundary is a commercial oyster farm. Please respect private property and don't trespass.",
-      "access_type": "public",
+      "access_type": "boat",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270801"
     },
     {

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getAllBeaches, getBeachById } from '../db.js';
 import { refreshBiotoxinData, getBiotoxinSummary } from '../services/biotoxin.js';
+import { scrapeAllBeaches } from '../services/wdfw-scraper.js';
 import { getNextLowTide, getLowTides } from '../services/tides.js';
 
 const router = Router();
@@ -107,6 +108,31 @@ router.post('/refresh', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Failed to refresh biotoxin data'
+    });
+  }
+});
+
+/**
+ * POST /api/beaches/refresh-wdfw
+ * Triggers re-scrape of WDFW beach pages for season data
+ */
+router.post('/refresh-wdfw', async (req, res) => {
+  try {
+    const result = await scrapeAllBeaches((scraped, noData, errors, total) => {
+      // Progress logging only — no streaming response
+    });
+    res.json({
+      success: true,
+      data: {
+        scraped: Object.keys(result.beaches).length,
+        lastUpdated: result.lastUpdated
+      }
+    });
+  } catch (error) {
+    console.error('Error refreshing WDFW data:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to refresh WDFW season data'
     });
   }
 });

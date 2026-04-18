@@ -1,1050 +1,2176 @@
 {
-  "lastUpdated": "2026-01-30",
-  "source": "WDFW Shellfish Beach Pages",
+  "lastUpdated": "2026-04-18T04:06:05.012Z",
   "beaches": {
-    "1": {
-      "name": "Potlatch State Park/Potlatch DNR",
-      "wdfwStatus": "open",
-      "season": "Apr 1 - May 31",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270440"
-    },
-    "2": {
-      "name": "Dosewallips State Park",
-      "wdfwStatus": "conditional",
-      "season": "Oysters year-round, Clams closed",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270200"
-    },
-    "3": {
-      "name": "Twanoh State Park",
-      "wdfwStatus": "open",
-      "season": "Clams May 15-Jun 15, Oysters Jan-Sep",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270460"
-    },
-    "4": {
-      "name": "Belfair State Park",
-      "wdfwStatus": "open",
-      "season": "Aug 1 - Sep 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270470"
-    },
-    "5": {
-      "name": "Lilliwaup State Park",
-      "wdfwStatus": "open",
-      "season": "Through Sep 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270310"
-    },
-    "6": {
-      "name": "Eagle Creek",
-      "wdfwStatus": "open",
-      "season": "Clams Aug 1-Sep 15, Oysters year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270300"
-    },
-    "7": {
-      "name": "Scenic Beach State Park",
-      "wdfwStatus": "closed",
-      "season": "Closed - conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270410"
-    },
-    "8": {
-      "name": "Port Gamble Heritage Park",
-      "wdfwStatus": "open",
-      "season": "Sep 1 - Sep 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250900"
-    },
-    "9": {
-      "name": "Point No Point",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260210"
-    },
-    "10": {
-      "name": "DNR-69 (North Kitsap County)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260180"
-    },
-    "11": {
-      "name": "Penrose Point State Park",
-      "wdfwStatus": "closed",
-      "season": "Closed 2026 - population recovery",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280680"
-    },
-    "12": {
-      "name": "Kopachuck State Park",
-      "wdfwStatus": "closed",
-      "season": "Closed 2026 - construction",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280570"
-    },
-    "13": {
-      "name": "Dash Point State Park",
-      "wdfwStatus": "open",
-      "season": "Jan-May, Sep-Dec",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260740"
-    },
-    "14": {
-      "name": "Camano Island State Park",
-      "wdfwStatus": "closed",
-      "season": "Closed - conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240030"
-    },
-    "15": {
-      "name": "Birch Bay State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200060"
-    },
-    "16": {
-      "name": "Sequim Bay State Park",
-      "wdfwStatus": "open",
-      "season": "Jan 1 - May 31",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250050"
-    },
-    "17": {
-      "name": "Mystery Bay State Park",
-      "wdfwStatus": "open",
-      "season": "Oct 1 - Apr 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250300"
-    },
-    "18": {
-      "name": "Fort Flagler State Park and Rat Island",
-      "wdfwStatus": "closed",
-      "season": "Opens Aug 1 - Sep 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250260"
-    },
-    "19": {
-      "name": "Fort Worden State Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250170"
-    },
-    "20": {
-      "name": "Manchester State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260600"
-    },
-    "21": {
-      "name": "Blake Island State Park and Marina",
-      "wdfwStatus": "open",
-      "season": "Year-round (Marina closed)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260231"
-    },
-    "22": {
-      "name": "Saltwater State Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260750"
-    },
-    "23": {
-      "name": "Tolmie State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280080"
-    },
-    "24": {
-      "name": "Joemma Beach State Park",
-      "wdfwStatus": "closed",
-      "season": "Closed - conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280750"
-    },
-    "25": {
-      "name": "Kayak Point County Park",
-      "wdfwStatus": "closed",
-      "season": "Closed - conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240580"
-    },
-    "26": {
-      "name": "Meadowdale County Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260012"
-    },
-    "27": {
-      "name": "Mukilteo",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260050"
-    },
-    "28": {
-      "name": "Larrabee State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Year-round (Wildcat Cove closed)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210210"
-    },
-    "29": {
-      "name": "Shine Tidelands State Park",
-      "wdfwStatus": "open",
-      "season": "Jan 15 - Apr 15",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250512"
-    },
-    "30": {
-      "name": "Wolfe Property State Park",
-      "wdfwStatus": "open",
-      "season": "Jan 15 - Apr 15",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250510"
-    },
-    "31": {
-      "name": "Triton Cove State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270297"
-    },
-    "32": {
-      "name": "Pleasant Harbor State Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270221"
-    },
-    "33": {
-      "name": "Point Whitney Tidelands and Point Whitney Lagoon",
-      "wdfwStatus": "conditional",
-      "season": "Oysters Jan 15-Jul 31, Clams closed",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270170"
-    },
-    "34": {
-      "name": "Quilcene Bay Tidelands",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270500"
-    },
-    "35": {
-      "name": "Discovery Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260270"
-    },
-    "36": {
-      "name": "Lincoln Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260310"
-    },
-    "37": {
-      "name": "Seahurst County Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260760"
-    },
-    "38": {
-      "name": "Richmond Beach Saltwater Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260015"
-    },
-    "39": {
-      "name": "Fay Bainbridge Park",
-      "wdfwStatus": "closed",
-      "season": "Closed - conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260260"
-    },
-    "40": {
-      "name": "Illahee State Park",
-      "wdfwStatus": "closed",
-      "season": "Health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260380"
-    },
-    "41": {
-      "name": "Kitsap Memorial State Park and Lofall",
-      "wdfwStatus": "closed",
-      "season": "Closed - conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270230"
-    },
-    "42": {
-      "name": "Foulweather Bluff (DNR-64)",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260200"
-    },
-    "43": {
-      "name": "Cama Beach State Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - archaeological",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240035"
-    },
-    "44": {
-      "name": "Fort Casey State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250660"
-    },
-    "45": {
-      "name": "South Whidbey State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250630"
-    },
-    "46": {
-      "name": "Hope Island State Park",
-      "wdfwStatus": "open",
-      "season": "May 1 - May 31",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280975"
-    },
-    "47": {
-      "name": "Jarrell Cove State Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280850"
-    },
-    "48": {
-      "name": "McMicken Island State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280830"
-    },
-    "49": {
-      "name": "Oakland Bay",
-      "wdfwStatus": "open",
-      "season": "Year-round (some areas closed)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281050"
-    },
-    "50": {
-      "name": "Cutts Island State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280580"
-    },
-    "51": {
-      "name": "Burfoot County Park",
-      "wdfwStatus": "conditional",
-      "season": "Tribal management",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281150"
-    },
-    "52": {
-      "name": "Frye Cove County Park",
-      "wdfwStatus": "open",
-      "season": "May 1 - May 31",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281140"
-    },
-    "53": {
-      "name": "Spencer Spit State Park",
-      "wdfwStatus": "open",
-      "season": "Mar 1 - Jul 31",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220050"
-    },
-    "54": {
-      "name": "Odlin County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220730"
-    },
-    "55": {
-      "name": "West Penn Cove and Twin Lagoons",
-      "wdfwStatus": "open",
-      "season": "Jun 1 - Sep 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240150"
-    },
-    "56": {
-      "name": "Picnic Point County Park",
-      "wdfwStatus": "closed",
-      "season": "Health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260010"
-    },
-    "57": {
-      "name": "Howarth Park/Darlington Beach",
-      "wdfwStatus": "closed",
-      "season": "Health advisory - urban/industrial",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260060"
-    },
-    "58": {
-      "name": "Duckabush",
-      "wdfwStatus": "open",
-      "season": "Nov 1 - Apr 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270286"
-    },
-    "59": {
-      "name": "Possession Point State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260151"
-    },
-    "60": {
-      "name": "Freeland County Park",
-      "wdfwStatus": "open",
-      "season": "Oct 1 - May 31",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240440"
-    },
-    "61": {
-      "name": "Dave Mackie County Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260120"
-    },
-    "62": {
-      "name": "Coupeville",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240170"
-    },
-    "63": {
-      "name": "Oak Harbor Beach Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240530"
-    },
-    "64": {
-      "name": "Deception Pass State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240300"
-    },
-    "65": {
-      "name": "Point Robinson Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260850"
-    },
-    "66": {
-      "name": "Lisabeula Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260821"
-    },
-    "67": {
-      "name": "Dockton County Park",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260700"
-    },
-    "68": {
-      "name": "South Portage (formerly known as Tramp Harbor)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260630"
-    },
-    "69": {
-      "name": "DNR-77 (Vashon Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260830"
-    },
-    "70": {
-      "name": "DNR-78 (Vashon Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260820"
-    },
-    "71": {
-      "name": "DNR-79 (Vashon Island)",
-      "wdfwStatus": "closed",
-      "season": "Health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260720"
-    },
-    "72": {
-      "name": "DNR-83 (Vashon Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260670"
-    },
-    "73": {
-      "name": "DNR-85 (Vashon Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260650"
-    },
-    "74": {
-      "name": "Fern Cove",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260642"
-    },
-    "75": {
-      "name": "Long Beach Peninsula",
-      "wdfwStatus": "conditional",
-      "season": "Seasonal - check openings",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600200"
-    },
-    "76": {
-      "name": "Copalis",
-      "wdfwStatus": "conditional",
-      "season": "Seasonal - check openings",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600060"
-    },
-    "77": {
-      "name": "Mocrocks",
-      "wdfwStatus": "conditional",
-      "season": "Seasonal - check openings",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600030"
-    },
-    "78": {
-      "name": "Long Island (Pinnacle Rock)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600170"
-    },
-    "79": {
-      "name": "Long Island Northwest (Diamond Point)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600160"
-    },
-    "80": {
-      "name": "Nahcotta Tidelands",
-      "wdfwStatus": "conditional",
-      "season": "Oysters year-round, Clams closed",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600180"
-    },
-    "81": {
-      "name": "Nemah",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600150"
-    },
-    "82": {
-      "name": "Hawk's Point/Tokeland Area",
-      "wdfwStatus": "open",
-      "season": "Year-round (limited clams)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600130"
-    },
-    "83": {
-      "name": "Bottle Beach (Ocosta)",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/990019"
-    },
-    "84": {
-      "name": "Oyhut",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/990016"
-    },
-    "85": {
-      "name": "Kalaloch",
-      "wdfwStatus": "conditional",
-      "season": "Seasonal - razor clams",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/590100"
-    },
-    "86": {
-      "name": "Cape Disappointment",
-      "wdfwStatus": "conditional",
-      "season": "Seasonal - razor clams",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600221"
-    },
-    "87": {
-      "name": "Pillar Point County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230115"
-    },
-    "88": {
-      "name": "DNR-429 (Strait of Juan de Fuca)",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230150"
-    },
-    "89": {
-      "name": "Cline Spit",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250016"
-    },
-    "90": {
-      "name": "English Camp",
-      "wdfwStatus": "open",
-      "season": "Year-round (north section only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220354"
-    },
-    "91": {
-      "name": "Ala Spit County Park",
-      "wdfwStatus": "open",
-      "season": "May 1-31 only",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240265"
-    },
-    "92": {
-      "name": "Sunrise Beach",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240340"
-    },
-    "93": {
-      "name": "Triton Cove Tidelands",
-      "wdfwStatus": "open",
-      "season": "Year-round (excellent oysters)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270293"
-    },
-    "94": {
-      "name": "Salsbury Point County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250515"
-    },
-    "95": {
-      "name": "Point No Point South",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260211"
-    },
-    "96": {
-      "name": "Chimacum Creek Tidelands (Irondale Beach Park)",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250185"
-    },
-    "97": {
-      "name": "Alki Point",
-      "wdfwStatus": "closed",
-      "season": "Health advisory - urban",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260320"
-    },
-    "98": {
-      "name": "Golden Gardens",
-      "wdfwStatus": "closed",
-      "season": "Permanent - health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260335"
-    },
-    "99": {
-      "name": "Fort Ward Park",
-      "wdfwStatus": "closed",
-      "season": "Health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260370"
-    },
-    "100": {
-      "name": "Suquamish (Old Man House)",
-      "wdfwStatus": "closed",
-      "season": "Conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260250"
-    },
-    "101": {
-      "name": "East Indianola",
-      "wdfwStatus": "closed",
-      "season": "Health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260290"
-    },
-    "102": {
-      "name": "Silverdale Waterfront Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260545"
-    },
-    "103": {
-      "name": "Point Defiance-Owen Beach",
-      "wdfwStatus": "closed",
-      "season": "Health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260730"
-    },
-    "104": {
-      "name": "Dash Point County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260738"
-    },
-    "105": {
-      "name": "Maury Island Marine Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260849"
-    },
-    "106": {
-      "name": "Spring Beach",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260791"
-    },
-    "107": {
-      "name": "Olalla",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260621"
-    },
-    "108": {
-      "name": "Sunrise Beach County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260615"
-    },
-    "109": {
-      "name": "Purdy Spit County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280640"
-    },
-    "110": {
-      "name": "Amsterdam Bay",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280100"
-    },
-    "112": {
-      "name": "DNR-46 (Hood Canal)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270360"
-    },
-    "113": {
-      "name": "DNR-47 (Hood Canal)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270350"
-    },
-    "114": {
-      "name": "DNR-48 (Hood Canal)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270370"
-    },
-    "115": {
-      "name": "DNR-59 (Hood Canal)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270030"
-    },
-    "117": {
-      "name": "West Quilcene Bay",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270110"
-    },
-    "118": {
-      "name": "WDFW Hoodsport Hatchery",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270420"
-    },
-    "119": {
-      "name": "North Bay (Case Inlet)",
-      "wdfwStatus": "open",
-      "season": "Mar 1-Apr 30, Sep 1-Oct 31",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280710"
-    },
-    "120": {
-      "name": "Eagle Island State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280510"
-    },
-    "122": {
-      "name": "Southeast Narrows",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280010"
-    },
-    "123": {
-      "name": "Jones Island State Park (DNR-240C)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200300"
-    },
-    "124": {
-      "name": "Moran State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200500"
-    },
-    "125": {
-      "name": "Stuart Island State Park - Reid Harbor",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200400"
-    },
-    "126": {
-      "name": "Matia Island State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200250"
-    },
-    "127": {
-      "name": "Patos Island State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200270"
-    },
-    "128": {
-      "name": "Turn Island State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220440"
-    },
-    "129": {
-      "name": "Doe Island State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220550"
-    },
-    "130": {
-      "name": "San Juan County Park (Smallpox Bay)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220360"
-    },
-    "132": {
-      "name": "Blowers Bluff and Blowers Bluff North",
-      "wdfwStatus": "open",
-      "season": "Year-round (North closed)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240510"
-    },
-    "133": {
-      "name": "Madrona",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240140"
-    },
-    "134": {
-      "name": "Hidden Beach",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240350"
-    },
-    "135": {
-      "name": "English Boom",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240045"
-    },
-    "136": {
-      "name": "Cavelaro Beach",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240650"
-    },
-    "137": {
-      "name": "Fort Townsend Historical State Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250180"
-    },
-    "138": {
-      "name": "Indian Island County Park (Lagoon Beach/Isthmus Beach)",
-      "wdfwStatus": "conditional",
-      "season": "Lagoon Aug 1-Sep 30",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250410"
-    },
-    "139": {
-      "name": "DNR-404A (Kinney Point)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250540"
-    },
-    "140": {
-      "name": "Broad Spit (Dabob Bay)",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270801"
-    },
-    "141": {
-      "name": "Squaxin Park (Priest Point Park)",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281160"
-    },
-    "143": {
-      "name": "Grapeview",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280770"
-    },
-    "144": {
-      "name": "Birch Bay County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200050"
-    },
-    "145": {
-      "name": "Semiahmoo County Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200100"
-    },
-    "146": {
-      "name": "Point Whitehorn",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200080"
-    },
-    "147": {
-      "name": "Chuckanut Bay",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210005"
-    },
-    "148": {
-      "name": "DNR-220 (Lummi Island)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210110"
-    },
-    "149": {
-      "name": "DNR-209 (Cypress Island)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221190"
-    },
-    "150": {
-      "name": "Saddlebag Island State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221300"
-    },
-    "151": {
-      "name": "Washington Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221260"
-    },
-    "152": {
-      "name": "Bay View State Park",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221295"
-    },
-    "153": {
-      "name": "Samish Island Recreation Area",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210190"
-    },
-    "154": {
-      "name": "DNR-290 (West Blakely Island)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221020"
-    },
-    "155": {
-      "name": "DNR-306 Mackaye Harbor (Lopez Island)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220070"
-    },
-    "156": {
-      "name": "Agate Beach County Park (Lopez Island)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220060"
-    },
-    "157": {
-      "name": "Mud Bay State Park (Lopez Island)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220150"
-    },
-    "158": {
-      "name": "Salt Creek Recreation Area (DNR-419)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230040"
-    },
-    "159": {
-      "name": "DNR-416 (Strait of Juan de Fuca)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230020"
-    },
-    "160": {
-      "name": "DNR-411 (Miller Peninsula)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250040"
-    },
-    "161": {
-      "name": "DNR-409 (Discovery Bay)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250130"
-    },
-    "162": {
-      "name": "North Point Hudson",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250200"
-    },
-    "164": {
-      "name": "Keystone Conservation Area",
-      "wdfwStatus": "closed",
-      "season": "Conservation Area",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250654"
-    },
-    "165": {
-      "name": "Oak Bay County Park",
-      "wdfwStatus": "closed",
-      "season": "Closed 2026 - population recovery",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250400"
-    },
-    "166": {
-      "name": "West Oak Bay",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250380"
-    },
-    "167": {
-      "name": "DNR-100 (Whidbey Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260130"
-    },
-    "168": {
-      "name": "DNR-99 (Whidbey Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260160"
-    },
-    "169": {
-      "name": "East Point (Whidbey Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240330"
-    },
-    "170": {
-      "name": "South Sandy Point",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260140"
-    },
-    "171": {
-      "name": "South Rocky Point",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240040"
-    },
-    "172": {
-      "name": "Mabana",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240540"
-    },
-    "173": {
-      "name": "DNR-33 (Harstine Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280840"
-    },
-    "174": {
-      "name": "DNR-34 (Harstine Island)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280860"
-    },
-    "177": {
-      "name": "Walker County Park",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281066"
-    },
-    "180": {
-      "name": "DNR-18 (Key Peninsula)",
-      "wdfwStatus": "open",
-      "season": "Year-round (boat only)",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280720"
-    },
-    "184": {
-      "name": "Rendsland Creek",
-      "wdfwStatus": "open",
-      "season": "Year-round",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270480"
-    },
-    "197": {
-      "name": "Clark Island State Park (DNR-230)",
-      "wdfwStatus": "unclassified",
-      "season": "Unclassified - check DOH daily",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200230"
-    },
-    "214": {
-      "name": "South Point Monroe (Bainbridge Island)",
-      "wdfwStatus": "closed",
-      "season": "Conservation",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260262"
-    },
-    "215": {
-      "name": "Point White (Bainbridge Island)",
-      "wdfwStatus": "closed",
-      "season": "Health advisory",
-      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260350"
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270440": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270440",
+      "beachName": "Potlatch State Park/Potlatch DNR",
+      "beachId": 1,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN April 1 through May 31, 2026",
+      "isOpen": true,
+      "startDate": "2026-04-01",
+      "endDate": "2026-05-31",
+      "rawText": "Clam, mussel, and oyster seasons OPEN April 1 through May 31, 2026.\nPotlatch State Park and Potlatch DNR are adjacent public beaches owned by two different state agencies. Shellfish seasons and regulations are identical for both beaches."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270200": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270200",
+      "beachName": "Dosewallips State Park",
+      "beachId": 2,
+      "subBeach": null,
+      "season": "Clam and mussel season CLOSED for harvest in 2026 due to a decline in clam abundance. | Oyster season OPEN for harvest year-round. | Dosewallips State Park South is CLOSED year-round, s",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam and mussel season CLOSED for harvest in 2026 due to a decline in clam abundance.\nOyster season OPEN for harvest year-round.\nDosewallips State Park South is CLOSED year-round, s"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270460": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270460",
+      "beachName": "Twanoh State Park",
+      "beachId": 3,
+      "subBeach": null,
+      "season": "Oyster season OPEN for harvest March 1 through September 30, 2026 only",
+      "isOpen": true,
+      "startDate": "2026-03-01",
+      "endDate": "2026-09-30",
+      "rawText": "Clam and mussel seasons OPEN for harvest May 15 through June 15, 2026 only.\nOyster season OPEN for harvest March 1 through September 30, 2026 only.\nBeach access at Twanoh State Park will be closed for shoreline restoration in the summer of 2026"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270470": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270470",
+      "beachName": "Belfair State Park",
+      "beachId": 4,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest August 1 through September 30, 2025 only",
+      "isOpen": false,
+      "startDate": "2026-08-01",
+      "endDate": "2026-09-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest August 1 through September 30, 2025 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270310": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270310",
+      "beachName": "Lilliwaup State Park",
+      "beachId": 5,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest February 15 through September 30, 2026",
+      "isOpen": true,
+      "startDate": "2026-02-15",
+      "endDate": "2026-09-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest February 15 through September 30, 2026."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270300": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270300",
+      "beachName": "Eagle Creek",
+      "beachId": 6,
+      "subBeach": null,
+      "season": "Clam and mussel seasons OPEN for harvest August 15 through September 15, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-08-15",
+      "endDate": "2026-09-15",
+      "rawText": "Clam and mussel seasons OPEN for harvest August 15 through September 15, 2026 only.\nOyster season OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270410": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270410",
+      "beachName": "Scenic Beach State Park",
+      "beachId": 7,
+      "subBeach": null,
+      "season": "CLOSED to harvest until further notice",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels and oysters\nCLOSED to harvest until further notice"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250900": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250900",
+      "beachName": "Port Gamble Heritage Park",
+      "beachId": 8,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest August 15 through September 30, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-08-15",
+      "endDate": "2026-09-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest August 15 through September 30, 2026 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260210": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260210",
+      "beachName": "Point No Point",
+      "beachId": 9,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260180": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260180",
+      "beachName": "DNR-69 (North Kitsap County)",
+      "beachId": 10,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280680": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280680",
+      "beachName": "Penrose Point State Park",
+      "beachId": 11,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons are CLOSED for harvest in 2026 to allow for recovery of shellfish populations.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons are CLOSED for harvest in 2026 to allow for recovery of shellfish populations.\nMayo Cove is CLOSED year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280570": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280570",
+      "beachName": "Kopachuck State Park",
+      "beachId": 12,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest in 2026.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest in 2026."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260740": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260740",
+      "beachName": "Dash Point State Park",
+      "beachId": 13,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest January 1 through May 31 and September 1 through December 31 only",
+      "isOpen": true,
+      "startDate": "2026-01-01",
+      "endDate": "2026-05-31",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest January 1 through May 31 and September 1 through December 31 only. \n\nClam, mussel, and oyster seasons CLOSED for harvest June 1 through August 31."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240030": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240030",
+      "beachName": "Camano Island State Park",
+      "beachId": 14,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round for conservation.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round for conservation."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200060": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200060",
+      "beachName": "Birch Bay State Park",
+      "beachId": 15,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster season OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster season OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250050": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250050",
+      "beachName": "Sequim Bay State Park",
+      "beachId": 16,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest January 1 through May 31, 2026 only",
+      "isOpen": true,
+      "startDate": "2026-01-01",
+      "endDate": "2026-05-31",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest January 1 through May 31, 2026 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250300": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250300",
+      "beachName": "Mystery Bay State Park",
+      "beachId": 17,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster season OPEN for harvest October 1 through April 30 only",
+      "isOpen": true,
+      "startDate": "2025-10-01",
+      "endDate": "2026-04-30",
+      "rawText": "Clam, mussel, and oyster season OPEN for harvest October 1 through April 30 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250260": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250260",
+      "beachName": "Fort Flagler State Park and Rat Island",
+      "beachId": 18,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest August 1 through September 30, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-08-01",
+      "endDate": "2026-09-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest August 1 through September 30, 2026 only\nand the spit west and south of the park boundary is CLOSED for harvest year-round\nRat Island is closed to public access from April 15 to August 31"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250170": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250170",
+      "beachName": "Fort Worden State Park",
+      "beachId": 19,
+      "subBeach": null,
+      "season": "Clams, mussels and oysters from this beach are not fit for human consumption at any time",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels and oysters from this beach are not fit for human consumption at any time"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260600": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260600",
+      "beachName": "Manchester State Park",
+      "beachId": 20,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260231": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260231",
+      "beachName": "Blake Island State Park and Marina",
+      "beachId": 21,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN year-round,",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN year-round,"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260750": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260750",
+      "beachName": "Saltwater State Park",
+      "beachId": 22,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280080": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280080",
+      "beachName": "Tolmie State Park",
+      "beachId": 23,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280750": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280750",
+      "beachName": "Joemma Beach State Park",
+      "beachId": 24,
+      "subBeach": null,
+      "season": "Clams, mussels, and oysters closed year-round",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels, and oysters closed year-round"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240580": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240580",
+      "beachName": "Kayak Point County Park",
+      "beachId": 25,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round for conservation.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round for conservation."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260012": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260012",
+      "beachName": "Meadowdale County Park",
+      "beachId": 26,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260050": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260050",
+      "beachName": "Mukilteo",
+      "beachId": 27,
+      "subBeach": null,
+      "season": "Clams, mussels, and oysters harvest seasons are CLOSED year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels, and oysters harvest seasons are CLOSED year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210210": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210210",
+      "beachName": "Larrabee State Park",
+      "beachId": 28,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250512": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250512",
+      "beachName": "Shine Tidelands State Park",
+      "beachId": 29,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest January 15 through April 15, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-01-15",
+      "endDate": "2026-04-15",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest January 15 through April 15, 2026 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250510": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250510",
+      "beachName": "Wolfe Property State Park",
+      "beachId": 30,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest January 15 through April 15, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-01-15",
+      "endDate": "2026-04-15",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest January 15 through April 15, 2026 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270297": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270297",
+      "beachName": "Triton Cove State Park",
+      "beachId": 31,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270221": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270221",
+      "beachName": "Pleasant Harbor State Park",
+      "beachId": 32,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270170": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270170",
+      "beachName": "Point Whitney Tidelands and Point Whitney Lagoon",
+      "beachId": 33,
+      "subBeach": null,
+      "season": "Oyster season OPEN for harvest January 15 through July 31, 2026 only",
+      "isOpen": true,
+      "startDate": "2026-01-15",
+      "endDate": "2026-07-31",
+      "rawText": "Clam and mussel seasons CLOSED until further notice due to decline in clam abundance.\nOyster season OPEN for harvest January 15 through July 31, 2026 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270500": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270500",
+      "beachName": "Quilcene Bay Tidelands",
+      "beachId": 34,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round.\nPrivate shellfish farms are adjacent to public tidelands in Quilcene Bay. Do not trespass on private property. Boundary is marked with stakes and cinderblocks; farm is straight ahead and to your right as you access public tidelands and is the area with clam nets and other aquaculture gear."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260270": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260270",
+      "beachName": "Discovery Park",
+      "beachId": 35,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260310": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260310",
+      "beachName": "Lincoln Park",
+      "beachId": 36,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260760": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260760",
+      "beachName": "Seahurst County Park",
+      "beachId": 37,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260015": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260015",
+      "beachName": "Richmond Beach Saltwater Park",
+      "beachId": 38,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260260": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260260",
+      "beachName": "Fay Bainbridge Park",
+      "beachId": 39,
+      "subBeach": null,
+      "season": "Clams, mussels and oysters CLOSED year-round due to conservation concerns.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels and oysters CLOSED year-round due to conservation concerns."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260380": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260380",
+      "beachName": "Illahee State Park",
+      "beachId": 40,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest March 1 through June 30, 2025",
+      "isOpen": true,
+      "startDate": "2026-03-01",
+      "endDate": "2026-06-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest March 1 through June 30, 2025."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270230": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270230",
+      "beachName": "Kitsap Memorial State Park and Lofall",
+      "beachId": 41,
+      "subBeach": null,
+      "season": "CLOSED to harvest until further notice",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels and oysters\nCLOSED to harvest until further notice"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260200": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260200",
+      "beachName": "Foulweather Bluff (DNR-64)",
+      "beachId": 42,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240035": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240035",
+      "beachName": "Cama Beach State Park",
+      "beachId": 43,
+      "subBeach": null,
+      "season": "Clams, mussels and oysters CLOSED year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels and oysters CLOSED year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250660": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250660",
+      "beachName": "Fort Casey State Park",
+      "beachId": 44,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250630": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250630",
+      "beachName": "South Whidbey State Park",
+      "beachId": 45,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280975": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280975",
+      "beachName": "Hope Island State Park",
+      "beachId": 46,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest May 1 through May 31 only",
+      "isOpen": false,
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-31",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest May 1 through May 31 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280850": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280850",
+      "beachName": "Jarrell Cove State Park",
+      "beachId": 47,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280830": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280830",
+      "beachName": "McMicken Island State Park",
+      "beachId": 48,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281050": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281050",
+      "beachName": "Oakland Bay",
+      "beachId": 49,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round, except area defined by boundary markers and signs is closed year-round to clam and oyster harvest",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round, except area defined by boundary markers and signs is closed year-round to clam and oyster harvest"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280580": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280580",
+      "beachName": "Cutts Island State Park",
+      "beachId": 50,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281150": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281150",
+      "beachName": "Burfoot County Park",
+      "beachId": 51,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281140": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281140",
+      "beachName": "Frye Cove County Park",
+      "beachId": 52,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest May 1 through May 31 only",
+      "isOpen": false,
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-31",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest May 1 through May 31 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220050": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220050",
+      "beachName": "Spencer Spit State Park",
+      "beachId": 53,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest March 1 through July 31 only",
+      "isOpen": true,
+      "startDate": "2026-03-01",
+      "endDate": "2026-07-31",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest March 1 through July 31 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220730": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220730",
+      "beachName": "Odlin County Park",
+      "beachId": 54,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240150": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240150",
+      "beachName": "West Penn Cove and Twin Lagoons",
+      "beachId": 55,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest June 1 through September 30, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-06-01",
+      "endDate": "2026-09-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest June 1 through September 30, 2026 only\nClam, mussel and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260010": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260010",
+      "beachName": "Picnic Point County Park",
+      "beachId": 56,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260060": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260060",
+      "beachName": "Howarth Park/Darlington Beach",
+      "beachId": 57,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270286": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270286",
+      "beachName": "Duckabush",
+      "beachId": 58,
+      "subBeach": null,
+      "season": "Clam, mussel and oyster season OPEN November 1 through April 30 only",
+      "isOpen": true,
+      "startDate": "2025-11-01",
+      "endDate": "2026-04-30",
+      "rawText": "Clam, mussel and oyster season OPEN November 1 through April 30 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260151": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260151",
+      "beachName": "Possession Point State Park",
+      "beachId": 59,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240440": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240440",
+      "beachName": "Freeland County Park",
+      "beachId": 60,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster season OPEN for harvest October 1 through May 31 only",
+      "isOpen": true,
+      "startDate": "2025-10-01",
+      "endDate": "2026-05-31",
+      "rawText": "Clam, mussel, and oyster season OPEN for harvest October 1 through May 31 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260120": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260120",
+      "beachName": "Dave Mackie County Park",
+      "beachId": 61,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240170": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240170",
+      "beachName": "Coupeville",
+      "beachId": 62,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240530": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240530",
+      "beachName": "Oak Harbor Beach Park",
+      "beachId": 63,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240300": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240300",
+      "beachName": "Deception Pass State Park",
+      "beachId": 64,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round, except tidelands of Rosario Bay from the northern park boundary to Rosario Head are CLOSED to harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round, except tidelands of Rosario Bay from the northern park boundary to Rosario Head are CLOSED to harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260850": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260850",
+      "beachName": "Point Robinson Park",
+      "beachId": 65,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260821": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260821",
+      "beachName": "Lisabeula Park",
+      "beachId": 66,
+      "subBeach": null,
+      "season": "Effective April 1, 2026: Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Effective April 1, 2026: Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260700": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260700",
+      "beachName": "Dockton County Park",
+      "beachId": 67,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260630": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260630",
+      "beachName": "South Portage (formerly known as Tramp Harbor)",
+      "beachId": 68,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260830": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260830",
+      "beachName": "DNR-77 (Vashon Island)",
+      "beachId": 69,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260820": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260820",
+      "beachName": "DNR-78 (Vashon Island)",
+      "beachId": 70,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260720": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260720",
+      "beachName": "DNR-79 (Vashon Island)",
+      "beachId": 71,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260670": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260670",
+      "beachName": "DNR-83 (Vashon Island)",
+      "beachId": 72,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260650": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260650",
+      "beachName": "DNR-85 (Vashon Island)",
+      "beachId": 73,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260642": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260642",
+      "beachName": "Fern Cove",
+      "beachId": 74,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600200": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600200",
+      "beachName": "Long Beach Peninsula",
+      "beachId": 75,
+      "subBeach": null,
+      "season": "Razor clams",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Razor clams"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600060": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600060",
+      "beachName": "Copalis",
+      "beachId": 76,
+      "subBeach": null,
+      "season": null,
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600030": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600030",
+      "beachName": "Mocrocks",
+      "beachId": 77,
+      "subBeach": null,
+      "season": null,
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600170": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600170",
+      "beachName": "Long Island (Pinnacle Rock)",
+      "beachId": 78,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600160": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600160",
+      "beachName": "Long Island Northwest (Diamond Point)",
+      "beachId": 79,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600180": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600180",
+      "beachName": "Nahcotta Tidelands",
+      "beachId": 80,
+      "subBeach": null,
+      "season": "Oysters seasons OPEN for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Oysters seasons OPEN for harvest year-round.\n\nClam and mussel seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600150": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600150",
+      "beachName": "Nemah",
+      "beachId": 81,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600130": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600130",
+      "beachName": "Hawk's Point/Tokeland Area",
+      "beachId": 82,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/990019": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/990019",
+      "beachName": "Bottle Beach (Ocosta)",
+      "beachId": 83,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/990016": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/990016",
+      "beachName": "Oyhut",
+      "beachId": 84,
+      "subBeach": null,
+      "season": null,
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/590100": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/590100",
+      "beachName": "Kalaloch",
+      "beachId": 85,
+      "subBeach": null,
+      "season": null,
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600221": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600221",
+      "beachName": "Cape Disappointment",
+      "beachId": 86,
+      "subBeach": null,
+      "season": null,
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230115": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230115",
+      "beachName": "Pillar Point County Park",
+      "beachId": 87,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230150": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230150",
+      "beachName": "DNR-429 (Strait of Juan de Fuca)",
+      "beachId": 88,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250016": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250016",
+      "beachName": "Cline Spit",
+      "beachId": 89,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220354": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220354",
+      "beachName": "English Camp",
+      "beachId": 90,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round, ONLY north of the National Park Service dinghy dock to Bell Point",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round, ONLY north of the National Park Service dinghy dock to Bell Point"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240265": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240265",
+      "beachName": "Ala Spit County Park",
+      "beachId": 91,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest May 1 through May 31 only",
+      "isOpen": false,
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-31",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest May 1 through May 31 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240340": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240340",
+      "beachName": "Sunrise Beach",
+      "beachId": 92,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270293": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270293",
+      "beachName": "Triton Cove Tidelands",
+      "beachId": 93,
+      "subBeach": null,
+      "season": "Clam and mussel season OPEN for harvest June 1 through August 31 only",
+      "isOpen": false,
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-31",
+      "rawText": "Clam and mussel season OPEN for harvest June 1 through August 31 only.\nOyster season OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250515": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250515",
+      "beachName": "Salsbury Point County Park",
+      "beachId": 94,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260211": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260211",
+      "beachName": "Point No Point South",
+      "beachId": 95,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250185": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250185",
+      "beachName": "Chimacum Creek Tidelands (Irondale Beach Park)",
+      "beachId": 96,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260320": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260320",
+      "beachName": "Alki Point",
+      "beachId": 97,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260335": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260335",
+      "beachName": "Golden Gardens",
+      "beachId": 98,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260370": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260370",
+      "beachName": "Fort Ward Park",
+      "beachId": 99,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260250": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260250",
+      "beachName": "Suquamish (Old Man House)",
+      "beachId": 100,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260290": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260290",
+      "beachName": "East Indianola",
+      "beachId": 101,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260545": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260545",
+      "beachName": "Silverdale Waterfront Park",
+      "beachId": 102,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260730": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260730",
+      "beachName": "Point Defiance-Owen Beach",
+      "beachId": 103,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons are CLOSED to harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons are CLOSED to harvest year-round.\nTacoma Municipal Code 8.27.130 prohibits clamming and other shellfish harvest at Point Defiance."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260738": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260738",
+      "beachName": "Dash Point County Park",
+      "beachId": 104,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260849": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260849",
+      "beachName": "Maury Island Marine Park",
+      "beachId": 105,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260791": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260791",
+      "beachName": "Spring Beach",
+      "beachId": 106,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260621": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260621",
+      "beachName": "Olalla",
+      "beachId": 107,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260615": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260615",
+      "beachName": "Sunrise Beach County Park",
+      "beachId": 108,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280640": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280640",
+      "beachName": "Purdy Spit County Park",
+      "beachId": 109,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest September 1 through September 30, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest September 1 through September 30, 2026 only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280100": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280100",
+      "beachName": "Amsterdam Bay",
+      "beachId": 110,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280085": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280085",
+      "beachName": "Woodard Bay NRCA",
+      "beachId": 111,
+      "subBeach": null,
+      "season": "Clams, mussels and oysters CLOSED year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels and oysters CLOSED year-round.\nIt is illegal to harvest shellfish at any time"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270360": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270360",
+      "beachName": "DNR-46 (Hood Canal)",
+      "beachId": 112,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270350": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270350",
+      "beachName": "DNR-47 (Hood Canal)",
+      "beachId": 113,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270370": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270370",
+      "beachName": "DNR-48 (Hood Canal)",
+      "beachId": 114,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270030": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270030",
+      "beachName": "DNR-59 (Hood Canal)",
+      "beachId": 115,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270020": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270020",
+      "beachName": "W.R. Hicks County Park",
+      "beachId": 116,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270110": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270110",
+      "beachName": "West Quilcene Bay",
+      "beachId": 117,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270420": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270420",
+      "beachName": "WDFW Hoodsport Hatchery",
+      "beachId": 118,
+      "subBeach": null,
+      "season": "Clam and mussel seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam and mussel seasons CLOSED for harvest year-round.\nOyster season OPEN for harvest April 1 through July 31, 2025, daylight hours only."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280710": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280710",
+      "beachName": "North Bay (Case Inlet)",
+      "beachId": 119,
+      "subBeach": null,
+      "season": "OPEN for harvest of clams, mussels, and oysters March 1 through April 30",
+      "isOpen": true,
+      "startDate": "2026-03-01",
+      "endDate": "2026-04-30",
+      "rawText": "OPEN for harvest of clams, mussels, and oysters March 1 through April 30.\nCLOSED for shellfish harvest May 1 through August 31.\nREOPENS for harvest of clams, mussels, and oysters September 1 through October 31, 2025.\nHarvest is prohibited from one hour after official sunset until one hour before official sunrise.\nThe official season is March 1 through April 30 and September 1 through October 30"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280510": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280510",
+      "beachName": "Eagle Island State Park",
+      "beachId": 120,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280305": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280305",
+      "beachName": "Narrows Park",
+      "beachId": 121,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280010": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280010",
+      "beachName": "Southeast Narrows",
+      "beachId": 122,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200300": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200300",
+      "beachName": "Jones Island State Park (DNR-240C)",
+      "beachId": 123,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200500": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200500",
+      "beachName": "Moran State Park",
+      "beachId": 124,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200400": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200400",
+      "beachName": "Stuart Island State Park - Reid Harbor",
+      "beachId": 125,
+      "subBeach": null,
+      "season": null,
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200250": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200250",
+      "beachName": "Matia Island State Park",
+      "beachId": 126,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200270": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200270",
+      "beachName": "Patos Island State Park",
+      "beachId": 127,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220440": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220440",
+      "beachName": "Turn Island State Park",
+      "beachId": 128,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220550": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220550",
+      "beachName": "Doe Island State Park",
+      "beachId": 129,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220360": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220360",
+      "beachName": "San Juan County Park (Smallpox Bay)",
+      "beachId": 130,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220502": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220502",
+      "beachName": "Northwest Cattle Point (San Juan Island)",
+      "beachId": 131,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240510": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240510",
+      "beachName": "Blowers Bluff and Blowers Bluff North",
+      "beachId": 132,
+      "subBeach": null,
+      "season": null,
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240140": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240140",
+      "beachName": "Madrona",
+      "beachId": 133,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240350": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240350",
+      "beachName": "Hidden Beach",
+      "beachId": 134,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240045": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240045",
+      "beachName": "English Boom",
+      "beachId": 135,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240650": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240650",
+      "beachName": "Cavelaro Beach",
+      "beachId": 136,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250180": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250180",
+      "beachName": "Fort Townsend Historical State Park",
+      "beachId": 137,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250410#Lagoon Beach": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250410",
+      "beachName": "Lagoon Beach (Indian Island County Park)",
+      "beachId": 138,
+      "subBeach": "Lagoon Beach",
+      "season": "Clam, mussel, and oyster seasons OPEN August 1 through September 30, 2026 only",
+      "isOpen": false,
+      "startDate": "2026-08-01",
+      "endDate": "2026-09-30",
+      "rawText": "Clam, mussel, and oyster seasons OPEN August 1 through September 30, 2026 only"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250410#Isthmus Beach": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250410",
+      "beachName": "Isthmus Beach (Indian Island County Park)",
+      "beachId": 217,
+      "subBeach": "Isthmus Beach",
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest August 1 through May 15 only",
+      "isOpen": true,
+      "startDate": "2025-08-01",
+      "endDate": "2026-05-15",
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest August 1 through May 15 only"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250540": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250540",
+      "beachName": "DNR-404A (Kinney Point)",
+      "beachId": 139,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270801": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270801",
+      "beachName": "Broad Spit (Dabob Bay)",
+      "beachId": 140,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281160": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281160",
+      "beachName": "Squaxin Park (Priest Point Park)",
+      "beachId": 141,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280827": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280827",
+      "beachName": "Fudge Point State Park",
+      "beachId": 142,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280770": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280770",
+      "beachName": "Grapeview",
+      "beachId": 143,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200050": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200050",
+      "beachName": "Birch Bay County Park",
+      "beachId": 144,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200100": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200100",
+      "beachName": "Semiahmoo County Park",
+      "beachId": 145,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200080": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200080",
+      "beachName": "Point Whitehorn",
+      "beachId": 146,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210005": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210005",
+      "beachName": "Chuckanut Bay",
+      "beachId": 147,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210110": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210110",
+      "beachName": "DNR-220 (Lummi Island)",
+      "beachId": 148,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221190": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221190",
+      "beachName": "DNR-209 (Cypress Island)",
+      "beachId": 149,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221300": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221300",
+      "beachName": "Saddlebag Island State Park",
+      "beachId": 150,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221260": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221260",
+      "beachName": "Washington Park",
+      "beachId": 151,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221295": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221295",
+      "beachName": "Bay View State Park",
+      "beachId": 152,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210190": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/210190",
+      "beachName": "Samish Island Recreation Area",
+      "beachId": 153,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221020": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221020",
+      "beachName": "DNR-290 (West Blakely Island)",
+      "beachId": 154,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220070": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220070",
+      "beachName": "DNR-306 Mackaye Harbor (Lopez Island)",
+      "beachId": 155,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220060": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220060",
+      "beachName": "Agate Beach County Park (Lopez Island)",
+      "beachId": 156,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220150": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220150",
+      "beachName": "Mud Bay State Park (Lopez Island)",
+      "beachId": 157,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230040": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230040",
+      "beachName": "Salt Creek Recreation Area (DNR-419)",
+      "beachId": 158,
+      "subBeach": null,
+      "season": "Clams, mussels and oysters CLOSED year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clams, mussels and oysters CLOSED year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230020": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/230020",
+      "beachName": "DNR-416 (Strait of Juan de Fuca)",
+      "beachId": 159,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250040": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250040",
+      "beachName": "DNR-411 (Miller Peninsula)",
+      "beachId": 160,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250130": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250130",
+      "beachName": "DNR-409 (Discovery Bay)",
+      "beachId": 161,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250200": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250200",
+      "beachName": "North Point Hudson",
+      "beachId": 162,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250654": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250654",
+      "beachName": "Keystone Conservation Area",
+      "beachId": 164,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round"
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250400": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250400",
+      "beachName": "Oak Bay County Park",
+      "beachId": 165,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED to harvest in 2026 due to a decline in shellfish abundance.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED to harvest in 2026 due to a decline in shellfish abundance."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250380": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250380",
+      "beachName": "West Oak Bay",
+      "beachId": 166,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260130": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260130",
+      "beachName": "DNR-100 (Whidbey Island)",
+      "beachId": 167,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260160": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260160",
+      "beachName": "DNR-99 (Whidbey Island)",
+      "beachId": 168,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240330": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240330",
+      "beachName": "East Point (Whidbey Island)",
+      "beachId": 169,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260140": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260140",
+      "beachName": "South Sandy Point",
+      "beachId": 170,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240040": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240040",
+      "beachName": "South Rocky Point",
+      "beachId": 171,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240540": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240540",
+      "beachName": "Mabana",
+      "beachId": 172,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280840": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280840",
+      "beachName": "DNR-33 (Harstine Island)",
+      "beachId": 173,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280860": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280860",
+      "beachName": "DNR-34 (Harstine Island)",
+      "beachId": 174,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280790": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280790",
+      "beachName": "DNR-20 (Stretch Island, Case Inlet)",
+      "beachId": 175,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280430": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280430",
+      "beachName": "Taylor Bay",
+      "beachId": 176,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281066": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281066",
+      "beachName": "Walker County Park",
+      "beachId": 177,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280360": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280360",
+      "beachName": "DNR-39 Wyckoff Shoal",
+      "beachId": 178,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280410": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280410",
+      "beachName": "DNR-16 (Key Peninsula)",
+      "beachId": 179,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280720": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280720",
+      "beachName": "DNR-18 (Key Peninsula)",
+      "beachId": 180,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280420": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280420",
+      "beachName": "DNR-13 (Key Peninsula)",
+      "beachId": 181,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280630": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280630",
+      "beachName": "Maple Hollow",
+      "beachId": 182,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270480": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270480",
+      "beachName": "Rendsland Creek",
+      "beachId": 184,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260445": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260445",
+      "beachName": "Brownsville",
+      "beachId": 185,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280610": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280610",
+      "beachName": "DNR-35A (Carr Inlet)",
+      "beachId": 188,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280140": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280140",
+      "beachName": "DNR-8 (Anderson Island)",
+      "beachId": 189,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220540": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/220540",
+      "beachName": "DNR-281A Doe Bay (Orcas Island)",
+      "beachId": 191,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200230": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200230",
+      "beachName": "Clark Island State Park (DNR-230)",
+      "beachId": 197,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221150": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221150",
+      "beachName": "James Island",
+      "beachId": 198,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221100": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221100",
+      "beachName": "DNR-319A (Decatur Island)",
+      "beachId": 199,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221290": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/221290",
+      "beachName": "March Point Recreation Area",
+      "beachId": 200,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260330": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260330",
+      "beachName": "South Carkeek Park",
+      "beachId": 201,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260739": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260739",
+      "beachName": "Brown's Point Lighthouse",
+      "beachId": 203,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200104": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200104",
+      "beachName": "Drayton Harbor",
+      "beachId": 207,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250057": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250057",
+      "beachName": "Pitship Point",
+      "beachId": 211,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons CLOSED for harvest year-round for conservation.",
+      "isOpen": false,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons CLOSED for harvest year-round for conservation."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260262": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260262",
+      "beachName": "South Point Monroe (Bainbridge Island)",
+      "beachId": 214,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260350": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260350",
+      "beachName": "Point White (Bainbridge Island)",
+      "beachId": 215,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
+    },
+    "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260690": {
+      "wdfwUrl": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260690",
+      "beachName": "Piner Point",
+      "beachId": 216,
+      "subBeach": null,
+      "season": "Clam, mussel, and oyster seasons OPEN for harvest year-round.",
+      "isOpen": true,
+      "startDate": null,
+      "endDate": null,
+      "rawText": "Clam, mussel, and oyster seasons OPEN for harvest year-round."
     }
   }
 }

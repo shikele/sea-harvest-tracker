@@ -50,14 +50,20 @@ function calculateOpportunityScore(beach, lowTides) {
 
 /**
  * Determine the status color for UI
- * green = open (fully open for all species)
- * yellow = conditional (species-specific restrictions)
+ * green = open (biotoxin open AND season open)
+ * yellow = conditional (species-specific restrictions or mixed season)
+ * orange = season closed (biotoxin may be open but WDFW season is closed)
  * red = closed (full biotoxin closure)
  * gray = unclassified
  */
 function getStatusColor(beach, lowTides) {
   if (beach.biotoxin_status === 'closed') {
     return 'red';
+  }
+
+  // If biotoxin is open but WDFW season is closed
+  if (!beach.wdfw_season_open) {
+    return 'orange';
   }
 
   if (beach.biotoxin_status === 'open') {

@@ -49,7 +49,7 @@ const styles = {
   },
   statsRow: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridTemplateColumns: 'repeat(5, 1fr)',
     gap: '16px',
     marginBottom: '24px'
   },
@@ -727,7 +727,10 @@ export default function Dashboard() {
       }
       // Status filter (empty array = all, otherwise check if status is in selected filters)
       if (statusFilters.length === 0) return true;
-      return statusFilters.includes(beach.biotoxinStatus);
+      // Handle 'seasonClosed' filter separately
+      if (statusFilters.includes('seasonClosed') && beach.seasonOpen === false) return true;
+      // Standard biotoxin status filters
+      return statusFilters.includes(beach.biotoxinStatus) && beach.seasonOpen !== false;
     })
     .sort((a, b) => {
       if (sortMode === 'distance') {
@@ -813,7 +816,8 @@ export default function Dashboard() {
       }
       // Status filter (empty array = all)
       if (statusFilters.length === 0) return true;
-      return statusFilters.includes(beach.biotoxinStatus);
+      if (statusFilters.includes('seasonClosed') && beach.seasonOpen === false) return true;
+      return statusFilters.includes(beach.biotoxinStatus) && beach.seasonOpen !== false;
     })
     .sort((a, b) => {
       if (sortMode === 'distance') {
@@ -857,9 +861,10 @@ export default function Dashboard() {
 
   const stats = {
     total: speciesFilteredBeaches.length,
-    open: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'open').length,
+    open: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'open' && b.seasonOpen !== false).length,
     conditional: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'conditional').length,
     closed: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'closed').length,
+    seasonClosed: speciesFilteredBeaches.filter(b => b.seasonOpen === false).length,
     unclassified: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'unclassified').length
   };
 
@@ -1023,9 +1028,22 @@ export default function Dashboard() {
           className="stat-card"
           onClick={() => toggleStatusFilter('closed')}
         >
-          <div style={styles.statLabel} className="stat-label">Closed</div>
+          <div style={styles.statLabel} className="stat-label">Biotoxin Unsafe</div>
           <div style={{ ...styles.statValue, color: '#f56565' }} className="stat-value">{stats.closed}</div>
         </div>
+        {stats.seasonClosed > 0 && (
+        <div
+          style={{
+            ...styles.statCard,
+            ...(statusFilters.includes('seasonClosed') ? styles.statCardSelected : {})
+          }}
+          className="stat-card"
+          onClick={() => toggleStatusFilter('seasonClosed')}
+        >
+          <div style={styles.statLabel} className="stat-label">Season Closed</div>
+          <div style={{ ...styles.statValue, color: '#ed8936' }} className="stat-value">{stats.seasonClosed}</div>
+        </div>
+        )}
         <div
           style={{
             ...styles.statCard,
@@ -1258,22 +1276,21 @@ export default function Dashboard() {
                   fontSize: '13px',
                   fontWeight: '600',
                   textTransform: 'uppercase',
-                  backgroundColor:
-                    selectedBeach.biotoxinStatus === 'open'
-                      ? '#c6f6d5'
-                      : selectedBeach.biotoxinStatus === 'closed'
-                      ? '#fed7d7'
-                      : '#fefcbf',
-                  color:
-                    selectedBeach.biotoxinStatus === 'open'
-                      ? '#22543d'
-                      : selectedBeach.biotoxinStatus === 'closed'
-                      ? '#742a2a'
-                      : '#744210'
+                  backgroundColor: selectedBeach.statusColor === 'green' ? '#c6f6d5' : '#fed7d7',
+                  color: selectedBeach.statusColor === 'green' ? '#22543d' : '#742a2a'
                 }}
               >
-                {selectedBeach.biotoxinStatus}
+                {selectedBeach.statusColor === 'green' ? 'OPEN' : 'CLOSED'}
               </span>
+              <div style={{ display: 'flex', gap: '16px', marginTop: '10px', fontSize: '13px' }}>
+                <span style={{ color: selectedBeach.biotoxinStatus === 'open' ? '#276749' : selectedBeach.biotoxinStatus === 'closed' ? '#c53030' : '#975a16' }}>
+                  Biotoxin: {selectedBeach.biotoxinStatus === 'open' ? 'Safe' : selectedBeach.biotoxinStatus === 'closed' ? 'Unsafe' : selectedBeach.biotoxinStatus === 'conditional' ? 'Caution' : 'Unknown'}
+                </span>
+                <span style={{ color: '#cbd5e0' }}>|</span>
+                <span style={{ color: selectedBeach.seasonOpen ? '#276749' : '#c05621' }}>
+                  Season: {selectedBeach.seasonOpen ? 'Open' : 'Closed'}
+                </span>
+              </div>
               {selectedBeach.wdfwUrl && (
                 <div style={{ marginTop: '8px' }}>
                   <a
@@ -1293,13 +1310,21 @@ export default function Dashboard() {
               )}
             </div>
 
-            {selectedBeach.closureReason && selectedBeach.biotoxinStatus === 'closed' && (
-              <div style={{ marginBottom: '20px', padding: '16px', backgroundColor: '#fff5f5', borderRadius: '8px', color: '#c53030' }}>
-                <strong>Closure Reason:</strong> {selectedBeach.closureReason}
+            {selectedBeach.biotoxinStatus === 'closed' && (
+              <div style={{ marginBottom: '20px', padding: '16px', backgroundColor: '#fff5f5', borderRadius: '8px', borderLeft: '4px solid #fc8181', color: '#c53030' }}>
+                <strong style={{ display: 'block', marginBottom: '6px' }}>Biotoxin Closure</strong>
+                {selectedBeach.closureReason && (
+                  <span>{selectedBeach.closureReason}</span>
+                )}
+                {selectedBeach.speciesAffected && (
+                  <div style={{ marginTop: '6px', fontSize: '14px' }}>
+                    Species affected: {selectedBeach.speciesAffected}
+                  </div>
+                )}
               </div>
             )}
 
-            {selectedBeach.biotoxinStatus === 'conditional' && selectedBeach.speciesAffected && (
+            {selectedBeach.biotoxinStatus === 'conditional' && (
               <div style={{
                 marginBottom: '20px',
                 padding: '16px',
@@ -1308,14 +1333,45 @@ export default function Dashboard() {
                 borderLeft: '4px solid #ecc94b'
               }}>
                 <strong style={{ color: '#744210', display: 'block', marginBottom: '6px' }}>
-                  Species Restriction:
+                  Conditional Biotoxin Status
                 </strong>
-                <span style={{ color: '#744210', fontSize: '15px' }}>
-                  {selectedBeach.speciesAffected}
+                {selectedBeach.speciesAffected && (
+                  <span style={{ color: '#744210', fontSize: '15px' }}>
+                    Species restriction: {selectedBeach.speciesAffected}
+                  </span>
+                )}
+                {selectedBeach.closureReason && (
+                  <p style={{ color: '#975a16', fontSize: '13px', marginTop: '6px', marginBottom: 0 }}>
+                    {selectedBeach.closureReason}
+                  </p>
+                )}
+                {selectedBeach.speciesAffected && (
+                  <p style={{ color: '#975a16', fontSize: '13px', marginTop: '6px', marginBottom: 0 }}>
+                    Other species may be harvested. Check current regulations.
+                  </p>
+                )}
+              </div>
+            )}
+
+            {selectedBeach.seasonInfo && (
+              <div style={{
+                marginBottom: '20px',
+                padding: '16px',
+                backgroundColor: selectedBeach.seasonOpen ? '#f0fff4' : '#fffaf0',
+                borderRadius: '8px',
+                borderLeft: `4px solid ${selectedBeach.seasonOpen ? '#48bb78' : '#ed8936'}`
+              }}>
+                <strong style={{ color: selectedBeach.seasonOpen ? '#276749' : '#c05621', display: 'block', marginBottom: '6px' }}>
+                  WDFW Season Info:
+                </strong>
+                <span style={{ color: selectedBeach.seasonOpen ? '#276749' : '#c05621', fontSize: '14px' }}>
+                  {selectedBeach.seasonInfo}
                 </span>
-                <p style={{ color: '#975a16', fontSize: '13px', marginTop: '10px', marginBottom: 0 }}>
-                  Other species may be harvested. Check current regulations.
-                </p>
+                {!selectedBeach.seasonOpen && (
+                  <p style={{ color: '#975a16', fontSize: '13px', marginTop: '10px', marginBottom: 0 }}>
+                    This beach is currently outside its approved harvest season.
+                  </p>
+                )}
               </div>
             )}
 

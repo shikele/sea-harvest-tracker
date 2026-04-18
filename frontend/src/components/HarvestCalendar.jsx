@@ -221,10 +221,8 @@ const styles = {
     paddingBottom: '12px'
   },
   emptyIcon: {
-    fontSize: '28px',
-    color: '#e53e3e',
-    lineHeight: 1,
-    marginBottom: '-4px'
+    fontSize: '20px',
+    color: '#e53e3e'
   },
   emptyIconSmall: {
     fontSize: '20px',
@@ -327,8 +325,12 @@ const statusColors = {
   unclassified: '#a0aec0' // gray
 };
 
-function getStatusBorderColor(biotoxinStatus) {
-  return statusColors[biotoxinStatus] || statusColors.unclassified;
+function getStatusBorderColor(biotoxinStatus, seasonOpen) {
+  if (biotoxinStatus === 'closed') return statusColors.closed;
+  if (biotoxinStatus === 'open' && seasonOpen === false) return '#ed8936'; // orange (season closed)
+  if (biotoxinStatus === 'open') return statusColors.open;
+  if (biotoxinStatus === 'conditional') return statusColors.conditional;
+  return statusColors.unclassified;
 }
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -438,6 +440,11 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
       const filteredBeaches = day.beaches.map(beach => {
         const fullBeach = beachDataMap[beach.id];
         if (!fullBeach) return null;
+
+        // Only recommend truly open beaches (biotoxin safe AND season open AND road accessible)
+        const isOpen = fullBeach.biotoxinStatus === 'open' && fullBeach.seasonOpen !== false;
+        if (!isOpen) return null;
+        if (fullBeach.accessType === 'boat') return null;
 
         // Status filter (empty array = all)
         if (statusFilters.length > 0 && !statusFilters.includes(beach.biotoxinStatus)) {
@@ -889,6 +896,8 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                 ...styles.dayCard,
                 ...(day.beaches.length > 0 ? {
                   backgroundColor: day.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
+                } : selectedSpecies.length > 0 && day.date in originalDateMap ? {
+                  backgroundColor: '#fff5f5'
                 } : {}),
                 ...(isSameDay(day.date, today) ? styles.dayCardToday : {}),
                 ...(selectedDate === day.date ? styles.dayCardSelected : {})
@@ -915,10 +924,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                         <span style={{ fontStyle: 'italic' }}>No data</span>
                       </>
                     ) : (
-                      <>
-                        <span style={styles.emptyIcon}>↑</span>
-                        <span style={{ color: '#e53e3e' }}>Tides too high</span>
-                      </>
+                      <span style={{ color: '#e53e3e', fontSize: '11px' }}>Tides too high</span>
                     )}
                   </div>
                 ) : (
@@ -928,7 +934,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                         key={`${beach.id}-${i}`}
                         style={{
                           ...styles.beachItem,
-                          borderLeftColor: getStatusBorderColor(beach.biotoxinStatus),
+                          borderLeftColor: getStatusBorderColor(beach.biotoxinStatus, beach.seasonOpen),
                           cursor: 'default',
                           marginBottom: 0
                         }}
@@ -961,8 +967,10 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                 key={cell.date}
                 style={{
                   ...styles.dayCardMonth,
-                  ...(cell.beaches.length > 0 && !cell.isPast ? {
-                    backgroundColor: cell.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
+                  ...(!cell.isPast ? {
+                    backgroundColor: cell.beaches.length > 0
+                      ? (cell.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4')
+                      : '#fff5f5'
                   } : {}),
                   ...(cell.isToday ? styles.dayCardToday : {}),
                   ...(cell.isPast ? styles.dayCardPast : {}),
@@ -984,15 +992,7 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
                 </div>
 
                 {cell.beaches.length === 0 ? (
-                  <div style={styles.emptyDayMonth} className="calendar-month-empty-content">
-                    {selectedSpecies.length === 0 ? (
-                      <span className="calendar-month-icon">🦪</span>
-                    ) : !cell.hasData ? (
-                      <span className="calendar-month-no-data">No data</span>
-                    ) : (
-                      <span className="calendar-month-icon calendar-month-arrow" style={{...(cell.isPast ? { color: '#cbd5e0' } : { color: '#e53e3e' })}}>↑</span>
-                    )}
-                  </div>
+                  <div style={styles.emptyDayMonth} className="calendar-month-empty-content" />
                 ) : (
                   <>
                     {cell.beaches.map((beach, i) => (
@@ -1027,37 +1027,37 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
       <div style={styles.legend} className="calendar-legend">
         {selectedSpecies.length === 0 ? (
           <div style={styles.legendItem} className="calendar-legend-item">
-            <span style={{ fontSize: '14px' }}>🦪</span>
-            Select a species above to see harvest opportunities
+            <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#e2e8f0', border: '1px solid #a0aec0', borderRadius: '2px' }} />
+            Select a species to see harvest days
           </div>
         ) : viewMode === 'week' ? (
           <>
             <div style={styles.legendItem} className="calendar-legend-item">
               <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
-              Good tide
+              Good harvest day
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
               <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
-              ⚠️ Slightly high
+              Tide slightly high
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ color: '#e53e3e', fontSize: '14px' }}>↑</span>
-              Too high
+              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fff5f5', border: '1px solid #feb2b2', borderRadius: '2px' }} />
+              No good tides
             </div>
           </>
         ) : (
           <>
             <div style={styles.legendItem} className="calendar-legend-item">
               <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
-              Low enough
+              Good harvest day
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
               <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
-              Slightly high
+              Tide slightly high
             </div>
             <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ color: '#e53e3e', fontSize: '14px' }}>↑</span>
-              Too high
+              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fff5f5', border: '1px solid #feb2b2', borderRadius: '2px' }} />
+              No good tides
             </div>
           </>
         )}
