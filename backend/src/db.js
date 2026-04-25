@@ -67,6 +67,8 @@ for (const beach of beaches) {
       closure_reason: null,
       species_affected: null,
       wdfw_season_open: true,
+      wdfw_start_date: null,
+      wdfw_end_date: null,
       last_updated: new Date().toISOString()
     };
   }
@@ -85,6 +87,8 @@ function mergeStatus(beach, status) {
     species_affected: status.species_affected,
     season_info: status.season_info,
     wdfw_season_open: status.wdfw_season_open,
+    wdfw_start_date: status.wdfw_start_date ?? null,
+    wdfw_end_date: status.wdfw_end_date ?? null,
     last_updated: status.last_updated
   };
 }
@@ -111,6 +115,8 @@ export function updateBeachStatus(beachId, status) {
     species_affected: status.species_affected || null,
     season_info: status.season_info || null,
     wdfw_season_open: status.wdfw_season_open !== false,
+    wdfw_start_date: status.wdfw_start_date || null,
+    wdfw_end_date: status.wdfw_end_date || null,
     last_updated: new Date().toISOString()
   };
   saveDb(db);

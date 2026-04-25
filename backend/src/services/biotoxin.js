@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { getAllBeaches, updateBeachStatus } from '../db.js';
-import { checkWdfwSeason, loadWdfwStatus as loadScrapedWdfwStatus, scrapeAllBeaches } from './wdfw-scraper.js';
+import { checkWdfwSeason, loadWdfwStatus as loadScrapedWdfwStatus, scrapeAllBeaches, scrapeRazorClamPage, getUpcomingDigsForBeach } from './wdfw-scraper.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -374,10 +374,14 @@ export async function refreshBiotoxinData() {
     if (entry.wdfwUrl) wdfwByUrl[entry.wdfwUrl] = entry;
   }
 
+  // Scrape WDFW razor clam dig schedule
+  const razorClamData = await scrapeRazorClamPage();
+
   let openCount = 0;
   let closedCount = 0;
   let conditionalCount = 0;
   let unclassifiedCount = 0;
+  let wdfwManagedCount = 0;
 
   for (const beach of ourBeaches) {
     const bidn = extractBidn(beach.wdfw_url);
@@ -389,10 +393,39 @@ export async function refreshBiotoxinData() {
     const wdfwSeason = beach.wdfw_url ? checkWdfwSeason(beach.wdfw_url, beach.sub_beach) : { isOpen: true, seasonInfo: null };
     const seasonInfo = wdfwSeason.seasonInfo || wdfwInfo?.season || null;
     const wdfwSeasonOpen = wdfwSeason.isOpen;
+    const wdfwStartDate = wdfwInfo?.startDate || null;
+    const wdfwEndDate = wdfwInfo?.endDate || null;
 
     let finalStatus = 'unclassified';
     let closureReason = null;
     let speciesAffected = null;
+
+    // Razor clam beaches are managed by WDFW dig announcements, not DOH biotoxin monitoring.
+    // DOH returns misleading "closed" status for these ocean coast beaches.
+    const isRazorClamBeach = beach.species?.some(s => s.name === 'Razor Clams');
+    if (isRazorClamBeach) {
+      finalStatus = 'wdfw_managed';
+      const upcomingDigs = getUpcomingDigsForBeach(beach.id);
+      if (upcomingDigs.length > 0) {
+        const digDates = upcomingDigs.map(d => `${d.date} (${d.dayOfWeek} ${d.time}, ${d.tideHeight}ft)`).join('; ');
+        closureReason = `Upcoming digs: ${digDates}`;
+      } else if (razorClamData?.headline) {
+        closureReason = razorClamData.headline;
+      } else {
+        closureReason = 'Razor clam digs are managed by WDFW. Check WDFW for scheduled dig dates.';
+      }
+      wdfwManagedCount++;
+      updateBeachStatus(beach.id, {
+        biotoxin_status: finalStatus,
+        closure_reason: closureReason,
+        species_affected: speciesAffected,
+        season_info: seasonInfo,
+        wdfw_season_open: wdfwSeasonOpen,
+        wdfw_start_date: wdfwStartDate,
+        wdfw_end_date: wdfwEndDate
+      });
+      continue;
+    }
 
     if (dohStatus) {
       const dohFinal = dohStatus.finalstatus;
@@ -445,7 +478,9 @@ export async function refreshBiotoxinData() {
       closure_reason: closureReason,
       species_affected: speciesAffected,
       season_info: seasonInfo,
-      wdfw_season_open: wdfwSeasonOpen
+      wdfw_season_open: wdfwSeasonOpen,
+      wdfw_start_date: wdfwStartDate,
+      wdfw_end_date: wdfwEndDate
     });
 
     // Count by status
@@ -460,6 +495,7 @@ export async function refreshBiotoxinData() {
   console.log(`  - Closed: ${closedCount}`);
   console.log(`  - Conditional: ${conditionalCount}`);
   console.log(`  - Unclassified: ${unclassifiedCount}`);
+  console.log(`  - WDFW Managed: ${wdfwManagedCount}`);
 
   return {
     updated: ourBeaches.length,
@@ -467,6 +503,7 @@ export async function refreshBiotoxinData() {
     closed: closedCount,
     conditional: conditionalCount,
     unclassified: unclassifiedCount,
+    wdfwManaged: wdfwManagedCount,
     timestamp: new Date().toISOString()
   };
 }

@@ -88,7 +88,7 @@ html, body {
 
   .stat-card {
     padding: 8px 10px !important;
-    border-radius: 6px !important;
+    border-radius: 8px !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -186,7 +186,7 @@ html, body {
   /* Calendar container */
   .calendar-container {
     padding: 12px !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
   }
 
   .calendar-header {
@@ -283,7 +283,7 @@ html, body {
     height: 55px !important;
     min-height: 55px !important;
     padding: 8px 10px !important;
-    border-radius: 5px !important;
+    border-radius: 8px !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -326,7 +326,7 @@ html, body {
   .calendar-beach-item {
     padding: 3px 6px !important;
     margin-bottom: 0 !important;
-    border-radius: 3px !important;
+    border-radius: 4px !important;
   }
 
   .calendar-beach-name {
@@ -451,7 +451,7 @@ html, body {
   /* Beach list section */
   .beach-list-section {
     padding: 12px !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
   }
 
   .section-title {
@@ -465,15 +465,20 @@ html, body {
   }
 
   .search-sort-row {
-    flex-wrap: wrap !important;
     gap: 8px !important;
   }
 
   .search-input,
   .search-input-small {
     font-size: 16px !important; /* Prevents iOS zoom */
-    padding: 10px 12px 10px 36px !important;
-    width: 100% !important;
+  }
+
+  .toggle-row {
+    gap: 8px !important;
+  }
+
+  .toggle-row .MuiToggleButtonGroup-root {
+    flex: 1;
   }
 
   .filter-group {
@@ -501,7 +506,7 @@ html, body {
   .beach-card {
     padding: 12px !important;
     margin-bottom: 10px !important;
-    border-radius: 8px !important;
+    border-radius: 12px !important;
   }
 
   .beach-name {
@@ -548,7 +553,7 @@ html, body {
   /* Selected beach panel */
   .selected-beach-panel {
     padding: 12px !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
   }
 
   .tide-chart-container {

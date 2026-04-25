@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getAllBeaches } from '../db.js';
 import { getLowTides, getLowTidesWithNextGood } from '../services/tides.js';
+import { getUpcomingDigsForBeach, getRazorClamDigForDate } from '../services/wdfw-scraper.js';
 
 const router = Router();
 
@@ -14,6 +15,8 @@ function calculateOpportunityScore(beach, lowTides) {
   // Status scoring
   if (beach.biotoxin_status === 'open') {
     score += 50;
+  } else if (beach.biotoxin_status === 'wdfw_managed') {
+    score += 40;
   } else if (beach.biotoxin_status === 'conditional') {
     score += 25;
   }
@@ -57,6 +60,10 @@ function calculateOpportunityScore(beach, lowTides) {
  * gray = unclassified
  */
 function getStatusColor(beach, lowTides) {
+  if (beach.biotoxin_status === 'wdfw_managed') {
+    return 'blue';
+  }
+
   if (beach.biotoxin_status === 'closed') {
     return 'red';
   }
@@ -107,6 +114,8 @@ router.get('/', async (req, res) => {
           seasonInfo: beach.season_info,
           wdfwUrl: beach.wdfw_url,
           seasonOpen: beach.wdfw_season_open,
+          seasonStartDate: beach.wdfw_start_date,
+          seasonEndDate: beach.wdfw_end_date,
           lastUpdated: beach.last_updated,
           nextLowTides: lowTides.slice(0, 5),
           nextGoodTide: tideResult.nextGoodTide,
@@ -116,7 +125,8 @@ router.get('/', async (req, res) => {
           species: beach.species || [],
           notes: beach.notes || null,
           tide_station_id: beach.tide_station_id,
-          accessType: beach.access_type || 'public'
+          accessType: beach.access_type || 'public',
+          upcomingDigs: beach.biotoxin_status === 'wdfw_managed' ? getUpcomingDigsForBeach(beach.id) : undefined
         };
       })
     );
@@ -181,6 +191,35 @@ router.get('/calendar', async (req, res) => {
       const isClosed = beach.biotoxin_status === 'closed';
       if (isClosed && !includeAll) continue;
 
+      const isRazorClam = beach.biotoxin_status === 'wdfw_managed';
+
+      if (isRazorClam) {
+        // Razor clam beaches: use WDFW dig schedule instead of tide predictions
+        for (const calendarDay of calendar) {
+          const dig = getRazorClamDigForDate(beach.id, calendarDay.date);
+          if (dig) {
+            calendarDay.beaches.push({
+              id: beach.id,
+              name: beach.name,
+              region: beach.region,
+              county: beach.county,
+              tide_station_id: beach.tide_station_id,
+              tideTime: `${calendarDay.date} ${dig.time}`,
+              tideHeight: dig.tideHeight,
+              tideQuality: 'excellent',
+              biotoxinStatus: beach.biotoxin_status,
+              seasonOpen: true,
+              seasonStartDate: beach.wdfw_start_date,
+              seasonEndDate: beach.wdfw_end_date,
+              isClosed: false,
+              isDigDay: true,
+              digTime: dig.time
+            });
+          }
+        }
+        continue;
+      }
+
       const lowTides = await getLowTides(beach.tide_station_id, days, req.query.startDate || null);
 
       for (const tide of lowTides) {
@@ -198,6 +237,9 @@ router.get('/calendar', async (req, res) => {
             tideHeight: tide.height,
             tideQuality: tide.quality,
             biotoxinStatus: beach.biotoxin_status,
+            seasonOpen: beach.wdfw_season_open,
+            seasonStartDate: beach.wdfw_start_date,
+            seasonEndDate: beach.wdfw_end_date,
             isClosed
           });
         }

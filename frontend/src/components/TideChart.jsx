@@ -1,86 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { getTides } from '../services/api';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import Paper from '@mui/material/Paper';
+import CloseIcon from '@mui/icons-material/Close';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
-const styles = {
-  container: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-  },
-  title: {
-    fontSize: '16px',
-    fontWeight: '600',
-    marginBottom: '16px',
-    color: '#1a202c'
-  },
-  chart: {
-    position: 'relative',
-    height: '150px',
-    marginBottom: '16px'
-  },
-  svg: {
-    width: '100%',
-    height: '100%'
-  },
-  legend: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '20px',
-    fontSize: '12px',
-    color: '#718096'
-  },
-  legendItem: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px'
-  },
-  legendDot: {
-    width: '10px',
-    height: '10px',
-    borderRadius: '50%'
-  },
-  tideList: {
-    marginTop: '12px'
-  },
-  detailsToggle: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '6px',
-    padding: '8px',
-    marginTop: '12px',
-    backgroundColor: '#f7fafc',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    fontSize: '13px',
-    color: '#4a5568',
-    width: '100%'
-  },
-  tideItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '8px 0',
-    borderBottom: '1px solid #e2e8f0'
-  },
-  tideType: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px'
-  },
-  tideIcon: {
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%'
-  },
-  loading: {
-    textAlign: 'center',
-    padding: '40px',
-    color: '#718096'
-  }
-};
+import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
 
 function formatTime(dateTimeStr) {
   const date = new Date(dateTimeStr);
@@ -173,25 +105,27 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
 
   if (loading) {
     return (
-      <div style={styles.container}>
-        <div style={styles.loading}>Loading tide data...</div>
-      </div>
+      <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Box sx={{ textAlign: 'center', py: 5 }}>
+          <CircularProgress size={32} />
+        </Box>
+      </Paper>
     );
   }
 
   if (error) {
     return (
-      <div style={styles.container}>
-        <div style={styles.loading}>Error: {error}</div>
-      </div>
+      <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Alert severity="error">Error: {error}</Alert>
+      </Paper>
     );
   }
 
   if (!tideData?.predictions?.length) {
     return (
-      <div style={styles.container}>
-        <div style={styles.loading}>No tide data available</div>
-      </div>
+      <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Typography color="text.secondary" sx={{ textAlign: 'center', py: 5 }}>No tide data available</Typography>
+      </Paper>
     );
   }
 
@@ -214,15 +148,17 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
   // If no predictions for selected week, show message
   if (predictions.length === 0) {
     return (
-      <div style={styles.container}>
-        <div style={styles.title}>
-          Tide Predictions: {startDateStr} - {endDateStr}
-          <div style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginTop: '4px' }}>
+      <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Box>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, color: '#1a202c' }}>
+            Tide Predictions: {startDateStr} - {endDateStr}
+          </Typography>
+          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
             {stationName || tideData.stationName}
-          </div>
-        </div>
-        <div style={styles.loading}>No tide data available for this period</div>
-      </div>
+          </Typography>
+        </Box>
+        <Typography color="text.secondary" sx={{ textAlign: 'center', py: 5 }}>No tide data available for this period</Typography>
+      </Paper>
     );
   }
   const minHeight = Math.min(...predictions.map(p => p.height));
@@ -267,53 +203,38 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
   const maxTideItems = expanded ? 30 : 8;
 
   return (
-    <div style={{...styles.container, ...(expanded ? { maxHeight: '80vh', overflowY: 'auto' } : {})}}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-        <div style={styles.title}>
-          Tide Predictions: {startDateStr} - {endDateStr}
-          <div style={{ fontSize: '12px', color: '#718096', fontWeight: 'normal', marginTop: '4px' }}>
+    <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)', ...(expanded ? { maxHeight: '80vh', overflowY: 'auto' } : {}) }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Box>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, color: '#1a202c' }}>
+            Tide Predictions: {startDateStr} - {endDateStr}
+          </Typography>
+          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
             {stationName || tideData.stationName}
-          </div>
-        </div>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          </Typography>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
           {!isShowingToday && onResetToToday && (
-            <button
+            <Button
+              variant="outlined"
+              size="small"
               onClick={onResetToToday}
-              style={{
-                padding: '6px 12px',
-                backgroundColor: '#ebf8ff',
-                border: '1px solid #90cdf4',
-                borderRadius: '6px',
-                fontSize: '12px',
-                color: '#2b6cb0',
-                cursor: 'pointer'
-              }}
             >
               Reset to Today
-            </button>
+            </Button>
           )}
           {expanded && onClose && (
-            <button
-              onClick={onClose}
-              style={{
-                background: 'none',
-                border: 'none',
-                fontSize: '20px',
-                cursor: 'pointer',
-                color: '#718096',
-                padding: '4px 8px'
-              }}
-            >
-              ×
-            </button>
+            <IconButton size="small" onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
-      <div style={{ ...styles.chart, position: 'relative' }}>
+      <Box sx={{ position: 'relative', height: 150, mb: 2 }}>
         <svg
           viewBox={`0 0 ${width} ${height}`}
-          style={styles.svg}
+          style={{ width: '100%', height: '100%' }}
           onMouseLeave={() => setHoveredPoint(null)}
         >
           {/* Y-axis */}
@@ -481,53 +402,58 @@ export default function TideChart({ stationId, stationName, days = 7, expanded =
             }} />
           </div>
         )}
-      </div>
+      </Box>
 
-      <div style={styles.legend}>
-        <div style={styles.legendItem}>
-          <div style={{ ...styles.legendDot, backgroundColor: '#48bb78' }} />
-          <span>Low Tide</span>
-        </div>
-        <div style={styles.legendItem}>
-          <div style={{ ...styles.legendDot, backgroundColor: '#f56565' }} />
-          <span>High Tide</span>
-        </div>
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2.5, fontSize: 12, color: '#718096' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+          <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: '#48bb78' }} />
+          <Typography variant="caption">Low Tide</Typography>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+          <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: '#f56565' }} />
+          <Typography variant="caption">High Tide</Typography>
+        </Box>
         {selectedDate && (
-          <div style={styles.legendItem}>
-            <div style={{ ...styles.legendDot, backgroundColor: '#ed8936', border: '2px solid #dd6b20' }} />
-            <span>Selected Date</span>
-          </div>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+            <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: '#ed8936', border: '2px solid #dd6b20' }} />
+            <Typography variant="caption">Selected Date</Typography>
+          </Box>
         )}
-      </div>
+      </Box>
 
       {/* Collapsible Details Toggle */}
-      <button
-        style={styles.detailsToggle}
+      <Button
+        variant="outlined"
+        fullWidth
         onClick={() => setShowDetails(!showDetails)}
+        endIcon={showDetails ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        sx={{ mt: '12px' }}
       >
-        <span>{showDetails ? '▲ Hide' : '▼ Show'} Tide Details</span>
-      </button>
+        {showDetails ? 'Hide' : 'Show'} Tide Details
+      </Button>
 
       {/* Collapsible Tide List */}
       {showDetails && (
-        <div style={styles.tideList}>
+        <Box sx={{ mt: 1.5 }}>
           {predictions.slice(0, maxTideItems).map((p, i) => (
-            <div key={i} style={styles.tideItem}>
-              <div style={styles.tideType}>
-                <div
-                  style={{
-                    ...styles.tideIcon,
-                    backgroundColor: p.isLowTide ? '#48bb78' : '#f56565'
+            <Box key={i} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1, borderBottom: '1px solid #e2e8f0' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box
+                  sx={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    bgcolor: p.isLowTide ? '#48bb78' : '#f56565'
                   }}
                 />
-                <span>{p.isLowTide ? 'Low' : 'High'}</span>
-              </div>
-              <span>{formatTime(p.datetime)}</span>
-              <span>{p.height.toFixed(1)} ft</span>
-            </div>
+                <Typography variant="body2">{p.isLowTide ? 'Low' : 'High'}</Typography>
+              </Box>
+              <Typography variant="body2">{formatTime(p.datetime)}</Typography>
+              <Typography variant="body2">{p.height.toFixed(1)} ft</Typography>
+            </Box>
           ))}
-        </div>
+        </Box>
       )}
-    </div>
+    </Paper>
   );
 }

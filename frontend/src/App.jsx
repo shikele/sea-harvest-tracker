@@ -1,17 +1,11 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 import Dashboard from './components/Dashboard';
-
-const styles = {
-  app: {
-    minHeight: '100vh',
-    backgroundColor: '#f0f4f8'
-  }
-};
 
 export default function App() {
   return (
-    <div style={styles.app}>
+    <Box sx={{ minHeight: '100vh', bgcolor: '#f0f4f8' }}>
       <Dashboard />
-    </div>
+    </Box>
   );
 }

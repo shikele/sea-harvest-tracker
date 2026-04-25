@@ -1,0 +1,155 @@
+{
+  "lastUpdated": "2026-04-25T20:45:36.106Z",
+  "headline": "WDFW approves final coastal razor clam digs of the spring season from April 30 through May 6",
+  "announcementDate": null,
+  "kalalochClosed": true,
+  "digs": [
+    {
+      "date": "2026-04-30",
+      "dayOfWeek": "Thursday",
+      "time": "06:26",
+      "hour24": "06:26",
+      "tideHeight": -0.3,
+      "beaches": [
+        {
+          "name": "Long Beach",
+          "id": 75
+        },
+        {
+          "name": "Twin Harbors",
+          "id": null
+        },
+        {
+          "name": "Mocrocks",
+          "id": 77
+        }
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "dayOfWeek": "Friday",
+      "time": "07:01",
+      "hour24": "07:01",
+      "tideHeight": -0.7,
+      "beaches": [
+        {
+          "name": "Long Beach",
+          "id": 75
+        },
+        {
+          "name": "Twin Harbors",
+          "id": null
+        },
+        {
+          "name": "Copalis",
+          "id": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "dayOfWeek": "Saturday",
+      "time": "07:35",
+      "hour24": "07:35",
+      "tideHeight": -0.8,
+      "beaches": [
+        {
+          "name": "Long Beach",
+          "id": 75
+        },
+        {
+          "name": "Twin Harbors",
+          "id": null
+        },
+        {
+          "name": "Copalis",
+          "id": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-05-03",
+      "dayOfWeek": "Sunday",
+      "time": "08:08",
+      "hour24": "08:08",
+      "tideHeight": -0.8,
+      "beaches": [
+        {
+          "name": "Long Beach",
+          "id": 75
+        },
+        {
+          "name": "Twin Harbors",
+          "id": null
+        },
+        {
+          "name": "Mocrocks",
+          "id": 77
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "dayOfWeek": "Monday",
+      "time": "08:43",
+      "hour24": "08:43",
+      "tideHeight": -0.7,
+      "beaches": [
+        {
+          "name": "Long Beach",
+          "id": 75
+        },
+        {
+          "name": "Twin Harbors",
+          "id": null
+        },
+        {
+          "name": "Mocrocks",
+          "id": 77
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "dayOfWeek": "Tuesday",
+      "time": "09:21",
+      "hour24": "09:21",
+      "tideHeight": -0.4,
+      "beaches": [
+        {
+          "name": "Long Beach",
+          "id": 75
+        },
+        {
+          "name": "Twin Harbors",
+          "id": null
+        },
+        {
+          "name": "Copalis",
+          "id": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "dayOfWeek": "Wednesday",
+      "time": "10:03",
+      "hour24": "10:03",
+      "tideHeight": -0.1,
+      "beaches": [
+        {
+          "name": "Long Beach",
+          "id": 75
+        },
+        {
+          "name": "Twin Harbors",
+          "id": null
+        },
+        {
+          "name": "Copalis",
+          "id": 76
+        }
+      ]
+    }
+  ]
+}

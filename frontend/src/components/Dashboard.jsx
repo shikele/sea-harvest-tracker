@@ -6,6 +6,33 @@ import HarvestCalendar from './HarvestCalendar';
 import MapView from './MapView';
 import SpeciesGuide from './SpeciesGuide';
 import CommentsSection from './CommentsSection';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Chip from '@mui/material/Chip';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Pagination from '@mui/material/Pagination';
+import Typography from '@mui/material/Typography';
+import ToggleButton from '@mui/material/ToggleButton';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import CircularProgress from '@mui/material/CircularProgress';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import CloseIcon from '@mui/icons-material/Close';
+import Link from '@mui/material/Link';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
 
 /**
  * Calculate distance between two coordinates using Haversine formula
@@ -23,471 +50,6 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   return R * c;
 }
 
-const styles = {
-  container: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    padding: '20px'
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-    marginBottom: '24px'
-  },
-  title: {
-    fontSize: '28px',
-    fontWeight: '700',
-    color: '#1a202c',
-    marginBottom: '4px'
-  },
-  subtitle: {
-    fontSize: '14px',
-    color: '#718096',
-    fontWeight: '400'
-  },
-  statsRow: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(5, 1fr)',
-    gap: '16px',
-    marginBottom: '24px'
-  },
-  statCard: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-    cursor: 'pointer',
-    transition: 'all 0.15s ease',
-    border: '2px solid transparent'
-  },
-  statCardSelected: {
-    border: '2px solid #3182ce',
-    boxShadow: '0 2px 8px rgba(49, 130, 206, 0.3)'
-  },
-  statLabel: {
-    fontSize: '13px',
-    color: '#718096',
-    marginBottom: '4px'
-  },
-  statValue: {
-    fontSize: '32px',
-    fontWeight: '700'
-  },
-  mainContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px'
-  },
-  desktopGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 400px',
-    gap: '24px'
-  },
-  leftColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '24px'
-  },
-  beachList: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-  },
-  sectionTitle: {
-    fontSize: '18px',
-    fontWeight: '600',
-    marginBottom: '16px',
-    color: '#1a202c'
-  },
-  filterSection: {
-    backgroundColor: '#f7fafc',
-    borderRadius: '10px',
-    padding: '12px',
-    marginBottom: '16px'
-  },
-  searchSortRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    marginBottom: '10px'
-  },
-  searchWrapper: {
-    position: 'relative',
-    flex: 1
-  },
-  searchIcon: {
-    position: 'absolute',
-    left: '8px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    fontSize: '12px',
-    opacity: 0.5
-  },
-  searchInputSmall: {
-    width: '100%',
-    padding: '8px 10px 8px 36px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '13px',
-    outline: 'none',
-    backgroundColor: 'white'
-  },
-  iconButton: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '4px',
-    padding: '6px 12px',
-    border: '1px solid #e2e8f0',
-    borderColor: '#e2e8f0',
-    borderRadius: '14px',
-    backgroundColor: 'white',
-    color: '#4a5568',
-    fontSize: '12px',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
-    outline: 'none'
-  },
-  iconButtonActive: {
-    backgroundColor: '#805ad5',
-    color: 'white',
-    borderColor: '#805ad5'
-  },
-  buttonIcon: {
-    fontSize: '12px'
-  },
-  filterIcon: {
-    fontSize: '14px',
-    opacity: 0.6,
-    marginRight: '4px'
-  },
-  searchInputCompact: {
-    width: '100%',
-    padding: '8px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '14px',
-    marginBottom: '10px',
-    outline: 'none',
-    backgroundColor: 'white'
-  },
-  filterGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px'
-  },
-  filterGroupRow: {
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    gap: '6px'
-  },
-  filterLabel: {
-    fontSize: '12px',
-    fontWeight: '600',
-    color: '#4a5568',
-    marginRight: '4px'
-  },
-  filterButtonSmall: {
-    padding: '4px 10px',
-    border: '1px solid #e2e8f0',
-    borderColor: '#e2e8f0',
-    borderRadius: '14px',
-    backgroundColor: 'white',
-    color: '#4a5568',
-    fontSize: '12px',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
-    outline: 'none'
-  },
-  filterRow: {
-    display: 'flex',
-    gap: '8px',
-    marginBottom: '16px'
-  },
-  filterButton: {
-    padding: '6px 14px',
-    border: '1px solid #e2e8f0',
-    borderColor: '#e2e8f0',
-    borderRadius: '20px',
-    backgroundColor: 'white',
-    color: '#4a5568',
-    fontSize: '13px',
-    cursor: 'pointer',
-    transition: 'all 0.2s'
-  },
-  filterButtonActive: {
-    backgroundColor: '#4299e1',
-    color: 'white',
-    borderColor: '#4299e1'
-  },
-  filterButtonActiveAlt: {
-    backgroundColor: '#805ad5',
-    color: 'white',
-    borderColor: '#805ad5'
-  },
-  speciesFilterRow: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '6px'
-  },
-  speciesChips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '4px',
-    flex: 1
-  },
-  speciesChip: {
-    padding: '3px 8px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '12px',
-    backgroundColor: 'white',
-    fontSize: '11px',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
-    color: '#4a5568',
-    outline: 'none',
-    boxShadow: 'none',
-    WebkitTapHighlightColor: 'transparent'
-  },
-  speciesChipActive: {
-    backgroundColor: '#9f7aea',
-    color: 'white',
-    borderColor: '#9f7aea'
-  },
-  sortRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px',
-    marginBottom: '16px',
-    paddingBottom: '12px',
-    borderBottom: '1px solid #e2e8f0'
-  },
-  sortButton: {
-    padding: '8px 16px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '8px',
-    backgroundColor: 'white',
-    fontSize: '13px',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    transition: 'all 0.2s'
-  },
-  sortButtonActive: {
-    backgroundColor: '#805ad5',
-    color: 'white',
-    borderColor: '#805ad5'
-  },
-  locationStatus: {
-    fontSize: '12px',
-    color: '#718096'
-  },
-  locationError: {
-    fontSize: '12px',
-    color: '#c53030'
-  },
-  rightColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '24px'
-  },
-  loading: {
-    textAlign: 'center',
-    padding: '60px',
-    color: '#718096'
-  },
-  error: {
-    textAlign: 'center',
-    padding: '40px',
-    color: '#c53030',
-    backgroundColor: '#fff5f5',
-    borderRadius: '12px'
-  },
-  selectedBeachPanel: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-  },
-  closeButton: {
-    float: 'right',
-    background: 'none',
-    border: 'none',
-    fontSize: '20px',
-    cursor: 'pointer',
-    color: '#718096'
-  },
-  searchInput: {
-    width: '100%',
-    padding: '10px 14px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '8px',
-    fontSize: '14px',
-    marginBottom: '16px',
-    outline: 'none',
-    transition: 'border-color 0.2s'
-  },
-  speciesFilterSection: {
-    marginBottom: '16px',
-    padding: '12px',
-    backgroundColor: '#f7fafc',
-    borderRadius: '8px'
-  },
-  speciesFilterTitle: {
-    fontSize: '13px',
-    fontWeight: '600',
-    color: '#4a5568',
-    marginBottom: '10px'
-  },
-  speciesCheckboxGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '8px'
-  },
-  speciesCheckboxLabel: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    fontSize: '12px',
-    color: '#4a5568',
-    cursor: 'pointer'
-  },
-  speciesCheckbox: {
-    width: '16px',
-    height: '16px',
-    cursor: 'pointer',
-    accentColor: '#805ad5'
-  },
-  clearFiltersButton: {
-    padding: '6px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    backgroundColor: 'white',
-    fontSize: '12px',
-    color: '#718096',
-    cursor: 'pointer',
-    marginLeft: 'auto'
-  },
-  filterCount: {
-    fontSize: '12px',
-    color: '#718096',
-    marginLeft: '8px'
-  },
-  pagination: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '8px',
-    marginTop: '20px',
-    paddingTop: '16px',
-    borderTop: '1px solid #e2e8f0'
-  },
-  pageButton: {
-    padding: '8px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    backgroundColor: 'white',
-    fontSize: '13px',
-    cursor: 'pointer',
-    transition: 'all 0.2s'
-  },
-  pageButtonActive: {
-    backgroundColor: '#4299e1',
-    color: 'white',
-    borderColor: '#4299e1'
-  },
-  pageButtonDisabled: {
-    opacity: 0.5,
-    cursor: 'not-allowed'
-  },
-  pageInfo: {
-    fontSize: '13px',
-    color: '#718096',
-    padding: '0 12px'
-  },
-  tabContainer: {
-    display: 'flex',
-    gap: '4px',
-    marginBottom: '24px',
-    borderBottom: '2px solid #e2e8f0',
-    paddingBottom: '0'
-  },
-  tab: {
-    padding: '12px 24px',
-    fontSize: '15px',
-    fontWeight: '500',
-    color: '#718096',
-    backgroundColor: 'transparent',
-    border: 'none',
-    borderBottom: '3px solid transparent',
-    marginBottom: '-2px',
-    cursor: 'pointer',
-    transition: 'all 0.2s'
-  },
-  tabActive: {
-    color: '#4299e1',
-    borderBottomColor: '#4299e1'
-  },
-  beachDetailOverlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 1000,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px'
-  },
-  beachDetailPopout: {
-    backgroundColor: 'white',
-    borderRadius: '16px',
-    padding: '24px',
-    maxWidth: '500px',
-    width: '100%',
-    maxHeight: '85vh',
-    overflowY: 'auto',
-    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-    position: 'relative'
-  },
-  closeButtonPopout: {
-    position: 'absolute',
-    top: '16px',
-    right: '16px',
-    width: '32px',
-    height: '32px',
-    border: 'none',
-    backgroundColor: '#f7fafc',
-    borderRadius: '50%',
-    fontSize: '18px',
-    color: '#718096',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  beachDetailHeader: {
-    marginBottom: '20px',
-    paddingRight: '40px'
-  },
-  beachDetailTitle: {
-    fontSize: '22px',
-    fontWeight: '700',
-    color: '#1a202c',
-    marginBottom: '6px'
-  },
-  beachDetailSubtitle: {
-    fontSize: '14px',
-    color: '#718096',
-    marginBottom: '12px'
-  }
-};
 
 export default function Dashboard() {
   const [beaches, setBeaches] = useState([]);
@@ -504,12 +66,13 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [accessFilter, setAccessFilter] = useState('all'); // 'all', 'public', 'boat'
+  const [accessFilter, setAccessFilter] = useState('public'); // 'all', 'public', 'boat'
   const [activeTab, setActiveTab] = useState('beaches'); // 'beaches' or 'species'
   const [showMap, setShowMap] = useState(false);
   const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
   const [selectedCalendarDate, setSelectedCalendarDate] = useState(today); // Track date clicked from calendar
   const [calendarDayBeaches, setCalendarDayBeaches] = useState([]); // All suitable beaches for selected day
+  const [showAllBeaches, setShowAllBeaches] = useState(false);
   const beachesPerPage = 5;
 
   async function loadData() {
@@ -621,15 +184,6 @@ export default function Dashboard() {
     setCurrentPage(1);
   };
 
-  const clearAllFilters = () => {
-    setSearchQuery('');
-    setSelectedSpecies([]);
-    setStatusFilters([]);
-    setAccessFilter('all');
-    setSelectedCalendarDate(today);
-    setCalendarDayBeaches([]);
-    setCurrentPage(1);
-  };
 
   const handleAccessFilterChange = (value) => {
     setAccessFilter(value);
@@ -725,8 +279,13 @@ export default function Dashboard() {
         if (accessFilter === 'public' && beach.accessType === 'boat') return false;
         if (accessFilter === 'boat' && beach.accessType !== 'boat') return false;
       }
-      // Status filter (empty array = all, otherwise check if status is in selected filters)
-      if (statusFilters.length === 0) return true;
+      // Status filter (empty array = all if showAllBeaches, otherwise open-only)
+      if (statusFilters.length === 0) {
+        if (!showAllBeaches) {
+          return (beach.biotoxinStatus === 'open' || beach.biotoxinStatus === 'wdfw_managed') && beach.seasonOpen !== false;
+        }
+        return true;
+      }
       // Handle 'seasonClosed' filter separately
       if (statusFilters.includes('seasonClosed') && beach.seasonOpen === false) return true;
       // Standard biotoxin status filters
@@ -778,7 +337,6 @@ export default function Dashboard() {
       return 0;
     });
 
-  const hasActiveFilters = searchQuery || selectedSpecies.length > 0 || statusFilters.length > 0 || accessFilter !== 'all';
 
   // When a date is selected from calendar, show all suitable beaches for that day
   // Apply status and access filters to calendar beaches as well
@@ -814,8 +372,13 @@ export default function Dashboard() {
         if (accessFilter === 'public' && beach.accessType === 'boat') return false;
         if (accessFilter === 'boat' && beach.accessType !== 'boat') return false;
       }
-      // Status filter (empty array = all)
-      if (statusFilters.length === 0) return true;
+      // Status filter (empty array = all if showAllBeaches, otherwise open-only)
+      if (statusFilters.length === 0) {
+        if (!showAllBeaches) {
+          return (beach.biotoxinStatus === 'open' || beach.biotoxinStatus === 'wdfw_managed') && beach.seasonOpen !== false;
+        }
+        return true;
+      }
       if (statusFilters.includes('seasonClosed') && beach.seasonOpen === false) return true;
       return statusFilters.includes(beach.biotoxinStatus) && beach.seasonOpen !== false;
     })
@@ -861,70 +424,52 @@ export default function Dashboard() {
 
   const stats = {
     total: speciesFilteredBeaches.length,
-    open: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'open' && b.seasonOpen !== false).length,
+    open: speciesFilteredBeaches.filter(b => (b.biotoxinStatus === 'open' || b.biotoxinStatus === 'wdfw_managed') && b.seasonOpen !== false).length,
     conditional: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'conditional').length,
     closed: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'closed').length,
     seasonClosed: speciesFilteredBeaches.filter(b => b.seasonOpen === false).length,
-    unclassified: speciesFilteredBeaches.filter(b => b.biotoxinStatus === 'unclassified').length
   };
 
   if (loading) {
     return (
-      <div style={styles.container}>
-        <div style={styles.loading}>Loading beach data...</div>
-      </div>
+      <Box sx={{ maxWidth: 1400, mx: 'auto', p: 2.5 }}>
+        <Box sx={{ textAlign: 'center', py: 8 }}>
+          <CircularProgress />
+          <Typography color="text.secondary" sx={{ mt: 2 }}>Loading beach data...</Typography>
+        </Box>
+      </Box>
     );
   }
 
   if (error && beaches.length === 0) {
     return (
-      <div style={styles.container}>
-        <div style={styles.error}>
-          <h3>Error loading data</h3>
-          <p>{error}</p>
-        </div>
-      </div>
+      <Box sx={{ maxWidth: 1400, mx: 'auto', p: 2.5 }}>
+        <Alert severity="error" sx={{ textAlign: 'center' }}>
+          <AlertTitle>Error loading data</AlertTitle>
+          {error}
+        </Alert>
+      </Box>
     );
   }
 
   return (
-    <div style={styles.container} className="dashboard-container">
-      <div style={styles.header} className="dashboard-header">
-        <h1 style={styles.title}>Sea Harvest All in One</h1>
-      </div>
+    <Box sx={{ maxWidth: 1400, mx: 'auto', p: 2.5 }} className="dashboard-container">
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', mb: 3 }} className="dashboard-header">
+        <Typography variant="h4" sx={{ fontWeight: 700, color: '#1a202c', mb: 0.5 }}>Sea Harvest All in One</Typography>
+      </Box>
 
-      <div style={styles.tabContainer} className="tab-container">
-        <button
-          style={{
-            ...styles.tab,
-            ...(activeTab === 'beaches' ? styles.tabActive : {})
-          }}
-          className="tab-button"
-          onClick={() => setActiveTab('beaches')}
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }} className="tab-container">
+        <Tabs
+          value={activeTab}
+          onChange={(e, v) => setActiveTab(v)}
+          variant="scrollable"
+          scrollButtons="auto"
         >
-          Beaches
-        </button>
-        <button
-          style={{
-            ...styles.tab,
-            ...(activeTab === 'species' ? styles.tabActive : {})
-          }}
-          className="tab-button"
-          onClick={() => setActiveTab('species')}
-        >
-          Species Guide
-        </button>
-        <button
-          style={{
-            ...styles.tab,
-            ...(activeTab === 'comments' ? styles.tabActive : {})
-          }}
-          className="tab-button"
-          onClick={() => setActiveTab('comments')}
-        >
-          Comments
-        </button>
-      </div>
+          <Tab label="Beaches" value="beaches" />
+          <Tab label="Species Guide" value="species" />
+          <Tab label="Comments" value="comments" />
+        </Tabs>
+      </Box>
 
       {activeTab === 'comments' ? (
         <CommentsSection beaches={beaches} />
@@ -932,140 +477,121 @@ export default function Dashboard() {
         <SpeciesGuide />
       ) : (
         <>
-      <p style={{ fontSize: '13px', color: '#718096', margin: '0 0 12px', textAlign: 'center' }}>
+      <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mb: 1.5, mt: 0 }}>
         Select a species to find the best beaches and harvest times
-      </p>
+      </Typography>
       {allSpecies.length > 0 && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '10px 14px',
-          backgroundColor: selectedSpecies.length === 0 ? '#f0fff4' : '#f7fafc',
-          border: selectedSpecies.length === 0 ? '2px solid #48bb78' : '2px solid transparent',
-          borderRadius: '8px',
-          boxShadow: selectedSpecies.length === 0 ? '0 0 0 1px #48bb78' : 'none',
-          transition: 'all 0.2s ease',
-          width: '100%',
-          maxWidth: '100%',
-          marginBottom: '12px'
-        }} className="species-filter">
-          <span style={{ fontSize: '12px', fontWeight: '600', color: '#4a5568', marginRight: '4px' }}>🦪 Species:</span>
-          <select
-            style={{
-              flex: 1,
-              padding: '8px 12px',
-              fontSize: '14px',
-              border: '1px solid #e2e8f0',
-              borderRadius: '8px',
-              backgroundColor: 'white',
-              color: '#2d3748',
-              cursor: 'pointer',
-              minWidth: 0
-            }}
-            className="species-select"
-            value={selectedSpecies[0] || ''}
-            onChange={(e) => handleSpeciesToggle(e.target.value)}
-          >
-            <option value="">Select a species...</option>
-            {allSpecies.map((species) => (
-              <option key={species} value={species}>
-                {species}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Box
+          className="species-filter"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            p: '10px 14px',
+            bgcolor: selectedSpecies.length === 0 ? '#f0fff4' : '#f7fafc',
+            border: selectedSpecies.length === 0 ? '2px solid #48bb78' : '2px solid transparent',
+            borderRadius: '8px',
+            boxShadow: selectedSpecies.length === 0 ? '0 0 0 1px #48bb78' : 'none',
+            transition: 'all 0.2s ease',
+            width: '100%',
+            maxWidth: '100%',
+            mb: 1.5
+          }}
+        >
+          <Typography variant="caption" sx={{ fontWeight: 600, color: '#4a5568', mr: 0.5 }}>🦪 Species:</Typography>
+          <FormControl size="small" sx={{ flex: 1, minWidth: 0 }}>
+            <Select
+              className="species-select"
+              value={selectedSpecies[0] || ''}
+              onChange={(e) => handleSpeciesToggle(e.target.value)}
+              displayEmpty
+              sx={{ fontSize: 14 }}
+            >
+              <MenuItem value="">Select a species...</MenuItem>
+              {allSpecies.map((species) => (
+                <MenuItem key={species} value={species}>{species}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
       )}
-      <button
+      <Button
+        fullWidth
+        variant="outlined"
         onClick={() => setShowMap(!showMap)}
-        style={{
-          width: '100%',
-          padding: '10px',
-          fontSize: '13px',
-          fontWeight: '500',
-          color: '#4a5568',
-          backgroundColor: '#f7fafc',
-          border: '1px solid #e2e8f0',
-          borderRadius: '8px',
-          cursor: 'pointer',
-          marginBottom: showMap ? '0' : '16px',
-          transition: 'all 0.2s ease'
-        }}
+        sx={{ mb: showMap ? 0 : 2, py: 1 }}
       >
         {showMap ? '🗺️ Hide Map' : '🗺️ Show Map'}
-      </button>
+      </Button>
 
       {showMap && (
         <>
-      <div style={styles.statsRow} className="stats-row">
-        <div
-          style={{
-            ...styles.statCard,
-            ...(statusFilters.includes('open') ? styles.statCardSelected : {})
-          }}
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(5, 1fr)' }, gap: 2, mb: 3 }} className="stats-row">
+        <Paper
           className="stat-card"
           onClick={() => toggleStatusFilter('open')}
-        >
-          <div style={styles.statLabel} className="stat-label">Open</div>
-          <div style={{ ...styles.statValue, color: '#48bb78' }} className="stat-value">{stats.open}</div>
-        </div>
-        <div
-          style={{
-            ...styles.statCard,
-            ...(statusFilters.includes('conditional') ? styles.statCardSelected : {})
+          sx={{
+            p: 2.5, cursor: 'pointer', borderRadius: '12px', textAlign: 'center',
+            border: 2, borderColor: statusFilters.includes('open') ? 'primary.main' : 'transparent',
+            boxShadow: statusFilters.includes('open') ? '0 2px 8px rgba(49,130,206,0.3)' : '0 1px 3px rgba(0,0,0,0.1)',
+            transition: 'all 0.15s ease',
           }}
+        >
+          <Typography variant="body2" color="text.secondary" className="stat-label">Open</Typography>
+          <Typography variant="h3" sx={{ color: '#48bb78', fontWeight: 700 }} className="stat-value">{stats.open}</Typography>
+        </Paper>
+        <Paper
           className="stat-card"
           onClick={() => toggleStatusFilter('conditional')}
-        >
-          <div style={styles.statLabel} className="stat-label">Conditional</div>
-          <div style={{ ...styles.statValue, color: '#ecc94b' }} className="stat-value">{stats.conditional}</div>
-        </div>
-        <div
-          style={{
-            ...styles.statCard,
-            ...(statusFilters.includes('closed') ? styles.statCardSelected : {})
+          sx={{
+            p: 2.5, cursor: 'pointer', borderRadius: '12px', textAlign: 'center',
+            border: 2, borderColor: statusFilters.includes('conditional') ? 'primary.main' : 'transparent',
+            boxShadow: statusFilters.includes('conditional') ? '0 2px 8px rgba(49,130,206,0.3)' : '0 1px 3px rgba(0,0,0,0.1)',
+            transition: 'all 0.15s ease',
           }}
+        >
+          <Typography variant="body2" color="text.secondary" className="stat-label">Conditional</Typography>
+          <Typography variant="h3" sx={{ color: '#ecc94b', fontWeight: 700 }} className="stat-value">{stats.conditional}</Typography>
+        </Paper>
+        <Paper
           className="stat-card"
           onClick={() => toggleStatusFilter('closed')}
-        >
-          <div style={styles.statLabel} className="stat-label">Biotoxin Unsafe</div>
-          <div style={{ ...styles.statValue, color: '#f56565' }} className="stat-value">{stats.closed}</div>
-        </div>
-        {stats.seasonClosed > 0 && (
-        <div
-          style={{
-            ...styles.statCard,
-            ...(statusFilters.includes('seasonClosed') ? styles.statCardSelected : {})
+          sx={{
+            p: 2.5, cursor: 'pointer', borderRadius: '12px', textAlign: 'center',
+            border: 2, borderColor: statusFilters.includes('closed') ? 'primary.main' : 'transparent',
+            boxShadow: statusFilters.includes('closed') ? '0 2px 8px rgba(49,130,206,0.3)' : '0 1px 3px rgba(0,0,0,0.1)',
+            transition: 'all 0.15s ease',
           }}
+        >
+          <Typography variant="body2" color="text.secondary" className="stat-label">Biotoxin Unsafe</Typography>
+          <Typography variant="h3" sx={{ color: '#f56565', fontWeight: 700 }} className="stat-value">{stats.closed}</Typography>
+        </Paper>
+        {stats.seasonClosed > 0 && (
+        <Paper
           className="stat-card"
           onClick={() => toggleStatusFilter('seasonClosed')}
-        >
-          <div style={styles.statLabel} className="stat-label">Season Closed</div>
-          <div style={{ ...styles.statValue, color: '#ed8936' }} className="stat-value">{stats.seasonClosed}</div>
-        </div>
-        )}
-        <div
-          style={{
-            ...styles.statCard,
-            ...(statusFilters.includes('unclassified') ? styles.statCardSelected : {})
+          sx={{
+            p: 2.5, cursor: 'pointer', borderRadius: '12px', textAlign: 'center',
+            border: 2, borderColor: statusFilters.includes('seasonClosed') ? 'primary.main' : 'transparent',
+            boxShadow: statusFilters.includes('seasonClosed') ? '0 2px 8px rgba(49,130,206,0.3)' : '0 1px 3px rgba(0,0,0,0.1)',
+            transition: 'all 0.15s ease',
           }}
-          className="stat-card"
-          onClick={() => toggleStatusFilter('unclassified')}
         >
-          <div style={styles.statLabel} className="stat-label">Unclassified</div>
-          <div style={{ ...styles.statValue, color: '#a0aec0' }} className="stat-value">{stats.unclassified}</div>
-        </div>
-      </div>
+          <Typography variant="body2" color="text.secondary" className="stat-label">Season Closed</Typography>
+          <Typography variant="h3" sx={{ color: '#ed8936', fontWeight: 700 }} className="stat-value">{stats.seasonClosed}</Typography>
+        </Paper>
+        )}
+      </Box>
 
-      <div className="map-container">
+      <Box className="map-container">
         <MapView beaches={filteredBeaches} onBeachClick={handleBeachSelect} userLocation={userLocation} selectedBeach={selectedBeach} />
-      </div>
+      </Box>
       </>
       )}
 
-      <div style={styles.mainContent} className="main-content">
+      <Stack spacing={2} className="main-content">
         {/* Calendar Section - Order 1 on mobile */}
-        <div className="calendar-section" style={{ order: 1 }}>
+        <Box className="calendar-section" sx={{ order: 1 }}>
           <HarvestCalendar
             onBeachClick={handleBeachSelect}
             onDateSelect={handleDateSelect}
@@ -1076,86 +602,101 @@ export default function Dashboard() {
             allBeaches={beaches}
             allSpecies={allSpecies}
             onSpeciesToggle={handleSpeciesToggle}
+            showAllBeaches={showAllBeaches}
           />
-        </div>
+        </Box>
 
 
         {/* Beach List Section - Order 3 on mobile */}
-        <div className="beach-list-wrapper" style={{ order: 3 }}>
+        <Box className="beach-list-wrapper" sx={{ order: 3 }}>
 
-          <div style={styles.beachList} className="beach-list-section">
-            <div style={{ textAlign: 'center', marginBottom: '12px' }}>
-              <h2 style={{ ...styles.sectionTitle, marginBottom: '4px' }} className="section-title">
+          <Paper sx={{ bgcolor: 'white', borderRadius: 3, p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }} className="beach-list-section">
+            <Box sx={{ textAlign: 'center', mb: 1.5 }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c', mb: 0.5 }} className="section-title">
                 {selectedSpecies.length > 0 && selectedCalendarDate ? (
                   `Best beaches to catch ${selectedSpecies.join(', ')} on ${new Date(selectedCalendarDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
                 ) : sortMode === 'distance' ? 'Closest to me' : 'Beaches by Opportunity'}
-              </h2>
-            </div>
+              </Typography>
+            </Box>
 
-            <div style={styles.filterSection} className="filter-section">
-              <div style={styles.searchSortRow} className="search-sort-row">
-                <div style={styles.searchWrapper}>
-                  <span style={styles.searchIcon}>&#128269;</span>
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    style={styles.searchInputSmall}
-                    className="search-input"
-                  />
-                </div>
-                <button
-                  style={{
-                    ...styles.iconButton,
-                    ...(sortMode === 'distance' ? styles.iconButtonActive : {})
+            <Box sx={{ bgcolor: '#f7fafc', borderRadius: '8px', p: 1.5, mb: 2 }} className="filter-section">
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.25 }} className="search-sort-row">
+                <TextField
+                  placeholder="Search..."
+                  size="small"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  className="search-input"
+                  sx={{ flex: '1 1 auto', minWidth: 120 }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon fontSize="small" />
+                      </InputAdornment>
+                    ),
                   }}
+                />
+                <Button
+                  variant={sortMode === 'distance' ? 'contained' : 'outlined'}
+                  size="small"
                   className="filter-button sort-button"
                   onClick={handleSortByDistance}
                   disabled={locationLoading}
                   title="Sort by distance from your location"
+                  sx={{
+                    display: 'flex', alignItems: 'center', gap: 0.5,
+                    borderRadius: '20px', fontSize: 12, textTransform: 'none',
+                    flexShrink: 0,
+                    ...(sortMode === 'distance' ? { bgcolor: '#805ad5', '&:hover': { bgcolor: '#6b46c1' } } : {}),
+                  }}
                 >
-                  <span style={styles.buttonIcon}>&#128205;</span>
+                  <span style={{ fontSize: 12 }}>&#128205;</span>
                   {locationLoading ? '...' : drivingLoading ? 'Calculating...' : 'Closest to me'}
-                </button>
-                {locationError && (
-                  <span style={styles.locationError}>{locationError}</span>
-                )}
-              </div>
-
-              <div style={styles.filterGroup} className="filter-group">
-                <div style={styles.filterGroupRow} className="filter-group-row">
-                  {[
-                    { value: 'public', label: 'Road accessible', icon: '&#128663;' },
-                    { value: 'boat', label: 'Only by Boat', icon: '&#9973;' }
-                  ].map((option) => (
-                    <button
-                      key={option.value}
-                      style={{
-                        ...styles.filterButtonSmall,
-                        ...(accessFilter === option.value ? styles.filterButtonActiveAlt : {})
-                      }}
-                      className="filter-button"
-                      onClick={() => handleAccessFilterChange(option.value)}
-                      dangerouslySetInnerHTML={{ __html: option.icon ? `${option.icon} ${option.label}` : option.label }}
-                    />
-                  ))}
-                  <button
-                    style={{
-                      ...styles.filterButtonSmall,
-                      marginLeft: 'auto',
-                      color: hasActiveFilters ? '#e53e3e' : '#a0aec0',
-                      borderColor: hasActiveFilters ? '#fed7d7' : '#e2e8f0',
-                      backgroundColor: hasActiveFilters ? '#fff5f5' : 'white'
-                    }}
-                    className="filter-button"
-                    onClick={clearAllFilters}
+                </Button>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }} className="toggle-row">
+                <Box
+                  sx={{ bgcolor: '#edf2f7', borderRadius: '8px', p: '3px', display: 'flex', gap: '2px' }}
+                  className="MuiToggleButtonGroup-root"
+                >
+                  <ToggleButton
+                    value="open"
+                    selected={!showAllBeaches}
+                    onClick={() => setShowAllBeaches(false)}
+                    sx={{ border: 'none', borderRadius: '6px !important', px: 1.5, py: 0.25, fontSize: 12, textTransform: 'none' }}
                   >
-                    Clear
-                  </button>
-                </div>
-              </div>
-            </div>
+                    Open only
+                  </ToggleButton>
+                  <ToggleButton
+                    value="all"
+                    selected={showAllBeaches}
+                    onClick={() => setShowAllBeaches(true)}
+                    sx={{ border: 'none', borderRadius: '6px !important', px: 1.5, py: 0.25, fontSize: 12, textTransform: 'none' }}
+                  >
+                    All beaches
+                  </ToggleButton>
+                  <ToggleButton
+                    value="road"
+                    selected={accessFilter === 'public'}
+                    onClick={() => setAccessFilter('public')}
+                    sx={{ border: 'none', borderRadius: '6px !important', px: 1.5, py: 0.25, fontSize: 12, textTransform: 'none' }}
+                  >
+                    Road only
+                  </ToggleButton>
+                  <ToggleButton
+                    value="access"
+                    selected={accessFilter === 'all'}
+                    onClick={() => setAccessFilter('all')}
+                    sx={{ border: 'none', borderRadius: '6px !important', px: 1.5, py: 0.25, fontSize: 12, textTransform: 'none' }}
+                  >
+                    All access
+                  </ToggleButton>
+                </Box>
+                {locationError && (
+                  <Typography variant="caption" color="error">{locationError}</Typography>
+                )}
+              </Box>
+            </Box>
 
             {paginatedBeaches.map((beach) => (
               <BeachCard
@@ -1168,253 +709,200 @@ export default function Dashboard() {
             ))}
 
             {totalPages > 1 && (
-              <div style={styles.pagination} className="pagination">
-                <button
-                  style={{
-                    ...styles.pageButton,
-                    ...(currentPage === 1 ? styles.pageButtonDisabled : {})
-                  }}
-                  className="page-button"
-                  onClick={() => goToPage(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  Prev
-                </button>
-
-                {[...Array(totalPages)].map((_, i) => {
-                  const page = i + 1;
-                  // Show first, last, current, and adjacent pages
-                  if (
-                    page === 1 ||
-                    page === totalPages ||
-                    (page >= currentPage - 1 && page <= currentPage + 1)
-                  ) {
-                    return (
-                      <button
-                        key={page}
-                        style={{
-                          ...styles.pageButton,
-                          ...(currentPage === page ? styles.pageButtonActive : {})
-                        }}
-                        className="page-button"
-                        onClick={() => goToPage(page)}
-                      >
-                        {page}
-                      </button>
-                    );
-                  } else if (page === currentPage - 2 || page === currentPage + 2) {
-                    return <span key={page} style={styles.pageInfo}>...</span>;
-                  }
-                  return null;
-                })}
-
-                <button
-                  style={{
-                    ...styles.pageButton,
-                    ...(currentPage === totalPages ? styles.pageButtonDisabled : {})
-                  }}
-                  className="page-button"
-                  onClick={() => goToPage(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
-                  Next
-                </button>
-
-                <span style={styles.pageInfo} className="page-info">
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, mt: 2.5, pt: 2, borderTop: '1px solid #e2e8f0' }} className="pagination">
+                <Pagination
+                  count={totalPages}
+                  page={currentPage}
+                  onChange={(e, page) => goToPage(page)}
+                  shape="rounded"
+                  size="small"
+                />
+                <Typography variant="body2" color="text.secondary" className="page-info">
                   {startIndex + 1}-{Math.min(endIndex, displayBeaches.length)} of {displayBeaches.length}
-                </span>
-              </div>
+                </Typography>
+              </Box>
             )}
-          </div>
-        </div>
-      </div>
+          </Paper>
+        </Box>
+      </Stack>
         </>
       )}
 
       {/* Beach Detail Popout */}
-      {selectedBeach && (
-        <div
-          style={styles.beachDetailOverlay}
-          className="beach-detail-overlay"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setSelectedBeach(null);
-          }}
-        >
-          <div style={styles.beachDetailPopout} className="beach-detail-popout">
-            <button
-              style={styles.closeButtonPopout}
-              onClick={() => setSelectedBeach(null)}
-            >
-              ×
-            </button>
-
-            <div style={styles.beachDetailHeader}>
-              <h1 style={styles.beachDetailTitle}>{selectedBeach.name}</h1>
-              <div style={styles.beachDetailSubtitle}>
-                {selectedBeach.region} - {selectedBeach.county} County
-              </div>
-              <div style={{ marginBottom: '8px' }}>
-                <a
+      <Dialog
+        open={!!selectedBeach}
+        onClose={() => setSelectedBeach(null)}
+        maxWidth="sm"
+        fullWidth
+        className="beach-detail-overlay"
+      >
+        <DialogTitle sx={{ pr: 6 }}>
+          {selectedBeach?.name}
+          <IconButton
+            onClick={() => setSelectedBeach(null)}
+            sx={{ position: 'absolute', right: 8, top: 8 }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          {selectedBeach && (
+          <>
+              <Box sx={{ mb: 1 }}>
+                <Link
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedBeach.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    fontSize: '13px',
-                    color: '#3182ce',
-                    textDecoration: 'none',
-                    fontWeight: '500'
-                  }}
+                  sx={{ fontSize: 13, fontWeight: 500 }}
                 >
                   View on Google Maps &#x2197;
-                </a>
-              </div>
-              <span
-                style={{
-                  display: 'inline-block',
-                  padding: '6px 14px',
-                  borderRadius: '16px',
-                  fontSize: '13px',
-                  fontWeight: '600',
+                </Link>
+              </Box>
+              <Chip
+                label={selectedBeach.statusColor === 'green' ? 'OPEN' : selectedBeach.statusColor === 'blue' ? 'WDFW MANAGED' : 'CLOSED'}
+                sx={{
+                  fontWeight: 600,
                   textTransform: 'uppercase',
-                  backgroundColor: selectedBeach.statusColor === 'green' ? '#c6f6d5' : '#fed7d7',
-                  color: selectedBeach.statusColor === 'green' ? '#22543d' : '#742a2a'
+                  bgcolor: selectedBeach.statusColor === 'green' ? '#c6f6d5' : selectedBeach.statusColor === 'blue' ? '#ebf8ff' : '#fed7d7',
+                  color: selectedBeach.statusColor === 'green' ? '#22543d' : selectedBeach.statusColor === 'blue' ? '#2b6cb0' : '#742a2a',
+                  fontSize: 13,
                 }}
-              >
-                {selectedBeach.statusColor === 'green' ? 'OPEN' : 'CLOSED'}
-              </span>
-              <div style={{ display: 'flex', gap: '16px', marginTop: '10px', fontSize: '13px' }}>
-                <span style={{ color: selectedBeach.biotoxinStatus === 'open' ? '#276749' : selectedBeach.biotoxinStatus === 'closed' ? '#c53030' : '#975a16' }}>
-                  Biotoxin: {selectedBeach.biotoxinStatus === 'open' ? 'Safe' : selectedBeach.biotoxinStatus === 'closed' ? 'Unsafe' : selectedBeach.biotoxinStatus === 'conditional' ? 'Caution' : 'Unknown'}
-                </span>
-                <span style={{ color: '#cbd5e0' }}>|</span>
-                <span style={{ color: selectedBeach.seasonOpen ? '#276749' : '#c05621' }}>
+              />
+              <Stack direction="row" spacing={2} sx={{ mt: 1.25, fontSize: 13 }}>
+                <Typography variant="body2" sx={{ color: selectedBeach.biotoxinStatus === 'wdfw_managed' ? '#2b6cb0' : selectedBeach.biotoxinStatus === 'open' ? '#276749' : selectedBeach.biotoxinStatus === 'closed' ? '#c53030' : '#975a16' }}>
+                  {selectedBeach.biotoxinStatus === 'wdfw_managed' ? 'Razor clam digs are managed by WDFW' : `Biotoxin: ${selectedBeach.biotoxinStatus === 'open' ? 'Safe' : selectedBeach.biotoxinStatus === 'closed' ? 'Unsafe' : selectedBeach.biotoxinStatus === 'conditional' ? 'Caution' : 'Unknown'}`}
+                </Typography>
+                <Divider orientation="vertical" flexItem />
+                <Typography variant="body2" sx={{ color: selectedBeach.seasonOpen ? '#276749' : '#c05621' }}>
                   Season: {selectedBeach.seasonOpen ? 'Open' : 'Closed'}
-                </span>
-              </div>
+                </Typography>
+              </Stack>
               {selectedBeach.wdfwUrl && (
-                <div style={{ marginTop: '8px' }}>
-                  <a
+                <Box sx={{ mt: 1 }}>
+                  <Link
                     href={selectedBeach.wdfwUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      fontSize: '13px',
-                      color: '#3182ce',
-                      textDecoration: 'none',
-                      fontWeight: '500'
-                    }}
+                    sx={{ fontSize: 13, fontWeight: 500 }}
                   >
                     Check status on WDFW &#x2197;
-                  </a>
-                </div>
+                  </Link>
+                </Box>
               )}
-            </div>
+
+            {selectedBeach.biotoxinStatus === 'wdfw_managed' && (
+              <Alert severity="info" sx={{ mb: 2.5 }}>
+                <AlertTitle>Managed by WDFW</AlertTitle>
+                <Typography variant="body2">
+                  Razor clam digs are managed by WDFW through separate announcements, not DOH biotoxin monitoring.
+                </Typography>
+                {selectedBeach.upcomingDigs?.length > 0 ? (
+                  <Box sx={{ mt: 1.5 }}>
+                    <Typography variant="body2" sx={{ fontWeight: 600, mb: 0.5 }}>Upcoming Digs:</Typography>
+                    {selectedBeach.upcomingDigs.map((dig, i) => (
+                      <Typography key={i} variant="body2" sx={{ pl: 1 }}>
+                        {dig.date} ({dig.dayOfWeek}) — {dig.time}, {dig.tideHeight}ft tide
+                      </Typography>
+                    ))}
+                  </Box>
+                ) : (
+                  <Typography variant="body2" sx={{ mt: 1 }}>
+                    No upcoming digs currently scheduled.
+                  </Typography>
+                )}
+                {selectedBeach.wdfwUrl && (
+                  <Link href={selectedBeach.wdfwUrl} target="_blank" sx={{ mt: 1, display: 'block', fontWeight: 500 }}>
+                    View on WDFW &#x2197;
+                  </Link>
+                )}
+              </Alert>
+            )}
 
             {selectedBeach.biotoxinStatus === 'closed' && (
-              <div style={{ marginBottom: '20px', padding: '16px', backgroundColor: '#fff5f5', borderRadius: '8px', borderLeft: '4px solid #fc8181', color: '#c53030' }}>
-                <strong style={{ display: 'block', marginBottom: '6px' }}>Biotoxin Closure</strong>
+              <Alert severity="error" sx={{ mb: 2.5 }}>
+                <AlertTitle>Biotoxin Closure</AlertTitle>
                 {selectedBeach.closureReason && (
-                  <span>{selectedBeach.closureReason}</span>
+                  <Typography variant="body2">{selectedBeach.closureReason}</Typography>
                 )}
                 {selectedBeach.speciesAffected && (
-                  <div style={{ marginTop: '6px', fontSize: '14px' }}>
+                  <Typography variant="body2" sx={{ mt: 1.5 }}>
                     Species affected: {selectedBeach.speciesAffected}
-                  </div>
+                  </Typography>
                 )}
-              </div>
+              </Alert>
             )}
 
             {selectedBeach.biotoxinStatus === 'conditional' && (
-              <div style={{
-                marginBottom: '20px',
-                padding: '16px',
-                backgroundColor: '#fefcbf',
-                borderRadius: '8px',
-                borderLeft: '4px solid #ecc94b'
-              }}>
-                <strong style={{ color: '#744210', display: 'block', marginBottom: '6px' }}>
-                  Conditional Biotoxin Status
-                </strong>
+              <Alert severity="warning" sx={{ mb: 2.5 }}>
+                <AlertTitle>Conditional Biotoxin Status</AlertTitle>
                 {selectedBeach.speciesAffected && (
-                  <span style={{ color: '#744210', fontSize: '15px' }}>
-                    Species restriction: {selectedBeach.speciesAffected}
-                  </span>
+                  <Typography variant="body2">Species restriction: {selectedBeach.speciesAffected}</Typography>
                 )}
                 {selectedBeach.closureReason && (
-                  <p style={{ color: '#975a16', fontSize: '13px', marginTop: '6px', marginBottom: 0 }}>
+                  <Typography variant="body2" sx={{ mt: 1.5 }}>
                     {selectedBeach.closureReason}
-                  </p>
+                  </Typography>
                 )}
                 {selectedBeach.speciesAffected && (
-                  <p style={{ color: '#975a16', fontSize: '13px', marginTop: '6px', marginBottom: 0 }}>
+                  <Typography variant="body2" sx={{ mt: 1.5 }}>
                     Other species may be harvested. Check current regulations.
-                  </p>
+                  </Typography>
                 )}
-              </div>
+              </Alert>
             )}
 
             {selectedBeach.seasonInfo && (
-              <div style={{
-                marginBottom: '20px',
-                padding: '16px',
-                backgroundColor: selectedBeach.seasonOpen ? '#f0fff4' : '#fffaf0',
-                borderRadius: '8px',
-                borderLeft: `4px solid ${selectedBeach.seasonOpen ? '#48bb78' : '#ed8936'}`
-              }}>
-                <strong style={{ color: selectedBeach.seasonOpen ? '#276749' : '#c05621', display: 'block', marginBottom: '6px' }}>
-                  WDFW Season Info:
-                </strong>
-                <span style={{ color: selectedBeach.seasonOpen ? '#276749' : '#c05621', fontSize: '14px' }}>
-                  {selectedBeach.seasonInfo}
-                </span>
+              <Alert severity={selectedBeach.seasonOpen ? 'success' : 'warning'} sx={{ mb: 2.5 }}>
+                <AlertTitle>WDFW Season Info</AlertTitle>
+                {selectedBeach.seasonInfo}
                 {!selectedBeach.seasonOpen && (
-                  <p style={{ color: '#975a16', fontSize: '13px', marginTop: '10px', marginBottom: 0 }}>
+                  <Typography variant="body2" sx={{ mt: 1 }}>
                     This beach is currently outside its approved harvest season.
-                  </p>
+                  </Typography>
                 )}
-              </div>
+              </Alert>
             )}
 
             {selectedBeach.species && selectedBeach.species.length > 0 && (
-              <div style={{ marginBottom: '24px' }}>
-                <strong style={{ display: 'block', marginBottom: '12px', fontSize: '16px' }}>What You Can Catch:</strong>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="subtitle1" sx={{ display: 'block', mb: 1.5, fontSize: 16, fontWeight: 600 }}>What You Can Catch:</Typography>
+                <Stack spacing={1}>
                   {selectedBeach.species.map((s, i) => (
-                    <div key={i} style={{
+                    <Box key={i} sx={{
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      padding: '12px 16px',
-                      backgroundColor: '#f7fafc',
+                      p: '12px 16px',
+                      bgcolor: '#f7fafc',
                       borderRadius: '8px',
-                      fontSize: '14px'
+                      fontSize: 14
                     }}>
-                      <span style={{ fontWeight: '500' }}>{s.name}</span>
-                      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                        <span style={{
-                          padding: '4px 10px',
-                          borderRadius: '12px',
-                          fontSize: '12px',
-                          backgroundColor: s.abundance === 'abundant' ? '#bee3f8' :
-                                         s.abundance === 'scattered' ? '#fefcbf' : '#e2e8f0',
-                          color: s.abundance === 'abundant' ? '#2c5282' :
-                                s.abundance === 'scattered' ? '#744210' : '#4a5568'
-                        }}>
-                          {s.abundance}
-                        </span>
-                        <span style={{ color: '#718096', fontSize: '12px' }}>
+                      <Typography variant="body2" sx={{ fontWeight: 500 }}>{s.name}</Typography>
+                      <Box sx={{ display: 'flex', gap: 1.25, alignItems: 'center' }}>
+                        <Chip
+                          label={s.abundance}
+                          size="small"
+                          sx={{
+                            fontSize: 12,
+                            bgcolor: s.abundance === 'abundant' ? '#bee3f8' :
+                                   s.abundance === 'scattered' ? '#fefcbf' : '#e2e8f0',
+                            color: s.abundance === 'abundant' ? '#2c5282' :
+                                  s.abundance === 'scattered' ? '#744210' : '#4a5568'
+                          }}
+                        />
+                        <Typography variant="caption" color="text.secondary">
                           &lt;{s.min_tide_ft}ft
-                        </span>
-                      </div>
-                    </div>
+                        </Typography>
+                      </Box>
+                    </Box>
                   ))}
-                </div>
+                </Stack>
                 {selectedBeach.notes && (
-                  <div style={{ marginTop: '12px', fontSize: '13px', color: '#718096', fontStyle: 'italic' }}>
+                  <Typography variant="body2" sx={{ mt: 1.5, color: '#718096', fontStyle: 'italic' }}>
                     {selectedBeach.notes}
-                  </div>
+                  </Typography>
                 )}
-              </div>
+              </Box>
             )}
 
             <TideChart
@@ -1427,66 +915,40 @@ export default function Dashboard() {
               }}
             />
 
-          </div>
-        </div>
-      )}
+          </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Footer with resources */}
-      <div style={{
-        marginTop: '40px',
-        padding: '20px',
-        borderTop: '1px solid #e2e8f0',
-        textAlign: 'center',
-        color: '#718096',
-        fontSize: '13px'
-      }}>
-        <p style={{ marginBottom: '8px' }}>
+      <Box sx={{ mt: 5, p: 2.5, borderTop: '1px solid', borderColor: 'divider', textAlign: 'center', color: 'text.secondary' }}>
+        <Typography variant="body2" sx={{ mb: 1 }}>
           <strong>Resources:</strong>
-        </p>
-        <p>
-          <a
-            href="https://wdfw.wa.gov/sites/default/files/fishing/shellfishing/WDFWAnnualBeachSeasonsBarChart.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#4299e1', textDecoration: 'none', marginRight: '16px' }}
-          >
+        </Typography>
+        <Typography variant="body2">
+          <Link href="https://wdfw.wa.gov/sites/default/files/fishing/shellfishing/WDFWAnnualBeachSeasonsBarChart.pdf" target="_blank" rel="noopener noreferrer" sx={{ mr: 2 }}>
             WDFW 2026 Beach Seasons (PDF)
-          </a>
-          <a
-            href="https://fortress.wa.gov/doh/eh/portal/odw/si/Shellfish.aspx"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#4299e1', textDecoration: 'none', marginRight: '16px' }}
-          >
+          </Link>
+          <Link href="https://fortress.wa.gov/doh/eh/portal/odw/si/Shellfish.aspx" target="_blank" rel="noopener noreferrer" sx={{ mr: 2 }}>
             DOH Shellfish Safety Map
-          </a>
-          <a
-            href="https://wdfw.wa.gov/places-to-go/shellfish-beaches"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#4299e1', textDecoration: 'none' }}
-          >
+          </Link>
+          <Link href="https://wdfw.wa.gov/places-to-go/shellfish-beaches" target="_blank" rel="noopener noreferrer">
             WDFW Shellfish Beaches
-          </a>
-        </p>
-        <p style={{ marginTop: '12px', fontSize: '11px', color: '#a0aec0' }}>
+          </Link>
+        </Typography>
+        <Typography variant="caption" display="block" sx={{ mt: 1.5, color: '#a0aec0' }}>
           Always check DOH biotoxin status on the day of harvest. Both WDFW season AND DOH approval required.
-        </p>
-        <p style={{ marginTop: '12px', fontSize: '12px', color: '#4a5568', fontWeight: '500' }}>
+        </Typography>
+        <Typography variant="caption" display="block" sx={{ mt: 1.5, color: '#4a5568', fontWeight: 500 }}>
           Follow all laws and guidance, and make sure you have a valid license
-        </p>
-        <p style={{ marginTop: '16px', fontSize: '12px', color: '#718096' }}>
+        </Typography>
+        <Typography variant="caption" display="block" sx={{ mt: 2, color: 'text.secondary' }}>
           Like this project? Leave a star on{' '}
-          <a
-            href="https://github.com/shikele/sea-harvest-tracker"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#4299e1', textDecoration: 'none' }}
-          >
+          <Link href="https://github.com/shikele/sea-harvest-tracker" target="_blank" rel="noopener noreferrer">
             GitHub
-          </a>
-        </p>
-      </div>
-    </div>
+          </Link>
+        </Typography>
+      </Box>
+    </Box>
   );
 }

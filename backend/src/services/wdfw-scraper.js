@@ -7,7 +7,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const STATUS_FILE = join(__dirname, '../data/wdfw-status.json');
+const RAZOR_CLAM_FILE = join(__dirname, '../data/razor-clam-digs.json');
 const BEACHES_FILE = join(__dirname, '../../data/beaches.json');
+
+const RAZOR_CLAM_URL = 'https://wdfw.wa.gov/fishing/shellfishing-regulations/razor-clams';
+
+// Map beach names from WDFW dig announcements to our beach IDs
+const RAZOR_CLAM_BEACH_MAP = {
+  'long beach': 75,
+  'long': 75,
+  'twin harbors': null,  // We don't track this one
+  'copalis': 76,
+  'mocrocks': 77,
+  'kalaloch': null       // Closed, not tracked
+};
 
 const MONTH_MAP = {
   january: 1, february: 2, march: 3, april: 4, may: 5, june: 6,
@@ -487,8 +500,173 @@ export function checkWdfwSeason(wdfwUrl, subBeach) {
   };
 }
 
+/**
+ * Scrape WDFW razor clam dig announcement page
+ * Parses dig schedule from <li> elements like:
+ *   "April 30, Thursday, 6:26 a.m.; -0.3 feet; Long Beach, Twin Harbors, Mocrocks"
+ */
+export async function scrapeRazorClamPage() {
+  try {
+    const response = await fetch(RAZOR_CLAM_URL, {
+      timeout: 15000,
+      headers: {
+        'User-Agent': 'SeaHarvestTracker/1.0 (shellfish season data)',
+        'Accept': 'text/html'
+      }
+    });
+
+    if (!response.ok) {
+      console.error(`Razor clam page returned HTTP ${response.status}`);
+      return null;
+    }
+
+    const html = await response.text();
+
+    // Extract headline for season description
+    const headlineMatch = html.match(/WDFW approves[^<]*(?:digs|season)[^<]*/i);
+    const headline = headlineMatch ? stripHtml(headlineMatch[0]).trim() : null;
+
+    // Extract announcement date
+    const dateMatch = html.match(/Published\s+(?:on\s+)?(\w+\s+\d+,?\s+\d{4})/i)
+      || html.match(/>(\w+\s+\d+,?\s+\d{4})<\/p>/i);
+    const announcementDate = dateMatch ? dateMatch[1] : null;
+
+    // Parse dig schedule from <li> elements
+    const digPattern = /<li[^>]*>\s*([A-Z]\w+\s+\d+),\s*(\w+),\s*(\d+:\d+\s*[ap]\.m\.);\s*(-?[\d.]+)\s*feet;\s*([^<]+?)\s*<\/li>/gi;
+    const digs = [];
+    let match;
+    const currentYear = new Date().getFullYear();
+
+    while ((match = digPattern.exec(html)) !== null) {
+      const dateStr = match[1];    // e.g. "April 30"
+      const dayOfWeek = match[2];  // e.g. "Thursday"
+      const time = match[3];       // e.g. "6:26 a.m."
+      const tideHeight = parseFloat(match[4]); // e.g. -0.3
+      const beachNames = match[5] // e.g. "Long Beach, Twin Harbors, Mocrocks"
+        .split(',')
+        .map(b => b.trim())
+        .filter(Boolean);
+
+      // Parse full date
+      const parsed = parseDate(dateStr, currentYear);
+      const dateISO = parsed ? parsed.toISOString().slice(0, 10) : null;
+
+      // Parse time to 24h format
+      const timeMatch = time.match(/(\d+):(\d+)\s*([ap])\.?m\.?/i);
+      let hour24 = null;
+      let timeStr = time;
+      if (timeMatch) {
+        let h = parseInt(timeMatch[1], 10);
+        const m = timeMatch[2];
+        const ampm = timeMatch[3].toLowerCase();
+        if (ampm === 'p' && h !== 12) h += 12;
+        if (ampm === 'a' && h === 12) h = 0;
+        hour24 = `${String(h).padStart(2, '0')}:${m}`;
+        timeStr = `${hour24}`;
+      }
+
+      // Map beach names to our IDs
+      const beachIds = beachNames.map(name => {
+        const lower = name.toLowerCase();
+        const id = RAZOR_CLAM_BEACH_MAP[lower]
+          ?? RAZOR_CLAM_BEACH_MAP[lower.replace(/\s*(beach|peninsula)\s*/gi, '').trim()];
+        return { name, id: id ?? null };
+      });
+
+      digs.push({
+        date: dateISO,
+        dayOfWeek,
+        time: timeStr,
+        hour24,
+        tideHeight,
+        beaches: beachIds
+      });
+    }
+
+    // Check for "no digs scheduled" or closures
+    const kalalochClosed = /kalaloch[^<]*(?:closed|not open|no digging)/i.test(html);
+
+    const result = {
+      lastUpdated: new Date().toISOString(),
+      headline,
+      announcementDate,
+      kalalochClosed,
+      digs
+    };
+
+    writeFileSync(RAZOR_CLAM_FILE, JSON.stringify(result, null, 2));
+    console.log(`Razor clam scrape: ${digs.length} dig days found${headline ? ' — ' + headline : ''}`);
+
+    return result;
+  } catch (err) {
+    console.error('Error scraping razor clam page:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Load cached razor clam dig data
+ */
+export function loadRazorClamDigs() {
+  try {
+    if (!existsSync(RAZOR_CLAM_FILE)) return null;
+    return JSON.parse(readFileSync(RAZOR_CLAM_FILE, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Check if a razor clam beach has a scheduled dig on a given date
+ * Returns dig info or null
+ */
+export function getRazorClamDigForDate(beachId, dateStr) {
+  const data = loadRazorClamDigs();
+  if (!data || !data.digs) return null;
+
+  for (const dig of data.digs) {
+    if (dig.date === dateStr) {
+      const beachEntry = dig.beaches.find(b => b.id === beachId);
+      if (beachEntry) {
+        return {
+          date: dig.date,
+          time: dig.time,
+          tideHeight: dig.tideHeight,
+          beachName: beachEntry.name
+        };
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Get all upcoming digs for a specific razor clam beach
+ */
+export function getUpcomingDigsForBeach(beachId) {
+  const data = loadRazorClamDigs();
+  if (!data || !data.digs) return [];
+
+  const now = new Date().toISOString().slice(0, 10);
+  return data.digs
+    .filter(dig => dig.date >= now && dig.beaches.some(b => b.id === beachId))
+    .map(dig => {
+      const beachEntry = dig.beaches.find(b => b.id === beachId);
+      return {
+        date: dig.date,
+        dayOfWeek: dig.dayOfWeek,
+        time: dig.time,
+        tideHeight: dig.tideHeight
+      };
+    });
+}
+
 export default {
   scrapeAllBeaches,
   loadWdfwStatus,
-  checkWdfwSeason
+  checkWdfwSeason,
+  scrapeRazorClamPage,
+  loadRazorClamDigs,
+  getRazorClamDigForDate,
+  getUpcomingDigsForBeach
 };

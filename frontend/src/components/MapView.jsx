@@ -89,6 +89,7 @@ const statusColors = {
   green: { bg: '#48bb78', text: '#fff' },
   yellow: { bg: '#ecc94b', text: '#744210' },
   red: { bg: '#f56565', text: '#fff' },
+  blue: { bg: '#4299e1', text: '#fff' },
   gray: { bg: '#a0aec0', text: '#fff' }
 };
 
@@ -114,6 +115,7 @@ const markerIcons = {
   green: createColoredIcon('#48bb78'),
   yellow: createColoredIcon('#ecc94b'),
   red: createColoredIcon('#f56565'),
+  blue: createColoredIcon('#4299e1'),
   gray: createColoredIcon('#a0aec0')
 };
 
@@ -201,6 +203,7 @@ const selectedIcons = {
   green: createSelectedIcon('#48bb78'),
   yellow: createSelectedIcon('#ecc94b'),
   red: createSelectedIcon('#f56565'),
+  blue: createSelectedIcon('#4299e1'),
   gray: createSelectedIcon('#a0aec0')
 };
 
@@ -249,6 +252,16 @@ function formatTideTime(dateTimeStr) {
 export default function MapView({ beaches, onBeachClick, userLocation, selectedBeach }) {
   const [initialFitDone, setInitialFitDone] = useState(false);
 
+  // Reset fit when the set of beaches changes (e.g. species filter)
+  const beachKey = beaches.map(b => b.id).sort().join(',');
+  const prevBeachKeyRef = React.useRef(beachKey);
+  React.useEffect(() => {
+    if (beachKey !== prevBeachKeyRef.current) {
+      prevBeachKeyRef.current = beachKey;
+      setInitialFitDone(false);
+    }
+  }, [beachKey]);
+
   // Center on Puget Sound region (or user location if available)
   const center = userLocation ? [userLocation.lat, userLocation.lon] : [47.6, -122.7];
 
@@ -268,10 +281,6 @@ export default function MapView({ beaches, onBeachClick, userLocation, selectedB
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendDot, backgroundColor: '#f56565' }} />
             <span>Closed</span>
-          </div>
-          <div style={styles.legendItem}>
-            <div style={{ ...styles.legendDot, backgroundColor: '#a0aec0' }} />
-            <span>Unclassified</span>
           </div>
           {userLocation && (
             <div style={styles.legendItem}>

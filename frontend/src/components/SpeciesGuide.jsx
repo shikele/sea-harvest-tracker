@@ -1,4 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import IconButton from '@mui/material/IconButton';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const speciesData = [
   {
@@ -232,272 +244,55 @@ const speciesData = [
   }
 ];
 
-const styles = {
-  container: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '20px'
-  },
-  header: {
-    marginBottom: '24px'
-  },
-  title: {
-    fontSize: '28px',
-    fontWeight: '700',
-    color: '#1a202c',
-    marginBottom: '8px'
-  },
-  subtitle: {
-    fontSize: '14px',
-    color: '#718096'
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-    gap: '20px'
-  },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    overflow: 'hidden',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-    transition: 'transform 0.2s, box-shadow 0.2s',
-    cursor: 'pointer'
-  },
-  cardHover: {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-  },
-  imageContainer: {
-    position: 'relative',
-    width: '100%',
-    height: '220px',
-    overflow: 'hidden',
-    backgroundColor: '#e2e8f0'
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover'
-  },
-  cardBody: {
-    padding: '16px'
-  },
-  speciesName: {
-    fontSize: '18px',
-    fontWeight: '600',
-    color: '#1a202c',
-    marginBottom: '4px'
-  },
-  chineseName: {
-    fontSize: '16px',
-    color: '#805ad5',
-    marginBottom: '4px'
-  },
-  scientificName: {
-    fontSize: '13px',
-    color: '#718096',
-    fontStyle: 'italic',
-    marginBottom: '12px'
-  },
-  description: {
-    fontSize: '14px',
-    color: '#4a5568',
-    lineHeight: '1.5',
-    marginBottom: '12px'
-  },
-  infoGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '8px'
-  },
-  infoItem: {
-    fontSize: '12px'
-  },
-  infoLabel: {
-    color: '#718096',
-    display: 'block'
-  },
-  infoValue: {
-    color: '#2d3748',
-    fontWeight: '500'
-  },
-  modal: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1000,
-    padding: '20px',
-    overscrollBehavior: 'contain',
-    touchAction: 'none'
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    borderRadius: '16px',
-    maxWidth: '600px',
-    width: '100%',
-    maxHeight: '55vh',
-    overflow: 'auto',
-    touchAction: 'auto',
-    overscrollBehavior: 'contain'
-  },
-  modalImage: {
-    width: '100%',
-    height: '280px',
-    objectFit: 'contain',
-    backgroundColor: '#1a202c'
-  },
-  modalBody: {
-    padding: '24px'
-  },
-  closeButton: {
-    position: 'absolute',
-    top: '16px',
-    right: '16px',
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    color: 'white',
-    border: 'none',
-    fontSize: '18px',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  detailSection: {
-    marginBottom: '16px'
-  },
-  detailLabel: {
-    fontSize: '12px',
-    color: '#718096',
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    marginBottom: '4px'
-  },
-  detailValue: {
-    fontSize: '14px',
-    color: '#2d3748'
-  },
-  imageNavButton: {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    width: '36px',
-    height: '36px',
-    borderRadius: '50%',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    color: 'white',
-    border: 'none',
-    fontSize: '18px',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 10
-  },
-  thumbnailStrip: {
-    display: 'flex',
-    gap: '8px',
-    padding: '12px',
-    backgroundColor: '#f7fafc',
-    justifyContent: 'center',
-    flexWrap: 'wrap'
-  },
-  thumbnail: {
-    width: '60px',
-    height: '45px',
-    objectFit: 'cover',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    border: '2px solid transparent',
-    opacity: 0.6,
-    transition: 'all 0.2s'
-  },
-  thumbnailActive: {
-    border: '2px solid #4299e1',
-    opacity: 1
-  },
-  imageCaption: {
-    textAlign: 'center',
-    fontSize: '12px',
-    color: '#718096',
-    padding: '8px',
-    backgroundColor: '#f7fafc'
-  },
-  imageCounter: {
-    position: 'absolute',
-    bottom: '12px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    color: 'white',
-    padding: '4px 12px',
-    borderRadius: '12px',
-    fontSize: '12px'
-  }
-};
 
 function SpeciesCard({ species, onClick }) {
-  const [isHovered, setIsHovered] = useState(false);
   const mainImage = species.images?.[0]?.url || species.image;
 
   return (
-    <div
-      style={{ ...styles.card, ...(isHovered ? styles.cardHover : {}) }}
+    <Card
       className="species-card"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onClick={() => onClick(species)}
+      sx={{
+        cursor: 'pointer',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        transition: 'transform 0.2s, box-shadow 0.2s',
+        '&:hover': { transform: 'translateY(-4px)', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' },
+      }}
     >
-      <div style={styles.imageContainer}>
-        <img
-          src={mainImage}
+      <Box sx={{ position: 'relative', width: '100%', height: 220, overflow: 'hidden', bgcolor: '#e2e8f0' }}>
+        <CardMedia
+          component="img"
+          height="220"
+          image={mainImage}
           alt={species.name}
-          style={styles.image}
           onError={(e) => {
             e.target.src = 'https://via.placeholder.com/320x220?text=' + encodeURIComponent(species.name);
           }}
         />
         {species.images?.length > 1 && (
-          <div style={{
-            position: 'absolute',
-            bottom: '8px',
-            right: '8px',
-            backgroundColor: 'rgba(0,0,0,0.6)',
-            color: 'white',
-            padding: '2px 8px',
-            borderRadius: '10px',
-            fontSize: '11px'
-          }}>
+          <Box sx={{ position: 'absolute', bottom: 8, right: 8, bgcolor: 'rgba(0,0,0,0.6)', color: 'white', px: 1, borderRadius: '10px', fontSize: 11 }}>
             +{species.images.length - 1} photos
-          </div>
+          </Box>
         )}
-      </div>
-      <div style={styles.cardBody} className="species-card-body">
-        <div style={styles.speciesName} className="species-name">{species.name}</div>
-        <div style={styles.chineseName} className="chinese-name">{species.chineseName}</div>
-        <div style={styles.scientificName} className="scientific-name">{species.scientificName}</div>
-        <div style={styles.description} className="species-description">{species.description}</div>
-        <div style={styles.infoGrid}>
-          <div style={styles.infoItem}>
-            <span style={styles.infoLabel}>Size</span>
-            <span style={styles.infoValue}>{species.size}</span>
-          </div>
-          <div style={styles.infoItem}>
-            <span style={styles.infoLabel}>Min Tide</span>
-            <span style={styles.infoValue}>{species.minTide}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+      </Box>
+      <CardContent className="species-card-body">
+        <Typography sx={{ fontSize: 18, fontWeight: 600, color: '#1a202c', mb: 0.5 }} className="species-name">{species.name}</Typography>
+        <Typography sx={{ fontSize: 16, color: '#805ad5', mb: 0.5 }} className="chinese-name">{species.chineseName}</Typography>
+        <Typography sx={{ fontSize: 13, color: '#718096', fontStyle: 'italic', mb: 1.5 }} className="scientific-name">{species.scientificName}</Typography>
+        <Typography sx={{ fontSize: 14, color: '#4a5568', lineHeight: 1.5, mb: 1.5 }} className="species-description">{species.description}</Typography>
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1 }}>
+          <Box sx={{ fontSize: 12 }}>
+            <Typography component="span" sx={{ color: '#718096', display: 'block' }}>Size</Typography>
+            <Typography component="span" sx={{ color: '#2d3748', fontWeight: 500 }}>{species.size}</Typography>
+          </Box>
+          <Box sx={{ fontSize: 12 }}>
+            <Typography component="span" sx={{ color: '#718096', display: 'block' }}>Min Tide</Typography>
+            <Typography component="span" sx={{ color: '#2d3748', fontWeight: 500 }}>{species.minTide}</Typography>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -508,19 +303,6 @@ function SpeciesModal({ species, onClose }) {
   useEffect(() => {
     setCurrentImageIndex(0);
   }, [species?.id]);
-
-  // Lock body scroll when modal is open (including mobile)
-  useEffect(() => {
-    if (species) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-
-      return () => {
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-      };
-    }
-  }, [species]);
 
   if (!species) return null;
 
@@ -538,57 +320,67 @@ function SpeciesModal({ species, onClose }) {
   };
 
   return (
-    <div style={styles.modal} onClick={onClose}>
-      <div style={styles.modalContent} className="species-modal-content" onClick={(e) => e.stopPropagation()}>
-        <div style={{ position: 'relative' }}>
-          <img
+    <Dialog open={!!species} onClose={onClose} maxWidth="sm" fullWidth className="species-modal-content">
+      <DialogContent sx={{ p: 0 }}>
+        <Box sx={{ position: 'relative' }}>
+          <Box
+            component="img"
             src={currentImage.url}
             alt={species.name}
-            style={styles.modalImage}
+            sx={{ width: '100%', height: 280, objectFit: 'contain', bgcolor: '#1a202c' }}
             className="modal-image"
             onError={(e) => {
               e.target.src = 'https://via.placeholder.com/600x300?text=' + encodeURIComponent(species.name);
             }}
           />
-          <button style={styles.closeButton} className="close-button" onClick={onClose}>x</button>
+          <IconButton className="close-button" onClick={onClose} sx={{ position: 'absolute', top: 16, right: 16, bgcolor: 'rgba(0,0,0,0.5)', color: 'white', '&:hover': { bgcolor: 'rgba(0,0,0,0.7)' } }}>
+            <CloseIcon />
+          </IconButton>
 
           {images.length > 1 && (
             <>
-              <button
-                style={{ ...styles.imageNavButton, left: '12px' }}
+              <IconButton
                 className="image-nav-button"
                 onClick={goToPrev}
+                sx={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', bgcolor: 'rgba(0,0,0,0.5)', color: 'white', '&:hover': { bgcolor: 'rgba(0,0,0,0.7)' }, zIndex: 10 }}
               >
-                ‹
-              </button>
-              <button
-                style={{ ...styles.imageNavButton, right: '12px' }}
+                <ChevronLeftIcon />
+              </IconButton>
+              <IconButton
                 className="image-nav-button"
                 onClick={goToNext}
+                sx={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', bgcolor: 'rgba(0,0,0,0.5)', color: 'white', '&:hover': { bgcolor: 'rgba(0,0,0,0.7)' }, zIndex: 10 }}
               >
-                ›
-              </button>
-              <div style={styles.imageCounter}>
+                <ChevronRightIcon />
+              </IconButton>
+              <Box sx={{ position: 'absolute', bottom: 1.5, left: '50%', transform: 'translateX(-50%)', bgcolor: 'rgba(0,0,0,0.6)', color: 'white', px: 1.5, py: 0.5, borderRadius: '12px', fontSize: 12 }}>
                 {currentImageIndex + 1} / {images.length}
-              </div>
+              </Box>
             </>
           )}
-        </div>
+        </Box>
 
         {currentImage.caption && (
-          <div style={styles.imageCaption}>{currentImage.caption}</div>
+          <Typography sx={{ textAlign: 'center', fontSize: 12, color: '#718096', p: 1, bgcolor: '#f7fafc' }}>{currentImage.caption}</Typography>
         )}
 
         {images.length > 1 && (
-          <div style={styles.thumbnailStrip} className="thumbnail-strip">
+          <Box sx={{ display: 'flex', gap: 1, p: 1.5, bgcolor: '#f7fafc', justifyContent: 'center', flexWrap: 'wrap' }} className="thumbnail-strip">
             {images.map((img, idx) => (
-              <img
+              <Box
+                component="img"
                 key={idx}
                 src={img.url}
                 alt={`${species.name} ${idx + 1}`}
-                style={{
-                  ...styles.thumbnail,
-                  ...(idx === currentImageIndex ? styles.thumbnailActive : {})
+                sx={{
+                  width: 60,
+                  height: 45,
+                  objectFit: 'cover',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  border: idx === currentImageIndex ? '2px solid #4299e1' : '2px solid transparent',
+                  opacity: idx === currentImageIndex ? 1 : 0.6,
+                  transition: 'all 0.2s'
                 }}
                 className="thumbnail"
                 onClick={() => setCurrentImageIndex(idx)}
@@ -597,43 +389,43 @@ function SpeciesModal({ species, onClose }) {
                 }}
               />
             ))}
-          </div>
+          </Box>
         )}
 
-        <div style={styles.modalBody} className="modal-body">
-          <div style={styles.speciesName} className="species-name">{species.name}</div>
-          <div style={styles.chineseName} className="chinese-name">{species.chineseName}</div>
-          <div style={styles.scientificName} className="scientific-name">{species.scientificName}</div>
+        <Box sx={{ p: 3 }} className="modal-body">
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: '#1a202c', mb: 0.5 }} className="species-name">{species.name}</Typography>
+          <Typography sx={{ fontSize: 16, color: '#805ad5', mb: 0.5 }} className="chinese-name">{species.chineseName}</Typography>
+          <Typography sx={{ fontSize: 13, color: '#718096', fontStyle: 'italic', mb: 1.5 }} className="scientific-name">{species.scientificName}</Typography>
 
-          <div style={{ marginTop: '20px' }}>
-            <div style={styles.detailSection}>
-              <div style={styles.detailLabel}>Description</div>
-              <div style={styles.detailValue}>{species.description}</div>
-            </div>
+          <Box sx={{ mt: 2.5 }}>
+            <Box sx={{ mb: 2 }}>
+              <Typography sx={{ fontSize: 12, color: '#718096', textTransform: 'uppercase', letterSpacing: '0.5px', mb: 0.5 }}>Description</Typography>
+              <Typography sx={{ fontSize: 14, color: '#2d3748' }}>{species.description}</Typography>
+            </Box>
 
-            <div style={styles.detailSection}>
-              <div style={styles.detailLabel}>Habitat</div>
-              <div style={styles.detailValue}>{species.habitat}</div>
-            </div>
+            <Box sx={{ mb: 2 }}>
+              <Typography sx={{ fontSize: 12, color: '#718096', textTransform: 'uppercase', letterSpacing: '0.5px', mb: 0.5 }}>Habitat</Typography>
+              <Typography sx={{ fontSize: 14, color: '#2d3748' }}>{species.habitat}</Typography>
+            </Box>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }} className="detail-grid">
-              <div style={styles.detailSection}>
-                <div style={styles.detailLabel}>Size</div>
-                <div style={styles.detailValue}>{species.size}</div>
-              </div>
-              <div style={styles.detailSection}>
-                <div style={styles.detailLabel}>Min Tide</div>
-                <div style={styles.detailValue}>{species.minTide}</div>
-              </div>
-              <div style={styles.detailSection}>
-                <div style={styles.detailLabel}>Season</div>
-                <div style={styles.detailValue}>{species.season}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 2 }} className="detail-grid">
+              <Box sx={{ mb: 2 }}>
+                <Typography sx={{ fontSize: 12, color: '#718096', textTransform: 'uppercase', letterSpacing: '0.5px', mb: 0.5 }}>Size</Typography>
+                <Typography sx={{ fontSize: 14, color: '#2d3748' }}>{species.size}</Typography>
+              </Box>
+              <Box sx={{ mb: 2 }}>
+                <Typography sx={{ fontSize: 12, color: '#718096', textTransform: 'uppercase', letterSpacing: '0.5px', mb: 0.5 }}>Min Tide</Typography>
+                <Typography sx={{ fontSize: 14, color: '#2d3748' }}>{species.minTide}</Typography>
+              </Box>
+              <Box sx={{ mb: 2 }}>
+                <Typography sx={{ fontSize: 12, color: '#718096', textTransform: 'uppercase', letterSpacing: '0.5px', mb: 0.5 }}>Season</Typography>
+                <Typography sx={{ fontSize: 14, color: '#2d3748' }}>{species.season}</Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -641,15 +433,15 @@ export default function SpeciesGuide() {
   const [selectedSpecies, setSelectedSpecies] = useState(null);
 
   return (
-    <div style={styles.container} className="species-guide-container">
-      <div style={styles.header}>
-        <h1 style={styles.title} className="species-guide-title">Species Guide</h1>
-        <p style={styles.subtitle}>
+    <Box sx={{ maxWidth: '1200px', margin: '0 auto', p: 2.5 }} className="species-guide-container">
+      <Box sx={{ mb: 3 }}>
+        <Typography variant="h1" sx={{ fontSize: 28, fontWeight: 700, color: '#1a202c', mb: 1 }} className="species-guide-title">Species Guide</Typography>
+        <Typography sx={{ fontSize: 14, color: '#718096' }}>
           Learn about the shellfish species you can harvest in Washington State
-        </p>
-      </div>
+        </Typography>
+      </Box>
 
-      <div style={styles.grid} className="species-grid">
+      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: 2.5 }} className="species-grid">
         {speciesData.map((species) => (
           <SpeciesCard
             key={species.id}
@@ -657,12 +449,12 @@ export default function SpeciesGuide() {
             onClick={setSelectedSpecies}
           />
         ))}
-      </div>
+      </Box>
 
       <SpeciesModal
         species={selectedSpecies}
         onClose={() => setSelectedSpecies(null)}
       />
-    </div>
+    </Box>
   );
 }

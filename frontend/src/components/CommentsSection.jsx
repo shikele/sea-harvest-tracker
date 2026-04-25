@@ -1,529 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getAllComments, postComment, deleteComment } from '../services/api';
-
-const styles = {
-  container: {
-    maxWidth: '700px',
-    margin: '0 auto'
-  },
-  // Filter bar
-  filterBar: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '16px 20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-    marginBottom: '16px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px'
-  },
-  filterRow: {
-    display: 'flex',
-    gap: '8px',
-    alignItems: 'center',
-    flexWrap: 'wrap'
-  },
-  filterLabel: {
-    fontSize: '12px',
-    fontWeight: '600',
-    color: '#4a5568',
-    minWidth: '50px'
-  },
-  filterSelect: {
-    padding: '6px 10px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '13px',
-    outline: 'none',
-    color: '#4a5568',
-    backgroundColor: 'white',
-    flex: 1,
-    maxWidth: '250px'
-  },
-  dateInput: {
-    padding: '6px 10px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '12px',
-    outline: 'none',
-    color: '#4a5568'
-  },
-  speciesInput: {
-    padding: '6px 10px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '13px',
-    outline: 'none',
-    color: '#4a5568',
-    flex: 1,
-    maxWidth: '200px'
-  },
-  beachSearchWrap: {
-    position: 'relative',
-    flex: 1,
-    maxWidth: '250px'
-  },
-  beachSearchInput: {
-    width: '100%',
-    padding: '6px 10px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '13px',
-    outline: 'none',
-    color: '#4a5568',
-    backgroundColor: 'white',
-    boxSizing: 'border-box'
-  },
-  beachDropdown: {
-    position: 'absolute',
-    top: '100%',
-    left: 0,
-    right: 0,
-    maxHeight: '200px',
-    overflowY: 'auto',
-    backgroundColor: 'white',
-    border: '1px solid #e2e8f0',
-    borderRadius: '0 0 6px 6px',
-    zIndex: 100,
-    boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-  },
-  beachDropdownItem: {
-    padding: '6px 10px',
-    fontSize: '13px',
-    color: '#4a5568',
-    cursor: 'pointer'
-  },
-  beachSelectedBadge: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '6px',
-    padding: '4px 10px',
-    backgroundColor: '#ebf8ff',
-    borderRadius: '14px',
-    fontSize: '12px',
-    color: '#2b6cb0',
-    fontWeight: '500'
-  },
-  badgeClear: {
-    background: 'none',
-    border: 'none',
-    color: '#2b6cb0',
-    cursor: 'pointer',
-    fontSize: '14px',
-    padding: 0,
-    lineHeight: 1
-  },
-  clearFiltersBtn: {
-    padding: '6px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '11px',
-    cursor: 'pointer',
-    backgroundColor: 'white',
-    color: '#e53e3e',
-    marginLeft: 'auto'
-  },
-  filterCount: {
-    fontSize: '11px',
-    color: '#a0aec0'
-  },
-  // Floating action button
-  fab: {
-    position: 'fixed',
-    bottom: '24px',
-    right: '24px',
-    padding: '14px 24px',
-    borderRadius: '28px',
-    backgroundColor: '#48bb78',
-    color: 'white',
-    border: 'none',
-    fontSize: '14px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    boxShadow: '0 4px 12px rgba(72,187,120,0.4)',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    zIndex: 900,
-    transition: 'transform 0.2s, box-shadow 0.2s'
-  },
-  // Modal overlay
-  modalOverlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1000,
-    padding: '20px',
-    overscrollBehavior: 'contain'
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    borderRadius: '16px',
-    maxWidth: '520px',
-    width: '100%',
-    maxHeight: '85vh',
-    overflow: 'auto',
-    touchAction: 'auto',
-    overscrollBehavior: 'contain'
-  },
-  modalHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '20px 24px 0',
-  },
-  modalTitle: {
-    fontSize: '18px',
-    fontWeight: '700',
-    color: '#1a202c',
-    margin: 0
-  },
-  modalClose: {
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%',
-    backgroundColor: '#f7fafc',
-    color: '#718096',
-    border: 'none',
-    fontSize: '18px',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  modalBody: {
-    padding: '20px 24px 24px'
-  },
-  modalFieldLabel: {
-    fontSize: '12px',
-    fontWeight: '600',
-    color: '#4a5568',
-    marginBottom: '4px',
-    display: 'block',
-    marginTop: '4px'
-  },
-  modalInput: {
-    width: '100%',
-    padding: '10px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '8px',
-    fontSize: '13px',
-    outline: 'none',
-    color: '#4a5568',
-    backgroundColor: 'white',
-    boxSizing: 'border-box',
-    marginBottom: '4px'
-  },
-  formGrid: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px'
-  },
-  formRow: {
-    display: 'flex',
-    gap: '8px',
-    alignItems: 'center'
-  },
-  formLabel: {
-    fontSize: '12px',
-    fontWeight: '500',
-    color: '#718096',
-    minWidth: '80px'
-  },
-  formSelect: {
-    flex: 1,
-    padding: '8px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '13px',
-    outline: 'none',
-    color: '#4a5568',
-    backgroundColor: 'white'
-  },
-  catchInput: {
-    flex: 1,
-    padding: '8px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '13px',
-    outline: 'none',
-    boxSizing: 'border-box'
-  },
-  textarea: {
-    width: '100%',
-    padding: '10px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '8px',
-    fontSize: '13px',
-    resize: 'vertical',
-    minHeight: '70px',
-    maxHeight: '200px',
-    outline: 'none',
-    fontFamily: 'inherit',
-    boxSizing: 'border-box'
-  },
-  charCount: {
-    fontSize: '11px',
-    color: '#a0aec0',
-    textAlign: 'right',
-    marginTop: '2px'
-  },
-  fileRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px'
-  },
-  fileLabel: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '4px',
-    padding: '6px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '12px',
-    color: '#4a5568',
-    cursor: 'pointer',
-    backgroundColor: 'white'
-  },
-  fileInput: {
-    display: 'none'
-  },
-  submitButton: {
-    padding: '8px 20px',
-    backgroundColor: '#48bb78',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    fontSize: '13px',
-    cursor: 'pointer',
-    fontWeight: '500',
-    marginLeft: 'auto'
-  },
-  submitButtonDisabled: {
-    opacity: 0.5,
-    cursor: 'not-allowed'
-  },
-  previews: {
-    display: 'flex',
-    gap: '8px',
-    flexWrap: 'wrap'
-  },
-  previewThumb: {
-    position: 'relative',
-    width: '60px',
-    height: '60px',
-    borderRadius: '6px',
-    overflow: 'hidden'
-  },
-  previewImg: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover'
-  },
-  previewRemove: {
-    position: 'absolute',
-    top: '2px',
-    right: '2px',
-    width: '18px',
-    height: '18px',
-    borderRadius: '50%',
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    color: 'white',
-    border: 'none',
-    fontSize: '11px',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    lineHeight: 1
-  },
-  honeypot: {
-    position: 'absolute',
-    left: '-9999px',
-    opacity: 0,
-    height: 0,
-    width: 0,
-    overflow: 'hidden'
-  },
-  namePrompt: {
-    padding: '14px',
-    backgroundColor: '#f7fafc',
-    borderRadius: '8px',
-    marginBottom: '12px'
-  },
-  nameLabel: {
-    fontSize: '13px',
-    fontWeight: '500',
-    color: '#4a5568',
-    marginBottom: '6px',
-    display: 'block'
-  },
-  nameInputRow: {
-    display: 'flex',
-    gap: '8px'
-  },
-  input: {
-    flex: 1,
-    padding: '8px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    fontSize: '13px',
-    outline: 'none'
-  },
-  saveButton: {
-    padding: '8px 16px',
-    backgroundColor: '#4299e1',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    fontSize: '13px',
-    cursor: 'pointer',
-    fontWeight: '500'
-  },
-  nameDisplay: {
-    fontSize: '13px',
-    color: '#718096',
-    marginBottom: '12px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px'
-  },
-  changeNameBtn: {
-    background: 'none',
-    border: 'none',
-    color: '#4299e1',
-    cursor: 'pointer',
-    fontSize: '12px',
-    padding: 0
-  },
-  error: {
-    fontSize: '12px',
-    color: '#e53e3e',
-    marginTop: '4px',
-    marginBottom: '8px'
-  },
-  // Comment feed
-  feedPanel: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-  },
-  feedTitle: {
-    fontSize: '15px',
-    fontWeight: '600',
-    color: '#1a202c',
-    marginBottom: '14px'
-  },
-  commentList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px'
-  },
-  comment: {
-    padding: '14px',
-    backgroundColor: '#f7fafc',
-    borderRadius: '8px'
-  },
-  commentHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: '4px'
-  },
-  commentAuthor: {
-    fontSize: '13px',
-    fontWeight: '600',
-    color: '#2d3748'
-  },
-  commentMeta: {
-    fontSize: '11px',
-    color: '#a0aec0',
-    marginLeft: '8px'
-  },
-  commentBeachName: {
-    display: 'inline-block',
-    padding: '2px 8px',
-    backgroundColor: '#ebf8ff',
-    borderRadius: '10px',
-    fontSize: '11px',
-    color: '#2b6cb0',
-    fontWeight: '500',
-    marginBottom: '6px'
-  },
-  commentSpecies: {
-    display: 'inline-block',
-    padding: '2px 8px',
-    backgroundColor: '#f0fff4',
-    borderRadius: '10px',
-    fontSize: '11px',
-    color: '#276749',
-    fontWeight: '500',
-    marginLeft: '6px',
-    marginBottom: '6px'
-  },
-  commentText: {
-    fontSize: '13px',
-    color: '#4a5568',
-    lineHeight: 1.5,
-    whiteSpace: 'pre-wrap',
-    wordBreak: 'break-word'
-  },
-  commentPhotos: {
-    display: 'flex',
-    gap: '8px',
-    marginTop: '10px',
-    flexWrap: 'wrap'
-  },
-  commentThumb: {
-    width: '100px',
-    height: '100px',
-    borderRadius: '8px',
-    objectFit: 'cover',
-    cursor: 'pointer',
-    border: '1px solid #e2e8f0'
-  },
-  deleteBtn: {
-    background: 'none',
-    border: 'none',
-    color: '#e53e3e',
-    fontSize: '11px',
-    cursor: 'pointer',
-    padding: '2px 6px',
-    whiteSpace: 'nowrap'
-  },
-  empty: {
-    fontSize: '13px',
-    color: '#a0aec0',
-    textAlign: 'center',
-    padding: '24px'
-  },
-  lightboxOverlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',
-    zIndex: 2000,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer'
-  },
-  lightboxImg: {
-    maxWidth: '90vw',
-    maxHeight: '90vh',
-    borderRadius: '8px',
-    objectFit: 'contain'
-  }
-};
+import Fab from '@mui/material/Fab';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import IconButton from '@mui/material/IconButton';
+import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import DeleteIcon from '@mui/icons-material/Delete';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 
 export default function CommentsSection({ beaches }) {
   const [allComments, setAllComments] = useState([]);
@@ -701,368 +198,352 @@ export default function CommentsSection({ beaches }) {
   const effectiveSpecies = species === '__other__' ? customSpecies.trim() : species;
 
   return (
-    <div style={styles.container}>
+    <Box sx={{ maxWidth: '700px', margin: '0 auto' }}>
       {/* Filter bar */}
-      <div style={styles.filterBar}>
-        <div style={styles.filterRow}>
-          <span style={styles.filterLabel}>Beach</span>
+      <Box sx={{ backgroundColor: 'white', borderRadius: '12px', padding: '16px 20px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <Box sx={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#4a5568', minWidth: '50px' }}>Beach</Typography>
           {filterBeachId ? (
-            <span style={styles.beachSelectedBadge}>
-              {beaches.find(b => b.id === parseInt(filterBeachId, 10))?.name || 'Beach'}
-              <button style={styles.badgeClear} onClick={() => { setFilterBeachId(''); setBeachSearch(''); }}>&#10005;</button>
-            </span>
+            <Chip
+              label={beaches.find(b => b.id === parseInt(filterBeachId, 10))?.name || 'Beach'}
+              onDelete={() => { setFilterBeachId(''); setBeachSearch(''); }}
+              color="primary"
+              variant="outlined"
+              size="small"
+            />
           ) : (
-            <div style={{ ...styles.beachSearchWrap, maxWidth: 'none' }}>
-              <input
-                type="text"
-                value={beachSearch}
-                onChange={(e) => { setBeachSearch(e.target.value); setBeachDropdownOpen(true); }}
-                onFocus={() => setBeachDropdownOpen(true)}
-                onBlur={() => setTimeout(() => setBeachDropdownOpen(false), 150)}
-                placeholder="Search beaches..."
-                style={styles.beachSearchInput}
-              />
-              {beachDropdownOpen && (
-                <div style={styles.beachDropdown}>
-                  {sortedBeaches
-                    .filter(b => !beachSearch || b.name.toLowerCase().includes(beachSearch.toLowerCase()))
-                    .slice(0, 20)
-                    .map(b => (
-                      <div
-                        key={b.id}
-                        style={styles.beachDropdownItem}
-                        onMouseDown={() => { setFilterBeachId(String(b.id)); setBeachSearch(''); setBeachDropdownOpen(false); }}
-                        onMouseEnter={(e) => { e.target.style.backgroundColor = '#f7fafc'; }}
-                        onMouseLeave={(e) => { e.target.style.backgroundColor = 'white'; }}
-                      >
-                        {b.name}
-                      </div>
-                    ))
-                  }
-                  {sortedBeaches.filter(b => !beachSearch || b.name.toLowerCase().includes(beachSearch.toLowerCase())).length === 0 && (
-                    <div style={{ ...styles.beachDropdownItem, color: '#a0aec0' }}>No matches</div>
-                  )}
-                </div>
-              )}
-            </div>
+            <Autocomplete
+              options={sortedBeaches}
+              getOptionLabel={(b) => b.name}
+              size="small"
+              onChange={(e, val) => { setFilterBeachId(val ? String(val.id) : ''); setBeachSearch(''); }}
+              renderInput={(params) => <TextField {...params} placeholder="Search beaches..." />}
+              sx={{ flex: 1, maxWidth: 250 }}
+            />
           )}
-        </div>
+        </Box>
 
-        <div style={styles.filterRow}>
-          <span style={styles.filterLabel}>Caught</span>
-          <select
-            style={styles.speciesInput}
-            value={filterSpecies}
-            onChange={(e) => setFilterSpecies(e.target.value)}
-          >
-            <option value="">All species</option>
-            <option value="Butter Clams">Butter Clams</option>
-            <option value="Cockles">Cockles</option>
-            <option value="Eastern Softshell Clams">Eastern Softshell Clams</option>
-            <option value="Geoduck">Geoduck</option>
-            <option value="Horse Clams">Horse Clams</option>
-            <option value="Manila Clams">Manila Clams</option>
-            <option value="Mussels">Mussels</option>
-            <option value="Native Littleneck Clams">Native Littleneck Clams</option>
-            <option value="Oysters">Oysters</option>
-            <option value="Razor Clams">Razor Clams</option>
-            <option value="Varnish Clams">Varnish Clams</option>
-          </select>
-        </div>
+        <Box sx={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#4a5568', minWidth: '50px' }}>Caught</Typography>
+          <FormControl size="small" sx={{ flex: 1, maxWidth: 200 }}>
+            <Select
+              value={filterSpecies}
+              onChange={(e) => setFilterSpecies(e.target.value)}
+              displayEmpty
+            >
+              <MenuItem value="">All species</MenuItem>
+              <MenuItem value="Butter Clams">Butter Clams</MenuItem>
+              <MenuItem value="Cockles">Cockles</MenuItem>
+              <MenuItem value="Eastern Softshell Clams">Eastern Softshell Clams</MenuItem>
+              <MenuItem value="Geoduck">Geoduck</MenuItem>
+              <MenuItem value="Horse Clams">Horse Clams</MenuItem>
+              <MenuItem value="Manila Clams">Manila Clams</MenuItem>
+              <MenuItem value="Mussels">Mussels</MenuItem>
+              <MenuItem value="Native Littleneck Clams">Native Littleneck Clams</MenuItem>
+              <MenuItem value="Oysters">Oysters</MenuItem>
+              <MenuItem value="Razor Clams">Razor Clams</MenuItem>
+              <MenuItem value="Varnish Clams">Varnish Clams</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
 
-        <div style={styles.filterRow}>
-          <span style={styles.filterLabel}>Date</span>
-          <input
+        <Box sx={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#4a5568', minWidth: '50px' }}>Date</Typography>
+          <TextField
             type="date"
+            size="small"
             value={filterDateFrom}
             onChange={(e) => setFilterDateFrom(e.target.value)}
-            style={styles.dateInput}
+            InputLabelProps={{ shrink: true }}
           />
-          <span style={{ fontSize: '12px', color: '#a0aec0' }}>to</span>
-          <input
+          <Typography component="span" sx={{ fontSize: '12px', color: '#a0aec0' }}>to</Typography>
+          <TextField
             type="date"
+            size="small"
             value={filterDateTo}
             onChange={(e) => setFilterDateTo(e.target.value)}
-            style={styles.dateInput}
+            InputLabelProps={{ shrink: true }}
           />
 
           {hasActiveFilters && (
-            <button style={styles.clearFiltersBtn} onClick={clearAllFilters}>Clear all</button>
+            <Button variant="outlined" size="small" color="error" onClick={clearAllFilters} sx={{ ml: 'auto', fontSize: 11 }}>
+              Clear all
+            </Button>
           )}
-          <span style={styles.filterCount}>
+          <Typography sx={{ fontSize: '11px', color: '#a0aec0' }}>
             {filteredComments.length} of {allComments.length} comments
-          </span>
-        </div>
-      </div>
+          </Typography>
+        </Box>
+      </Box>
 
       {/* Floating "Leave a Comment" button */}
-      <button
-        style={styles.fab}
+      <Fab
+        color="secondary"
+        variant="extended"
         onClick={() => setFormOpen(true)}
+        sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 900 }}
       >
-        <span style={{ fontSize: '20px', lineHeight: 1 }}>+</span> Leave a Comment
-      </button>
+        <AddIcon sx={{ mr: 1 }} />
+        Leave a Comment
+      </Fab>
 
       {/* Post comment modal */}
-      {formOpen && (
-        <div style={styles.modalOverlay} onClick={() => setFormOpen(false)}>
-          <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <div style={styles.modalHeader}>
-              <h3 style={styles.modalTitle}>Leave a Comment</h3>
-              <button style={styles.modalClose} onClick={() => setFormOpen(false)}>&#10005;</button>
-            </div>
+      <Dialog open={formOpen} onClose={() => setFormOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          Leave a Comment
+          <IconButton size="small" onClick={() => setFormOpen(false)}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </DialogTitle>
 
-            <div style={styles.modalBody}>
+        <DialogContent>
               {!hasName ? (
-                <div style={styles.namePrompt}>
-                  <label style={styles.nameLabel}>Set your display name to leave comments:</label>
-                  <div style={styles.nameInputRow}>
-                    <input
-                      type="text"
+                <Box sx={{ padding: '14px', backgroundColor: '#f7fafc', borderRadius: '8px', marginBottom: '12px' }}>
+                  <Typography component="label" sx={{ fontSize: '13px', fontWeight: 500, color: '#4a5568', marginBottom: '6px', display: 'block' }}>Set your display name to leave comments:</Typography>
+                  <Box sx={{ display: 'flex', gap: '8px' }}>
+                    <TextField
+                      size="small"
                       value={nameInput}
                       onChange={(e) => setNameInput(e.target.value)}
                       placeholder="Your name"
-                      maxLength={30}
-                      style={styles.input}
+                      inputProps={{ maxLength: 30 }}
                       onKeyDown={(e) => e.key === 'Enter' && saveName()}
+                      sx={{ flex: 1 }}
                     />
-                    <button style={styles.saveButton} onClick={saveName}>Save</button>
-                  </div>
-                </div>
+                    <Button variant="contained" size="small" onClick={saveName}>Save</Button>
+                  </Box>
+                </Box>
               ) : (
-                <div style={styles.nameDisplay}>
+                <Box sx={{ fontSize: '13px', color: '#718096', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   Posting as <strong>{author}</strong>
-                  <button style={styles.changeNameBtn} onClick={() => { setEditingName(true); setNameInput(author); }}>
+                  <Button variant="text" size="small" onClick={() => { setEditingName(true); setNameInput(author); }} sx={{ fontSize: 12, p: 0, minWidth: 0 }}>
                     change
-                  </button>
-                </div>
+                  </Button>
+                </Box>
               )}
 
               {hasName && (
                 <form onSubmit={handleSubmit}>
-                  <div style={styles.formGrid}>
-                    <label style={styles.modalFieldLabel}>Beach</label>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Typography component="label" sx={{ fontSize: '12px', fontWeight: 600, color: '#4a5568', marginBottom: '4px', display: 'block', marginTop: '4px' }}>Beach</Typography>
                     {postBeachId ? (
-                      <div style={{ ...styles.modalInput, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px' }}>
-                        <span>{beaches.find(b => b.id === parseInt(postBeachId, 10))?.name}</span>
-                        <button
-                          type="button"
-                          style={styles.badgeClear}
+                      <Box sx={{ width: '100%', padding: '8px 12px', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '13px', outline: 'none', color: '#4a5568', backgroundColor: 'white', boxSizing: 'border-box', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography sx={{ fontSize: '13px', color: '#4a5568' }}>{beaches.find(b => b.id === parseInt(postBeachId, 10))?.name}</Typography>
+                        <IconButton
+                          size="small"
                           onClick={() => { setPostBeachId(''); setPostBeachSearch(''); setSpecies(''); setCustomSpecies(''); }}
-                        >&#10005;</button>
-                      </div>
-                    ) : (
-                      <div style={{ position: 'relative' }}>
-                        <input
-                          type="text"
-                          value={postBeachSearch}
-                          onChange={(e) => { setPostBeachSearch(e.target.value); setPostBeachDropdownOpen(true); }}
-                          onFocus={() => setPostBeachDropdownOpen(true)}
-                          onBlur={() => setTimeout(() => setPostBeachDropdownOpen(false), 150)}
-                          placeholder="Search beaches..."
-                          style={styles.modalInput}
-                        />
-                        {postBeachDropdownOpen && (
-                          <div style={{ ...styles.beachDropdown, borderRadius: '0 0 8px 8px' }}>
-                            {sortedBeaches
-                              .filter(b => !postBeachSearch || b.name.toLowerCase().includes(postBeachSearch.toLowerCase()))
-                              .slice(0, 20)
-                              .map(b => (
-                                <div
-                                  key={b.id}
-                                  style={styles.beachDropdownItem}
-                                  onMouseDown={() => { setPostBeachId(String(b.id)); setPostBeachSearch(''); setPostBeachDropdownOpen(false); setSpecies(''); setCustomSpecies(''); }}
-                                  onMouseEnter={(e) => { e.target.style.backgroundColor = '#f7fafc'; }}
-                                  onMouseLeave={(e) => { e.target.style.backgroundColor = 'white'; }}
-                                >
-                                  {b.name}
-                                </div>
-                              ))
-                            }
-                            {sortedBeaches.filter(b => !postBeachSearch || b.name.toLowerCase().includes(postBeachSearch.toLowerCase())).length === 0 && (
-                              <div style={{ ...styles.beachDropdownItem, color: '#a0aec0' }}>No matches</div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    )}
-
-                    <div style={{ display: 'flex', gap: '12px' }}>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <label style={styles.modalFieldLabel}>What did you catch?</label>
-                        <select
-                          style={styles.modalInput}
-                          value={species}
-                          onChange={(e) => { setSpecies(e.target.value); if (e.target.value !== '__other__') setCustomSpecies(''); }}
                         >
-                          <option value="">-- Select --</option>
-                          <option value="Butter Clams">Butter Clams</option>
-                          <option value="Cockles">Cockles</option>
-                          <option value="Eastern Softshell Clams">Eastern Softshell Clams</option>
-                          <option value="Geoduck">Geoduck</option>
-                          <option value="Horse Clams">Horse Clams</option>
-                          <option value="Manila Clams">Manila Clams</option>
-                          <option value="Mussels">Mussels</option>
-                          <option value="Native Littleneck Clams">Native Littleneck Clams</option>
-                          <option value="Oysters">Oysters</option>
-                          <option value="Razor Clams">Razor Clams</option>
-                          <option value="Varnish Clams">Varnish Clams</option>
-                          <option value="__other__">Other...</option>
-                        </select>
-                      </div>
-                      <div style={{ flex: '0 0 auto', minWidth: 0 }}>
-                        <label style={styles.modalFieldLabel}>Date</label>
-                        <input
-                          type="date"
-                          value={postDate}
-                          onChange={(e) => setPostDate(e.target.value)}
-                          max={new Date().toISOString().slice(0, 10)}
-                          style={{ ...styles.modalInput, width: 'auto', minWidth: 0, WebkitAppearance: 'none', MozAppearance: 'none' }}
-                        />
-                      </div>
-                    </div>
-
-                    {species === '__other__' && (
-                      <input
-                        type="text"
-                        value={customSpecies}
-                        onChange={(e) => setCustomSpecies(e.target.value.substring(0, 100))}
-                        placeholder="What did you catch?"
-                        style={styles.modalInput}
-                        maxLength={100}
+                          <CloseIcon fontSize="small" />
+                        </IconButton>
+                      </Box>
+                    ) : (
+                      <Autocomplete
+                        options={sortedBeaches}
+                        getOptionLabel={(b) => b.name}
+                        size="small"
+                        onChange={(e, val) => {
+                          if (val) { setPostBeachId(String(val.id)); setSpecies(''); setCustomSpecies(''); }
+                        }}
+                        renderInput={(params) => <TextField {...params} placeholder="Search beaches..." />}
                       />
                     )}
 
-                    <label style={styles.modalFieldLabel}>Comment</label>
-                    <textarea
-                      style={styles.textarea}
+                    <Box sx={{ display: 'flex', gap: '12px' }}>
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Typography component="label" sx={{ fontSize: '12px', fontWeight: 600, color: '#4a5568', marginBottom: '4px', display: 'block', marginTop: '4px' }}>What did you catch?</Typography>
+                        <FormControl fullWidth size="small">
+                          <Select
+                            value={species}
+                            onChange={(e) => { setSpecies(e.target.value); if (e.target.value !== '__other__') setCustomSpecies(''); }}
+                            displayEmpty
+                          >
+                            <MenuItem value="">-- Select --</MenuItem>
+                            <MenuItem value="Butter Clams">Butter Clams</MenuItem>
+                            <MenuItem value="Cockles">Cockles</MenuItem>
+                            <MenuItem value="Eastern Softshell Clams">Eastern Softshell Clams</MenuItem>
+                            <MenuItem value="Geoduck">Geoduck</MenuItem>
+                            <MenuItem value="Horse Clams">Horse Clams</MenuItem>
+                            <MenuItem value="Manila Clams">Manila Clams</MenuItem>
+                            <MenuItem value="Mussels">Mussels</MenuItem>
+                            <MenuItem value="Native Littleneck Clams">Native Littleneck Clams</MenuItem>
+                            <MenuItem value="Oysters">Oysters</MenuItem>
+                            <MenuItem value="Razor Clams">Razor Clams</MenuItem>
+                            <MenuItem value="Varnish Clams">Varnish Clams</MenuItem>
+                            <MenuItem value="__other__">Other...</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                      <Box sx={{ flex: '0 0 auto', minWidth: 0 }}>
+                        <Typography component="label" sx={{ fontSize: '12px', fontWeight: 600, color: '#4a5568', marginBottom: '4px', display: 'block', marginTop: '4px' }}>Date</Typography>
+                        <TextField
+                          type="date"
+                          size="small"
+                          value={postDate}
+                          onChange={(e) => setPostDate(e.target.value)}
+                          inputProps={{ max: new Date().toISOString().slice(0, 10) }}
+                          InputLabelProps={{ shrink: true }}
+                        />
+                      </Box>
+                    </Box>
+
+                    {species === '__other__' && (
+                      <TextField
+                        fullWidth
+                        size="small"
+                        value={customSpecies}
+                        onChange={(e) => setCustomSpecies(e.target.value.substring(0, 100))}
+                        placeholder="What did you catch?"
+                        inputProps={{ maxLength: 100 }}
+                      />
+                    )}
+
+                    <Typography component="label" sx={{ fontSize: '12px', fontWeight: 600, color: '#4a5568', marginBottom: '4px', display: 'block', marginTop: '4px' }}>Comment</Typography>
+                    <TextField
+                      multiline
+                      minRows={3}
+                      maxRows={8}
+                      fullWidth
                       value={text}
                       onChange={(e) => setText(e.target.value.substring(0, 500))}
                       placeholder="Share your experience..."
-                      maxLength={500}
+                      inputProps={{ maxLength: 500 }}
+                      helperText={`${text.length}/500`}
                     />
-                    <div style={styles.charCount}>{text.length}/500</div>
 
-                    <div style={styles.honeypot}>
+                    <Box sx={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }}>
                       <input type="text" name="website" tabIndex={-1} autoComplete="off" />
-                    </div>
+                    </Box>
 
-                    <div style={styles.fileRow}>
-                      <label style={styles.fileLabel}>
-                        <span>+ Photo</span>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <Button component="label" variant="outlined" size="small" startIcon={<PhotoCameraIcon />}>
+                        Add Photos
                         <input
                           ref={fileInputRef}
                           type="file"
                           accept="image/jpeg,image/png,image/webp,image/gif"
                           multiple
-                          style={styles.fileInput}
+                          hidden
                           onChange={handleFileChange}
                         />
-                      </label>
-                      <span style={{ fontSize: '11px', color: '#a0aec0' }}>
+                      </Button>
+                      <Typography sx={{ fontSize: '11px', color: '#a0aec0' }}>
                         {files.length}/3 photos (max 5MB each)
-                      </span>
-                    </div>
+                      </Typography>
+                    </Box>
 
                     {previews.length > 0 && (
-                      <div style={styles.previews}>
+                      <Box sx={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                         {previews.map((src, i) => (
-                          <div key={i} style={styles.previewThumb}>
-                            <img src={src} alt="" style={styles.previewImg} />
-                            <button
-                              type="button"
-                              style={styles.previewRemove}
+                          <Box key={i} sx={{ position: 'relative', width: '60px', height: '60px', borderRadius: '6px', overflow: 'hidden' }}>
+                            <Box component="img" src={src} alt="" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <IconButton
+                              size="small"
                               onClick={() => removeFile(i)}
+                              sx={{
+                                position: 'absolute', top: 2, right: 2,
+                                bgcolor: 'rgba(0,0,0,0.6)', color: 'white',
+                                width: 18, height: 18, '& .MuiSvgIcon-root': { fontSize: 10 }
+                              }}
                             >
-                              x
-                            </button>
-                          </div>
+                              <CloseIcon />
+                            </IconButton>
+                          </Box>
                         ))}
-                      </div>
+                      </Box>
                     )}
 
-                    <button
+                    <Button
                       type="submit"
-                      style={{
-                        ...styles.submitButton,
-                        width: '100%',
-                        padding: '12px',
-                        fontSize: '14px',
-                        marginTop: '4px',
-                        ...(!text.trim() || !postBeachId || submitting ? styles.submitButtonDisabled : {})
-                      }}
+                      variant="contained"
+                      color="secondary"
+                      fullWidth
                       disabled={!text.trim() || !postBeachId || submitting}
+                      sx={{ mt: '4px', py: 1.5, fontSize: 14 }}
                     >
                       {submitting ? 'Posting...' : 'Post Comment'}
-                    </button>
-                  </div>
+                    </Button>
+                  </Box>
                 </form>
               )}
 
-              {error && <div style={styles.error}>{error}</div>}
-            </div>
-          </div>
-        </div>
-      )}
+              {error && <Alert severity="error" sx={{ mt: 1 }}>{error}</Alert>}
+        </DialogContent>
+      </Dialog>
 
       {/* Comments feed */}
-      <div style={styles.feedPanel}>
-        <h3 style={styles.feedTitle}>
+      <Box sx={{ backgroundColor: 'white', borderRadius: '12px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Typography variant="h6" sx={{ fontSize: '15px', fontWeight: 600, color: '#1a202c', marginBottom: '14px' }}>
           {hasActiveFilters ? 'Filtered Comments' : 'Recent Comments'}
-        </h3>
+        </Typography>
 
         {loading ? (
-          <div style={styles.empty}>Loading comments...</div>
+          <Box sx={{ textAlign: 'center', py: 5 }}>
+            <CircularProgress size={32} />
+          </Box>
         ) : allComments.length === 0 ? (
-          <div style={styles.empty}>No comments yet. Be the first to share!</div>
+          <Box sx={{ textAlign: 'center', py: 3, color: 'text.secondary', fontSize: 13 }}>No comments yet. Be the first to share!</Box>
         ) : filteredComments.length === 0 ? (
-          <div style={styles.empty}>No comments match your filters.</div>
+          <Box sx={{ textAlign: 'center', py: 3, color: 'text.secondary', fontSize: 13 }}>No comments match your filters.</Box>
         ) : (
-          <div style={styles.commentList}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {filteredComments.map((c) => (
-              <div key={c.id} style={styles.comment}>
-                <div style={styles.commentHeader}>
-                  <div>
-                    <span style={styles.commentAuthor}>{c.author}</span>
-                    <span style={styles.commentMeta}>{formatDate(c.createdAt)}</span>
-                  </div>
+              <Box key={c.id} sx={{ padding: '14px', backgroundColor: '#f7fafc', borderRadius: '8px' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4px' }}>
+                  <Box>
+                    <Typography component="span" sx={{ fontSize: '13px', fontWeight: 600, color: '#2d3748' }}>{c.author}</Typography>
+                    <Typography component="span" sx={{ fontSize: '11px', color: '#a0aec0', marginLeft: '8px' }}>{formatDate(c.createdAt)}</Typography>
+                  </Box>
                   {c.author === author && (
-                    <button style={styles.deleteBtn} onClick={() => handleDelete(c)}>
-                      delete
-                    </button>
+                    <IconButton size="small" color="error" onClick={() => handleDelete(c)}>
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
                   )}
-                </div>
-                <div>
-                  <span style={styles.commentBeachName}>{c.beachName || `Beach #${c.beachId}`}</span>
-                  {c.harvestDate && <span style={styles.commentMeta}>{new Date(c.harvestDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>}
-                  {c.species && <span style={styles.commentSpecies}>Caught: {c.species}</span>}
-                </div>
-                <div style={styles.commentText}>{c.text}</div>
+                </Box>
+                <Box>
+                  <Chip label={c.beachName || `Beach #${c.beachId}`} size="small" color="primary" variant="outlined" sx={{ mr: 0.5, mb: 0.5 }} />
+                  {c.harvestDate && <Typography component="span" sx={{ fontSize: '11px', color: '#a0aec0', marginLeft: '8px' }}>{new Date(c.harvestDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</Typography>}
+                  {c.species && <Chip label={`Caught: ${c.species}`} size="small" color="success" variant="outlined" sx={{ ml: 0.5, mb: 0.5 }} />}
+                </Box>
+                <Box sx={{ fontSize: '13px', color: '#4a5568', lineHeight: 1.5, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{c.text}</Box>
                 {c.photos && c.photos.length > 0 && (
-                  <div style={styles.commentPhotos}>
+                  <Box sx={{ display: 'flex', gap: '8px', marginTop: '10px', flexWrap: 'wrap' }}>
                     {c.photos.map((photo, i) => (
-                      <img
+                      <Box
                         key={i}
+                        component="img"
                         src={`/${photo}`}
                         alt=""
-                        style={styles.commentThumb}
                         onClick={() => setLightboxSrc(`/${photo}`)}
+                        sx={{
+                          width: '100px',
+                          height: '100px',
+                          borderRadius: '8px',
+                          objectFit: 'cover',
+                          cursor: 'pointer',
+                          border: '1px solid #e2e8f0'
+                        }}
                       />
                     ))}
-                  </div>
+                  </Box>
                 )}
-              </div>
+              </Box>
             ))}
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
 
       {/* Lightbox */}
-      {lightboxSrc && (
-        <div style={styles.lightboxOverlay} onClick={() => setLightboxSrc(null)}>
-          <img src={lightboxSrc} alt="" style={styles.lightboxImg} onClick={(e) => e.stopPropagation()} />
-        </div>
-      )}
-    </div>
+      <Dialog
+        open={!!lightboxSrc}
+        onClose={() => setLightboxSrc(null)}
+        maxWidth="lg"
+        fullWidth
+        PaperProps={{ sx: { bgcolor: 'rgba(0,0,0,0.85)', boxShadow: 'none' } }}
+      >
+        <DialogContent sx={{ display: 'flex', justifyContent: 'center', p: 0 }}>
+          {lightboxSrc && <img src={lightboxSrc} alt="" style={{ maxWidth: '90vw', maxHeight: '90vh', objectFit: 'contain', borderRadius: '12px' }} />}
+        </DialogContent>
+      </Dialog>
+    </Box>
   );
 }

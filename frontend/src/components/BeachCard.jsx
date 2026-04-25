@@ -1,144 +1,16 @@
 import React from 'react';
-
-const styles = {
-  card: {
-    backgroundColor: 'white',
-    borderRadius: '10px',
-    padding: '12px 14px',
-    marginBottom: '8px',
-    boxShadow: '0 1px 2px rgba(0,0,0,0.08)',
-    borderTop: '2px solid transparent',
-    borderRight: '2px solid transparent',
-    borderBottom: '2px solid transparent',
-    borderLeft: '4px solid',
-    cursor: 'pointer',
-    transition: 'transform 0.1s, box-shadow 0.1s'
-  },
-  cardSelected: {
-    borderTop: '2px solid #48bb78',
-    borderRight: '2px solid #48bb78',
-    borderBottom: '2px solid #48bb78',
-    boxShadow: '0 2px 8px rgba(72, 187, 120, 0.3)'
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '0'
-  },
-  name: {
-    fontSize: '16px',
-    fontWeight: '600',
-    color: '#1a202c'
-  },
-  location: {
-    fontSize: '13px',
-    color: '#718096',
-    marginTop: '2px'
-  },
-  statusBadge: {
-    padding: '4px 10px',
-    borderRadius: '12px',
-    fontSize: '12px',
-    fontWeight: '500',
-    textTransform: 'uppercase'
-  },
-  tideInfo: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    marginTop: '8px',
-    padding: '8px 10px',
-    backgroundColor: '#f7fafc',
-    borderRadius: '6px'
-  },
-  tideInfoCompact: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px',
-    marginTop: '6px',
-    fontSize: '13px',
-    color: '#4a5568'
-  },
-  tideLabel: {
-    fontSize: '11px',
-    color: '#718096'
-  },
-  tideTime: {
-    fontSize: '13px',
-    fontWeight: '500',
-    color: '#2d3748'
-  },
-  tideHeight: {
-    fontSize: '12px',
-    color: '#4a5568'
-  },
-  qualityBadge: {
-    padding: '2px 8px',
-    borderRadius: '10px',
-    fontSize: '11px',
-    fontWeight: '500'
-  },
-  nextGoodTideInfo: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    marginTop: '8px',
-    padding: '10px',
-    backgroundColor: '#ebf8ff',
-    borderRadius: '8px',
-    borderLeft: '3px solid #4299e1'
-  },
-  extendedLabel: {
-    fontSize: '11px',
-    color: '#2b6cb0',
-    fontWeight: '500',
-    marginBottom: '2px'
-  },
-  distanceBadge: {
-    fontSize: '12px',
-    color: '#805ad5',
-    fontWeight: '500',
-    marginLeft: '8px'
-  },
-  ferryBadge: {
-    display: 'inline-block',
-    padding: '2px 6px',
-    borderRadius: '4px',
-    fontSize: '10px',
-    fontWeight: '500',
-    backgroundColor: '#ebf8ff',
-    color: '#2b6cb0',
-    marginLeft: '4px'
-  },
-  boatBadge: {
-    display: 'inline-block',
-    padding: '2px 6px',
-    borderRadius: '4px',
-    fontSize: '10px',
-    fontWeight: '600',
-    backgroundColor: '#ebf8ff',
-    color: '#2b6cb0',
-    marginLeft: '8px',
-    textTransform: 'uppercase'
-  },
-  badTimeBadge: {
-    display: 'inline-block',
-    padding: '2px 6px',
-    borderRadius: '10px',
-    fontSize: '10px',
-    fontWeight: '500',
-    backgroundColor: '#fed7d7',
-    color: '#c53030',
-    marginLeft: '6px'
-  }
-};
+import Chip from '@mui/material/Chip';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 const statusColors = {
   green: { border: '#48bb78', badge: '#c6f6d5', text: '#22543d' },
   yellow: { border: '#ecc94b', badge: '#fefcbf', text: '#744210' },
   orange: { border: '#ed8936', badge: '#fefcbf', text: '#c05621' },
   red: { border: '#f56565', badge: '#fed7d7', text: '#742a2a' },
+  blue: { border: '#4299e1', badge: '#ebf8ff', text: '#2b6cb0' },
   gray: { border: '#a0aec0', badge: '#e2e8f0', text: '#4a5568' }
 };
 
@@ -202,6 +74,7 @@ function isSameDay(date1, date2) {
 
 // Derive status color from biotoxinStatus and seasonOpen if statusColor not provided
 function getStatusColorFromStatus(biotoxinStatus, seasonOpen) {
+  if (biotoxinStatus === 'wdfw_managed') return 'blue';
   if (biotoxinStatus === 'closed') return 'red';
   if (biotoxinStatus === 'open' && seasonOpen === false) return 'orange';
   if (biotoxinStatus === 'open') return 'green';
@@ -241,12 +114,7 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
   const showExtendedTide = !hasGoodTideIn7Days && nextGoodTide?.isExtended && !selectedDate;
 
   return (
-    <div
-      style={{
-        ...styles.card,
-        borderLeft: `4px solid ${colors.border}`,
-        ...(isSelected ? styles.cardSelected : {})
-      }}
+    <Paper
       className="beach-card"
       onClick={() => onClick?.(beach)}
       onMouseEnter={(e) => {
@@ -261,110 +129,153 @@ export default function BeachCard({ beach, onClick, selectedDate, isSelected = f
           e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
         }
       }}
+      sx={{
+        p: '12px 14px',
+        mb: 1,
+        borderRadius: '12px',
+        boxShadow: '0 1px 2px rgba(0,0,0,0.08)',
+        borderTop: '2px solid transparent',
+        borderRight: '2px solid transparent',
+        borderBottom: '2px solid transparent',
+        borderLeft: `4px solid ${colors.border}`,
+        cursor: 'pointer',
+        transition: 'transform 0.1s, box-shadow 0.1s',
+        ...(isSelected ? {
+          borderTop: '2px solid #48bb78',
+          borderRight: '2px solid #48bb78',
+          borderBottom: '2px solid #48bb78',
+          boxShadow: '0 2px 8px rgba(72, 187, 120, 0.3)'
+        } : {})
+      }}
     >
-      <div style={styles.header}>
-        <div>
-          <div style={styles.name}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box>
+          <Typography variant="body1" sx={{ fontSize: 16, fontWeight: 600, color: '#1a202c' }}>
             {beach.name}
             {beach.accessType === 'boat' && (
-              <span style={styles.boatBadge}>Boat</span>
+              <Chip label="Boat" size="small" variant="outlined" color="primary" sx={{ ml: 1, fontSize: 10, height: 20 }} />
             )}
             {beach.distance !== null && beach.distance !== undefined && (
               beach.distanceSource === 'driving' ? (
-                <span style={styles.distanceBadge}>
-                  ({beach.durationMin} min / {beach.distance.toFixed(1)} mi)
-                  {beach.hasFerry && (
-                    <span style={styles.ferryBadge}>ferry</span>
-                  )}
-                </span>
+                <Chip
+                  size="small"
+                  label={`${beach.durationMin} min / ${beach.distance.toFixed(1)} mi`}
+                  sx={{ ml: 1, fontSize: 12, fontWeight: 500, color: '#805ad5', bgcolor: 'rgba(128,90,213,0.08)', height: 22 }}
+                />
               ) : (
-                <span style={styles.distanceBadge}>
-                  ({beach.distance.toFixed(1)} mi)
-                </span>
+                <Chip
+                  size="small"
+                  label={`${beach.distance.toFixed(1)} mi`}
+                  sx={{ ml: 1, fontSize: 12, fontWeight: 500, color: '#805ad5', bgcolor: 'rgba(128,90,213,0.08)', height: 22 }}
+                />
               )
             )}
-          </div>
-          <div style={styles.location}>
+            {beach.hasFerry && beach.distanceSource === 'driving' && (
+              <Chip label="ferry" size="small" color="info" sx={{ ml: 0.5, fontSize: 10, height: 20 }} />
+            )}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.25 }}>
             {beach.region} - {beach.county} County
-          </div>
-        </div>
-        <span
-          style={{
-            ...styles.statusBadge,
-            backgroundColor: colors.badge,
-            color: colors.text
+          </Typography>
+        </Box>
+        <Chip
+          label={colorKey === 'green' ? 'OPEN' : colorKey === 'blue' ? 'WDFW' : 'CLOSED'}
+          size="small"
+          sx={{
+            fontWeight: 500,
+            textTransform: 'uppercase',
+            bgcolor: colors.badge,
+            color: colors.text,
+            fontSize: 12,
           }}
-        >
-          {colorKey === 'green' ? 'OPEN' : 'CLOSED'}
-        </span>
-      </div>
+        />
+      </Box>
+
+      {colorKey === 'blue' && (
+        <Box sx={{ mt: 1, p: '8px 10px', bgcolor: '#ebf8ff', borderRadius: '8px', borderLeft: '3px solid #4299e1' }}>
+          {beach.upcomingDigs?.length > 0 ? (
+            <>
+              <Typography variant="caption" sx={{ color: '#2b6cb0', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                Upcoming Digs
+              </Typography>
+              {beach.upcomingDigs.slice(0, 3).map((dig, i) => (
+                <Typography key={i} variant="caption" sx={{ color: '#2b6cb0', display: 'block' }}>
+                  {dig.date} ({dig.dayOfWeek}) {dig.time} — {dig.tideHeight}ft
+                </Typography>
+              ))}
+              {beach.upcomingDigs.length > 3 && (
+                <Typography variant="caption" sx={{ color: '#2b6cb0', fontStyle: 'italic' }}>
+                  +{beach.upcomingDigs.length - 3} more
+                </Typography>
+              )}
+            </>
+          ) : (
+            <Typography variant="caption" sx={{ color: '#2b6cb0', fontWeight: 500 }}>
+              Razor clam digs are managed by WDFW.
+              {beach.wdfwUrl && (
+                <Link href={beach.wdfwUrl} target="_blank" sx={{ ml: 0.5, color: '#2b6cb0', textDecoration: 'underline' }}>
+                  Check WDFW for dig dates
+                </Link>
+              )}
+            </Typography>
+          )}
+        </Box>
+      )}
 
       {selectedDate && nextTide && colorKey === 'green' ? (
-        <div style={styles.tideInfoCompact}>
-          <span>Low tide: <strong>{formatTimeOnly(nextTide.datetime)}</strong></span>
-          <span>{nextTide.height.toFixed(1)} ft</span>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mt: 1.5, fontSize: 13, color: '#4a5568' }}>
+          <Typography variant="body2">Low tide: <strong>{formatTimeOnly(nextTide.datetime)}</strong></Typography>
+          <Typography variant="body2">{nextTide.height.toFixed(1)} ft</Typography>
           {tideQualityColors && (
-            <span
-              style={{
-                ...styles.qualityBadge,
-                backgroundColor: tideQualityColors.bg,
-                color: tideQualityColors.text
-              }}
-            >
-              {nextTide.quality === 'poor' ? 'poor tide' : nextTide.quality === 'excellent' ? 'low tide' : nextTide.quality}
-            </span>
+            <Chip
+              label={nextTide.quality === 'excellent' ? 'low tide' : nextTide.quality === 'good' ? 'low tide' : nextTide.quality === 'fair' ? 'tide slightly high' : 'poor tide'}
+              size="small"
+              sx={{ fontSize: 11, height: 20, bgcolor: tideQualityColors.bg, color: tideQualityColors.text }}
+            />
           )}
           {isBadTime(nextTide.datetime) && (
-            <span style={styles.badTimeBadge}>bad time</span>
+            <Chip label="bad time" size="small" color="error" sx={{ fontSize: 10, height: 20 }} />
           )}
-        </div>
+        </Box>
       ) : !selectedDate && nextTide && colorKey === 'green' && (
-        <div style={styles.tideInfo}>
-          <div style={{ flex: 1 }}>
-            <div style={styles.tideLabel}>Next Low Tide</div>
-            <div style={styles.tideTime}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1, p: '8px 10px', bgcolor: '#f7fafc', borderRadius: '8px' }}>
+          <Box sx={{ flex: 1 }}>
+            <Typography variant="caption" color="text.secondary">Next Low Tide</Typography>
+            <Typography variant="body2" sx={{ fontWeight: 500, color: '#2d3748' }}>
               {formatDateTime(nextTide.datetime)}
-            </div>
-            <div style={styles.tideHeight}>
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
               {nextTide.height.toFixed(1)} ft ({getTimeUntil(nextTide.datetime)} from now)
-            </div>
-          </div>
+            </Typography>
+          </Box>
           {tideQualityColors && (
-            <span
-              style={{
-                ...styles.qualityBadge,
-                backgroundColor: tideQualityColors.bg,
-                color: tideQualityColors.text
-              }}
-            >
-              {nextTide.quality === 'poor' ? 'poor tide' : nextTide.quality === 'excellent' ? 'low tide' : nextTide.quality}
-            </span>
+            <Chip
+              label={nextTide.quality === 'excellent' ? 'low tide' : nextTide.quality === 'good' ? 'low tide' : nextTide.quality === 'fair' ? 'tide slightly high' : 'poor tide'}
+              size="small"
+              sx={{ fontSize: 11, height: 20, bgcolor: tideQualityColors.bg, color: tideQualityColors.text }}
+            />
           )}
-        </div>
+        </Box>
       )}
 
       {showExtendedTide && nextGoodTide && (
-        <div style={styles.nextGoodTideInfo}>
-          <div style={{ flex: 1 }}>
-            <div style={styles.extendedLabel}>Next Good Tide (beyond 7 days)</div>
-            <div style={styles.tideTime}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1, p: 1.25, bgcolor: '#ebf8ff', borderRadius: '8px', borderLeft: '3px solid #4299e1' }}>
+          <Box sx={{ flex: 1 }}>
+            <Typography variant="caption" sx={{ color: '#2b6cb0', fontWeight: 500, display: 'block', mb: 0.25 }}>Next Good Tide (beyond 7 days)</Typography>
+            <Typography variant="body2" sx={{ fontWeight: 500, color: '#2d3748' }}>
               {formatDateTime(nextGoodTide.datetime)}
-            </div>
-            <div style={styles.tideHeight}>
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
               {nextGoodTide.height.toFixed(1)} ft ({getTimeUntil(nextGoodTide.datetime)} from now)
-            </div>
-          </div>
-          <span
-            style={{
-              ...styles.qualityBadge,
-              backgroundColor: qualityColors[nextGoodTide.quality]?.bg || '#e2e8f0',
-              color: qualityColors[nextGoodTide.quality]?.text || '#4a5568'
-            }}
-          >
-            {nextGoodTide.quality === 'poor' ? 'poor tide' : nextGoodTide.quality === 'excellent' ? 'low tide' : nextGoodTide.quality}
-          </span>
-        </div>
+            </Typography>
+          </Box>
+          <Chip
+            label={nextGoodTide.quality === 'excellent' ? 'low tide' : nextGoodTide.quality === 'good' ? 'low tide' : nextGoodTide.quality === 'fair' ? 'tide slightly high' : 'poor tide'}
+            size="small"
+            sx={{ fontSize: 11, height: 20, bgcolor: qualityColors[nextGoodTide.quality]?.bg || '#e2e8f0', color: qualityColors[nextGoodTide.quality]?.text || '#4a5568' }}
+          />
+        </Box>
       )}
-    </div>
+    </Paper>
   );
 }

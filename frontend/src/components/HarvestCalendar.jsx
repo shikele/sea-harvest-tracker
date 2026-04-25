@@ -1,317 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { getHarvestCalendar } from '../services/api';
+import IconButton from '@mui/material/IconButton';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-const styles = {
-  container: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '16px'
-  },
-  title: {
-    fontSize: '18px',
-    fontWeight: '600',
-    color: '#1a202c'
-  },
-  viewToggle: {
-    display: 'flex',
-    gap: '4px',
-    backgroundColor: '#edf2f7',
-    borderRadius: '8px',
-    padding: '4px'
-  },
-  viewButton: {
-    padding: '6px 12px',
-    border: 'none',
-    borderRadius: '6px',
-    fontSize: '13px',
-    cursor: 'pointer',
-    backgroundColor: 'transparent',
-    color: '#718096',
-    transition: 'all 0.2s'
-  },
-  viewButtonActive: {
-    backgroundColor: 'white',
-    color: '#2d3748',
-    boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
-  },
-  monthNav: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '16px',
-    marginBottom: '16px'
-  },
-  navButton: {
-    padding: '8px 12px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '6px',
-    backgroundColor: 'white',
-    cursor: 'pointer',
-    fontSize: '14px'
-  },
-  monthLabel: {
-    fontSize: '16px',
-    fontWeight: '600',
-    color: '#2d3748',
-    minWidth: '150px',
-    textAlign: 'center'
-  },
-  weekDayHeader: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(7, 1fr)',
-    gap: '4px',
-    marginBottom: '4px'
-  },
-  weekDayLabel: {
-    textAlign: 'center',
-    fontSize: '12px',
-    fontWeight: '500',
-    color: '#718096',
-    padding: '8px 0'
-  },
-  calendar7Day: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(7, 1fr)',
-    gap: '8px'
-  },
-  calendarMonth: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(7, 1fr)',
-    gap: '4px'
-  },
-  dayCard: {
-    backgroundColor: '#f7fafc',
-    borderRadius: '8px',
-    padding: '0 8px',
-    minHeight: '280px',
-    height: '280px',
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-    cursor: 'pointer',
-    transition: 'all 0.15s ease'
-  },
-  dayCardMonth: {
-    backgroundColor: '#f7fafc',
-    borderRadius: '6px',
-    padding: '8px',
-    height: '125px',
-    overflow: 'hidden',
-    cursor: 'pointer',
-    transition: 'background-color 0.2s',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  dayCardEmpty: {
-    backgroundColor: 'transparent'
-  },
-  dayCardPast: {
-    backgroundColor: '#f1f1f1',
-    opacity: 0.6
-  },
-  pastLabel: {
-    position: 'absolute',
-    top: '2px',
-    right: '4px',
-    fontSize: '8px',
-    color: '#e53e3e',
-    textTransform: 'uppercase',
-    fontWeight: '600'
-  },
-  dayCardToday: {
-    border: '2px solid #4299e1'
-  },
-  dayCardSelected: {
-    border: '2px solid #718096',
-    boxShadow: '0 0 0 1px #718096'
-  },
-  dayHeader: {
-    textAlign: 'center',
-    marginBottom: '4px',
-    flexShrink: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    gap: '4px'
-  },
-  dayHeaderMonth: {
-    marginBottom: '6px'
-  },
-  dayOfWeek: {
-    fontSize: '10px',
-    color: '#718096',
-    textTransform: 'uppercase',
-    fontWeight: '500'
-  },
-  dayDate: {
-    fontSize: '14px',
-    fontWeight: '600',
-    color: '#2d3748'
-  },
-  dayDateMonth: {
-    fontSize: '14px',
-    fontWeight: '600',
-    color: '#2d3748'
-  },
-  dayDateToday: {
-    backgroundColor: '#4299e1',
-    color: 'white',
-    borderRadius: '50%',
-    width: '28px',
-    height: '28px',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  beachList: {
-    fontSize: '11px',
-    flex: 1,
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  beachItem: {
-    padding: '10px 10px',
-    marginBottom: '6px',
-    borderRadius: '4px',
-    backgroundColor: 'white',
-    borderLeft: '3px solid'
-  },
-  beachItemMonth: {
-    padding: '2px 4px',
-    marginBottom: '2px',
-    borderRadius: '3px',
-    backgroundColor: 'white',
-    borderLeft: '2px solid',
-    fontSize: '10px'
-  },
-  beachName: {
-    fontWeight: '500',
-    color: '#2d3748',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
-  },
-  tideTime: {
-    color: '#718096',
-    fontSize: '10px'
-  },
-  tideTimeMonth: {
-    color: '#718096',
-    fontSize: '9px'
-  },
-  emptyDay: {
-    color: '#718096',
-    fontSize: '11px',
-    textAlign: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    gap: '0px',
-    paddingTop: '12px',
-    paddingBottom: '12px'
-  },
-  emptyIcon: {
-    fontSize: '20px',
-    color: '#e53e3e'
-  },
-  emptyIconSmall: {
-    fontSize: '20px',
-    color: '#e53e3e'
-  },
-  emptyDayMonth: {
-    color: '#a0aec0',
-    fontSize: '10px',
-    textAlign: 'center',
-    padding: '4px 0',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
-  },
-  loading: {
-    textAlign: 'center',
-    padding: '40px',
-    color: '#718096'
-  },
-  moreCount: {
-    fontSize: '10px',
-    color: '#718096',
-    textAlign: 'center',
-    marginTop: '4px'
-  },
-  tideDot: {
-    display: 'inline-block',
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%',
-    marginRight: '4px'
-  },
-  tideIndicators: {
-    display: 'flex',
-    gap: '2px',
-    flexWrap: 'wrap',
-    marginTop: '4px'
-  },
-  legend: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '16px',
-    marginTop: '12px',
-    fontSize: '11px',
-    color: '#718096'
-  },
-  legendItem: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '4px'
-  },
-  speciesFilter: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    marginBottom: '16px',
-    padding: '12px',
-    backgroundColor: '#f7fafc',
-    borderRadius: '8px',
-    flexWrap: 'wrap',
-    border: '2px solid transparent',
-    transition: 'all 0.2s ease'
-  },
-  speciesFilterHighlight: {
-    border: '2px solid #48bb78',
-    backgroundColor: '#f0fff4',
-    boxShadow: '0 0 0 1px #48bb78'
-  },
-  speciesLabel: {
-    fontSize: '12px',
-    fontWeight: '600',
-    color: '#4a5568',
-    marginRight: '4px'
-  },
-  speciesSelect: {
-    flex: 1,
-    padding: '8px 12px',
-    fontSize: '14px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '8px',
-    backgroundColor: 'white',
-    color: '#4a5568',
-    cursor: 'pointer',
-    outline: 'none',
-    minWidth: '150px'
-  }
-};
 
 const qualityColors = {
   lowEnough: '#805ad5',   // purple - tide is low enough
@@ -322,10 +21,12 @@ const statusColors = {
   open: '#48bb78',        // green
   closed: '#f56565',      // red
   conditional: '#ecc94b', // yellow
+  wdfw_managed: '#4299e1', // blue
   unclassified: '#a0aec0' // gray
 };
 
 function getStatusBorderColor(biotoxinStatus, seasonOpen) {
+  if (biotoxinStatus === 'wdfw_managed') return statusColors.wdfw_managed;
   if (biotoxinStatus === 'closed') return statusColors.closed;
   if (biotoxinStatus === 'open' && seasonOpen === false) return '#ed8936'; // orange (season closed)
   if (biotoxinStatus === 'open') return statusColors.open;
@@ -362,7 +63,7 @@ function getMonthData(year, month) {
   return { startPadding, daysInMonth, firstDay, lastDay };
 }
 
-export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDate, statusFilters = [], accessFilter = 'all', selectedSpecies = [], allBeaches = [], allSpecies = [], onSpeciesToggle }) {
+export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDate, statusFilters = [], accessFilter = 'all', selectedSpecies = [], allBeaches = [], allSpecies = [], onSpeciesToggle, showAllBeaches = false }) {
   const [calendarData, setCalendarData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -463,6 +164,11 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
         if (speciesOnBeach.length > 0) {
           hasSpeciesBeaches = true;
 
+          // WDFW-managed beaches (razor clams) skip tide filtering — digs are announced by WDFW
+          if (beach.biotoxinStatus === 'wdfw_managed') {
+            return { ...fullBeach, ...beach, tideStatus: 'good' };
+          }
+
           // Find the best (lowest) min_tide requirement among selected species on this beach
           const lowestMinTide = Math.min(...speciesOnBeach.map(s => s.min_tide_ft ?? 1));
 
@@ -486,20 +192,40 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
       // Sort by tide height (lowest first)
       filteredBeaches.sort((a, b) => a.tideHeight - b.tideHeight);
 
-      // Calendar display: only open + road accessible beaches
-      const calendarBeaches = filteredBeaches.filter(b =>
-        b.biotoxinStatus === 'open' && b.seasonOpen !== false && b.accessType !== 'boat'
-      );
+      // Calendar display: biotoxin-open/wdfw_managed + road accessible + season-open (or season dates cover this day)
+      const calendarBeaches = filteredBeaches.filter(b => {
+        if (b.biotoxinStatus !== 'open' && b.biotoxinStatus !== 'wdfw_managed') return false;
+        if (b.accessType === 'boat') return false;
+        // Season check: open now, OR season dates cover this calendar day
+        if (b.seasonOpen) return true;
+        if (b.seasonStartDate && b.seasonEndDate) {
+          return day.date >= b.seasonStartDate && day.date <= b.seasonEndDate;
+        }
+        return false;
+      });
+
+      // Beach list beaches: apply showAllBeaches logic
+      const listBeaches = showAllBeaches
+        ? filteredBeaches
+        : filteredBeaches.filter(b => {
+            if (b.biotoxinStatus !== 'open' && b.biotoxinStatus !== 'wdfw_managed') return false;
+            // For season check with day-awareness
+            if (b.seasonOpen) return true;
+            if (b.seasonStartDate && b.seasonEndDate) {
+              return day.date >= b.seasonStartDate && day.date <= b.seasonEndDate;
+            }
+            return false;
+          });
 
       return {
         ...day,
         beaches: calendarBeaches.slice(0, 2), // Top 2 for calendar display (open + road only)
-        allBeaches: filteredBeaches, // All matching beaches for beach list
+        allBeaches: listBeaches, // Beaches for the list panel
         hasSpeciesBeaches,
         tideHighForSpecies
       };
     });
-  }, [calendarData, selectedSpecies, statusFilters, accessFilter, beachDataMap]);
+  }, [calendarData, selectedSpecies, statusFilters, accessFilter, beachDataMap, showAllBeaches]);
 
   // Filter calendar data to only include today and future for week view
   const futureCalendarData = useMemo(() => {
@@ -619,149 +345,126 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
 
   if (loading) {
     return (
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <div style={styles.title}>Harvest Calendar</div>
-        </div>
-        <div style={styles.loading}>Loading calendar...</div>
-      </div>
+      <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography sx={{ fontSize: '18px', fontWeight: 600, color: '#1a202c' }}>Harvest Calendar</Typography>
+        </Box>
+        <Box sx={{ textAlign: 'center', py: 5 }}>
+          <CircularProgress size={32} />
+        </Box>
+      </Paper>
     );
   }
 
   if (error) {
     return (
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <div style={styles.title}>Harvest Calendar</div>
-        </div>
-        <div style={styles.loading}>Error: {error}</div>
-      </div>
+      <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography sx={{ fontSize: '18px', fontWeight: 600, color: '#1a202c' }}>Harvest Calendar</Typography>
+        </Box>
+        <Alert severity="error">Error: {error}</Alert>
+      </Paper>
     );
   }
 
   const maxBeachesPerDay = viewMode === 'month' ? 2 : 4;
 
   return (
-    <div style={styles.container} className="calendar-container">
-      <div style={styles.header} className="calendar-header">
-        <div style={styles.title} className="calendar-title">Harvest Calendar</div>
-        <div style={styles.viewToggle} className="calendar-view-toggle">
-          <button
-            style={{
-              ...styles.viewButton,
-              ...(viewMode === 'week' ? styles.viewButtonActive : {})
-            }}
-            className="calendar-view-button"
-            onClick={() => setViewMode('week')}
-          >
+    <Paper sx={{ bgcolor: 'white', borderRadius: '12px', p: 2.5, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }} className="calendar-container">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }} className="calendar-header">
+        <Typography sx={{ fontSize: '18px', fontWeight: 600, color: '#1a202c' }} className="calendar-title">Harvest Calendar</Typography>
+        <ToggleButtonGroup
+          value={viewMode}
+          exclusive
+          onChange={(e, v) => v && setViewMode(v)}
+          size="small"
+          className="calendar-view-toggle"
+          sx={{ bgcolor: '#edf2f7', borderRadius: '8px', p: '4px' }}
+        >
+          <ToggleButton value="week" className="calendar-view-button" sx={{ border: 'none', borderRadius: '6px', px: 1.5, py: 0.5, fontSize: 13, textTransform: 'none' }}>
             7 Days
-          </button>
-          <button
-            style={{
-              ...styles.viewButton,
-              ...(viewMode === 'month' ? styles.viewButtonActive : {})
-            }}
-            className="calendar-view-button"
-            onClick={() => setViewMode('month')}
-          >
+          </ToggleButton>
+          <ToggleButton value="month" className="calendar-view-button" sx={{ border: 'none', borderRadius: '6px', px: 1.5, py: 0.5, fontSize: 13, textTransform: 'none' }}>
             Month
-          </button>
-        </div>
-      </div>
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
 
       {viewMode === 'week' && (
-        <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
-          <div style={{ display: 'flex', alignItems: 'stretch' }} className="calendar-nav-buttons">
-            <button
-              style={{
-                boxSizing: 'border-box',
-                height: '38px',
-                width: '38px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px solid black',
-                borderRadius: '4px 0 0 4px',
-                backgroundColor: weekOffset === 0 ? '#e0e0e0' : 'white',
-                cursor: weekOffset === 0 ? 'not-allowed' : 'pointer',
-                fontSize: '18px',
-                color: weekOffset === 0 ? '#999' : 'black',
-                padding: 0,
-                margin: 0
-              }}
+        <Box sx={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', mb: 2 }} className="calendar-nav">
+          <Box sx={{ display: 'flex', alignItems: 'stretch' }} className="calendar-nav-buttons">
+            <IconButton
               className="calendar-nav-button"
               onClick={() => setWeekOffset(w => Math.max(0, w - 1))}
               disabled={weekOffset === 0}
+              sx={{
+                height: 38, width: 38,
+                border: '1px solid black',
+                borderRadius: '4px 0 0 4px',
+                bgcolor: weekOffset === 0 ? '#e0e0e0' : 'white',
+              }}
             >
-              ‹
-            </button>
-            <div style={{
+              <ChevronLeftIcon />
+            </IconButton>
+            <Box sx={{
               boxSizing: 'border-box',
               height: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '0 16px',
-              backgroundColor: 'white',
+              px: 2,
+              bgcolor: 'white',
               border: '1px solid black',
               borderLeft: 'none',
               borderRight: 'none',
               fontSize: '14px',
-              fontWeight: '600',
+              fontWeight: 600,
               color: 'black',
               minWidth: '150px'
-            }} className="calendar-label">{weekLabel}</div>
-            <button
-              style={{
-                boxSizing: 'border-box',
-                height: '38px',
-                width: '38px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px solid black',
-                borderRadius: '0 4px 4px 0',
-                backgroundColor: weekOffset >= maxWeeks - 1 ? '#e0e0e0' : 'white',
-                cursor: weekOffset >= maxWeeks - 1 ? 'not-allowed' : 'pointer',
-                fontSize: '18px',
-                color: weekOffset >= maxWeeks - 1 ? '#999' : 'black',
-                padding: 0,
-                margin: 0
-              }}
+            }} className="calendar-label">{weekLabel}</Box>
+            <IconButton
               className="calendar-nav-button"
               onClick={() => setWeekOffset(w => Math.min(maxWeeks - 1, w + 1))}
               disabled={weekOffset >= maxWeeks - 1}
+              sx={{
+                height: 38, width: 38,
+                border: '1px solid black',
+                borderRadius: '0 4px 4px 0',
+                bgcolor: weekOffset >= maxWeeks - 1 ? '#e0e0e0' : 'white',
+              }}
             >
-              ›
-            </button>
-          </div>
-          <div className="calendar-nav-toggle" style={{
+              <ChevronRightIcon />
+            </IconButton>
+          </Box>
+          <Box className="calendar-nav-toggle" sx={{
             display: 'none',
-            backgroundColor: '#edf2f7',
+            bgcolor: '#edf2f7',
             borderRadius: '6px',
-            padding: '2px'
+            p: '2px'
           }}>
-            <button
-              style={{
+            <Box
+              component="button"
+              sx={{
                 padding: '6px 8px',
                 border: 'none',
                 borderRadius: '4px',
                 fontSize: '11px',
-                fontWeight: '500',
+                fontWeight: 500,
                 cursor: 'pointer',
                 backgroundColor: '#4299e1',
                 color: 'white'
               }}
             >
               7D
-            </button>
-            <button
-              style={{
+            </Box>
+            <Box
+              component="button"
+              sx={{
                 padding: '6px 8px',
                 border: 'none',
                 borderRadius: '4px',
                 fontSize: '11px',
-                fontWeight: '500',
+                fontWeight: 500,
                 cursor: 'pointer',
                 backgroundColor: 'transparent',
                 color: '#718096'
@@ -769,90 +472,71 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
               onClick={() => setViewMode('month')}
             >
               Mo
-            </button>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       )}
 
       {viewMode === 'month' && (
-        <div style={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginBottom: '16px' }} className="calendar-nav">
-          <div style={{ display: 'flex', alignItems: 'stretch' }} className="calendar-nav-buttons">
-            <button
-              style={{
-                boxSizing: 'border-box',
-                height: '38px',
-                width: '38px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px solid black',
-                borderRadius: '4px 0 0 4px',
-                backgroundColor: isCurrentMonth ? '#e0e0e0' : 'white',
-                cursor: isCurrentMonth ? 'not-allowed' : 'pointer',
-                fontSize: '18px',
-                color: isCurrentMonth ? '#999' : 'black',
-                padding: 0,
-                margin: 0
-              }}
+        <Box sx={{ display: 'flex', alignItems: 'stretch', justifyContent: 'center', mb: 2 }} className="calendar-nav">
+          <Box sx={{ display: 'flex', alignItems: 'stretch' }} className="calendar-nav-buttons">
+            <IconButton
               className="calendar-nav-button"
               onClick={() => navigateMonth(-1)}
               disabled={isCurrentMonth}
+              sx={{
+                height: 38, width: 38,
+                border: '1px solid black',
+                borderRadius: '4px 0 0 4px',
+                bgcolor: isCurrentMonth ? '#e0e0e0' : 'white',
+              }}
             >
-              ‹
-            </button>
-            <div style={{
+              <ChevronLeftIcon />
+            </IconButton>
+            <Box sx={{
               boxSizing: 'border-box',
               height: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '0 16px',
-              backgroundColor: 'white',
+              px: 2,
+              bgcolor: 'white',
               border: '1px solid black',
               borderLeft: 'none',
               borderRight: 'none',
               fontSize: '14px',
-              fontWeight: '600',
+              fontWeight: 600,
               color: 'black',
               minWidth: '150px'
-            }} className="calendar-label">{monthLabel}</div>
-            <button
-              style={{
-                boxSizing: 'border-box',
-                height: '38px',
-                width: '38px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px solid black',
-                borderRadius: '0 4px 4px 0',
-                backgroundColor: isMaxMonth ? '#e0e0e0' : 'white',
-                cursor: isMaxMonth ? 'not-allowed' : 'pointer',
-                fontSize: '18px',
-                color: isMaxMonth ? '#999' : 'black',
-                padding: 0,
-                margin: 0
-              }}
+            }} className="calendar-label">{monthLabel}</Box>
+            <IconButton
               className="calendar-nav-button"
               onClick={() => navigateMonth(1)}
               disabled={isMaxMonth}
+              sx={{
+                height: 38, width: 38,
+                border: '1px solid black',
+                borderRadius: '0 4px 4px 0',
+                bgcolor: isMaxMonth ? '#e0e0e0' : 'white',
+              }}
             >
-              ›
-            </button>
-          </div>
-          <div className="calendar-nav-toggle" style={{
+              <ChevronRightIcon />
+            </IconButton>
+          </Box>
+          <Box className="calendar-nav-toggle" sx={{
             display: 'none',
-            backgroundColor: '#edf2f7',
+            bgcolor: '#edf2f7',
             borderRadius: '6px',
-            padding: '2px'
+            p: '2px'
           }}>
-            <button
-              style={{
+            <Box
+              component="button"
+              sx={{
                 padding: '6px 8px',
                 border: 'none',
                 borderRadius: '4px',
                 fontSize: '11px',
-                fontWeight: '500',
+                fontWeight: 500,
                 cursor: 'pointer',
                 backgroundColor: 'transparent',
                 color: '#718096'
@@ -860,208 +544,247 @@ export default function HarvestCalendar({ onBeachClick, onDateSelect, selectedDa
               onClick={() => setViewMode('week')}
             >
               7D
-            </button>
-            <button
-              style={{
+            </Box>
+            <Box
+              component="button"
+              sx={{
                 padding: '6px 8px',
                 border: 'none',
                 borderRadius: '4px',
                 fontSize: '11px',
-                fontWeight: '500',
+                fontWeight: 500,
                 cursor: 'pointer',
                 backgroundColor: '#4299e1',
                 color: 'white'
               }}
             >
               Mo
-            </button>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       )}
 
       {viewMode === 'month' && (
-        <div style={styles.weekDayHeader} className="calendar-weekday-header">
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', mb: '4px' }} className="calendar-weekday-header">
           {WEEKDAYS.map(day => (
-            <div key={day} style={styles.weekDayLabel} className="calendar-weekday-label">{day}</div>
+            <Typography key={day} sx={{ textAlign: 'center', fontSize: '12px', fontWeight: 500, color: '#718096', py: 1 }} className="calendar-weekday-label">{day}</Typography>
           ))}
-        </div>
+        </Box>
       )}
 
       {viewMode === 'week' ? (
-        <div style={styles.calendar7Day} className="calendar-7day-grid">
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px' }} className="calendar-7day-grid">
           {weekData.map((day) => (
-            <div
+            <Box
               key={day.date}
-              style={{
-                ...styles.dayCard,
+              sx={{
+                backgroundColor: '#f7fafc',
+                borderRadius: '8px',
+                px: 1,
+                minHeight: '280px',
+                height: '280px',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
                 ...(day.beaches.length > 0 ? {
                   backgroundColor: day.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4'
                 } : selectedSpecies.length > 0 && day.date in originalDateMap ? {
                   backgroundColor: '#fff5f5'
                 } : {}),
-                ...(isSameDay(day.date, today) ? styles.dayCardToday : {}),
-                ...(selectedDate === day.date ? styles.dayCardSelected : {})
+                ...(isSameDay(day.date, today) ? { border: '2px solid #4299e1' } : {}),
+                ...(selectedDate === day.date ? { border: '2px solid #718096', boxShadow: '0 0 0 1px #718096' } : {})
               }}
               className="calendar-day-card"
               onClick={() => onDateSelect?.(selectedDate === day.date ? null : day.date, selectedDate === day.date ? [] : (day.allBeaches || day.beaches))}
             >
-              <div style={styles.dayHeader} className="calendar-day-header">
-                <span style={styles.dayOfWeek} className="calendar-day-of-week">{day.dayOfWeek}</span>
-                <span style={styles.dayDate} className="calendar-day-date">{formatDayDate(day.date)}</span>
-              </div>
+              <Box sx={{ textAlign: 'center', mb: '4px', flexShrink: 0, display: 'flex', justifyContent: 'center', alignItems: 'baseline', gap: '4px' }} className="calendar-day-header">
+                <Typography component="span" sx={{ fontSize: '10px', color: '#718096', textTransform: 'uppercase', fontWeight: 500 }} className="calendar-day-of-week">{day.dayOfWeek}</Typography>
+                <Typography component="span" sx={{ fontSize: '14px', fontWeight: 600, color: '#2d3748' }} className="calendar-day-date">{formatDayDate(day.date)}</Typography>
+              </Box>
 
-              <div style={styles.beachList} className="calendar-beach-list">
+              <Box sx={{ fontSize: '11px', flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }} className="calendar-beach-list">
                 {day.beaches.length === 0 ? (
-                  <div style={styles.emptyDay}>
+                  <Box sx={{ color: '#718096', fontSize: '11px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, pt: '12px', pb: '12px' }}>
                     {selectedSpecies.length === 0 ? (
                       <>
-                        <span style={{ fontSize: '20px', color: '#a0aec0' }}>🦪</span>
-                        <span style={{ color: '#718096', fontSize: '10px' }}>Select a species</span>
+                        <Typography sx={{ fontSize: '20px', color: '#a0aec0' }}></Typography>
+                        <Typography sx={{ color: '#718096', fontSize: '10px' }}>Select a species</Typography>
                       </>
                     ) : !(day.date in originalDateMap) ? (
                       <>
-                        <span style={{ fontSize: '14px', color: '#a0aec0' }}>—</span>
-                        <span style={{ fontStyle: 'italic' }}>No data</span>
+                        <Typography sx={{ fontSize: '14px', color: '#a0aec0' }}>--</Typography>
+                        <Typography sx={{ fontStyle: 'italic' }}>No data</Typography>
                       </>
                     ) : (
-                      <span style={{ color: '#e53e3e', fontSize: '11px' }}>Tides too high</span>
+                      <Typography sx={{ color: '#e53e3e', fontSize: '11px' }}>Tides too high</Typography>
                     )}
-                  </div>
+                  </Box>
                 ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1, overflow: 'auto' }} className="calendar-beach-grid">
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1, overflow: 'auto' }} className="calendar-beach-grid">
                     {day.beaches.map((beach, i) => (
-                      <div
+                      <Box
                         key={`${beach.id}-${i}`}
-                        style={{
-                          ...styles.beachItem,
+                        sx={{
+                          padding: '10px 10px',
+                          borderRadius: '4px',
+                          bgcolor: 'white',
+                          borderLeft: '3px solid',
                           borderLeftColor: getStatusBorderColor(beach.biotoxinStatus, beach.seasonOpen),
                           cursor: 'default',
-                          marginBottom: 0
+                          mb: 0
                         }}
                         className="calendar-beach-item"
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high (needs ${beach.minTideNeeded}ft)` : beach.name}
                       >
-                        <div style={styles.beachName} className="calendar-beach-name">
-                          {beach.tideStatus === 'slightlyHigh' && <span style={{ marginRight: '4px' }}>⚠️</span>}
+                        <Typography sx={{ fontWeight: 500, color: '#2d3748', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} className="calendar-beach-name">
+                          {beach.tideStatus === 'slightlyHigh' && <Typography component="span" sx={{ mr: '4px' }}></Typography>}
                           {beach.name}
-                        </div>
-                        <div style={{...styles.tideTime, ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {})}} className="calendar-tide-time">
-                          {beach.tideHeight.toFixed(1)}ft {formatTime(beach.tideTime)}
-                          {beach.tideStatus === 'slightlyHigh' && <span style={{ fontSize: '9px', marginLeft: '4px' }}>(need {beach.minTideNeeded}ft)</span>}
-                        </div>
-                      </div>
+                          {beach.isDigDay && <Typography component="span" sx={{ fontSize: '9px', fontWeight: 700, color: '#2b6cb0', ml: '4px', textTransform: 'uppercase' }}>DIG</Typography>}
+                        </Typography>
+                        <Typography sx={{ color: '#718096', fontSize: '10px', ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {}) }} className="calendar-tide-time">
+                          {beach.tideHeight.toFixed(1)}ft {beach.isDigDay && beach.digTime ? beach.digTime : formatTime(beach.tideTime)}
+                          {beach.tideStatus === 'slightlyHigh' && <Typography component="span" sx={{ fontSize: '9px', ml: '4px' }}>(need {beach.minTideNeeded}ft)</Typography>}
+                        </Typography>
+                      </Box>
                     ))}
-                  </div>
+                  </Box>
                 )}
-              </div>
-            </div>
+              </Box>
+            </Box>
           ))}
-        </div>
+        </Box>
       ) : (
-        <div style={styles.calendarMonth} className="calendar-month-grid">
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }} className="calendar-month-grid">
           {monthGrid.map((cell, idx) => (
             cell.empty ? (
-              <div key={`empty-${idx}`} style={styles.dayCardEmpty} className="calendar-day-empty" />
+              <Box key={`empty-${idx}`} sx={{ backgroundColor: 'transparent' }} className="calendar-day-empty" />
             ) : (
-              <div
+              <Box
                 key={cell.date}
-                style={{
-                  ...styles.dayCardMonth,
+                sx={{
+                  backgroundColor: '#f7fafc',
+                  borderRadius: '6px',
+                  p: 1,
+                  height: '125px',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s',
+                  display: 'flex',
+                  flexDirection: 'column',
                   ...(!cell.isPast ? {
                     backgroundColor: cell.beaches.length > 0
                       ? (cell.beaches.every(b => b.tideStatus === 'slightlyHigh') ? '#fffaf0' : '#f0fff4')
                       : '#fff5f5'
                   } : {}),
-                  ...(cell.isToday ? styles.dayCardToday : {}),
-                  ...(cell.isPast ? styles.dayCardPast : {}),
-                  ...(selectedDate === cell.date && !cell.isPast ? styles.dayCardSelected : {}),
+                  ...(cell.isToday ? { border: '2px solid #4299e1' } : {}),
+                  ...(cell.isPast ? { backgroundColor: '#f1f1f1', opacity: 0.6 } : {}),
+                  ...(selectedDate === cell.date && !cell.isPast ? { border: '2px solid #718096', boxShadow: '0 0 0 1px #718096' } : {}),
                   position: 'relative'
                 }}
                 className={`calendar-month-day ${cell.isPast ? 'past-day' : ''}`}
                 onClick={() => !cell.isPast && onDateSelect?.(selectedDate === cell.date ? null : cell.date, selectedDate === cell.date ? [] : (cell.allBeaches || cell.beaches))}
               >
-                {cell.isPast && <span style={styles.pastLabel}>Past</span>}
-                <div style={styles.dayHeaderMonth} className="calendar-month-day-header">
-                  <span style={{
-                    ...styles.dayDateMonth,
-                    ...(cell.isToday ? styles.dayDateToday : {}),
+                {cell.isPast && <Typography sx={{ position: 'absolute', top: '2px', right: '4px', fontSize: '8px', color: '#e53e3e', textTransform: 'uppercase', fontWeight: 600 }}>Past</Typography>}
+                <Box sx={{ mb: '6px' }} className="calendar-month-day-header">
+                  <Typography component="span" sx={{
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: '#2d3748',
+                    ...(cell.isToday ? {
+                      backgroundColor: '#4299e1',
+                      color: 'white',
+                      borderRadius: '50%',
+                      width: '28px',
+                      height: '28px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    } : {}),
                     ...(cell.isPast ? { color: '#a0aec0' } : {})
                   }} className="calendar-month-day-date">
                     {cell.day}
-                  </span>
-                </div>
+                  </Typography>
+                </Box>
 
                 {cell.beaches.length === 0 ? (
-                  <div style={styles.emptyDayMonth} className="calendar-month-empty-content" />
+                  <Box sx={{ color: '#a0aec0', fontSize: '10px', textAlign: 'center', py: '4px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }} className="calendar-month-empty-content" />
                 ) : (
                   <>
                     {cell.beaches.map((beach, i) => (
-                      <div
+                      <Box
                         key={`${beach.id}-${i}`}
-                        style={{
-                          ...styles.beachItemMonth,
+                        sx={{
+                          padding: '2px 4px',
+                          mb: '2px',
+                          borderRadius: '3px',
+                          bgcolor: 'white',
+                          borderLeft: '2px solid',
                           borderLeftColor: cell.isPast ? '#cbd5e0' : (beach.tideStatus === 'slightlyHigh' ? qualityColors.slightlyHigh : qualityColors.lowEnough),
+                          fontSize: '10px',
                           cursor: 'default',
                           ...(beach.tideStatus === 'slightlyHigh' && !cell.isPast ? { backgroundColor: '#fffaf0' } : {})
                         }}
                         className="calendar-month-beach-item"
                         title={beach.tideStatus === 'slightlyHigh' ? `${beach.name} - Tide slightly high` : beach.name}
                       >
-                        <div style={{...styles.beachName, ...(cell.isPast ? { color: '#a0aec0' } : {}), ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {})}} className="calendar-beach-name">
-                          {beach.tideStatus === 'slightlyHigh' && <span style={{ fontSize: '8px' }}>⚠️</span>}
+                        <Typography sx={{ fontWeight: 500, color: '#2d3748', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...(cell.isPast ? { color: '#a0aec0' } : {}), ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {}) }} className="calendar-beach-name">
+                          {beach.tideStatus === 'slightlyHigh' && <Typography component="span" sx={{ fontSize: '8px' }}></Typography>}
                           {beach.name}
-                        </div>
-                        <div style={{...styles.tideTimeMonth, ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {})}} className="calendar-tide-time-month">
-                          {beach.tideHeight.toFixed(1)}ft
-                        </div>
-                      </div>
+                          {beach.isDigDay && <Typography component="span" sx={{ fontSize: '8px', fontWeight: 700, color: '#2b6cb0', ml: '2px' }}>DIG</Typography>}
+                        </Typography>
+                        <Typography sx={{ color: '#718096', fontSize: '9px', ...(beach.tideStatus === 'slightlyHigh' ? { color: '#c05621' } : {}) }} className="calendar-tide-time-month">
+                          {beach.tideHeight.toFixed(1)}ft{beach.isDigDay && beach.digTime ? ` ${beach.digTime}` : ''}
+                        </Typography>
+                      </Box>
                     ))}
                   </>
                 )}
-              </div>
+              </Box>
             )
           ))}
-        </div>
+        </Box>
       )}
 
-      <div style={styles.legend} className="calendar-legend">
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px', mt: '12px', fontSize: '11px', color: '#718096' }} className="calendar-legend">
         {selectedSpecies.length === 0 ? (
-          <div style={styles.legendItem} className="calendar-legend-item">
-            <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#e2e8f0', border: '1px solid #a0aec0', borderRadius: '2px' }} />
-            Select a species to see harvest days
-          </div>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="calendar-legend-item">
+            <Box sx={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#e2e8f0', border: '1px solid #a0aec0', borderRadius: '2px' }} />
+            <Typography sx={{ fontSize: '11px', color: '#718096' }}>Select a species to see harvest days</Typography>
+          </Box>
         ) : viewMode === 'week' ? (
           <>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
-              Good harvest day
-            </div>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
-              Tide slightly high
-            </div>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fff5f5', border: '1px solid #feb2b2', borderRadius: '2px' }} />
-              No good tides
-            </div>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="calendar-legend-item">
+              <Box sx={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
+              <Typography sx={{ fontSize: '11px', color: '#718096' }}>Good harvest day</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="calendar-legend-item">
+              <Box sx={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
+              <Typography sx={{ fontSize: '11px', color: '#718096' }}>Tide slightly high</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="calendar-legend-item">
+              <Box sx={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fff5f5', border: '1px solid #feb2b2', borderRadius: '2px' }} />
+              <Typography sx={{ fontSize: '11px', color: '#718096' }}>No good tides</Typography>
+            </Box>
           </>
         ) : (
           <>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
-              Good harvest day
-            </div>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
-              Tide slightly high
-            </div>
-            <div style={styles.legendItem} className="calendar-legend-item">
-              <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fff5f5', border: '1px solid #feb2b2', borderRadius: '2px' }} />
-              No good tides
-            </div>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="calendar-legend-item">
+              <Box sx={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#f0fff4', border: '1px solid #9ae6b4', borderRadius: '2px' }} />
+              <Typography sx={{ fontSize: '11px', color: '#718096' }}>Good harvest day</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="calendar-legend-item">
+              <Box sx={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fffaf0', border: '1px solid #fbd38d', borderRadius: '2px' }} />
+              <Typography sx={{ fontSize: '11px', color: '#718096' }}>Tide slightly high</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="calendar-legend-item">
+              <Box sx={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: '#fff5f5', border: '1px solid #feb2b2', borderRadius: '2px' }} />
+              <Typography sx={{ fontSize: '11px', color: '#718096' }}>No good tides</Typography>
+            </Box>
           </>
         )}
-      </div>
-    </div>
+      </Box>
+    </Paper>
   );
 }
