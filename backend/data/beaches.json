@@ -39,6 +39,11 @@
           "name": "Oysters",
           "abundance": "abundant",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "scattered",
+          "min_tide_ft": -2
         }
       ],
       "notes": "Please take care not to cover oysters with sand and mud while digging clams because this will potentially kill the oysters. Potlatch State Park has over a mile of tidelands, but some areas provide better digging for different species. The stretch of beach that is closest to the highway is regularly harvested by recreational diggers, and good numbers of Manila clams can be found here. Manila clams can be found throughout the middle and upper intertidal zones, with greatest abundance on the large tide flat at the southern end of Annas Bay where the park’s shoreline turns easterly. Native littleneck clams are present throughout the beach, but in lower abundance and usually lower in tidal elevation than Manila clams. The best digging for butter clams is in front of the main parking area in the lower intertidal zone. Butter clams are also common in the lower intertidal zone throughout the south end of the beach. Varnish clams are found in great abundance all along the southern shoreline of Potlatch State Park and Potlatch DNR, usually in the upper intertidal zone. Eastern softshell clams can be found at Potlatch State Park, particularly in areas with freshwater influence from Enetai Creek (also the site of the Skokomish Fisheries Department fish trap). Potlatch DNR is a good beach for butter clams. The best digging is in the middle intertidal zone in sand and mixed sand/gravel. There are some good spots for Manila and native littleneck clams in the middle and upper intertidal zones. Eastern softshell and Varnish clams are also found at Potlatch DNR, usually in the middle and upper intertidal zones. Potlatch State Park is an excellent beach for oysters. There are extensive oyster beds in the stretch of beach near the highway, as well as north and east of Enetai Creek. Potlatch DNR is a good beach for oysters, but they are more abundant at Potlatch State Park. Tidelands to the east of the Potlatch DNR boundary are owned by The Skokomish Tribal Nation. Non-consumptive recreational use is permitted. All shellfish harvest is strictly prohibited on these tidelands. (See Beach Map)",
@@ -58,10 +63,21 @@
           "name": "Oysters",
           "abundance": "abundant",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
         }
       ],
       "notes": "This is an excellent beach for oysters. The flat trail from the parking lot to the beach is suitable for access by wheelchair, although there are areas of sticky mud on the beach that may make traversing the beach challenging.",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270200"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/270200",
+      "rednote_notes": "RedNote users report finding geoduck here during negative low tides. Also good for horse clams."
     },
     {
       "id": 3,
@@ -367,10 +383,16 @@
           "name": "Oysters",
           "abundance": "scattered",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
         }
       ],
       "notes": "This beach has been enhanced with oysters. This beach is mostly sandy substrate and littleneck clam habitat is limited. There is a small patch of mixed sand and gravel near the west end of the beach that may have some native littleneck clams and Manila clams, but they are not abundant. There are some butter clams and horse clams available on the sandy areas of this beach. Please take care not to cover oysters with sand and mud while digging clams because this will potentially kill the oysters. Oysters are available on this beach.",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280570"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/280570",
+      "rednote_notes": "RedNote users mention geoduck harvesting. Temporarily closed along with Shine in May 2025."
     },
     {
       "id": 13,
@@ -437,27 +459,33 @@
         },
         {
           "name": "Butter Clams",
-          "abundance": "scattered",
+          "abundance": "abundant",
           "min_tide_ft": 0
         },
         {
           "name": "Cockles",
-          "abundance": "scattered",
+          "abundance": "abundant",
           "min_tide_ft": 1
         },
         {
           "name": "Horse Clams",
-          "abundance": "scattered",
+          "abundance": "abundant",
           "min_tide_ft": -1
         },
         {
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
         }
       ],
       "notes": "Birch Bay State Park has a large (8,255 feet of shoreline) and very productive beach, flanked by a low bank and wetlands. The park is located a few miles south of the Canadian border and is very popular with recreational clam harvesters. The clam band is a wide stretch of sand and gravel extending from the drift line down to low water. There is good digging for native littleneck clams and Manila clams in the sandy gravel of the upper intertidal and you will find butter clams, cockles and horse clams at lower tidal elevations. There are some oysters on this beach, but they are not abundant.",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200060"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/200060",
+      "rednote_notes": "RedNote users report surf clams, horse clams, butter clams and cockles. WARNING: Check DOH toxin map before harvesting - Birch Bay has periodic closures due to PSP/DSP toxins."
     },
     {
       "id": 16,
@@ -799,10 +827,21 @@
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        },
+        {
+          "name": "Razor Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
         }
       ],
       "notes": "This beach has been enhanced with clams. Good numbers of native littleneck clams are available wherever sand and gravel substrate occur. Manila littleneck clams can be found over most of the beach in the mid-high intertidal zone. There have been regular plants of Manila clams on the north end of this beach. The enhanced area is located just south of the Seven Sisters Road beach access, near the boundary with Wolfe Property State Park. There is also some excellent digging for Manilas and native littlenecks  near the midpoint of Shine Tidelands in the narrow band of sand/gravel that occurs fairly high on the beach. Butter clams are found over much of the beach in the mid-lower intertidal zone, especially in cobble substrate. Horse clams are present in sand and mud throughout the lower intertidal zone. This is also a good beach for cockles, which can be found on, or just under, the surface of the sand and mud throughout the extensive mud flat portions of the beach. This beach relies on natural oyster production and oysters are not as abundant here as they are at Wolfe Property State Park, located immediately to the north and adjacent to Shine Tidelands State Park. However, some oysters can be found in the small embayment near the north boundary of Shine Tidelands State Park.",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250512"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250512",
+      "rednote_notes": "RedNote users report geoduck and razor clams. WARNING: Temporarily closed in May 2025 due to overharvesting."
     },
     {
       "id": 30,
@@ -843,10 +882,21 @@
           "name": "Oysters",
           "abundance": "abundant",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        },
+        {
+          "name": "Razor Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
         }
       ],
       "notes": "This beach has been enhanced with clams and oysters. This beach does not require a very low tide to access good clamming habitat. A plus 2 to 3 foot tide will expose enough of the beach. Good numbers of native littleneck clams and Manila littleneck clams can be found over most of the beach. Littlenecks prefer mixed sand and gravel substrate in the mid to upper intertidal zone. Harvesters are advised to dig in the planted clam area (see beach photo). Most of the southern half of Wolfe Property State Park beach receives regular WDFW plants of Manila clam seed. Some of the best clam digging is right in front of the access trail at the end of Seven Sisters Road. Butter clams are found in the lower intertidal zone. Horse clams are present in sand and mud throughout the lower intertidal zone. This is also a good beach for cockles which can be found on, or just under, the surface of the sand and mud throughout the extensive mud flat portions of the beach. This is an excellent beach for oysters. Before 1990 there was only one small area where oysters occurred  but this now beach receives regular oyster seeding, which have aided the natural production of oysters on this beach. The best place for oyster is in the planted bed north of the Seven Sisters access (see beach photo).",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250510"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/250510",
+      "rednote_notes": "RedNote users report abundant surf clams (鸟贝) and butter clams. WARNING: This beach was temporarily closed in May 2025 due to overharvesting."
     },
     {
       "id": 31,
@@ -1260,10 +1310,16 @@
           "name": "Oysters",
           "abundance": "abundant",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
         }
       ],
       "notes": "This beach does not require a very low tide to access good clamming habitat. A plus 2-foot tide or lower will expose enough of the beach to harvest clams. Abundant Manila clams live in the mixed gravel and mud. They can be easily harvested at higher tide heights and there is no need to venture into the sticky black mud in the low intertidal zone. Digging clams on this beach can be a very dirty job because of the soft sticky mud. Try the southeast portion of the beach that borders the main tidal channel. Manila clams are very abundant here and the substrate is not quite as muddy (see beach map). Eastern softshell clams are also available on this beach. This is a good beach for oysters.",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281050"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281050",
+      "rednote_notes": "RedNote users mention geoduck harvesting here."
     },
     {
       "id": 50,
@@ -1366,7 +1422,8 @@
         }
       ],
       "notes": "This beach has been enhanced with oysters. There are some patches of native littleneck clams, Manila clams and eastern softshell clams on the south end of this beach. The best spots are in the mid-high intertidal zone in mixed sand and gravel. Native littlenecks may also be found in low numbers in the sandy substrate at the north end of beach. There are butter clams on this beach in the mid-low intertidal zone, but they are not abundant. There are also horse clams and large Macoma clams in this area. There may be some geoducks on this beach below the -2.0 foot tide level. There are some planted oysters on the north end of this beach.",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281140"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/281140",
+      "rednote_notes": "RedNote users report geoduck, surf clams, oysters, and butter clams. Good diversity of species."
     },
     {
       "id": 53,
@@ -1673,10 +1730,21 @@
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
         }
       ],
       "notes": "Not much is known about shellfish resources on this beach. Oysters are not expected to be common at this location.",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260850"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260850",
+      "rednote_notes": "RedNote users report geoduck and horse clams. Dig in the eelgrass areas at negative low tides."
     },
     {
       "id": 66,
@@ -1743,9 +1811,19 @@
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "scattered",
+          "min_tide_ft": -2
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "scattered",
+          "min_tide_ft": -1
         }
       ],
-      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location.",
+      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location. Geoduck and horse clams have been reported by recreational harvesters.",
       "access_type": "boat",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260830"
     },
@@ -1763,9 +1841,19 @@
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "scattered",
+          "min_tide_ft": -2
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "scattered",
+          "min_tide_ft": -1
         }
       ],
-      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location.",
+      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location. Geoduck and horse clams have been reported by recreational harvesters.",
       "access_type": "boat",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260820"
     },
@@ -1783,9 +1871,19 @@
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "scattered",
+          "min_tide_ft": -2
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "scattered",
+          "min_tide_ft": -1
         }
       ],
-      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location.",
+      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location. Geoduck and horse clams have been reported by recreational harvesters.",
       "access_type": "boat",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260720"
     },
@@ -1803,9 +1901,19 @@
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "scattered",
+          "min_tide_ft": -2
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "scattered",
+          "min_tide_ft": -1
         }
       ],
-      "notes": "Not much is known about clam resources on this beach. Oysters are not common at this location.",
+      "notes": "Not much is known about clam resources on this beach. Oysters are not common at this location. Geoduck and horse clams have been reported by recreational harvesters.",
       "access_type": "boat",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260670"
     },
@@ -1823,9 +1931,19 @@
           "name": "Oysters",
           "abundance": "rare",
           "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "scattered",
+          "min_tide_ft": -2
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "scattered",
+          "min_tide_ft": -1
         }
       ],
-      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location.",
+      "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location. Geoduck and horse clams have been reported by recreational harvesters.",
       "access_type": "boat",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260650"
     },
@@ -1862,11 +1980,32 @@
           "name": "Razor Clams",
           "abundance": "rare",
           "min_tide_ft": 0
+        },
+        {
+          "name": "Oysters",
+          "abundance": "abundant",
+          "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
+        },
+        {
+          "name": "Manila Clams",
+          "abundance": "abundant",
+          "min_tide_ft": 2
         }
       ],
       "notes": "Long Beach extends from the Columbia River north to the mouth of Willapa Bay. Razor Clam Reserve (Restricted Area) Beginning 2.8 miles north of the Oysterville approach, then north for 1/4 mile on Long Beach.",
       "access_type": "public",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600200"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/600200",
+      "rednote_notes": "RedNote users report razor clam digging is excellent 1.5 hours before lowest tide. Clam gun recommended. Some report catching geoduck here as well."
     },
     {
       "id": 76,
@@ -1882,6 +2021,11 @@
           "name": "Razor Clams",
           "abundance": "rare",
           "min_tide_ft": 0
+        },
+        {
+          "name": "Oysters",
+          "abundance": "abundant",
+          "min_tide_ft": 2
         }
       ],
       "notes": "Copalis Beach extends from the north jetty at the mouth of Grays Harbor to the Copalis River. Razor Clam Reserve (Restricted Area) From a point beginning four-tenths of a mile south of the Ocean City approach (2nd. Ave.) and extending south for one quarter mile on Copalis Beach.",
@@ -2257,11 +2401,27 @@
           "name": "Eastern Softshell Clams",
           "abundance": "scattered",
           "min_tide_ft": 1
+        },
+        {
+          "name": "Oysters",
+          "abundance": "abundant",
+          "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        },
+        {
+          "name": "Razor Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
         }
       ],
       "notes": "Ala Spit, formerly known as Ben Ure Spit, is a small beach of 1,187 feet of shoreline, located on the east side of Whidbey Island, south of Deception Pass. Butter clams, and cockles are the most abundant species found on this beach. Over the past several years the substrate has shifted from primarily gravel towards more of a mud and sand substrate, leading to a decline of native littleneck clams. The most productive clam habitat is a relatively small area of mixed gravel towards the point. The area inside of the spit and towards the southern end of the beach is primarily mud and sand and is not good clam habitat. You may also find horse clams and eastern softshell clams here.",
       "access_type": "public",
-      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240265"
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/240265",
+      "rednote_notes": "RedNote users report diverse species including surf clams, horse clams, oysters and butter clams. Popular spot."
     },
     {
       "id": 92,
