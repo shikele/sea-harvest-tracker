@@ -4701,6 +4701,77 @@
       "notes": "Not much is known about shellfish resources on this beach. Oysters are not common at this location.",
       "access_type": "public",
       "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260690"
+    },
+    {
+      "id": 218,
+      "name": "Burton Acres (Jensen Point, Vashon Island)",
+      "county": "King",
+      "region": "Central Puget Sound",
+      "lat": 47.5103,
+      "lon": -122.4574,
+      "tide_station_id": "9446807",
+      "doh_object_id": null,
+      "species": [
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        },
+        {
+          "name": "Horse Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
+        },
+        {
+          "name": "Oysters",
+          "abundance": "abundant",
+          "min_tide_ft": 2
+        },
+        {
+          "name": "Surf Clams",
+          "abundance": "abundant",
+          "min_tide_ft": 0
+        }
+      ],
+      "notes": "WDFW reports clam resources are not well known at this beach. Oysters are not common. Open year-round for harvest. RedNote users report finding geoduck here in lower numbers, with more experienced diggers having success. Horse clams and surf clams are plentiful. Park at Jensen Point and walk the beach toward Camp Burton.",
+      "rednote_notes": "Geoduck numbers are lower here — some experienced diggers find them but beginners may struggle. Good parking. Walk the beach south toward Camp Burton for better horse clam beds.",
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260710"
+    },
+    {
+      "id": 219,
+      "name": "Camp Burton (Vashon Island)",
+      "county": "King",
+      "region": "Central Puget Sound",
+      "lat": 47.5047,
+      "lon": -122.4555,
+      "tide_station_id": "9446807",
+      "doh_object_id": null,
+      "species": [
+        {
+          "name": "Horse Clams",
+          "abundance": "abundant",
+          "min_tide_ft": -1
+        },
+        {
+          "name": "Surf Clams",
+          "abundance": "abundant",
+          "min_tide_ft": 0
+        },
+        {
+          "name": "Oysters",
+          "abundance": "abundant",
+          "min_tide_ft": 2
+        },
+        {
+          "name": "Geoduck",
+          "abundance": "abundant",
+          "min_tide_ft": -3
+        }
+      ],
+      "access_type": "boat-only",
+      "notes": "WDFW reports this beach is accessible by boat only — there is no public upland access. Clam resources are not well known. Oysters are not common at this location. Open year-round for harvest. RedNote users report excellent horse clam digging here.",
+      "rednote_notes": "Boat access only. Horse clams are plentiful — some RedNote users describe them as numerous as rocks. Eelgrass beds have surf clams and mussels. Geoduck is present but less common. Best accessed by boat from Jensen Point or Quartermaster Harbor.",
+      "wdfw_url": "https://wdfw.wa.gov/places-to-go/shellfish-beaches/260711"
     }
   ]
 }
