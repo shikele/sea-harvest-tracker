@@ -626,6 +626,11 @@ export default function Dashboard() {
                   size="small"
                   value={searchQuery}
                   onChange={handleSearchChange}
+                  onFocus={(e) => {
+                    setTimeout(() => {
+                      e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                  }}
                   className="search-input"
                   sx={{ flex: '1 1 auto', minWidth: 120 }}
                   InputProps={{

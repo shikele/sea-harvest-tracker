@@ -473,6 +473,14 @@ html, body {
     font-size: 16px !important; /* Prevents iOS zoom */
   }
 
+  /* Sticky filter section so search input stays above keyboard */
+  .filter-section {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    background: #f7fafc !important;
+  }
+
   .toggle-row {
     gap: 8px !important;
   }
