@@ -481,6 +481,15 @@ html, body {
     background: #f7fafc !important;
   }
 
+  /* Stabilize beach list height during search to prevent input jumping */
+  .beach-list-section {
+    min-height: 80vh !important;
+  }
+
+  .beach-cards-list {
+    min-height: 60vh;
+  }
+
   .toggle-row {
     gap: 8px !important;
   }

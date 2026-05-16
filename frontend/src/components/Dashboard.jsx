@@ -627,9 +627,12 @@ export default function Dashboard() {
                   value={searchQuery}
                   onChange={handleSearchChange}
                   onFocus={(e) => {
-                    setTimeout(() => {
-                      e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 300);
+                    const rect = e.target.getBoundingClientRect();
+                    if (rect.top < 0 || rect.bottom > window.innerHeight) {
+                      setTimeout(() => {
+                        e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }, 300);
+                    }
                   }}
                   className="search-input"
                   sx={{ flex: '1 1 auto', minWidth: 120 }}
@@ -703,6 +706,7 @@ export default function Dashboard() {
               </Box>
             </Box>
 
+            <Box className="beach-cards-list" sx={{ minHeight: paginatedBeaches.length > 0 ? undefined : 60 }}>
             {paginatedBeaches.map((beach) => (
               <BeachCard
                 key={beach.id}
@@ -712,6 +716,7 @@ export default function Dashboard() {
                 isSelected={selectedBeach?.id === beach.id}
               />
             ))}
+            </Box>
 
             {totalPages > 1 && (
               <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, mt: 2.5, pt: 2, borderTop: '1px solid #e2e8f0' }} className="pagination">
